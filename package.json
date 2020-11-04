@@ -1,0 +1,23 @@
+{
+  "name": "mfe",
+  "version": "1.0.0",
+  "description": "mindful frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Doomking/mfe.git"
+  },
+  "keywords": [
+    "mindful",
+    "frontend"
+  ],
+  "author": "doomking",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Doomking/mfe/issues"
+  },
+  "homepage": "https://github.com/Doomking/mfe#readme"
+}
