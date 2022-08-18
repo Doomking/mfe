@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"gitbook serve ./src",
-    "build":"gitbook build ./src ./docs"
+    "dev": "npx gitbook serve ./src",
+    "build": "npx gitbook build ./src ./docs",
+    "install": "npx gitbook install"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Doomking/mfe/issues"
   },
-  "homepage": "https://github.com/Doomking/mfe#readme"
+  "homepage": "https://github.com/Doomking/mfe#readme",
+  "devDependencies": {
+    "graceful-fs": "4.2.4"
+  }
 }
