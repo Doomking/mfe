@@ -1,0 +1,732 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>终于实现了Chrome MV3 的网络请求更改 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    正念前端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="1-netRequest.html">
+            
+                <a href="1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >终于实现了Chrome MV3 的网络请求更改</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x80CC;&#x666F;">&#x80CC;&#x666F;</h1>
+<p>&#x6700;&#x8FD1;&#x5728;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x603B;&#x662F;&#x9762;&#x4E34;&#x5404;&#x79CD;&#x73AF;&#x5883;&#x95EE;&#x9898;&#xFF1A;&#x6BD4;&#x5982;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x989D;&#x5916;&#x7684;&#x8BF7;&#x6C42;&#x5934;&#xFF0C;&#x624D;&#x80FD;&#x8BF7;&#x6C42;&#x5230;&#x7279;&#x5B9A;&#x73AF;&#x5883;&#x7684;&#x63A5;&#x53E3;&#xFF1B;&#x6BD4;&#x5982;&#x63A5;&#x53E3;&#x5F02;&#x5E38;&#xFF0C;&#x51FA;&#x73B0;&#x8DE8;&#x57DF;&#x95EE;&#x9898;&#x7B49;&#xFF1B;&#x6781;&#x5927;&#x5F71;&#x54CD;&#x4E86;&#x5F00;&#x53D1;&#x8C03;&#x8BD5;&#x6548;&#x7387;&#xFF0C;&#x867D;&#x7136;&#x80FD;&#x5904;&#x7406;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;/&#x54CD;&#x5E94;&#x5934;&#xFF0C;&#x89E3;&#x51B3;&#x8DE8;&#x57DF;&#x7684;chrome&#x6269;&#x5C55;&#x5F88;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x573A;&#x666F;&#x6709;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E9B;&#x6269;&#x5C55;&#x8981;&#x4E48;&#x4E0D;&#x662F;&#x4E0D;&#x597D;&#x7528;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#x3002;&#x6070;&#x597D;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x5F00;&#x53D1;&#x8FC7;&#xFF0C;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x63A5;&#x53E3;Mock&#x7684;chrome&#x63D2;&#x4EF6;&#xFF0C;&#x4E00;&#x76F4;&#x7528;&#x7740;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x90A3;&#x4F55;&#x4E0D;&#x5728;&#x6B64;&#x63D2;&#x4EF6;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x518D;&#x589E;&#x52A0;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x8BF7;&#x6C42;&#x5934;&#x53CA;&#x8DE8;&#x57DF;&#x7684;&#x80FD;&#x529B;&#x5462;&#xFF1F;</p>
+<p>&#x7F51;&#x4E0A;&#x4E00;&#x641C;&#xFF0C;chrome.webRequest API&#x8F7B;&#x677E;&#x89E3;&#x51B3;&#x6B64;&#x95EE;&#x9898;&#xFF0C;&#x770B;&#x6765;&#x5F88;&#x5FEB;&#x5C31;&#x80FD;&#x5982;&#x4E1D;&#x822C;&#x987A;&#x6ED1;&#x7684;&#x5F00;&#x53D1;&#x8C03;&#x8BD5;&#x4EE3;&#x7801;&#x4E86;&#x3002;
+&#x8BF4;&#x5E72;&#x5C31;&#x5E72;&#xFF0C;&#x4EE3;&#x7801;&#x90FD;&#x5FEB;&#x8981;&#x5199;&#x597D;&#x4E86;&#xFF0C;&#x7ED3;&#x679C;&#xFF0C;&#x4EC0;&#x4E48;&#xFF01;webRequest API&#x5728;MV3&#x4E2D;&#x5DF2;&#x7ECF;&#x5E9F;&#x5F03;&#x4E86;&#xFF0C;&#x5E9F;&#x5F03;&#x4E86;&#xFF01;</p>
+<p>&#x90A3;&#x600E;&#x4E48;&#x529E;&#xFF0C;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x6CA1;&#x4E8B;&#xFF0C;&#x54B1;MV3&#x4E0D;&#x662F;&#x6709;declarativeNetRequest API&#x5462;&#xFF0C;&#x5206;&#x5206;&#x949F;&#x4E5F;&#x80FD;&#x641E;&#x5B9A;&#x3002;&#x3002;&#x3002;</p>
+<p>&#x7136;&#x800C;declarativeNetRequest API&#x7684;&#x6559;&#x7A0B;&#x771F;&#x662F;&#x592A;&#x5C11;&#x4E86;&#xFF0C;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x592A;&#x7B80;&#x5355;&#xFF0C;&#x592A;&#x4E0D;&#x6E05;&#x6670;&#x4E86;&#xFF0C;&#x5176;&#x4ED6;&#x6587;&#x7AE0;&#x53EA;&#x6709;&#x7B80;&#x5355;&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x4F46;&#x662F;&#x5F88;&#x5C11;&#x6709;&#x5B9E;&#x6218;&#x7684;&#xFF0C;&#x8FD9;&#x4E0B;&#x771F;&#x662F;&#x9EBB;&#x70E6;&#x5927;&#x4E86;&#x3002;</p>
+<p>&#x771F;&#x662F;&#x4E00;&#x5751;&#x53C8;&#x4E00;&#x5751;&#xFF0C;&#x843D;&#x5165;&#x4E86;&#x6301;&#x7EED;&#x7684;&#x8270;&#x96BE;&#x7684;&#x907F;&#x5751;&#x6597;&#x4E89;&#xFF01;</p>
+<p><strong>webRequest vs declarativeNetRequest</strong></p>
+<p>&#x8BDD;&#x8BF4; webRequest API&#x7528;&#x7740;&#x597D;&#x597D;&#x7684;&#xFF0C;&#x65E2;&#x7B80;&#x5355;&#x65B9;&#x4FBF;&#xFF0C;&#x53C8;&#x6210;&#x719F;&#x7A33;&#x5B9A;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5728;MV3&#x4E2D;&#x8981;&#x5E9F;&#x5F03;&#x5462;&#xFF1F;&#x8FD9;&#x4E0D;&#x662F;&#x81EA;&#x627E;&#x9EBB;&#x70E6;&#x4E48;&#xFF1F;</p>
+<p>Chrome&#x5B98;&#x65B9;&#x7684;&#x89E3;&#x91CA;&#x662F;&#xFF0C;&#x7531;&#x4E8E;WebRequest API&#x7684;&#x673A;&#x5236;&#x662F;&#x5F53;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x53D1;&#x8D77;&#x8FDB;&#xFF0C;&#x5C31;&#x4F1A;&#x62E6;&#x622A;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5404;&#x79CD;&#x5206;&#x6790;&#x5904;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x5F88;&#x5BB9;&#x6613;&#x88AB;&#x5F00;&#x53D1;&#x8005;&#x6EE5;&#x7528;&#xFF0C;&#x5BFC;&#x81F4;&#x6027;&#x80FD;&#x53D7;&#x5F71;&#x54CD;&#xFF0C;&#x5E76;&#x4E14;&#x7ED9;&#x5F00;&#x53D1;&#x8005;&#x7684;&#x6743;&#x9650;&#x592A;&#x5927;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x6B64;&#x5728;MV3&#x4E2D;&#xFF0C;chrome&#x6269;&#x5C55;&#x63D0;&#x4F9B;&#x4E86;&#x58F0;&#x660E;&#x5F0F;&#x7684;API&#xFF0C;&#x5373;&#x662F;chrome.declarativeNetRequest&#xFF0C;&#x5373;&#x5728;manifest.json&#x4E2D;&#x914D;&#x7F6E;&#x4E00;&#x5957;&#x89C4;&#x5219;&#xFF0C;&#x901A;&#x8FC7;&#x89C4;&#x5219;&#x5339;&#x914D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x8981;&#x62E6;&#x622A;&#x7684;&#x8BF7;&#x6C42;&#x6216;&#x8005;&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x66F4;&#x52A0;&#x5B89;&#x5168;&#xFF0C;&#x6027;&#x80FD;&#x4E5F;&#x66F4;&#x597D;&#xFF0C;&#x4E5F;&#x662F;&#x5B98;&#x65B9;&#x4E3B;&#x63A8;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x4E8C;&#x8005;&#x7684;&#x6838;&#x5FC3;&#x533A;&#x522B;&#x5C31;&#x662F;chrome.webRequest API&#x5728;&#x5B9E;&#x73B0;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x662F;&#x901A;&#x8FC7;&#x5B9E;&#x65F6;&#x62E6;&#x622A;&#xFF0C;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5728;&#x4EFB;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x4E2D;&#x8FDB;&#x884C;&#x62E6;&#x622A;&#xFF0C;&#x5206;&#x6790;&#x548C;&#x4FEE;&#x6539;&#xFF0C;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x548C;&#x65B9;&#x4FBF;&#xFF1B;&#x4F46;&#x662F;chrome.declarativeNetRequest API&#x662F;&#x58F0;&#x660E;&#x5F0F;&#x7684;&#xFF0C;&#x9884;&#x5148;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x597D;&#x4E00;&#x5957;&#x89C4;&#x5219;&#xFF0C;&#x7136;&#x540E;&#x5F53;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x5339;&#x914D;&#x4E0A;&#x4E86;&#x89C4;&#x5219;&#xFF0C;&#x5C31;&#x4F1A;&#x6839;&#x636E;&#x89C4;&#x5219;&#x5BF9;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x4FEE;&#x6539;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x6837;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x548C;&#x89C4;&#x5219;&#x8BBE;&#x5B9A;&#x5C31;&#x53D8;&#x6210;&#x4E86;2&#x4E2A;&#x975E;&#x5E38;&#x72EC;&#x7ACB;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6839;&#x672C;&#x65E0;&#x6CD5;&#x76D1;&#x63A7;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x53CA;&#x505A;&#x51FA;&#x76F8;&#x5E94;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x6574;&#x4E2A;&#x5B9E;&#x73B0;&#x601D;&#x8DEF;&#x548C;chrome.webRequest API&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x5B8C;&#x5168;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF1B;</p>
+<h1 id="declarativenetrequest-api&#x4ECB;&#x7ECD;">declarativeNetRequest API&#x4ECB;&#x7ECD;</h1>
+<p>&#x5B98;&#x65B9;&#x6587;&#x6863;&#xFF1A;<a href="https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/" target="_blank">https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/</a></p>
+<p>chrome.declarativeNetRequest&#x5728;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E0A;&#x6709;&#x975E;&#x5E38;&#x591A;&#x7684;&#x8BF4;&#x660E;&#x548C;&#x4ECB;&#x7ECD;&#xFF0C;&#x6BD4;&#x8F83;&#x7EC6;&#x81F4;&#xFF0C;&#x4F46;&#x5185;&#x5BB9;&#x591A;&#x4E14;&#x662F;&#x82F1;&#x6587;&#xFF0C;&#x4E0D;&#x4EC5;&#x4E0D;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#xFF0C;&#x800C;&#x4E14;&#x7F3A;&#x5C11;&#x6848;&#x4F8B;&#x548C;Demo&#xFF0C;&#x8BFB;&#x8D77;&#x6765;&#x4E91;&#x91CC;&#x96FE;&#x91CC;&#xFF0C;&#x975E;&#x5E38;&#x5403;&#x529B;&#xFF1B;</p>
+<p>&#x8FD9;&#x4E2A;API&#x7684;&#x6838;&#x5FC3;&#x5C31;&#x662F;&#x8FDB;&#x884C;&#x89C4;&#x5219;&#x914D;&#x7F6E;&#x548C;&#x5339;&#x914D;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#x4E3B;&#x8981;&#x7684;&#x5DE5;&#x4F5C;&#x5C31;&#x662F;&#x89C4;&#x5219;&#x914D;&#x7F6E;&#xFF0C;declarativeNetRequest&#x4E3B;&#x8981;&#x63D0;&#x4F9B;&#x4E86;2&#x79CD;&#x89C4;&#x5219;&#x914D;&#x7F6E;&#x65B9;&#x5F0F;&#xFF1A;&#x9759;&#x6001;&#x89C4;&#x5219;&#x548C;&#x52A8;&#x6001;&#x89C4;&#x5219;&#xFF0C;&#x5177;&#x4F53;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#xFF1A;</p>
+<h2 id="1--&#x6743;&#x9650;&#x8BBE;&#x5B9A;">1.  &#x6743;&#x9650;&#x8BBE;&#x5B9A;</h2>
+<p>&#x5728;manifest.json&#x7684;permissions&#x4E2D;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x6743;&#x9650;&#xFF1A;</p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;permissions&quot;</span>: [<span class="hljs-string">&quot;declarativeNetRequest&quot;</span>, <span class="hljs-string">&quot;declarativeNetRequestWithHostAccess&quot;</span>, <span class="hljs-string">&quot;declarativeNetRequestFeedback&quot;</span>],
+    <span class="hljs-string">&quot;host_permissions&quot;</span>: [<span class="hljs-string">&quot;&lt;all_urls&gt;&quot;</span>]
+}
+</code></pre>
+<ul>
+<li>&#x82E5;&#x7533;&#x8BF7;&#x7684;&#x662F;declarativeNetRequest&#x6743;&#x9650;&#xFF0C;&#x5219;&#x963B;&#x6B62;&#x6216;&#x5347;&#x7EA7;&#x8BF7;&#x6C42;&#x4E0D;&#x9700;&#x8981;&#x7533;&#x8BF7;&quot;host_permissions&quot;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x9700;&#x8981;&#x91CD;&#x5B9A;&#x5411;&#x8BF7;&#x6C42;&#xFF0C;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x5934;&#xFF0C;&#x5219;&#x8981;&#x7533;&#x8BF7;&#x76F8;&#x5E94;&#x7684;&quot;host_permissions&quot;</li>
+<li><p>&#x82E5;&#x7533;&#x8BF7;&#x7684;&#x662F;declarativeNetRequestWithHostAccess&#x6743;&#x9650;&#xFF0C;&#x5219;&#x4EFB;&#x4F55;&#x529F;&#x80FD;&#x90FD;&#x9700;&#x8981;&#x7533;&#x8BF7;&#x76F8;&#x5E94;&#x7684;&quot;host_permissions&quot;&#x3002;</p>
+</li>
+<li><p>&#x82E5;&#x7533;&#x8BF7;&#x7684;&#x662F;declarativeNetRequestFeedback&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;getMatchedRules()&#x65B9;&#x6CD5;&#x3002;&#x5E76;&#x4E14;&#x80FD;&#x591F;&#x76D1;&#x542C;&#x5339;&#x914D;&#x6210;&#x529F;&#x4E8B;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x8BE5;&#x76D1;&#x542C;&#x4EC5;&#x5141;&#x8BB8;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+</ul>
+<h2 id="2--&#x6DFB;&#x52A0;&#x89C4;&#x5219;&#x96C6;">2.  &#x6DFB;&#x52A0;&#x89C4;&#x5219;&#x96C6;</h2>
+<p>&#x4F7F;&#x7528;declarativeNetRequest&#x5BF9;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x505A;&#x5904;&#x7406;&#xFF0C;&#x5B9E;&#x8D28;&#x4E0A;&#x662F;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;json&#x683C;&#x5F0F;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x8FD9;&#x4E9B;&#x89C4;&#x5219;&#x4F1A;&#x5339;&#x914D;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x5E76;&#x9075;&#x4ECE;&#x8FD9;&#x4E9B;&#x89C4;&#x5219;&#x505A;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x3002;&#x5339;&#x914D;&#x89C4;&#x5219;&#x6709;&#x9759;&#x6001;&#x89C4;&#x5219;&#x548C;&#x52A8;&#x6001;&#x89C4;&#x5219;&#x4E24;&#x79CD;&#x3002;</p>
+<h3 id="&#x9759;&#x6001;&#x89C4;&#x5219;&#x914D;&#x7F6E;">&#x9759;&#x6001;&#x89C4;&#x5219;&#x914D;&#x7F6E;</h3>
+<ol>
+<li>&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x89C4;&#x5219;&#x96C6;&#x7684;json&#x6587;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;json&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x91CC;&#x9762;&#x53EF;&#x4EE5;&#x653E;&#x7F6E;&#x591A;&#x4E2A;&#x89C4;&#x5219;&#x3002;</li>
+<li>&#x9700;&#x8981;&#x5728;manifest.json&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;declarative_net_request&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;path&#x6307;&#x5411;&#x914D;&#x7F6E;&#x89C4;&#x5219;&#x96C6;&#x7684;json&#x6587;&#x4EF6;&#x3002;</li>
+</ol>
+<p>manifest.json</p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;declarativeNetRequest extension&quot;</span>,
+    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
+    <span class="hljs-string">&quot;declarative_net_request&quot;</span>: {
+        <span class="hljs-string">&quot;rule_resources&quot;</span>: [{
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&quot;ruleset_1&quot;</span>,
+            <span class="hljs-string">&quot;enabled&quot;</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;rules.json&quot;</span>
+        }]
+    },
+    <span class="hljs-string">&quot;permissions&quot;</span>: [<span class="hljs-string">&quot;*://*.google.com/*&quot;</span>, <span class="hljs-string">&quot;*://*.abcd.com/*&quot;</span>, <span class="hljs-string">&quot;*://*.example.com/*&quot;</span>, <span class="hljs-string">&quot;https://*.xyz.com/*&quot;</span>, <span class="hljs-string">&quot;*://*.headers.com/*&quot;</span>, <span class="hljs-string">&quot;declarativeNetRequest&quot;</span>],
+    <span class="hljs-string">&quot;manifest_version&quot;</span>: <span class="hljs-number">3</span>
+}
+</code></pre>
+<p><strong>rule_resources&#x6709;&#x4E09;&#x4E2A;&#x53C2;&#x6570;:</strong></p>
+<ul>
+<li><p>id&#xFF1A;&#x6BCF;&#x4E2A;&#x89C4;&#x5219;&#x96C6;&#x9700;&#x8981;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;id</p>
+</li>
+<li><p>enabled&#xFF1A;&#x89C4;&#x5219;&#x96C6;&#x662F;&#x5426;&#x542F;&#x7528;</p>
+</li>
+<li><p>path&#xFF1A;&#x914D;&#x7F6E;&#x89C4;&#x5219;&#x7684;json&#x6587;&#x4EF6;&#x5730;&#x5740;</p>
+</li>
+</ul>
+<p>rules.json</p>
+<pre><code class="lang-json">[{
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;block&quot;</span>
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;google.com&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;allow&quot;</span>
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;google.com/123&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">3</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;block&quot;</span>
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;google.com/12345&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">4</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;redirect&quot;</span>,
+            <span class="hljs-string">&quot;redirect&quot;</span>: {
+                <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://example.com&quot;</span>
+            }
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;google.com&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;redirect&quot;</span>,
+            <span class="hljs-string">&quot;redirect&quot;</span>: {
+                <span class="hljs-string">&quot;extensionPath&quot;</span>: <span class="hljs-string">&quot;/a.jpg&quot;</span>
+            }
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;abcd.com&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">6</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;redirect&quot;</span>,
+            <span class="hljs-string">&quot;redirect&quot;</span>: {
+                <span class="hljs-string">&quot;transform&quot;</span>: {
+                    <span class="hljs-string">&quot;scheme&quot;</span>: <span class="hljs-string">&quot;https&quot;</span>,
+                    <span class="hljs-string">&quot;host&quot;</span>: <span class="hljs-string">&quot;new.example.com&quot;</span>
+                }
+            }
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;||example.com&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">7</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;redirect&quot;</span>,
+            <span class="hljs-string">&quot;redirect&quot;</span>: {
+                <span class="hljs-string">&quot;regexSubstitution&quot;</span>: <span class="hljs-string">&quot;https://\\1.xyz.com/&quot;</span>
+            }
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;regexFilter&quot;</span>: <span class="hljs-string">&quot;^https://www\\.(abc|def)\\.xyz\\.com/&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [
+                <span class="hljs-string">&quot;main_frame&quot;</span>
+            ]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">8</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;allowAllRequests&quot;</span>
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;||b.com/path&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;sub_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">9</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;block&quot;</span>
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;script.js&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;script&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;modifyHeaders&quot;</span>,
+            <span class="hljs-string">&quot;responseHeaders&quot;</span>: [{
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h1&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;remove&quot;</span>
+                },
+                {
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h2&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;set&quot;</span>,
+                    <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v2&quot;</span>
+                },
+                {
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h3&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;append&quot;</span>,
+                    <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v3&quot;</span>
+                }
+            ]
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;headers.com/123&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    },
+    {
+        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">11</span>,
+        <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">&quot;action&quot;</span>: {
+            <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;modifyHeaders&quot;</span>,
+            <span class="hljs-string">&quot;responseHeaders&quot;</span>: [{
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h1&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;set&quot;</span>,
+                    <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v4&quot;</span>
+                },
+                {
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h2&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;append&quot;</span>,
+                    <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v5&quot;</span>
+                },
+                {
+                    <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h3&quot;</span>,
+                    <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;append&quot;</span>,
+                    <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v6&quot;</span>
+                }
+            ]
+        },
+        <span class="hljs-string">&quot;condition&quot;</span>: {
+            <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;headers.com/12345&quot;</span>,
+            <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+        }
+    }
+]
+</code></pre>
+<h3 id="&#x52A8;&#x6001;&#x89C4;&#x5219;&#x96C6;&#x914D;&#x7F6E;">&#x52A8;&#x6001;&#x89C4;&#x5219;&#x96C6;&#x914D;&#x7F6E;</h3>
+<p>&#x52A8;&#x6001;&#x89C4;&#x5219;&#x96C6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#xFF0C;&#x8C03;&#x7528;chrome.declarativeNetRequest.updateDynamicRules&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x52A8;&#x6001;&#x7684;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#xFF1B;</p>
+<pre><code class="lang-js">chrome.declarativeNetRequest.updateDynamicRules({
+    addRules: [{
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;action&quot;</span>: {
+                <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;block&quot;</span>
+            },
+            <span class="hljs-string">&quot;condition&quot;</span>: {
+                <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
+                <span class="hljs-string">&quot;domains&quot;</span>: [<span class="hljs-string">&quot;foo.com&quot;</span>],
+                <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;script&quot;</span>]
+            }
+        },
+        {
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">2</span>,
+            <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;action&quot;</span>: {
+                <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;block&quot;</span>
+            },
+            <span class="hljs-string">&quot;condition&quot;</span>: {
+                <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
+                <span class="hljs-string">&quot;domains&quot;</span>: [<span class="hljs-string">&quot;foo.com&quot;</span>],
+                <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;script&quot;</span>]
+            }
+        }, {
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">3</span>,
+            <span class="hljs-string">&quot;priority&quot;</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;action&quot;</span>: {
+                <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;modifyHeaders&quot;</span>,
+                <span class="hljs-string">&quot;responseHeaders&quot;</span>: [{
+                        <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h1&quot;</span>,
+                        <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;set&quot;</span>,
+                        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v4&quot;</span>
+                    },
+                    {
+                        <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h2&quot;</span>,
+                        <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;append&quot;</span>,
+                        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v5&quot;</span>
+                    },
+                    {
+                        <span class="hljs-string">&quot;header&quot;</span>: <span class="hljs-string">&quot;h3&quot;</span>,
+                        <span class="hljs-string">&quot;operation&quot;</span>: <span class="hljs-string">&quot;append&quot;</span>,
+                        <span class="hljs-string">&quot;value&quot;</span>: <span class="hljs-string">&quot;v6&quot;</span>
+                    }
+                ]
+            },
+            <span class="hljs-string">&quot;condition&quot;</span>: {
+                <span class="hljs-string">&quot;urlFilter&quot;</span>: <span class="hljs-string">&quot;headers.com/12345&quot;</span>,
+                <span class="hljs-string">&quot;resourceTypes&quot;</span>: [<span class="hljs-string">&quot;main_frame&quot;</span>]
+            }
+        },
+    ],
+    removeRuleIds: [<span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>],
+}, () =&gt; {})
+</code></pre>
+<h2 id="3--&#x89C4;&#x5219;">3.  &#x89C4;&#x5219;</h2>
+<p>&#x4E00;&#x4E2A;&#x89C4;&#x5219;&#x4EE5;&#x5BF9;&#x8C61;&#x7684;&#x683C;&#x5F0F;&#x5B9A;&#x4E49;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x56DB;&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;id&#x3001;priority&#x3001;action&#x3001;condition</p>
+<ul>
+<li>id:&#x6BCF;&#x4E2A;&#x89C4;&#x5219;&#x9700;&#x8981;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;id&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x89C4;&#x5219;&#x4E0D;&#x80FD;&#x8BBE;&#x7F6E;&#x76F8;&#x540C;&#x7684;id</li>
+<li>priority&#xFF1A;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x586B;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x6570;&#x5B57;&#x8D8A;&#x5927;&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x8D8A;&#x9AD8;</li>
+<li>action&#xFF1A;&#x89C4;&#x5219;&#x5339;&#x914D;&#x65F6;&#xFF0C;&#x91C7;&#x53D6;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x5305;&#x62EC;&#x4EE5;&#x4E0B;&#x56DB;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;<ol>
+<li>type: &#x5FC5;&#x586B;&#x53C2;&#x6570;&#xFF0C;&#x64CD;&#x4F5C;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x53C2;&#x6570;&#x4E3A;&#xFF1A;&quot;block&quot;&#xFF08;&#x62E6;&#x622A;&#x8BF7;&#x6C42;&#xFF09;, &quot;redirect&quot;&#xFF08;&#x91CD;&#x5B9A;&#x5411;&#x8BF7;&#x6C42;&#xFF09;, &quot;allow&quot;&#xFF08;&#x5141;&#x8BB8;&#x8BF7;&#x6C42;&#xFF09;, &quot;upgradeScheme&quot;&#xFF08;&#x5347;&#x7EA7;&#x8BF7;&#x6C42;&#xFF09;, &quot;modifyHeaders&quot;&#xFF08;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x5934;&#xFF09;, &#x6216;&quot;allowAllRequests&quot;&#xFF08;&#x5141;&#x8BB8;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#xFF09;</li>
+<li>redirect&#xFF1A;&#x9009;&#x586B;&#xFF0C;&#x53EA;&#x6709;type&#x4E3A;redirect&#x65F6;&#x624D;&#x53EF;&#x586B;&#xFF0C;&#x914D;&#x7F6E;&#x5982;&#x4F55;&#x6267;&#x884C;&#x91CD;&#x5B9A;&#x5411;</li>
+</ol>
+</li>
+<li>extensionPath:&#x76F8;&#x5BF9;&#x4E8E;&#x6269;&#x5C55;&#x76EE;&#x5F55;&#x7684;&#x8DEF;&#x5F84;&#x3002;&#x5E94;&#x8BE5;&#x4EE5;&apos;/&apos;&#x5F00;&#x5934;</li>
+<li>regexSubstitution:&#x6307;&#x5B9A;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8FC7;&#x6EE4;&#x5668;&#x7684;&#x89C4;&#x5219;&#x7684;&#x66FF;&#x6362;&#x6A21;&#x5F0F;</li>
+<li>url&#xFF1A;&#x9700;&#x8981;&#x91CD;&#x5B9A;&#x5411;&#x5230;&#x7684;&#x7F51;&#x5740;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x91CD;&#x5B9A;&#x5411;&#x5230;javascript url</li>
+<li>transform&#xFF1A;url&#x8F6C;&#x6362;</li>
+<li>requestHeaders&#xFF1A;&#x9009;&#x586B;&#xFF0C;&#x53EA;&#x6709;&#x64CD;&#x4F5C;&#x7C7B;&#x578B;&#x4E3A;modifyHeaders&#x65F6;&#x624D;&#x53EF;&#x586B;&#xFF0C;&#x7528;&#x4E8E;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x5934;</li>
+<li><p>responseHeaders&#xFF1A;&#x9009;&#x586B;&#xFF0C;&#x53EA;&#x6709;&#x64CD;&#x4F5C;&#x7C7B;&#x578B;&#x4E3A;modifyHeaders&#x65F6;&#x624D;&#x53EF;&#x586B;&#xFF0C;&#x7528;&#x4E8E;&#x4FEE;&#x6539;&#x54CD;&#x5E94;&#x5934;</p>
+</li>
+<li><p>condition&#xFF1A;&#x89E6;&#x53D1;&#x6B64;&#x89C4;&#x5219;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x53C2;&#x6570;&#xFF0C;&#x7686;&#x662F;&#x9009;&#x586B;&#x53C2;&#x6570;&#xFF0C;&#x5E38;&#x7528;&#x53C2;&#x6570;&#xFF08;&#x57DF;&#x540D;&#x5339;&#x914D;&#x3001;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x5339;&#x914D;&#x3001;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#x5339;&#x914D;&#x3001;url&#x5339;&#x914D;&#xFF09;</p>
+<ol>
+<li>domainType&#xFF1A;&#x6307;&#x5B9A;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x662F;&#x53D1;&#x8D77;&#x5B83;&#x7684;&#x57DF;&#x7684;&quot;firstParty&quot;&#xFF08;&#x7B2C;&#x4E00;&#x65B9;&#xFF09;&#x8FD8;&#x662F;&quot;thirdParty&quot;&#xFF08;&#x7B2C;&#x4E09;&#x65B9;&#xFF09;&#x3002;&#x5982;&#x679C;&#x7701;&#x7565;&#xFF0C;&#x5219;&#x63A5;&#x53D7;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x3002;</li>
+<li>domains&#xFF1A;&#x5339;&#x914D;&#x57DF;&#x540D;&#x5217;&#x8868;&#xFF0C;&#x5982;&#x7701;&#x7565;&#x5219;&#x5339;&#x914D;&#x6240;&#x6709;&#x57DF;&#x540D;&#x7684;&#x8BF7;&#x6C42;</li>
+<li>excludedDomains&#xFF1A;&#x548C;domains&#x76F8;&#x53CD;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x6392;&#x9664;&#x5339;&#x914D;&#x89C4;&#x5219;&#x7684;&#x57DF;&#x540D;&#x5217;&#x8868;&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E;domains</li>
+<li>requestMethods&#xFF1A;http&#x5339;&#x914D;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#xFF08;&quot;get&quot;&#x3001;&quot;post&quot;&#x7B49;&#xFF09;&#x5217;&#x8868;&#xFF0C;&#x5982;&#x7701;&#x7565;&#x5219;&#x5339;&#x914D;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>excludedRequestMethods&#xFF1A;&#x4E0E;requestMethods&#x76F8;&#x53CD;&#xFF0C;&#x6392;&#x9664;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E;requestMethods</li>
+<li>resourceTypes&#xFF1A;&#x5339;&#x914D;&#x8D44;&#x6E90;&#x7C7B;&#x578B;&#xFF08;&quot;main_frame&quot;&#x3001;&quot;&quot;xmlhttprequest&quot;&#x7B49;&#xFF09;&#x5217;&#x8868;&#xFF0C;&#x5982;&#x7701;&#x7565;&#x5219;&#x5339;&#x914D;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x7C7B;&#x578B;</li>
+<li>excludedResourceTypes&#xFF1A;&#x8DDF;resourceTypes&#x76F8;&#x53CD;</li>
+<li>tabIds&#xFF1A;&#x5339;&#x914D;tabId&#x5217;&#x8868;&#xFF0C;&#x5982;&#x7701;&#x7565;&#x5219;&#x5339;&#x914D;&#x6240;&#x6709;tabs&#x9875;</li>
+<li>excludedTabIds&#xFF1A;&#x548C;tabIds&#x76F8;&#x53CD;</li>
+<li>isUrlFilterCaseSensitive&#xFF1A;&#x662F;&#x5426;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;true&#xFF0C;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;</li>
+<li>regexFilter&#xFF1A;&#x5339;&#x914D;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</li>
+<li>urlFilter&#xFF1A;&#x5339;&#x914D;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x7684;url</li>
+</ol>
+</li>
+</ul>
+<h1 id="&#x4FEE;&#x6539;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x7684;mv3&#x5B9E;&#x73B0;">&#x4FEE;&#x6539;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x7684;MV3&#x5B9E;&#x73B0;</h1>
+<p>&#x6211;&#x4EEC;&#x7684;&#x6838;&#x5FC3;&#x8BC9;&#x6C42;&#x5C31;&#x662F;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x5934;&#x548C;&#x8DE8;&#x57DF;&#x8BBE;&#x7F6E;&#xFF0C;&#x5177;&#x4F53;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x5728;Action&#x9762;&#x677F;&#x4E0A;&#x914D;&#x7F6E;&#x8BF7;&#x6C42;&#x5934;&#x4FE1;&#x606F;&#x548C;&#x8DE8;&#x57DF;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x4FDD;&#x5B58;&#x5230;chrome.storage&#x91CC;&#x9762;&#xFF0C;&#x53D1;&#x751F;&#x8BF7;&#x6C42;&#x65F6;&#x8BFB;&#x53D6;chrome.storage&#x5B58;&#x50A8;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x4FEE;&#x6539;&#x8BF7;&#x6C42;&#x4FE1;&#x606F;&#xFF1B;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x662F;&#x7528;chrome.webRequest&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x8FC7;&#x7A0B;&#x548C;&#x5B9E;&#x73B0;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x57FA;&#x672C;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ul>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/38234c32b073480fb6fd3f0d4d2a7c77~tplv-k3u1fbpfcp-watermark.image?" alt="MV2&#x6D41;&#x7A0B;.drawio.png"></p>
+<ul>
+<li>&#x4F46;&#x662F;&#x73B0;&#x5728;&#x5728;MV3&#x4E2D;&#xFF0C;&#x5C31;&#x53EA;&#x80FD;&#x4F7F;&#x7528;chrome.declarativeNetRequest API&#x6765;&#x5B9E;&#x73B0;&#x4E86;&#xFF0C;&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x5C31;&#x53D8;&#x5F97;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</li>
+</ul>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a79f439ee93d40e5b22f4c44bbfc43ab~tplv-k3u1fbpfcp-watermark.image?" alt="&#x89C4;&#x5219;&#x66F4;&#x65B0;&#x6D41;&#x7A0B;.drawio.png"></p>
+<p>&#x5176;&#x4E2D;Action&#x9762;&#x677F;&#x548C;chrome.storage&#x7684;&#x5B9E;&#x73B0;&#x5C31;&#x6BD4;&#x8F83;&#x5BB9;&#x6613;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x5177;&#x4F53;&#x8BF4;&#x660E;&#x4E86;&#xFF0C;&#x6838;&#x5FC3;&#x4E3B;&#x8981;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x52A8;&#x6001;&#x7684;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x5C31;&#x6D89;&#x53CA;&#x5230;&#x4EC0;&#x4E48;&#x65F6;&#x673A;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x600E;&#x4E48;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x5728;&#x54EA;&#x91CC;&#x66F4;&#x65B0;&#x89C4;&#x5219;&#xFF0C;&#x7528;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#x7B49;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>&#x5728;background&#x7684;service work &#x4E2D;&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;&#x53CA;storage&#x4E2D;&#x89C4;&#x5219;&#x6570;&#x636E;&#x53D8;&#x66F4;&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#x4EE3;&#x7801;&#xFF1B;</li>
+<li>&#x4E3B;&#x8981;&#x7528;&#x5230;chrome.declarativeNetRequest.updateDynamicRules&#x65B9;&#x6CD5;&#xFF0C;&#x9996;&#x5148;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x52A8;&#x6001;&#x89C4;&#x5219;&#x96C6;&#xFF0C;&#x7136;&#x540E;&#x83B7;&#x53D6; &#x5DF2;&#x5B58;&#x5728;&#x89C4;&#x5219;&#x96C6;&#x7684;id&#x6570;&#x7EC4;&#xFF0C;&#x518D;&#x901A;&#x8FC7;storage&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x751F;&#x6210;&#x89C4;&#x5219;&#xFF0C;&#x8C03;&#x7528;updateDynamicRules&#x65B9;&#x6CD5;&#xFF0C;&#x4F20;&#x5165;addRules&#x548C;removeIds2&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x89C4;&#x5219;&#x96C6;&#x548C;&#x5220;&#x9664;&#x5DF2;&#x6709;&#x7684;&#x89C4;&#x5219;&#x96C6;&#xFF1B;</li>
+</ul>
+<p>&#x6837;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> createRules = (list) =&gt; {
+    <span class="hljs-keyword">const</span> headers = list.map((item) =&gt; {
+        <span class="hljs-keyword">const</span> {
+            name,
+            value
+        } = item;
+        <span class="hljs-keyword">const</span> header = {
+            header: name,
+            value,
+            ooperation: <span class="hljs-string">&apos;set&apos;</span>,
+        };
+        <span class="hljs-keyword">return</span> header;
+    });
+
+    <span class="hljs-keyword">const</span> rule = {
+        id,
+        priority: <span class="hljs-number">1</span>,
+        action: {
+            type: <span class="hljs-string">&apos;modifyHeaders&apos;</span>,
+            requestHeaders: headers,
+        },
+        condition: {
+            urlFilter: <span class="hljs-string">&apos;*&apos;</span>,
+            resourceTypes: [<span class="hljs-string">&apos;main_frame&apos;</span>, <span class="hljs-string">&apos;sub_frame&apos;</span>, <span class="hljs-string">&apos;xmlhttprequest&apos;</span>],
+        },
+    };
+    <span class="hljs-keyword">return</span> rule;
+};
+
+<span class="hljs-keyword">const</span> getNewRules = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> list = <span class="hljs-keyword">await</span> getHeaderList(); <span class="hljs-comment">// &#x4ECE;storage&#x5185;&#x83B7;&#x53D6;&#x89C4;&#x5219;&#x6570;&#x636E;&#xFF0C;&#x7531;&#x4E8E;&#x4E0D;&#x662F;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x4FEE;&#x6539;&#x7684;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#xFF0C;&#x6545;&#x7701;&#x7565;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</span>
+        <span class="hljs-keyword">const</span> rule = createRules(list);
+        <span class="hljs-keyword">return</span> [rule];
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+};
+
+<span class="hljs-keyword">const</span> getCurrentRules = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> rules = <span class="hljs-keyword">await</span> chrome.declarativeNetRequest.getDynamicRules();
+    <span class="hljs-keyword">return</span> rules;
+};
+
+<span class="hljs-keyword">const</span> setRules = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> newRules = <span class="hljs-keyword">await</span> getNewRules();
+        <span class="hljs-keyword">const</span> currentRules = <span class="hljs-keyword">await</span> getCurrentRules();
+        <span class="hljs-keyword">const</span> removeIds = currentRules?.map((rule) =&gt; rule.id);
+        <span class="hljs-keyword">const</span> option = {
+            addRules: newRules,
+            removeRuleIds: removeIds,
+        };
+        chrome.declarativeNetRequest.updateDynamicRules(option, () =&gt; {
+            <span class="hljs-built_in">console</span>.log(chrome.runtime.lastError);
+        });
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-built_in">console</span>.log(err);
+    }
+};
+
+<span class="hljs-keyword">const</span> initRules = <span class="hljs-keyword">async</span> () =&gt; {
+    setRules();
+};
+
+<span class="hljs-keyword">const</span> updateRules = () =&gt; {
+    chrome.storage.onChanged.addListener(<span class="hljs-keyword">async</span> (changes, area) =&gt; {
+        <span class="hljs-keyword">if</span> (changes &amp;&amp; changes.updateRule &amp;&amp; area === <span class="hljs-string">&apos;local&apos;</span>) {
+            setRules();
+        }
+    });
+};
+
+<span class="hljs-keyword">const</span> setRequestheader = () =&gt; {
+    initRules();
+    updateRules();
+};
+
+setRequestheader();
+</code></pre>
+<h1 id="&#x95EE;&#x9898;">&#x95EE;&#x9898;</h1>
+<p>declarativeNetRequest&#xFF0C;&#x5BF9;&#x4E8E;&#x5B98;&#x65B9;&#x6765;&#x8BF4;&#xFF0C;&#x786E;&#x5B9E;&#x89E3;&#x51B3;&#x4E86;&#x6027;&#x80FD;&#x548C;&#x5B89;&#x5168;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x5F00;&#x53D1;&#x8005;&#x6765;&#x8BF4;&#xFF0C;&#x7531;&#x4E8E;declarativeNetRequest&#x76EE;&#x524D;&#x7684;&#x6559;&#x7A0B;&#x548C;&#x5B9E;&#x8DF5;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x73B0;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x53CA;&#x5B9E;&#x73B0;&#x4E5F;&#x5F88;&#x5C11;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x96BE;&#x627E;&#x5230;&#x5408;&#x9002;&#x7684;&#x4EE3;&#x7801;&#x53CA;&#x76F8;&#x5E94;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x548C;&#x95EE;&#x9898;&#x5904;&#x7406;&#xFF0C;&#x5B9E;&#x73B0;&#x8D77;&#x6765;&#x4F1A;&#x9047;&#x5230;&#x5404;&#x79CD;&#x5404;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5BFC;&#x81F4;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x8C03;&#x8BD5;&#x4E86;&#x5F88;&#x4E45;&#x624D;&#x6210;&#x529F;&#xFF1B;</p>
+<p>&#x5176;&#x4E2D;&#x201C;Rule with id xxx specifies an invalid request header to be appended. Only standard HTTP request headers that can specify multiple values for a single entry are supported&#x201D;&#x95EE;&#x9898;&#xFF0C;&#x7279;&#x522B;&#x56F0;&#x6270;&#xFF0C;&#x9694;&#x4E86;&#x4E00;&#x4E2A;&#x6625;&#x8282;&#xFF0C;&#x624D;&#x6700;&#x7EC8;&#x89E3;&#x51B3;&#xFF1B;</p>
+<p>&#x5F53;&#x524D;&#x7F51;&#x4E0A;&#x6839;&#x672C;&#x65E0;&#x6CD5;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x76F8;&#x5173;&#x5185;&#x5BB9;&#x53CA;&#x8BF4;&#x660E;&#xFF0C;&#x53EA;&#x80FD;&#x82E6;&#x82E6;&#x8C03;&#x8BD5;&#x3001;&#x601D;&#x7D22;&#x4E86;&#xFF1B;&#x95EE;&#x9898;&#x7684;&#x5927;&#x6982;&#x610F;&#x601D;&#x5C31;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5934;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E86;&#x591A;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x5934;&#x4E0D;&#x662F;&#x6807;&#x51C6;&#x7684;HTTP&#x8BF7;&#x6C42;&#x5934;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x62A5;&#x9519;&#x4E86;&#xFF1B;&#x901A;&#x8FC7;&#x4E0D;&#x61C8;&#x7684;&#x8C03;&#x8BD5;&#xFF0C;&#x8C03;&#x8BD5;&#xFF0C;&#x8C03;&#x8BD5;&#x3002;&#x3002;&#x3002;&#x7EC8;&#x4E8E;&#x7EC8;&#x4E8E;&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x4E86;&#xFF01;&#xFF01;&#xFF01;</p>
+<p>&#x95EE;&#x9898;&#x7684;&#x6838;&#x5FC3;&#x5E94;&#x8BE5;&#x5305;&#x62EC;2&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<p>1&#x3001;background&#x811A;&#x672C;&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x4F1A;&#x6267;&#x884C;2&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>initRules&#x51FD;&#x6570;&#xFF08;&#x6267;&#x884C;&#x89C4;&#x5219;&#x521D;&#x59CB;&#x8BBE;&#x5B9A;&#xFF0C;&#x83B7;&#x53D6;storage&#x5185;&#x89C4;&#x5219;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x52A8;&#x6001;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#xFF0C;&#x63D0;&#x4F9B;&#x65B0;&#x7684;&#x89C4;&#x5219;&#x96C6;&#xFF0C;&#x540C;&#x65F6;&#x5C06;&#x8981;&#x5220;&#x9664;&#x7684;&#x89C4;&#x5219;id&#x6570;&#x636E;&#x8BBE;&#x7F6E;&#x4E3A;&#x7A7A;&#xFF09;</li>
+<li>updateRules&#x51FD;&#x6570;&#xFF08;&#x5728;storage&#x89E6;&#x53D1;&#x6570;&#x636E;&#x53D8;&#x66F4;&#x65F6;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x4E14;&#x4E5F;&#x662F;&#x83B7;&#x53D6;storage&#x5185;&#x89C4;&#x5219;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x52A8;&#x6001;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#xFF0C;&#x63D0;&#x4F9B;&#x65B0;&#x7684;&#x89C4;&#x5219;&#x96C6;&#xFF0C;&#x4F46;&#x662F;&#x5C06;&#x8981;&#x5220;&#x9664;&#x7684;&#x89C4;&#x5219;id&#x6570;&#x636E;&#x8BBE;&#x7F6E;&#x4E3A;&#x5F53;&#x524D;&#x7684;&#x89C4;&#x5219;&#x96C6;id&#x6570;&#x7EC4;&#xFF0C;&#x786E;&#x4FDD;&#x89C4;&#x5219;&#x96C6;&#x6570;&#x636E;&#x4E0D;&#x91CD;&#x590D;&#xFF09;</li>
+</ul>
+<p>&#x4F46;&#x662F;&#x8FD9;2&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x56E0;&#x4E3A;&#x4EE3;&#x7801;&#x91CC;&#x9762;&#x5B58;&#x5728;&#x591A;&#x4E2A;&#x5F02;&#x6B65;&#x8FC7;&#x7A0B;&#xFF0C;&#x6700;&#x7EC8;&#x662F;initRules&#x5148;&#x6267;&#x884C;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#xFF0C;&#x8FD8;&#x662F;updateRules&#x5148;&#x6267;&#x884C;&#x89C4;&#x5219;&#x66F4;&#x65B0;&#xFF0C;&#x662F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#xFF1B;&#x5982;&#x679C;&#x662F;updateRules&#x5148;&#x6267;&#x884C;&#x4E86;&#xFF0C;&#x7136;&#x540E;initRules&#x540E;&#x6267;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x90A3;&#x4E48;&#x56E0;&#x4E3A;initRules&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;removeRuleIds&#x4E3A;[]&#xFF0C;&#x8FD9;&#x6837;&#x6CA1;&#x6709;&#x5C06;&#x4E4B;&#x524D;&#x7684;&#x89C4;&#x5219;&#x96C6;&#x5220;&#x9664;&#xFF0C;&#x7ED3;&#x679C;&#x5C31;&#x5BFC;&#x81F4;&#x8BF7;&#x6C42;&#x5934;&#x91CD;&#x590D;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x62A5;&#x9519;&#x4E86;&#xFF1B;</p>
+<p>2&#x3001;&#x751F;&#x6210;&#x89C4;&#x5219;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F53;&#x89C4;&#x5219;&#x7684;action&#x7684;type&#x4E3A;modifyHeaders&#x65F6;&#xFF0C;&#x8BF7;&#x6C42;&#x5934;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5305;&#x62EC;3&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;header&#x3001;value&#x548C;operation&#xFF0C;&#x5176;&#x4E2D;operation&#x7684;&#x53D6;&#x503C;&#x5305;&#x62EC;3&#x4E2A;&#x503C;&#xFF1A;append&#x3001;set&#x3001;remove&#xFF1B;&#x6211;&#x7406;&#x89E3;remvoe&#x662F;&#x8868;&#x793A;&#x79FB;&#x9664;&#x5934;&#xFF0C;append&#x5E94;&#x8BE5;&#x662F;&#x65B0;&#x589E;&#xFF0C;set&#x5E94;&#x8BE5;&#x662F;&#x4FEE;&#x6539;&#xFF1B;&#x6240;&#x4EE5;&#x5728;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x4E0A;&#x7528;&#x7684;&#x662F;append&#x7ED3;&#x679C;&#xFF0C;&#x7ED3;&#x679C;&#x5C31;&#x4E00;&#x76F4;&#x62A5;&#x9519;&#x3001;&#x62A5;&#x9519;&#xFF0C;&#x7136;&#x540E;&#x6539;&#x6210;set&#x5C31;&#x6210;&#x4E86;&#xFF01;</p>
+<p>&#x7136;&#x540E;&#x5C31;&#x6700;&#x7EC8;&#x6210;&#x529F;&#x4E86;&#xFF01;&#xFF01;&#xFF01;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: chrome">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"终于实现了Chrome MV3 的网络请求更改","level":"1.3.1","depth":2,"previous":{"title":"chrome","level":"1.3","depth":1,"path":"chrome/README.md","ref":"chrome/README.md","articles":[{"title":"终于实现了Chrome MV3 的网络请求更改","level":"1.3.1","depth":2,"path":"chrome/1-netRequest.md","ref":"chrome/1-netRequest.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chrome/1-netRequest.md","mtime":"2023-02-04T16:34:36.362Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-02-04T16:38:16.449Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
