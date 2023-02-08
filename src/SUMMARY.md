@@ -6,3 +6,5 @@
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
 * [chrome](chrome/README.md)
     * [终于实现了Chrome MV3 的网络请求更改](chrome/1-netRequest.md)
+* [VSCode](vscode/README.md)
+    * [[译]CodeGPT：类ChatGPT功能的VSCode扩展](vscode/1-codegpt.md)
