@@ -8,3 +8,5 @@
     * [终于实现了Chrome MV3 的网络请求更改](chrome/1-netRequest.md)
 * [VSCode](vscode/README.md)
     * [[译]CodeGPT：类ChatGPT功能的VSCode扩展](vscode/1-codegpt.md)
+* [Node.js](nodejs/README.md)
+    * [peerDependency遇到npm link的问题](nodejs/1-npmlink.md)
