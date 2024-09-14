@@ -1,6 +1,6 @@
 # Summary
 
-* [正念前端](README.md)
+* [受之以蒙](README.md)
 * [Rust](rust/README.md)
     * [探索 Rust 语言：性能与安全的编程新宠🎯](rust/1-intro.md)
     * [Rust 基本类型：探索 Rust 编程的基础构建块](rust/2-baseType.md)
