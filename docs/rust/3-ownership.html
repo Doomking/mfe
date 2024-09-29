@@ -1,0 +1,518 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust 所有权与 Move：内存管理的艺术 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../web3/" />
+    
+    
+    <link rel="prev" href="2-baseType.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-baseType.html">
+            
+                <a href="2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="3-ownership.html">
+            
+                <a href="3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust 所有权与 Move：内存管理的艺术</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/229bbc47caf34f2290418447f30ad5f8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?rk3s=f64ab15b&amp;x-expires=1726280234&amp;x-signature=U7x5IBo0%2BwITHIKd4PqOw80dXHM%3D" alt=""></p>
+<h1 id="rust-&#x6240;&#x6709;&#x6743;&#x4E0E;-move&#xFF1A;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7684;&#x827A;&#x672F;">Rust &#x6240;&#x6709;&#x6743;&#x4E0E; Move&#xFF1A;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7684;&#x827A;&#x672F;</h1>
+<h1 id="&#x4E00;&#x3001;&#x6240;&#x6709;&#x6743;&#x7684;&#x673A;&#x5236;">&#x4E00;&#x3001;&#x6240;&#x6709;&#x6743;&#x7684;&#x673A;&#x5236;</h1>
+<p>Rust &#x901A;&#x8FC7;&#x5F15;&#x5165;&#x6240;&#x6709;&#x6743;&#x7CFB;&#x7EDF;&#x6765;&#x7BA1;&#x7406;&#x5185;&#x5B58;&#x3002;</p>
+<p>&#x6240;&#x6709;&#x6743;&#x7684;&#x89C4;&#x5219;&#x786E;&#x4FDD;&#x6BCF;&#x4E2A;&#x503C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x6240;&#x6709;&#x8005;&#xFF0C;&#x5F53;&#x6240;&#x6709;&#x8005;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x5176;&#x6301;&#x6709;&#x7684;&#x503C;&#x5C31;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x907F;&#x514D;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x548C;&#x60AC;&#x7A7A;&#x6307;&#x9488;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x8FDB;&#x884C;&#x5783;&#x573E;&#x56DE;&#x6536;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x9AD8;&#x4E86;&#x7A0B;&#x5E8F;&#x7684;&#x6027;&#x80FD;&#x3002;</p>
+<p>Move &#x8BED;&#x4E49;&#x662F; Rust &#x6240;&#x6709;&#x6743;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x3002;&#x5728; Rust &#x4E2D;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x503C;&#x88AB;&#x79FB;&#x52A8;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x5C31;&#x4ECE;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x8F6C;&#x79FB;&#x5230;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5C06;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F; Move &#x64CD;&#x4F5C;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x53D8;&#x91CF;&#x5C06;&#x4E0D;&#x518D;&#x62E5;&#x6709;&#x8BE5;&#x503C;&#x7684;&#x6240;&#x6709;&#x6743;&#x3002;&#x8FD9;&#x79CD;&#x660E;&#x786E;&#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x89C4;&#x5219;&#x4F7F;&#x5F97; Rust &#x80FD;&#x591F;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x786E;&#x4FDD;&#x5185;&#x5B58;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x6240;&#x6709;&#x6743;&#x548C; Move &#x7684;&#x7ED3;&#x5408;&#xFF0C;Rust &#x80FD;&#x591F;&#x5728;&#x4E0D;&#x4F9D;&#x8D56;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B9E;&#x73B0;&#x9AD8;&#x6548;&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x3002;&#x8FD9;&#x4E0D;&#x4EC5;&#x63D0;&#x9AD8;&#x4E86;&#x7A0B;&#x5E8F;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x8FD8;&#x5927;&#x5927;&#x589E;&#x5F3A;&#x4E86;&#x7A0B;&#x5E8F;&#x7684;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x4F7F;&#x5F97;&#x5F00;&#x53D1;&#x8005;&#x80FD;&#x591F;&#x66F4;&#x52A0;&#x653E;&#x5FC3;&#x5730;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x3002;</p>
+<h1 id="&#x4E8C;&#x3001;&#x6240;&#x6709;&#x6743;&#x7684;&#x89C4;&#x5219;&#x4E0E;&#x7279;&#x70B9;">&#x4E8C;&#x3001;&#x6240;&#x6709;&#x6743;&#x7684;&#x89C4;&#x5219;&#x4E0E;&#x7279;&#x70B9;</h1>
+<h2 id="&#xFF08;&#x4E00;&#xFF09;&#x6240;&#x6709;&#x6743;&#x7684;&#x4E09;&#x6761;&#x9EC4;&#x91D1;&#x6CD5;&#x5219;">&#xFF08;&#x4E00;&#xFF09;&#x6240;&#x6709;&#x6743;&#x7684;&#x4E09;&#x6761;&#x9EC4;&#x91D1;&#x6CD5;&#x5219;</h2>
+<p>Rust &#x7684;&#x6240;&#x6709;&#x6743;&#x9075;&#x5FAA;&#x4E09;&#x6761;&#x7B80;&#x5355;&#x4F46;&#x5F3A;&#x5927;&#x7684;&#x89C4;&#x5219;&#xFF1A;</p>
+<p><strong>1&#x3001;&#x6BCF;&#x4E2A;&#x503C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x6240;&#x6709;&#x8005;&#xFF0C;&#x5C31;&#x50CF;&#x6BCF;&#x4E2A;&#x7269;&#x54C1;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x4E3B;&#x4EBA;&#x4E00;&#x6837;</strong></p>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x503C;&#x88AB;&#x521B;&#x5EFA;&#x540E;&#xFF0C;&#x5C31;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x53D8;&#x91CF;&#x6210;&#x4E3A;&#x5B83;&#x7684;&#x6240;&#x6709;&#x8005;&#xFF0C;&#x8D1F;&#x8D23;&#x7BA1;&#x7406;&#x5B83;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32; let s = String::from(&quot;hello&quot;);&#xFF0C;&#x8FD9;&#x91CC;&#x53D8;&#x91CF; s &#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x503C;&#x7684;&#x6240;&#x6709;&#x8005;&#x3002;</p>
+<p><strong>2&#x3001;&#x4E00;&#x4E2A;&#x503C;&#x5728;&#x4EFB;&#x4F55;&#x65F6;&#x5019;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6240;&#x6709;&#x8005;</strong></p>
+<p>&#x8FD9;&#x786E;&#x4FDD;&#x4E86;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x7684;&#x660E;&#x786E;&#x5F52;&#x5C5E;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x591A;&#x4E2A;&#x53D8;&#x91CF;&#x540C;&#x65F6;&#x5BF9;&#x540C;&#x4E00;&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x6DF7;&#x4E71;&#x7684;&#x7BA1;&#x7406;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x5C06;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x6709;&#x6240;&#x6709;&#x8005;&#x7684;&#x503C;&#x518D;&#x6B21;&#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x4F1A;&#x53D1;&#x751F;&#x8F6C;&#x79FB;&#x3002;</p>
+<p>let s1 = String::from(&quot;hello&quot;); let s2 = s1;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;s2 &#x6210;&#x4E3A;&#x4E86; &quot;hello&quot; &#x7684;&#x6240;&#x6709;&#x8005;&#xFF0C;s1 &#x4E0D;&#x518D;&#x62E5;&#x6709;&#x6240;&#x6709;&#x6743;&#x3002;</p>
+<p><strong>3&#x3001;&#x5F53;&#x6240;&#x6709;&#x8005;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x8BE5;&#x503C;&#x5C31;&#x4F1A;&#x88AB;&#x4E22;&#x5F03;</strong></p>
+<p>Rust &#x4F1A;&#x81EA;&#x52A8;&#x6E05;&#x7406;&#x4E0D;&#x518D;&#x88AB;&#x6240;&#x6709;&#x8005;&#x6301;&#x6709;&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x4FDD;&#x8BC1;&#x4E86;&#x5185;&#x5B58;&#x7684;&#x53CA;&#x65F6;&#x91CA;&#x653E;&#xFF0C;&#x9632;&#x6B62;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x79BB;&#x5F00;&#x51FD;&#x6570;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;Rust &#x4F1A;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x6240;&#x5360;&#x7528;&#x7684;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x3002;</p>
+<h2 id="&#xFF08;&#x4E8C;&#xFF09;&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x4E0E;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;">&#xFF08;&#x4E8C;&#xFF09;&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x4E0E;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;</h2>
+<p>&#x53D8;&#x91CF;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x5BF9;&#x6240;&#x6709;&#x6743;&#x6709;&#x7740;&#x91CD;&#x8981;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x662F;&#x6307;&#x53D8;&#x91CF;&#x5728;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x6709;&#x6548;&#x8303;&#x56F4;&#x3002;&#x5F53;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x8FDB;&#x5165;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x88AB;&#x4F7F;&#x7528;&#xFF1B;&#x5F53;&#x5B83;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x751F;&#x8F6C;&#x79FB;&#x6216;&#x8005;&#x503C;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x4F1A;&#x4ECE;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x8F6C;&#x79FB;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x3002;&#x5C31;&#x50CF;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">String</span>::from(<span class="hljs-string">&quot;hello&quot;</span>); 
+<span class="hljs-keyword">let</span> s2 = s1;
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x6240;&#x6709;&#x6743;&#x4ECE; s1 &#x8F6C;&#x79FB;&#x5230;&#x4E86; s2&#x3002;</p>
+<p>&#x5728;&#x51FD;&#x6570;&#x4F20;&#x53C2;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x4E5F;&#x4F1A;&#x53D1;&#x751F;&#x8F6C;&#x79FB;&#x3002;&#x6BD4;&#x5982;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">takes_ownership</span></span>(some_string: <span class="hljs-built_in">String</span>) { 
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, some_string); 
+ }&#xFF0C;
+</code></pre>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570; takes_ownership(s)&#xFF0C;&#x8FD9;&#x91CC; s &#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x5230;&#x4E86;&#x51FD;&#x6570;&#x53C2;&#x6570; some_string&#x3002;&#x5F53;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF0C;some_string &#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x5176;&#x6301;&#x6709;&#x7684;&#x503C;&#x88AB;&#x91CA;&#x653E;&#x3002;</p>
+<p>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#x65F6;&#x540C;&#x6837;&#x4F1A;&#x6D89;&#x53CA;&#x6240;&#x6709;&#x6743;&#x7684;&#x8F6C;&#x79FB;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x503C;&#x7684;&#x6240;&#x6709;&#x6743;&#x5C31;&#x8F6C;&#x79FB;&#x5230;&#x4E86;&#x8C03;&#x7528;&#x8005;&#x3002;</p>
+<h2 id="&#xFF08;&#x4E09;&#xFF09;&#x514B;&#x9686;&#x4E0E;&#x62F7;&#x8D1D;&#x7684;&#x533A;&#x522B;">&#xFF08;&#x4E09;&#xFF09;&#x514B;&#x9686;&#x4E0E;&#x62F7;&#x8D1D;&#x7684;&#x533A;&#x522B;</h2>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x514B;&#x9686;&#xFF08;&#x6DF1;&#x62F7;&#x8D1D;&#xFF09;&#x548C;&#x62F7;&#x8D1D;&#xFF08;&#x6D45;&#x62F7;&#x8D1D;&#xFF09;&#x6709;&#x7740;&#x4E0D;&#x540C;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x548C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x514B;&#x9686;&#x662F;&#x4E00;&#x79CD;&#x6DF1;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#xFF0C;&#x5BF9;&#x4E8E;&#x50CF; String &#x8FD9;&#x6837;&#x7684;&#x590D;&#x6742;&#x7C7B;&#x578B;&#xFF0C;&#x4F7F;&#x7528; clone &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x590D;&#x5236;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x5305;&#x62EC;&#x5B83;&#x5728;&#x5806;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x4F8B;&#x5982; </p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">String</span>::from(<span class="hljs-string">&quot;hello&quot;</span>); 
+<span class="hljs-keyword">let</span> s2 = s1.clone();
+</code></pre>
+<p>&#x8FD9;&#x91CC; s2 &#x662F; s1 &#x7684;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#x526F;&#x672C;&#xFF0C;&#x5B83;&#x4EEC;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x62E5;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x800C;&#x5BF9;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x6574;&#x6570;&#xFF0C;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;&#xFF08;&#x6D45;&#x62F7;&#x8D1D;&#xFF09;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5B58;&#x50A8;&#x5728;&#x6808;&#x4E0A;&#x3002;&#x4F8B;&#x5982; let x = 5; let y = x;&#xFF0C;&#x8FD9;&#x91CC; x &#x7684;&#x503C;&#x88AB;&#x62F7;&#x8D1D;&#x7ED9;&#x4E86; y&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x503C;&#x5728;&#x6808;&#x4E0A;&#x7684;&#x4E24;&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x7531;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x5360;&#x7528;&#x7A7A;&#x95F4;&#x5C0F;&#xFF0C;&#x8FD9;&#x79CD;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#x5FEB;&#x901F;&#x4E14;&#x9AD8;&#x6548;&#x3002;</p>
+<p>&#x514B;&#x9686;&#x9002;&#x7528;&#x4E8E;&#x590D;&#x6742;&#x7C7B;&#x578B;&#xFF0C;&#x786E;&#x4FDD;&#x590D;&#x5236;&#x51FA;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#x7684;&#x526F;&#x672C;&#xFF1B;&#x62F7;&#x8D1D;&#x9002;&#x7528;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#xFF0C;&#x5FEB;&#x901F;&#x5728;&#x6808;&#x4E0A;&#x590D;&#x5236;&#x503C;&#x3002;</p>
+<h1 id="&#x4E09;&#x3001;move-&#x7684;&#x7279;&#x70B9;&#x4E0E;&#x4F5C;&#x7528;">&#x4E09;&#x3001;Move &#x7684;&#x7279;&#x70B9;&#x4E0E;&#x4F5C;&#x7528;</h1>
+<h2 id="&#xFF08;&#x4E00;&#xFF09;&#x8D4B;&#x503C;&#x4E0E;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;">&#xFF08;&#x4E00;&#xFF09;&#x8D4B;&#x503C;&#x4E0E;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;</h2>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;&#x5927;&#x591A;&#x6570;&#x7C7B;&#x578B;&#x800C;&#x8A00;&#xFF0C;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x4F1A;&#x89E6;&#x53D1; Move &#x8BED;&#x4E49;&#x3002;</p>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x88AB;&#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x539F;&#x59CB;&#x53D8;&#x91CF;&#x5C06;&#x8BA9;&#x6E21;&#x6240;&#x6709;&#x6743;&#x7ED9;&#x76EE;&#x6807;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x53D8;&#x6210;&#x672A;&#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x4F8B;&#x5982;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> s1 = <span class="hljs-built_in">String</span>::from(<span class="hljs-string">&quot;hello&quot;</span>); <span class="hljs-keyword">let</span> s2 = s1;
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;s1 &#x5C06; &quot;hello&quot; &#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x7ED9;&#x4E86; s2&#xFF0C;&#x6B64;&#x540E; s1 &#x5904;&#x4E8E;&#x672A;&#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;&#xFF0C;&#x4E0D;&#x80FD;&#x518D;&#x88AB;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x79CD;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x7684;&#x673A;&#x5236;&#x786E;&#x4FDD;&#x4E86;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x7684;&#x660E;&#x786E;&#x5F52;&#x5C5E;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x591A;&#x4E2A;&#x53D8;&#x91CF;&#x540C;&#x65F6;&#x5BF9;&#x540C;&#x4E00;&#x4E2A;&#x503C;&#x8FDB;&#x884C;&#x6DF7;&#x4E71;&#x7684;&#x7BA1;&#x7406;&#x3002;</p>
+<p>&#x540C;&#x65F6;&#xFF0C;Rust &#x5728;&#x7ED3;&#x5C3E;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x7ED3;&#x675F;&#x5904;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x7528; drop&#x91CA;&#x653E;&#x5185;&#x5B58;&#xFF0C;&#x5982;&#x5F53; s2 &#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x5B83;&#x6240;&#x62E5;&#x6709;&#x7684;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#xFF08;&#x4E8C;&#xFF09;&#x5B9E;&#x73B0;-copy-&#x7279;&#x6027;&#x7684;&#x5F71;&#x54CD;">&#xFF08;&#x4E8C;&#xFF09;&#x5B9E;&#x73B0; Copy &#x7279;&#x6027;&#x7684;&#x5F71;&#x54CD;</h2>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x67D0;&#x4E9B;&#x7C7B;&#x578B;&#x8D4B;&#x503C;&#x4F1A;&#x53D1;&#x751F; Copy&#xFF0C;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;Move&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x6574;&#x578B;&#x3001;&#x5E03;&#x5C14;&#x7C7B;&#x578B;&#x3001;&#x5B57;&#x7B26;&#x7C7B;&#x578B;&#x3001;&#x6D6E;&#x70B9;&#x7B49;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x5728;&#x8D4B;&#x503C;&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5B9E;&#x73B0;&#x4E86; Copy &#x7279;&#x6027;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5143;&#x7EC4;&#x4E2D;&#x5305;&#x542B;&#x7684;&#x5B57;&#x6BB5;&#x7C7B;&#x578B;&#x90FD;&#x5B9E;&#x73B0;&#x4E86; Copy&#xFF0C;&#x90A3;&#x5143;&#x7EC4;&#x4E5F;&#x662F; Copy &#x7C7B;&#x578B;&#x3002;&#x5BF9;&#x4E8E;&#x5B9E;&#x73B0;&#x4E86; Copy &#x7279;&#x6027;&#x7684;&#x503C;&#x6765;&#x8BF4;&#xFF0C;&#x8D4B;&#x503C;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x526F;&#x672C;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x8F6C;&#x79FB;&#x5E76;&#x8BA9;&#x539F;&#x59CB;&#x53D8;&#x91CF;&#x53D8;&#x6210;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6574;&#x6570;&#x7C7B;&#x578B;&#xFF0C;&#x6570;&#x503C;&#x76F4;&#x63A5;&#x5B58;&#x50A8;&#x5728;&#x6808;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E9B;&#x503C;&#x7684;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#x975E;&#x5E38;&#x5FEB;&#xFF0C;&#x800C; String &#x7C7B;&#x578B;&#x5B9E;&#x9645;&#x7684;&#x6570;&#x636E;&#x90E8;&#x5206;&#x5B58;&#x50A8;&#x5728;&#x5806;&#x4E0A;&#xFF0C;&#x8D4B;&#x503C;&#x8FC7;&#x7A0B;&#x91C7;&#x7528;&#x6DF1;&#x5EA6;&#x62F7;&#x8D1D;&#x7684;&#x8BDD;&#xFF0C;&#x975E;&#x5E38;&#x6D6A;&#x8D39;&#x6027;&#x80FD;&#x3002;&#x5728;&#x6574;&#x6570;&#x7684;&#x8D4B;&#x503C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x53D1;&#x751F; move&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x590D;&#x5236;&#x4E86;&#x4E00;&#x4EFD;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x8981;&#x5B9E;&#x73B0; Copy &#x7279;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FFD;&#x52A0;&#x5C5E;&#x6027;&#x6807;&#x8BB0; #[derive(Copy)]&#xFF0C;&#x4F46;&#x8981;&#x6CE8;&#x610F;&#xFF0C;Rust &#x81EA;&#x52A8;&#x4F1A;&#x4E3A;&#x4EE3;&#x7801;&#x6D3E;&#x751F; Copy &#x7684;&#x524D;&#x63D0;&#x662F;&#x7ED3;&#x6784;&#x4F53;&#x6216;&#x679A;&#x4E3E;&#x7684;&#x6240;&#x6709;&#x6210;&#x5458;&#x90FD;&#x5B9E;&#x73B0;&#x4E86; Copy &#x7279;&#x6027;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x4F1A;&#x7F16;&#x8BD1;&#x5931;&#x8D25;&#xFF1A;#[derive(Copy, Clone)]struct Numbers {nums: Vec}&#xFF0C;&#x56E0;&#x4E3A; Vec &#x6CA1;&#x6709;&#x5B9E;&#x73B0; Copy &#x7279;&#x6027;&#x3002;</p>
+<h1 id="&#x56DB;&#x3001;&#x6240;&#x6709;&#x6743;&#x4E0E;-move-&#x7684;&#x6848;&#x4F8B;&#x5206;&#x6790;">&#x56DB;&#x3001;&#x6240;&#x6709;&#x6743;&#x4E0E; Move &#x7684;&#x6848;&#x4F8B;&#x5206;&#x6790;</h1>
+<h2 id="&#xFF08;&#x4E00;&#xFF09;vec-&#x7C7B;&#x578B;&#x7684;-move-&#x793A;&#x4F8B;">&#xFF08;&#x4E00;&#xFF09;Vec &#x7C7B;&#x578B;&#x7684; Move &#x793A;&#x4F8B;</h2>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;Vec&#xFF08;&#x52A8;&#x6001;&#x6570;&#x7EC4;&#xFF09;&#x7C7B;&#x578B;&#x5728;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x65F6;&#x4F1A;&#x4F53;&#x73B0;&#x51FA;&#x6240;&#x6709;&#x6743;&#x7684;&#x8F6C;&#x79FB;&#x548C; Move &#x8BED;&#x4E49;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> orders = <span class="hljs-built_in">vec!</span>[<span class="hljs-string">&quot;183&quot;</span>.to_string(), <span class="hljs-string">&quot;136&quot;</span>.to_string()];
+<span class="hljs-keyword">let</span> tmp_a = orders;
+<span class="hljs-keyword">let</span> tmp_b = orders;
+</code></pre>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4F1A;&#x7F16;&#x8BD1;&#x62A5;&#x9519;&#x3002;&#x539F;&#x56E0;&#x662F;&#x5728;&#x7ED9; tmp_a &#x8D4B;&#x503C;&#x65F6;&#xFF0C;orders &#x7684;&#x6240;&#x6709;&#x6743;&#x53D1;&#x751F;&#x4E86;&#x8F6C;&#x79FB;&#xFF0C;&#x6B64;&#x65F6; orders &#x53D8;&#x6210;&#x672A;&#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;&#x3002;&#x518D;&#x7ED9; tmp_b &#x8D4B;&#x503C;&#x65F6;&#xFF0C;&#x7531;&#x4E8E; orders &#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60F3;&#x8981;&#x8FDB;&#x884C;&#x6DF1;&#x62F7;&#x8D1D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; clone &#x65B9;&#x6CD5;&#x3002;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> orders = <span class="hljs-built_in">vec!</span>[<span class="hljs-string">&quot;183&quot;</span>.to_string(), <span class="hljs-string">&quot;136&quot;</span>.to_string()];
+<span class="hljs-keyword">let</span> tmp_a = orders.clone();
+<span class="hljs-keyword">let</span> tmp_b = orders.clone();
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x540C;&#x65F6;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x521B;&#x5EFA;&#x4E86;&#x4E24;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;&#x526F;&#x672C;&#x3002;</p>
+<h2 id="&#xFF08;&#x4E8C;&#xFF09;string-&#x7C7B;&#x578B;&#x7684;-move-&#x4E0E;-copy-&#x5C1D;&#x8BD5;">&#xFF08;&#x4E8C;&#xFF09;String &#x7C7B;&#x578B;&#x7684; Move &#x4E0E; Copy &#x5C1D;&#x8BD5;</h2>
+<p>&#x5BF9;&#x4E8E; String &#x7C7B;&#x578B;&#xFF0C;&#x540C;&#x6837;&#x5728;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x65F6;&#x4F1A;&#x53D1;&#x751F;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> name: <span class="hljs-built_in">String</span> = <span class="hljs-string">&quot;neojos&quot;</span>.to_string();
+<span class="hljs-keyword">let</span> tmp_a = name;<span class="hljs-keyword">let</span> tmp_b = name;
+</code></pre>
+<p>&#x4F1A;&#x51FA;&#x73B0;&#x548C; Vec &#x7C7B;&#x578B;&#x7C7B;&#x4F3C;&#x7684;&#x7F16;&#x8BD1;&#x9519;&#x8BEF;&#x3002;</p>
+<p>&#x5C1D;&#x8BD5;&#x7ED9; String &#x7C7B;&#x578B;&#x589E;&#x52A0; Copy &#x5C5E;&#x6027;&#x7684;&#x65B9;&#x6CD5;&#x5931;&#x8D25;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x58F0;&#x660E;&#x4E00;&#x4E2A; String &#x7684;&#x7C7B;&#x578B;&#x522B;&#x540D; CopyString&#xFF0C;&#x5728; CopyString &#x4E0A;&#x8FFD;&#x52A0; Copy &#x5C5E;&#x6027;&#xFF0C;&#x4F46;&#x7F16;&#x8BD1;&#x4E0D;&#x901A;&#x8FC7;&#xFF0C;&#x56E0;&#x4E3A; derive &#x5C5E;&#x6027;&#x6807;&#x8BB0;&#x53EA;&#x80FD;&#x5E94;&#x7528;&#x4E8E; struct&#x3001;enum &#x548C; union &#x7C7B;&#x578B;&#x4E0A;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x7528;&#x7ED3;&#x6784;&#x4F53;&#x5305;&#x88C5; String &#x7684;&#x65B9;&#x5F0F;&#x4E5F;&#x5931;&#x8D25;&#x4E86;&#x3002;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x7C7B;&#x578B;&#xFF0C;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A; String &#x7C7B;&#x578B;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x7ED9;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5B9E;&#x73B0; Copy &#x5C5E;&#x6027;&#xFF0C;&#x4F46;&#x4EE3;&#x7801;&#x4ECD;&#x7136;&#x7F16;&#x8BD1;&#x5931;&#x8D25;&#xFF0C;&#x56E0;&#x4E3A;&#x7ED3;&#x6784;&#x4F53;&#x60F3;&#x8981;&#x5B9E;&#x73B0; Copy &#x5C5E;&#x6027;&#xFF0C;&#x4F9D;&#x8D56;&#x4E8E;&#x5185;&#x90E8;&#x7684;&#x5B57;&#x6BB5;&#x7C7B;&#x578B;&#x90FD;&#x5B9E;&#x73B0; Copy &#x5C5E;&#x6027;&#xFF0C;&#x800C; String &#x7C7B;&#x578B;&#x6CA1;&#x6709;&#x5B9E;&#x73B0; Copy &#x5C5E;&#x6027;&#x3002;</p>
+<h1 id="&#x4E94;&#x3001;&#x6240;&#x6709;&#x6743;&#x4E0E;-move-&#x7684;&#x610F;&#x4E49;&#x4E0E;&#x5C55;&#x671B;">&#x4E94;&#x3001;&#x6240;&#x6709;&#x6743;&#x4E0E; Move &#x7684;&#x610F;&#x4E49;&#x4E0E;&#x5C55;&#x671B;</h1>
+<p>Rust &#x7684;&#x6240;&#x6709;&#x6743;&#x548C; Move &#x5728;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x548C;&#x5E76;&#x53D1;&#x5B89;&#x5168;&#x65B9;&#x9762;&#x5177;&#x6709;&#x6781;&#x5176;&#x91CD;&#x8981;&#x7684;&#x610F;&#x4E49;&#x3002;</p>
+<p>&#x5728;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x65B9;&#x9762;&#xFF0C;&#x6240;&#x6709;&#x6743;&#x7CFB;&#x7EDF;&#x786E;&#x4FDD;&#x6BCF;&#x4E2A;&#x503C;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x660E;&#x786E;&#x7684;&#x6240;&#x6709;&#x8005;&#xFF0C;&#x5F53;&#x6240;&#x6709;&#x8005;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x503C;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#xFF0C;&#x907F;&#x514D;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x548C;&#x60AC;&#x7A7A;&#x6307;&#x9488;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>Move &#x8BED;&#x4E49;&#x8FDB;&#x4E00;&#x6B65;&#x5F3A;&#x5316;&#x4E86;&#x6240;&#x6709;&#x6743;&#x7684;&#x8F6C;&#x79FB;&#x89C4;&#x5219;&#xFF0C;&#x4F7F;&#x5F97;&#x5F00;&#x53D1;&#x8005;&#x80FD;&#x591F;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x786E;&#x5B9A;&#x5185;&#x5B58;&#x7684;&#x7BA1;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x5927;&#x5927;&#x964D;&#x4F4E;&#x4E86;&#x8FD0;&#x884C;&#x65F6;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x9519;&#x8BEF;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<p>&#x5728;&#x5E76;&#x53D1;&#x5B89;&#x5168;&#x65B9;&#x9762;&#xFF0C;Rust &#x7684;&#x6240;&#x6709;&#x6743;&#x89C4;&#x5219;&#x548C; Send&#x3001;Sync &#x7B49;&#x7279;&#x6027;&#x4E3A;&#x591A;&#x7EBF;&#x7A0B;&#x7F16;&#x7A0B;&#x63D0;&#x4F9B;&#x4E86;&#x5F3A;&#x5927;&#x7684;&#x4FDD;&#x969C;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;&#x503C;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6240;&#x6709;&#x8005;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x4EE5;&#x53CA;&#x5BF9;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x7684;&#x4E25;&#x683C;&#x9650;&#x5236;&#xFF0C;&#x4F7F;&#x5F97;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x5BF9;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x7684;&#x8BBF;&#x95EE;&#x66F4;&#x52A0;&#x5B89;&#x5168;&#x3002;Move &#x8BED;&#x4E49;&#x4E5F;&#x6709;&#x52A9;&#x4E8E;&#x907F;&#x514D;&#x5728;&#x5E76;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x548C;&#x4E0D;&#x4E00;&#x81F4;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x603B;&#x4E4B;&#xFF0C;Rust &#x7684;&#x6240;&#x6709;&#x6743;&#x548C; Move &#x4E0D;&#x4EC5;&#x5728;&#x5F53;&#x524D;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x5B89;&#x5168;&#x3001;&#x9AD8;&#x6548;&#x7684;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x672A;&#x6765;&#x4E5F;&#x6709;&#x671B;&#x5BF9;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7684;&#x53D1;&#x5C55;&#x4EA7;&#x751F;&#x79EF;&#x6781;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2-baseType.html" class="navigation navigation-prev " aria-label="Previous page: Rust 基本类型：探索 Rust 编程的基础构建块">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../web3/" class="navigation navigation-next " aria-label="Next page: Web3">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust 所有权与 Move：内存管理的艺术","level":"1.2.3","depth":2,"next":{"title":"Web3","level":"1.3","depth":1,"path":"web3/README.md","ref":"web3/README.md","articles":[{"title":"前端工程师，你了解Web3了么？","level":"1.3.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},{"title":"web3世界的通行证-加密钱包","level":"1.3.2","depth":2,"path":"web3/2-wallet.md","ref":"web3/2-wallet.md","articles":[]}]},"previous":{"title":"Rust 基本类型：探索 Rust 编程的基础构建块","level":"1.2.2","depth":2,"path":"rust/2-baseType.md","ref":"rust/2-baseType.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"rust/3-ownership.md","mtime":"2024-09-29T02:50:56.763Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-09-29T02:56:16.097Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
