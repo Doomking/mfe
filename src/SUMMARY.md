@@ -6,6 +6,7 @@
     * [Rust 基本类型：探索 Rust 编程的基础构建块](rust/2-baseType.md)
     * [Rust 所有权与 Move：内存管理的艺术](rust/3-ownership.md)
     * [Rust 引用：强大而安全的数据使用特性](rust/4-ref.md)
+    * [Rust 表达式：强大而独特的编程利器](rust/5-expression.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
