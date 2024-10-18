@@ -8,6 +8,7 @@
     * [Rust 引用：强大而安全的数据使用特性](rust/4-ref.md)
     * [Rust 表达式：强大而独特的编程利器](rust/5-expression.md)
     * [Rust 错误处理：独特而灵活多样](rust/6-err.md)
+    * [Rust 的 crate 和模块：强大的代码组织工具](rust/7-crate.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
