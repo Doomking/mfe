@@ -11,6 +11,7 @@
     * [Rust 的 crate 和模块：强大的代码组织工具](rust/7-crate.md)
     * [Rust 结构体：强大而灵活的数据类型](rust/8-struct.md)
     * [Rust 的枚举与模式：灵活又安全的工具](rust/9-enum.md)
+    * [Rust 之 trait 与泛型的奥秘](rust/10-trait.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
