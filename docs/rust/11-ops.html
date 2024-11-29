@@ -1,0 +1,807 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust 运算符重载：开启高效编程之旅 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../web3/" />
+    
+    
+    <link rel="prev" href="10-trait.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-baseType.html">
+            
+                <a href="2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-ownership.html">
+            
+                <a href="3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-ref.html">
+            
+                <a href="4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5-expression.html">
+            
+                <a href="5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6-err.html">
+            
+                <a href="6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="7-crate.html">
+            
+                <a href="7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="8-struct.html">
+            
+                <a href="8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="9-enum.html">
+            
+                <a href="9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="10-trait.html">
+            
+                <a href="10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.11" data-path="11-ops.html">
+            
+                <a href="11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust 运算符重载：开启高效编程之旅</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/229bbc47caf34f2290418447f30ad5f8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?rk3s=f64ab15b&amp;x-expires=1726280234&amp;x-signature=U7x5IBo0%2BwITHIKd4PqOw80dXHM%3D" alt=""></p>
+<h1 id="rust-&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;&#xFF1A;&#x5F00;&#x542F;&#x9AD8;&#x6548;&#x7F16;&#x7A0B;&#x4E4B;&#x65C5;">Rust &#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;&#xFF1A;&#x5F00;&#x542F;&#x9AD8;&#x6548;&#x7F16;&#x7A0B;&#x4E4B;&#x65C5;</h1>
+<h1 id="&#x4E00;&#x3001;&#x7B97;&#x672F;&#x548C;&#x4F4D;&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;">&#x4E00;&#x3001;&#x7B97;&#x672F;&#x548C;&#x4F4D;&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;</h1>
+<h2 id="&#xFF08;&#x4E00;&#xFF09;&#x4E8C;&#x5143;&#x7B97;&#x672F;&#x8FD0;&#x7B97;">&#xFF08;&#x4E00;&#xFF09;&#x4E8C;&#x5143;&#x7B97;&#x672F;&#x8FD0;&#x7B97;</h2>
+<p>&#x5728;Rust &#x4E2D;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;a + b &#x5B9E;&#x9645;&#x4E0A;&#x662F;a.add(b) &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5373;&#x5BF9;&#x6807;&#x51C6;&#x5E93;&#x4E2D;std::ops::Add trait &#x7684;add &#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x3002;</p>
+<p>Rust &#x7684;&#x6807;&#x51C6;&#x6570;&#x503C;&#x7C7B;&#x578B;&#x90FD;&#x5B9E;&#x73B0;&#x4E86;std::ops::Add&#x3002;</p>
+<p>&#x8FD9;&#x662F;std::ops::Add &#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Add</span></span>&lt;Rhs = <span class="hljs-keyword">Self</span>&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add</span></span>(<span class="hljs-keyword">self</span>, rhs: Rhs) -&gt; Self::Output;
+}
+</code></pre>
+<p>&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;&#x662F;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;std::ops&#x6A21;&#x5757;&#x4E0B;&#x7684; trait &#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5982;Add&#x3001;Sub&#x3001;Mul&#x7B49;&#x3002;</p>
+<p>&#x4EE5;&#x7ED3;&#x6784;&#x4F53;Point&#x4E3A;&#x4F8B;&#xFF0C;&#x4E3A;&#x5176;&#x5B9E;&#x73B0;&#x52A0;&#x6CD5;&#x548C;&#x51CF;&#x6CD5;&#x8FD0;&#x7B97;&#x7B26;&#x91CD;&#x8F7D;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::{Add, Sub};
+<span class="hljs-meta">#[derive(Debug, Copy, Clone, PartialEq)]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Point</span></span> {
+    x: <span class="hljs-keyword">i32</span>,
+    y: <span class="hljs-keyword">i32</span>,
+}
+<span class="hljs-keyword">impl</span> Add <span class="hljs-keyword">for</span> Point {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = <span class="hljs-keyword">Self</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add</span></span>(<span class="hljs-keyword">self</span>, other: <span class="hljs-keyword">Self</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x + other.x,
+            y: <span class="hljs-keyword">self</span>.y + other.y,
+        }
+    }
+}
+
+<span class="hljs-keyword">impl</span> Sub <span class="hljs-keyword">for</span> Point {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = <span class="hljs-keyword">Self</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sub</span></span>(<span class="hljs-keyword">self</span>, other: <span class="hljs-keyword">Self</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x - other.x,
+            y: <span class="hljs-keyword">self</span>.y - other.y,
+        }
+    }
+}
+<span class="hljs-built_in">assert_eq!</span>(Point { x: <span class="hljs-number">3</span>, y: <span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } + Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+<span class="hljs-built_in">assert_eq!</span>(Point { x: -<span class="hljs-number">1</span>, y: -<span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } - Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+</code></pre>
+<p>&#x6CDB;&#x578B;&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::{Add, Sub};
+<span class="hljs-meta">#[derive(Debug, Copy, Clone, PartialEq)]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Point</span></span>&lt;T:Add&lt;Output=T&gt;&gt; {
+    x: T,
+    y: T,
+}
+
+<span class="hljs-keyword">impl</span>&lt;T&gt; Add <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: Add&lt;Output=T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = <span class="hljs-keyword">Self</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add</span></span>(<span class="hljs-keyword">self</span>, other: <span class="hljs-keyword">Self</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x + other.x,
+            y: <span class="hljs-keyword">self</span>.y + other.y,
+        }
+     }
+}
+
+<span class="hljs-keyword">impl</span>&lt;T&gt; Sub <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: Sub&lt;Output=T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = <span class="hljs-keyword">Self</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sub</span></span>(<span class="hljs-keyword">self</span>, other: <span class="hljs-keyword">Self</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x - other.x,
+            y: <span class="hljs-keyword">self</span>.y - other.y,
+        }
+    }
+}
+<span class="hljs-built_in">assert_eq!</span>(Point { x: <span class="hljs-number">3</span>, y: <span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } + Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+<span class="hljs-built_in">assert_eq!</span>(Point { x: -<span class="hljs-number">1</span>, y: -<span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } - Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+</code></pre>
+<p>&#x8003;&#x8651;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;Point+Point&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::{Add, Sub};
+<span class="hljs-meta">#[derive(Debug, Copy, Clone, PartialEq)]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Point</span></span>&lt;T:Add&lt;Output=T&gt;&gt; {
+    x: T,
+    y: T,
+}
+
+<span class="hljs-keyword">impl</span>&lt;T,R&gt; Add&lt;Point&lt;R&gt;&gt; <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: Add&lt;R&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = Point&lt;T::Output&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add</span></span>(<span class="hljs-keyword">self</span>, other: Point&lt;R&gt;) -&gt; Self::Output {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x + other.x,
+            y: <span class="hljs-keyword">self</span>.y + other.y,
+        }
+    }
+}
+
+<span class="hljs-keyword">impl</span>&lt;T,R&gt; Sub&lt;Point&lt;R&gt;&gt; <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: Sub&lt;R&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = Point&lt;T::Output&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sub</span></span>(<span class="hljs-keyword">self</span>, other: Point&lt;R&gt;) -&gt; Self::Output {
+        <span class="hljs-keyword">Self</span> {
+            x: <span class="hljs-keyword">self</span>.x - other.x,
+            y: <span class="hljs-keyword">self</span>.y - other.y,
+        }
+    }
+}
+
+<span class="hljs-built_in">assert_eq!</span>(Point { x: <span class="hljs-number">3</span>, y: <span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } + Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+<span class="hljs-built_in">assert_eq!</span>(Point { x: -<span class="hljs-number">1</span>, y: -<span class="hljs-number">3</span> }, Point { x: <span class="hljs-number">1</span>, y: <span class="hljs-number">0</span> } - Point { x: <span class="hljs-number">2</span>, y: <span class="hljs-number">3</span> });
+</code></pre>
+<h2 id="&#xFF08;&#x4E8C;&#xFF09;&#x4E00;&#x5143;&#x8FD0;&#x7B97;&#x7B26;">&#xFF08;&#x4E8C;&#xFF09;&#x4E00;&#x5143;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x8003;&#x8651;-x&#x548C;!x&#x7684;&#x8FD0;&#x7B97;&#xFF0C;-x &#x7B49;&#x4EF7;&#x4E8E;x.neg()&#xFF0C;!x &#x7B49;&#x4EF7;&#x4E8E; x.not()</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Neg</span></span> {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">neg</span></span>(<span class="hljs-keyword">self</span>) -&gt; Self::Output;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Not</span></span> {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">not</span></span>(<span class="hljs-keyword">self</span>) -&gt; Self::Output;
+}
+</code></pre>
+<p>&#x4E3A;&#x4E0A;&#x8FF0;&#x7684;Point&#x5B9E;&#x73B0;&#x6C42;&#x8D1F;&#x548C;&#x6C42;&#x53CD;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::Neg;
+<span class="hljs-keyword">impl</span>&lt;T&gt; Neg <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: Neg&lt;Output = T&gt;, {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = Point&lt;T&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">neg</span></span>(<span class="hljs-keyword">self</span>) -&gt; Point&lt;T&gt; {
+        Point {
+            x: -<span class="hljs-keyword">self</span>.x,
+            y: -<span class="hljs-keyword">self</span>.y,
+        }
+    }
+}
+</code></pre>
+<h2 id="&#xFF08;&#x4E09;&#xFF09;&#x4E8C;&#x5143;&#x4F4D;&#x8FD0;&#x7B97;">&#xFF08;&#x4E09;&#xFF09;&#x4E8C;&#x5143;&#x4F4D;&#x8FD0;&#x7B97;</h2>
+<p>&#x4E8C;&#x5143;&#x4F4D;&#x8FD0;&#x7B97;&#x5305;&#x62EC;&amp;&#xFF08;&#x4E0E;&#xFF09;&#x3001;&#x6216;&#xFF08;&#xFF5C;&#xFF09;&#x3001;&#x5F02;&#x6216;&#xFF08;^)&#x3001;&#x548C;&#x79FB;&#x4F4D;&lt;&gt;</p>
+<p>&#x6240;&#x6709;&#x8FD9;&#x4E9B;trait &#x90FD;&#x6709;&#x76F8;&#x540C;&#x7684;&#x5F62;&#x5F0F;&#x3002;</p>
+<p>&#x4F8B;&#x5982;std::ops::BitXor(&#x7528;&#x4E8E;^ &#x8FD0;&#x7B97;&#x7B26;) &#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">BitXor</span></span>&lt;Rhs = <span class="hljs-keyword">Self</span>&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bitxor</span></span>(<span class="hljs-keyword">self</span>, rhs: Rhs) -&gt; Self::Output;
+}
+</code></pre>
+<p>&#x4E3A;Point&#x5B9E;&#x73B0;&#x5F02;&#x6216;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::BitXor;
+<span class="hljs-keyword">impl</span>&lt;T&gt; BitXor <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: BitXor&lt;Output = T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span> = Point&lt;T&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bitxor</span></span>(<span class="hljs-keyword">self</span>, rhs: <span class="hljs-keyword">Self</span>) -&gt; Point&lt;T&gt; {
+        Point {
+            x: <span class="hljs-keyword">self</span>.x ^ rhs.x,
+            y: <span class="hljs-keyword">self</span>.y ^ rhs.y,
+        }
+    }
+}
+</code></pre>
+<h2 id="&#xFF08;&#x56DB;&#xFF09;&#x590D;&#x5408;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;">&#xFF08;&#x56DB;&#xFF09;&#x590D;&#x5408;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<p>&#x590D;&#x5408;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#x4F8B;&#x5982;x += y &#x6216;x &amp;= y &#x9700;&#x8981;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#x4F8B;&#x5982;&#x52A0;&#x6CD5;&#x6216;&#x4F4D;&#x4E0E;&#xFF0C;&#x6700;&#x540E;&#x628A;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x5230;&#x5DE6;&#x4FA7;&#x7684;&#x64CD;&#x4F5C;&#x6570;&#x3002;</p>
+<p>&#x5728;Rust &#x4E2D;&#xFF0C;&#x590D;&#x5408;&#x8D4B;&#x503C;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x503C;&#x603B;&#x662F;()&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6700;&#x540E;&#x88AB;&#x5B58;&#x50A8;&#x7684;&#x503C;.</p>
+<p>x += y &#x662F;&#x65B9;&#x6CD5;&#x8C03;&#x7528;x.add_assign(y) &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x800C;add_assign &#x662F;std::ops::AddAssign trait &#x552F;&#x4E00;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">AddAssign</span></span>&lt;Rhs = <span class="hljs-keyword">Self</span>&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_assign</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, rhs: Rhs);
+}
+</code></pre>
+<p>&#x4E3A;Point &#x7C7B;&#x578B;&#x5B9E;&#x73B0;AddAssign &#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::ops::AddAssign;
+<span class="hljs-keyword">impl</span>&lt;T&gt; AddAssign <span class="hljs-keyword">for</span> Point&lt;T&gt; <span class="hljs-keyword">where</span> T: AddAssign&lt;T&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_assign</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, rhs: Point&lt;T&gt;) {
+        <span class="hljs-keyword">self</span>.x += rhs.x;
+        <span class="hljs-keyword">self</span>.y += rhs.y;
+    }
+}
+</code></pre>
+<h1 id="&#x4E8C;&#x3001;&#x76F8;&#x7B49;&#x6027;&#x6BD4;&#x8F83;">&#x4E8C;&#x3001;&#x76F8;&#x7B49;&#x6027;&#x6BD4;&#x8F83;</h1>
+<p>Rust &#x7684;&#x76F8;&#x7B49;&#x8FD0;&#x7B97;&#x7B26;== &#x548C;!=&#xFF0C;&#x662F;std::cmp::PartialEq trait &#x7684;eq &#x548C;ne &#x65B9;&#x6CD5;&#x7684;&#x7F29;&#x5199;&#xFF1A;</p>
+<p>&#x8FD9;&#x662F;std::cmp::PartialEq &#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">PartialEq</span></span>&lt;Rhs = <span class="hljs-keyword">Self</span>&gt; <span class="hljs-keyword">where</span> Rhs: ?<span class="hljs-built_in">Sized</span>, {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">eq</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">ne</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span> {
+        !<span class="hljs-keyword">self</span>.eq(other)
+    }
+}
+</code></pre>
+<p>&#x56E0;&#x4E3A;ne &#x65B9;&#x6CD5;&#x6709;&#x9ED8;&#x8BA4;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x6240;&#x4EE5;&#x5B9E;&#x73B0;PartialEq &#x65F6;&#x53EA;&#x9700;&#x8981;&#x5B9E;&#x73B0;eq</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span>&lt;T: <span class="hljs-built_in">PartialEq</span>&gt; <span class="hljs-built_in">PartialEq</span> <span class="hljs-keyword">for</span> Point&lt;T&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">eq</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Point&lt;T&gt;) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-keyword">self</span>.x == other.x &amp;&amp; <span class="hljs-keyword">self</span>.y == other.y
+    }
+}
+</code></pre>
+<p>&#x76F8;&#x7B49;&#x6027;&#x6BD4;&#x8F83;&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;PartialEq&#xFF0C;&#x5373;&#x90E8;&#x5206;&#x76F8;&#x7B49;&#xFF1F;</p>
+<p>&#x76F8;&#x7B49;&#x6027;&#x662F;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;(equivalence relation) &#x7684;&#x4F20;&#x7EDF;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x4E2D;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4E09;&#x4E2A;&#x8981;&#x6C42;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x4EFB;&#x610F;&#x503C;x&#x548C;y&#xFF1A;</p>
+<ol>
+<li><p>&#x5982;&#x679C;x == y &#x4E3A;&#x771F;&#xFF0C;&#x90A3;&#x4E48;y == x &#x4E5F;&#x5FC5;&#x987B;&#x4E3A;&#x771F;&#x3002;&#x4EA4;&#x6362;&#x7B49;&#x4EF7;&#x6027;</p>
+</li>
+<li><p>&#x5982;&#x679C;x == y &#x548C;y == z&#xFF0C;&#x90A3;&#x4E48;x == z &#x4E5F;&#x5FC5;&#x987B;&#x4E3A;&#x771F;&#x3002;&#x76F8;&#x7B49;&#x6027;&#x6709;&#x4F20;&#x9012;&#x6027;</p>
+</li>
+<li><p>x == x &#x5FC5;&#x987B;&#x603B;&#x662F;&#x4E3A;&#x771F;</p>
+</li>
+</ol>
+<p>&#x4F46;&#x662F;&#x5374;&#x662F;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8981;&#x6C42;,&#x5BFC;&#x81F4;&#x95EE;&#x9898;&#x53D8;&#x5F97;&#x590D;&#x6742;&#x3002;</p>
+<p>Rust &#x7684;f32 &#x548C;f64 &#x662F;IEEE &#x6807;&#x51C6;&#x7684;&#x6D6E;&#x70B9;&#x6570;&#x7C7B;&#x578B;&#x3002;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x6807;&#x51C6;&#xFF0C;&#x50CF;0.0/0.0 &#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x6CA1;&#x6709;&#x5408;&#x9002;&#x7684;&#x7ED3;&#x679C;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x5FC5;&#x987B;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x975E;&#x6570;(not-a-number) &#x503C;&#xFF0C;&#x901A;&#x5E38;&#x88AB;&#x79F0;&#x4E3A;NaN &#x503C;&#x3002;&#x5E76;&#x4E14;&#x8981;&#x6C42;&#x4E00;&#x4E2A;NaN &#x503C;&#x5FC5;&#x987B;&#x548C;&#x5176;&#x4ED6;&#x4EFB;&#x4F55;&#x503C;&#x90FD;&#x4E0D;&#x76F8;&#x7B49;&#x2014;&#x2014;&#x5305;&#x62EC;&#x5B83;&#x81EA;&#x5DF1;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-built_in">assert!</span>(f64::is_nan(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>));
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> == <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> != <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> &lt; <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> &gt; <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> &lt;= <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span> &gt;= <span class="hljs-number">0.0</span> / <span class="hljs-number">0.0</span>, <span class="hljs-literal">false</span>);
+</code></pre>
+<p>Rust &#x7684;== &#x8FD0;&#x7B97;&#x7B26;&#x6EE1;&#x8DB3;&#x524D;&#x4E24;&#x4E2A;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x56E0;&#x6B64;&#x88AB;&#x79F0;&#x4E3A;&#x90E8;&#x5206;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;(partial equivalence relation)&#xFF0C;&#x56E0;&#x6B64;Rust &#x4F7F;&#x7528;&#x540D;&#x79F0;PartialEq &#x4F5C;&#x4E3A;&#x5185;&#x5EFA;&#x7684;== &#x8FD0;&#x7B97;&#x7B26;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x6EE1;&#x8DB3;&#x5B8C;&#x5168;&#x7684;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;std::cmp::Eq trait &#x4F5C;&#x4E3A;&#x7EA6;&#x675F;&#xFF0C;&#x5B83;&#x4EE3;&#x8868;&#x5B8C;&#x5168;&#x7684;&#x7B49;&#x4EF7;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x5B9E;&#x73B0;&#x4E86;Eq&#xFF0C;&#x90A3;&#x4E48;&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x8BE5;&#x7C7B;&#x578B;&#x7684;&#x503C;x&#xFF0C;x == x &#x4E00;&#x5B9A;&#x4E3A;true&#x3002;&#x5728;&#x5B9E;&#x8DF5;&#x4E2D;&#xFF0C;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x5B9E;&#x73B0;&#x4E86;PartialEq &#x7684;&#x7C7B;&#x578B;&#x4E5F;&#x5B9E;&#x73B0;&#x4E86;Eq&#xFF0C;f32 &#x548C;f64 &#x662F;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x4EC5;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#x4E86;PartialEq &#x4F46;&#x5374;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;Eq &#x7684;&#x7C7B;&#x578B;&#x3002;</p>
+<p>&#x6807;&#x51C6;&#x5E93;&#x5C06;Eq &#x5B9A;&#x4E49;&#x4E3A;PartialEq &#x7684;&#x6269;&#x5C55;&#xFF0C;&#x6CA1;&#x6709;&#x6DFB;&#x52A0;&#x4EFB;&#x4F55;&#x65B0;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Eq</span></span>: <span class="hljs-built_in">PartialEq</span>&lt;<span class="hljs-keyword">Self</span>&gt; {}
+</code></pre>
+<p>&#x5982;&#x679C;&#x7C7B;&#x578B;&#x662F;PartialEq &#x5E76;&#x4E14;&#x5E0C;&#x671B;&#x5B83;&#x4E5F;&#x662F;Eq&#xFF0C;&#x90A3;&#x5FC5;&#x987B;&#x663E;&#x5F0F;&#x5730;&#x5B9E;&#x73B0;Eq&#xFF0C;&#x5373;&#x4F7F;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x4E3A;&#x6B64;&#x518D;&#x5B9A;&#x4E49;&#x4EFB;&#x4F55;&#x65B0;&#x7684;&#x65B9;&#x6CD5;&#x6216;&#x7C7B;&#x578B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span>&lt;T: <span class="hljs-built_in">Eq</span>&gt; <span class="hljs-built_in">Eq</span> <span class="hljs-keyword">for</span> Point&lt;T&gt; {}
+<span class="hljs-comment">// &#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;Point &#x7C7B;&#x578B;&#x5B9A;&#x4E49;&#x4E2D;&#x7684;derive &#x5C5E;&#x6027;&#x91CC;&#x52A0;&#x4E0A;Eq&#xFF1A;</span>
+<span class="hljs-meta">#[derive(Clone, Copy, Debug, Eq, PartialEq)]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Point</span></span>&lt;T&gt; { ... }
+</code></pre>
+<h1 id="&#x4E09;&#x3001;&#x987A;&#x5E8F;&#x6027;&#x6BD4;&#x8F83;">&#x4E09;&#x3001;&#x987A;&#x5E8F;&#x6027;&#x6BD4;&#x8F83;</h1>
+<p>Rust &#x7528;&#x5355;&#x4E2A;trait std::cmp::PartialOrd &#x6765;&#x6307;&#x5B9A;&#x6BD4;&#x8F83;&#x8FD0;&#x7B97;&#x7B26;&lt;, &gt;, &lt;=, &gt;= &#x7684;&#x884C;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">PartialOrd</span></span>&lt;Rhs = <span class="hljs-keyword">Self</span>&gt;: <span class="hljs-built_in">PartialEq</span>&lt;Rhs&gt; <span class="hljs-keyword">where</span> Rhs: ?<span class="hljs-built_in">Sized</span>, {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">partial_cmp</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-built_in">Option</span>&lt;Ordering&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">lt</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span> { ... }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">le</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span> { ... }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">gt</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span> { ... }
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">ge</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;Rhs) -&gt; <span class="hljs-keyword">bool</span> { ... }
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;PartialOrd &#x6269;&#x5C55;&#x4E86;PartialEq&#xFF0C;&#x53EA;&#x80FD;&#x5BF9;&#x53EF;&#x4EE5;&#x6BD4;&#x8F83;&#x76F8;&#x7B49;&#x6027;&#x7684;&#x7C7B;&#x578B;&#x6BD4;&#x8F83;&#x987A;&#x5E8F;&#x6027;&#x3002;</p>
+<p>&#x552F;&#x4E00;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7684;PartialOrd &#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F;partial_cmp&#x3002;&#x5F53;partial_cmp &#x8FD4;&#x56DE;Some(o) &#x65F6;&#xFF0C;o &#x8868;&#x793A;self &#x548C;other &#x7684;&#x5173;&#x7CFB;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Ordering</span></span> {
+    Less, <span class="hljs-comment">// self &lt; other</span>
+    Equal, <span class="hljs-comment">// self == other</span>
+    Greater, <span class="hljs-comment">// self &gt; other</span>
+}
+</code></pre>
+<p>&#x4F46;&#x5982;&#x679C;partial_cmp &#x8FD4;&#x56DE;None&#xFF0C;&#x90A3;&#x4E48;&#x610F;&#x5473;&#x7740;self &#x548C;other &#x65E0;&#x6CD5;&#x6BD4;&#x8F83;&#x987A;&#x5E8F;&#x3002;</p>
+<p>&#x5728;&#x6240;&#x6709;&#x7684;Rust &#x57FA;&#x672C;&#x7C7B;&#x578B;&#x4E2D;&#xFF0C;&#x53EA;&#x6709;&#x6D6E;&#x70B9;&#x6570;&#x7684;&#x6BD4;&#x8F83;&#x53EF;&#x80FD;&#x4F1A;&#x8FD4;&#x56DE;None&#x3002;</p>
+<p>&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x7C7B;&#x578B;&#x7684;&#x4E24;&#x4E2A;&#x503C;&#x603B;&#x662F;&#x53EF;&#x4EE5;&#x4E92;&#x76F8;&#x6BD4;&#x8F83;&#x987A;&#x5E8F;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x66F4;&#x52A0;&#x4E25;&#x683C;&#x7684;std::cmp::Ord trait&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Ord</span></span>: <span class="hljs-built_in">Eq</span> + <span class="hljs-built_in">PartialOrd</span>&lt;<span class="hljs-keyword">Self</span>&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">cmp</span></span>(&amp;<span class="hljs-keyword">self</span>, other: &amp;<span class="hljs-keyword">Self</span>) -&gt; Ordering;
+}
+</code></pre>
+<p>cmp &#x65B9;&#x6CD5;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;Ordering&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x50CF;partial_cmp &#x4E00;&#x6837;&#x8FD4;&#x56DE;Option&#xFF0C;cmp &#x603B;&#x662F;&#x8FD4;&#x56DE;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x76F8;&#x7B49;&#x6216;&#x5B83;&#x4EEC;&#x7684;&#x76F8;&#x5BF9;&#x987A;&#x5E8F;&#x3002;</p>
+<h1 id="&#x56DB;&#x3001;index-&#x4E0E;-indexmut">&#x56DB;&#x3001;Index &#x4E0E; IndexMut</h1>
+<p>&#x901A;&#x8FC7;&#x4E3A;&#x7C7B;&#x578B;&#x5B9E;&#x73B0;std::ops::Index &#x548C;std::ops::IndexMut trait &#x6765;&#x6307;&#x660E;&#x7D22;&#x5F15;&#x8868;&#x8FBE;&#x5F0F;&#x4F8B;&#x5982;a[i] &#x7684;&#x884C;&#x4E3A;&#x3002;</p>
+<p>&#x6570;&#x7EC4;&#x76F4;&#x63A5;&#x652F;&#x6301;[] &#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x4F46;&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;a[i] &#x901A;&#x5E38;&#x662F;*a.index(i) &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5176;&#x4E2D;index &#x662F;std::ops::Index trait &#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8868;&#x8FBE;&#x5F0F;&#x88AB;&#x8D4B;&#x503C;&#x6216;&#x8005;&#x53EF;&#x53D8;&#x501F;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x5C06;&#x662F;*a.index_mut(i) &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5B83;&#x662F;std::ops::IndexMut trait &#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x8FD9;&#x4E24;&#x4E2A;trait &#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Index</span></span>&lt;Idx&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Output</span></span>: ?<span class="hljs-built_in">Sized</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">index</span></span>(&amp;<span class="hljs-keyword">self</span>, index: Idx) -&gt; &amp;Self::Output;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">IndexMut</span></span>&lt;Idx&gt;: Index&lt;Idx&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">index_mut</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, index: Idx) -&gt; &amp;<span class="hljs-keyword">mut</span> Self::Output;
+}
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x7528;&#x5355;&#x4E2A;usize &#x503C;&#x7D22;&#x5F15;&#x4E00;&#x4E2A;&#x5207;&#x7247;&#xFF0C;&#x6765;&#x5F97;&#x5230;&#x5355;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x5207;&#x7247;&#x5B9E;&#x73B0;&#x4E86;Index&#x3002;</p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x50CF;a[i..j] &#x8FD9;&#x6837;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x5B50;&#x5207;&#x7247;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x4E5F;&#x5B9E;&#x73B0;&#x4E86;Index&gt;&#x3002;</p>
+<pre><code class="lang-rust">*a.index(std::ops::Range { start: i, end: j })
+</code></pre>
+<p>Rust &#x7684;HashMap &#x548C;BTreeMap &#x96C6;&#x5408;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4EFB;&#x4F55;&#x53EF;&#x54C8;&#x5E0C;&#x6216;&#x53EF;&#x6BD4;&#x8F83;&#x7684;&#x7C7B;&#x578B;&#x4F5C;&#x4E3A;&#x7D22;&#x5F15;&#x3002;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;HashMap&lt;&amp;str, i32&gt; &#x5B9E;&#x73B0;&#x4E86;Index&lt;&amp;str&gt;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::collections::HashMap;
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> m = HashMap::new();
+m.insert(<span class="hljs-string">&quot; &#x5341;&quot;</span>, <span class="hljs-number">10</span>);
+m.insert(<span class="hljs-string">&quot; &#x767E;&quot;</span>&#xFF0C; <span class="hljs-number">100</span>&#xFF09;&#xFF1B;
+m.insert(<span class="hljs-string">&quot; &#x5343;&quot;</span>, <span class="hljs-number">1000</span>);
+m.insert(<span class="hljs-string">&quot; &#x4E07;&quot;</span>&#xFF0C; <span class="hljs-number">1_0000</span>);
+m.insert(<span class="hljs-string">&quot; &#x5104;&quot;</span>, <span class="hljs-number">1_0000_0000</span>);
+
+<span class="hljs-built_in">assert_eq!</span>(m[<span class="hljs-string">&quot; &#x5341;&quot;</span>], <span class="hljs-number">10</span>);
+<span class="hljs-built_in">assert_eq!</span>(m[<span class="hljs-string">&quot; &#x5343;&quot;</span>], <span class="hljs-number">1000</span>);
+<span class="hljs-comment">// &#x7B49;&#x4EF7;&#x4E8E;</span>
+<span class="hljs-keyword">use</span> std::ops::Index;
+<span class="hljs-built_in">assert_eq!</span>(*m.index(<span class="hljs-string">&quot; &#x5341;&quot;</span>), <span class="hljs-number">10</span>);
+<span class="hljs-built_in">assert_eq!</span>(*m.index(<span class="hljs-string">&quot; &#x5343;&quot;</span>), <span class="hljs-number">1000</span>);
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="10-trait.html" class="navigation navigation-prev " aria-label="Previous page: Rust 之 trait 与泛型的奥秘">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../web3/" class="navigation navigation-next " aria-label="Next page: Web3">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust 运算符重载：开启高效编程之旅","level":"1.2.11","depth":2,"next":{"title":"Web3","level":"1.3","depth":1,"path":"web3/README.md","ref":"web3/README.md","articles":[{"title":"前端工程师，你了解Web3了么？","level":"1.3.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},{"title":"web3世界的通行证-加密钱包","level":"1.3.2","depth":2,"path":"web3/2-wallet.md","ref":"web3/2-wallet.md","articles":[]}]},"previous":{"title":"Rust 之 trait 与泛型的奥秘","level":"1.2.10","depth":2,"path":"rust/10-trait.md","ref":"rust/10-trait.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"rust/11-ops.md","mtime":"2024-11-29T16:07:36.428Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-11-29T16:11:05.134Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
