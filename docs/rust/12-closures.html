@@ -1,0 +1,704 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust 闭包：高效编程的秘密武器 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../web3/" />
+    
+    
+    <link rel="prev" href="11-ops.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-baseType.html">
+            
+                <a href="2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-ownership.html">
+            
+                <a href="3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-ref.html">
+            
+                <a href="4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5-expression.html">
+            
+                <a href="5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6-err.html">
+            
+                <a href="6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="7-crate.html">
+            
+                <a href="7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="8-struct.html">
+            
+                <a href="8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="9-enum.html">
+            
+                <a href="9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="10-trait.html">
+            
+                <a href="10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="11-ops.html">
+            
+                <a href="11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.12" data-path="12-closures.html">
+            
+                <a href="12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust 闭包：高效编程的秘密武器</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/229bbc47caf34f2290418447f30ad5f8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?rk3s=f64ab15b&amp;x-expires=1726280234&amp;x-signature=U7x5IBo0%2BwITHIKd4PqOw80dXHM%3D" alt=""></p>
+<h1 id="rust-&#x95ED;&#x5305;&#xFF1A;&#x9AD8;&#x6548;&#x7F16;&#x7A0B;&#x7684;&#x79D8;&#x5BC6;&#x6B66;&#x5668;">Rust &#x95ED;&#x5305;&#xFF1A;&#x9AD8;&#x6548;&#x7F16;&#x7A0B;&#x7684;&#x79D8;&#x5BC6;&#x6B66;&#x5668;</h1>
+<h2 id="&#x4E00;&#x3001;&#x5F15;&#x8A00;">&#x4E00;&#x3001;&#x5F15;&#x8A00;</h2>
+<p>&#x95ED;&#x5305;&#xFF08;Closures&#xFF09;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x7075;&#x6D3B;&#x4E14;&#x9AD8;&#x6548;&#x7684;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#x3002;&#x95ED;&#x5305;&#x5728; Rust &#x4E2D;&#x88AB;&#x5E7F;&#x6CDB;&#x5E94;&#x7528;&#x4E8E;&#x4F17;&#x591A;&#x9886;&#x57DF;&#xFF0C;&#x5982;&#x8FED;&#x4EE3;&#x5668;&#x64CD;&#x4F5C;&#x3001;&#x5F02;&#x6B65;&#x7F16;&#x7A0B;&#x3001;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x4EE5;&#x53CA;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7B49;&#x3002;</p>
+<p>&#x5B83;&#x80FD;&#x591F;&#x6355;&#x83B7;&#x5176;&#x6240;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4F7F;&#x5F97;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x66F4;&#x52A0;&#x7B80;&#x6D01;&#x3001;&#x7075;&#x6D3B;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x95ED;&#x5305;&#x57FA;&#x7840;">&#x4E8C;&#x3001;&#x95ED;&#x5305;&#x57FA;&#x7840;</h2>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x95ED;&#x5305;&#xFF08;Closures&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x6355;&#x83B7;&#x5176;&#x6240;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5C01;&#x95ED;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p>
+<p>&#x4E0E;&#x666E;&#x901A;&#x51FD;&#x6570;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x95ED;&#x5305;&#x53EF;&#x4EE5; &#x201C;&#x8BB0;&#x4F4F;&#x201D; &#x5B83;&#x88AB;&#x521B;&#x5EFA;&#x65F6;&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x540E;&#x7EED;&#x7684;&#x8C03;&#x7528;&#x4E2D;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> closure = || <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: {}&quot;</span>, x); 
+    closure(); 
+}
+</code></pre>
+<p>&#x5728;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;closure &#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#xFF0C;&#x5B83;&#x6355;&#x83B7;&#x4E86;&#x5916;&#x90E8;&#x53D8;&#x91CF; x&#x3002;&#x5F53;&#x95ED;&#x5305;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x6253;&#x5370;&#x51FA; x &#x7684;&#x503C;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x95ED;&#x5305;&#x5B9A;&#x4E49;&#x4E4B;&#x540E;&#xFF0C;x &#x7684;&#x4F5C;&#x7528;&#x57DF;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#x3002;</p>
+<p>&#x666E;&#x901A;&#x51FD;&#x6570;&#x5728;&#x5B9A;&#x4E49;&#x65F6;&#xFF0C;&#x5176;&#x53C2;&#x6570;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5728;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x5C31;&#x4F1A;&#x88AB;&#x9500;&#x6BC1;&#x3002;&#x800C;&#x95ED;&#x5305;&#x5219;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x6355;&#x83B7;&#x7684;&#x53D8;&#x91CF;&#x4FDD;&#x5B58;&#x4E0B;&#x6765;&#xFF0C;&#x5EF6;&#x957F;&#x4E86;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x76F4;&#x5230;&#x95ED;&#x5305;&#x672C;&#x8EAB;&#x88AB;&#x9500;&#x6BC1;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;&#x95ED;&#x5305;&#x5728;&#x5904;&#x7406;&#x4E00;&#x4E9B;&#x9700;&#x8981;&#x4FDD;&#x7559;&#x72B6;&#x6001;&#x7684;&#x573A;&#x666F;&#x65F6;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x8FED;&#x4EE3;&#x5668;&#x4E2D;&#x4F7F;&#x7528;&#x95ED;&#x5305;&#x6765;&#x4FDD;&#x5B58;&#x8FED;&#x4EE3;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<h2 id="&#x4E09;&#x3001;&#x6355;&#x83B7;&#x53D8;&#x91CF;">&#x4E09;&#x3001;&#x6355;&#x83B7;&#x53D8;&#x91CF;</h2>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;&#x5F15;&#x7528;&#x6355;&#x83B7;">&#xFF08;&#x4E00;&#xFF09;&#x5F15;&#x7528;&#x6355;&#x83B7;</h3>
+<p>&#x5F53;&#x95ED;&#x5305;&#x53EA;&#x9700;&#x8981;&#x8BFB;&#x53D6;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5B83;&#x65F6;&#xFF0C;&#x4F1A;&#x901A;&#x8FC7;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x53D8;&#x91CF;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> closure = || <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: {}&quot;</span>, x); 
+    closure(); 
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;closure &#x95ED;&#x5305;&#x901A;&#x8FC7;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x4E86;&#x53D8;&#x91CF; x&#x3002;&#x56E0;&#x4E3A;&#x95ED;&#x5305;&#x5185;&#x90E8;&#x53EA;&#x662F;&#x6253;&#x5370; x &#x7684;&#x503C;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x6355;&#x83B7;">&#xFF08;&#x4E8C;&#xFF09;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x6355;&#x83B7;</h3>
+<p>&#x5982;&#x679C;&#x95ED;&#x5305;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x5219;&#x901A;&#x8FC7;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> closure = || { 
+        x += <span class="hljs-number">1</span>; 
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: {}&quot;</span>, x); 
+    }; 
+    closure(); 
+    closure(); 
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x7684; closure &#x95ED;&#x5305;&#x901A;&#x8FC7;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x4E86;&#x53D8;&#x91CF; x&#xFF0C;&#x5728;&#x95ED;&#x5305;&#x4F53;&#x5185;&#x5BF9; x &#x8FDB;&#x884C;&#x4E86;&#x81EA;&#x589E;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x6253;&#x5370;&#x51FA;&#x6BCF;&#x6B21;&#x4FEE;&#x6539;&#x540E;&#x7684; x &#x503C;&#x3002;&#x7531;&#x4E8E;&#x95ED;&#x5305;&#x6301;&#x6709;&#x5BF9; x &#x7684;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#xFF0C;&#x5728;&#x95ED;&#x5305;&#x8C03;&#x7528;&#x671F;&#x95F4;&#xFF0C;&#x5176;&#x4ED6;&#x4EE3;&#x7801;&#x4E0D;&#x80FD;&#x540C;&#x65F6;&#x83B7;&#x53D6;&#x5BF9; x &#x7684;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E09;&#xFF09;&#x79FB;&#x52A8;&#x6355;&#x83B7;">&#xFF08;&#x4E09;&#xFF09;&#x79FB;&#x52A8;&#x6355;&#x83B7;</h3>
+<p>&#x4F7F;&#x7528; move &#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x5C06;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x5230;&#x95ED;&#x5305;&#x4E2D;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x79FB;&#x52A8;&#x6355;&#x83B7;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> s = <span class="hljs-built_in">String</span>::from(<span class="hljs-string">&quot;Hello&quot;</span>); 
+    <span class="hljs-keyword">let</span> closure = move || <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The string is: {}&quot;</span>, s); 
+    closure(); 
+    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x56E0;&#x4E3A; s &#x7684;&#x6240;&#x6709;&#x6743;&#x5DF2;&#x7ECF;&#x88AB;&#x79FB;&#x52A8;&#x5230;&#x95ED;&#x5305;&#x4E2D; </span>
+    <span class="hljs-comment">// println!(&quot;{}&quot;, s); </span>
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;s &#x662F;&#x4E00;&#x4E2A; String &#x7C7B;&#x578B;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x7684;&#x6240;&#x6709;&#x6743;&#x88AB;&#x79FB;&#x52A8;&#x5230;&#x4E86; closure &#x95ED;&#x5305;&#x4E2D;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5728;&#x95ED;&#x5305;&#x4E4B;&#x540E;&#xFF0C;&#x4E0D;&#x80FD;&#x518D;&#x4F7F;&#x7528; s&#x3002;</p>
+<p>&#x79FB;&#x52A8;&#x6355;&#x83B7;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x5C06;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x5230;&#x95ED;&#x5305;&#x4E2D;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x95ED;&#x5305;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5185;&#x72EC;&#x5360;&#x4F7F;&#x7528;&#x8BE5;&#x53D8;&#x91CF;&#xFF0C;&#x6216;&#x8005;&#x5C06;&#x95ED;&#x5305;&#x4F20;&#x9012;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E2D;&#x65F6;&#xFF0C;&#x786E;&#x4FDD;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#x6B63;&#x786E;&#x8F6C;&#x79FB;&#x3002;</p>
+<h2 id="&#x56DB;&#x3001;&#x95ED;&#x5305;&#x7C7B;&#x578B;">&#x56DB;&#x3001;&#x95ED;&#x5305;&#x7C7B;&#x578B;</h2>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;fnonce">&#xFF08;&#x4E00;&#xFF09;FnOnce</h3>
+<p>FnOnce &#x7C7B;&#x578B;&#x7684;&#x95ED;&#x5305;&#x4F1A;&#x83B7;&#x53D6;&#x5176;&#x73AF;&#x5883;&#x4E2D;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x80FD;&#x88AB;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x95ED;&#x5305;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#x88AB;&#x8F6C;&#x79FB;&#x5230;&#x4E86;&#x95ED;&#x5305;&#x5185;&#x90E8;&#xFF0C;&#x95ED;&#x5305;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5C31;&#x7ED3;&#x675F;&#x4E86;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> x = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; 
+    <span class="hljs-keyword">let</span> closure = || { 
+        <span class="hljs-keyword">let</span> y = x; 
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{:?}&quot;</span>, y) 
+    }; 
+    closure(); 
+    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x56E0;&#x4E3A; x &#x7684;&#x6240;&#x6709;&#x6743;&#x5DF2;&#x7ECF;&#x88AB;&#x79FB;&#x52A8;&#x5230;&#x95ED;&#x5305;&#x4E2D;&#xFF0C;&#x95ED;&#x5305;&#x8C03;&#x7528;&#x540E; x &#x5DF2;&#x88AB;&#x91CA;&#x653E; </span>
+    <span class="hljs-comment">// println!(&quot;{:?}&quot;, x); </span>
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;closure &#x95ED;&#x5305;&#x901A;&#x8FC7; &#x5C06;x&#x8D4B;&#x503C;y&#xFF0C;&#x83B7;&#x53D6;&#x4E86; x &#x7684;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x80FD;&#x8C03;&#x7528;&#x4E00;&#x6B21; closure&#x3002;&#x5F53;&#x518D;&#x6B21;&#x5C1D;&#x8BD5;&#x8BBF;&#x95EE; x &#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x63D0;&#x793A; x &#x5DF2;&#x7ECF;&#x88AB;&#x79FB;&#x52A8;&#x4E14;&#x4E0D;&#x518D;&#x53EF;&#x7528;&#x3002;</p>
+<p>FnOnce &#x95ED;&#x5305;&#x9002;&#x7528;&#x4E8E;&#x90A3;&#x4E9B;&#x53EA;&#x9700;&#x8981;&#x5728;&#x95ED;&#x5305;&#x4E2D;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x4E14;&#x4E4B;&#x540E;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x67D0;&#x4E9B;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;&#x4E2D;&#xFF0C;&#x5C06;&#x53D8;&#x91CF;&#x7684;&#x6240;&#x6709;&#x6743;&#x8F6C;&#x79FB;&#x5230;&#x95ED;&#x5305;&#x5185;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x6027;&#x7684;&#x5904;&#x7406;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;fnmut">&#xFF08;&#x4E8C;&#xFF09;FnMut</h3>
+<p>FnMut &#x95ED;&#x5305;&#x53EF;&#x4EE5;&#x53EF;&#x53D8;&#x5730;&#x501F;&#x7528;&#x5176;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5B83;&#x80FD;&#x591F;&#x4FEE;&#x6539;&#x88AB;&#x501F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#x3002;&#x8FD9;&#x79CD;&#x95ED;&#x5305;&#x53EF;&#x4EE5;&#x88AB;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x90FD;&#x53EF;&#x4EE5;&#x5BF9;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { l
+    et <span class="hljs-keyword">mut</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> closure = || { 
+        x += <span class="hljs-number">1</span>; 
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: {}&quot;</span>, x); 
+    }; 
+    closure(); 
+    closure(); 
+}
+</code></pre>
+<p>&#x5728;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;closure &#x662F;&#x4E00;&#x4E2A; FnMut &#x95ED;&#x5305;&#xFF0C;&#x5B83;&#x53EF;&#x53D8;&#x5730;&#x501F;&#x7528;&#x4E86;&#x53D8;&#x91CF; x&#x3002;</p>
+<p>&#x6BCF;&#x6B21;&#x8C03;&#x7528; closure &#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x5C06; x &#x7684;&#x503C;&#x589E;&#x52A0; 1 &#x5E76;&#x6253;&#x5370;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x95ED;&#x5305;&#x662F;&#x53EF;&#x53D8;&#x501F;&#x7528; x&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x95ED;&#x5305;&#x7684;&#x591A;&#x6B21;&#x8C03;&#x7528;&#x4E4B;&#x95F4;&#xFF0C;x &#x7684;&#x503C;&#x4F1A;&#x6301;&#x7EED;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;FnMut &#x95ED;&#x5305;&#x5E38;&#x7528;&#x4E8E;&#x9700;&#x8981;&#x5728;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;&#x4E2D;&#x4FEE;&#x6539;&#x67D0;&#x4E2A;&#x53D8;&#x91CF;&#x72B6;&#x6001;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x5728;&#x4E00;&#x4E2A;&#x5FAA;&#x73AF;&#x4E2D;&#x4E0D;&#x65AD;&#x66F4;&#x65B0;&#x67D0;&#x4E2A;&#x8BA1;&#x6570;&#x5668;&#x6216;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E09;&#xFF09;fn">&#xFF08;&#x4E09;&#xFF09;Fn</h3>
+<p>Fn &#x95ED;&#x5305;&#x4E0D;&#x53EF;&#x53D8;&#x5730;&#x501F;&#x7528;&#x5176;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x88AB;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#x88AB;&#x501F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> closure = || <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value of x is: {}&quot;</span>, x); 
+    closure(); 
+    closure(); 
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x7684; closure &#x95ED;&#x5305;&#x662F; Fn &#x7C7B;&#x578B;&#xFF0C;&#x5B83;&#x53EA;&#x662F;&#x8BFB;&#x53D6;&#x5E76;&#x6253;&#x5370;&#x53D8;&#x91CF; x &#x7684;&#x503C;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x5BF9; x &#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x5728;&#x591A;&#x6B21;&#x8C03;&#x7528; closure &#x65F6;&#xFF0C;x &#x7684;&#x503C;&#x59CB;&#x7EC8;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;Fn &#x95ED;&#x5305;&#x5728;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x4E2D;&#x975E;&#x5E38;&#x5E38;&#x7528;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x4F7F;&#x7528; Fn &#x95ED;&#x5305;&#x6765;&#x5B9A;&#x4E49;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5904;&#x7406;&#x903B;&#x8F91;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x96C6;&#x5408;&#x672C;&#x8EAB;&#x7684;&#x7ED3;&#x6784;&#x548C;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728; Rust &#x4E2D;&#xFF0C;&#x95ED;&#x5305;&#x7684;&#x7C7B;&#x578B;&#x662F;&#x6839;&#x636E;&#x5176;&#x5BF9;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x81EA;&#x52A8;&#x63A8;&#x65AD;&#x7684;&#x3002;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#x53EF;&#x80FD;&#x540C;&#x65F6;&#x5B9E;&#x73B0;&#x4E86; Fn&#x3001;FnMut &#x548C; FnOnce &#x4E2D;&#x7684;&#x591A;&#x79CD; trait&#xFF0C;&#x4F46;&#x5177;&#x4F53;&#x8C03;&#x7528;&#x65F6;&#x7684;&#x884C;&#x4E3A;&#x53D6;&#x51B3;&#x4E8E;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x95ED;&#x5305;&#x7C7B;&#x578B;&#x7684;&#x8981;&#x6C42;&#x3002;</p>
+<p>&#x5B83;&#x4EEC;&#x4E4B;&#x524D;&#x7684;&#x5173;&#x7CFB;&#x662F;&#xFF1A;Fn&#x662F;FnMut&#x7684;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;&#xFF0C;&#x800C;FnMut &#x53C8;&#x662F;FnOnce&#x7684;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#x26A0;&#xFE0F;&#xFF1A;&#x51FD;&#x6570;&#x548C;&#x95ED;&#x5305;&#x5728;&#x7C7B;&#x578B;&#x4E0A;&#x7684;&#x5DEE;&#x522B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span></span>() -&gt; <span class="hljs-keyword">bool</span> <span class="hljs-comment">// fn &#x7C7B;&#x578B;&#xFF08;&#x53EA;&#x9650;&#x51FD;&#x6570;&#xFF09; </span>
+<span class="hljs-built_in">Fn</span>() -&gt; <span class="hljs-keyword">bool</span> <span class="hljs-comment">// Fn trait&#xFF08;&#x51FD;&#x6570;&#x548C;&#x95ED;&#x5305;&#xFF09;</span>
+</code></pre>
+<h2 id="&#x4E94;&#x3001;&#x95ED;&#x5305;&#x7684;&#x6027;&#x80FD;">&#x4E94;&#x3001;&#x95ED;&#x5305;&#x7684;&#x6027;&#x80FD;</h2>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;&#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x7684;&#x5DEE;&#x522B;">&#xFF08;&#x4E00;&#xFF09;&#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x7684;&#x5DEE;&#x522B;</h3>
+<p>&#x5728;&#x5927;&#x591A;&#x6570;&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x95ED;&#x5305;&#x90FD;&#x5728;&#x5806;&#x4E0A;&#x5206;&#x914D;&#x3001;&#x52A8;&#x6001;&#x5206;&#x53D1;&#x3001;&#x88AB;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#x521B;&#x5EFA;&#x3001;&#x8C03;&#x7528;&#x3001;&#x56DE;&#x6536;&#x6BCF;&#x4E2A;&#x95ED;&#x5305;&#x90FD;&#x9700;&#x8981;&#x6D88;&#x8017;&#x989D;&#x5916;&#x7684;CPU &#x65F6;&#x95F4;&#xFF0C;&#x800C;&#x4E14;&#xFF0C;&#x95ED;&#x5305;&#x5E38;&#x5E38;&#x4F1A;&#x6392;&#x9664;&#x5185;&#x8054;(inline)&#x3002;</p>
+<p>&#x4F46;&#x662F;Rust&#x7684;&#x95ED;&#x5305;&#x6CA1;&#x6709;&#x5783;&#x573E;&#x56DE;&#x6536;&#xFF0C;&#x5E76;&#x4E14;&#x9664;&#x975E;&#x662F;&#x653E;&#x5728;Box&#x3001;Vec &#x6216;&#x5176;&#x4ED6;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x5426;&#x5219;&#x5B83;&#x4EEC;&#x4E0D;&#x4F1A;&#x5728;&#x5806;&#x4E0A;&#x5206;&#x914D;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;&#x4F18;&#x5316;&#x7B56;&#x7565;">&#xFF08;&#x4E00;&#xFF09;&#x4F18;&#x5316;&#x7B56;&#x7565;</h3>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5BF9;&#x95ED;&#x5305;&#x8FDB;&#x884C;&#x591A;&#x79CD;&#x4F18;&#x5316;&#xFF0C;&#x4EE5;&#x63D0;&#x5347;&#x5176;&#x6027;&#x80FD;&#x8868;&#x73B0;&#x3002;</p>
+<p>&#x5F53;&#x95ED;&#x5305;&#x53EA;&#x5728;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x80FD;&#x4F1A;&#x5185;&#x8054;&#x8FD9;&#x4E2A;&#x95ED;&#x5305;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x95ED;&#x5305;&#x7684;&#x4EE3;&#x7801;&#x5C55;&#x5F00;&#x5230;&#x8C03;&#x7528;&#x5904;&#xFF0C;&#x4ECE;&#x800C;&#x907F;&#x514D;&#x4E86;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x5F00;&#x9500;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; 
+    <span class="hljs-keyword">let</span> closure = || x + <span class="hljs-number">1</span>; 
+    <span class="hljs-keyword">let</span> result = closure(); 
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, result); 
+}
+</code></pre>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x6839;&#x636E;&#x95ED;&#x5305;&#x6355;&#x83B7;&#x53D8;&#x91CF;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E5F;&#x4F1A;&#x4F18;&#x5316;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x662F;&#x901A;&#x8FC7;&#x5F15;&#x7528;&#x6355;&#x83B7;&#x53D8;&#x91CF;&#xFF0C;&#x53EA;&#x8981;&#x4FDD;&#x8BC1;&#x5F15;&#x7528;&#x7684;&#x5408;&#x6CD5;&#x6027;&#xFF08;&#x9075;&#x5FAA;&#x501F;&#x7528;&#x89C4;&#x5219;&#x7B49;&#xFF09;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x9AD8;&#x6548;&#x5730;&#x5229;&#x7528;&#x5DF2;&#x6709;&#x7684;&#x53D8;&#x91CF;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x989D;&#x5916;&#x4E3A;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x91CD;&#x590D;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() { 
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> data = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; 
+    <span class="hljs-keyword">let</span> closure = || data.len(); 
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Length of data: {}&quot;</span>, closure()); 
+}
+</code></pre>
+<h2 id="">#</h2>
+<h2 id="&#x516D;&#x3001;&#x95ED;&#x5305;&#x7684;copy-&#x548C;clone">&#x516D;&#x3001;&#x95ED;&#x5305;&#x7684;Copy &#x548C;Clone</h2>
+<p>&#x95ED;&#x5305;&#x88AB;&#x8868;&#x793A;&#x4E3A;&#x5305;&#x542B;&#x5B83;&#x4EEC;&#x6355;&#x83B7;&#x7684;&#x503C;&#xFF08;move &#x95ED;&#x5305;&#xFF09;&#x6216;&#x8005;&#x5F15;&#x7528;&#xFF08;non-move &#x95ED;&#x5305;&#xFF09;&#x7684;&#x7ED3;&#x6784;&#x4F53;&#x3002;</p>
+<p>&#x95ED;&#x5305;&#x7684;Copy &#x548C;Clone &#x7684;&#x89C4;&#x5219;&#x5C31;&#x7C7B;&#x4F3C;&#x4E8E;&#x666E;&#x901A;&#x7ED3;&#x6784;&#x4F53;&#x7684;Copy &#x548C;Clone &#x7684;&#x89C4;&#x5219;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;fn">&#xFF08;&#x4E00;&#xFF09;Fn</h3>
+<p>&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x53EF;&#x53D8;&#x53D8;&#x91CF;&#x7684;non-move &#x7684;&#x95ED;&#x5305;&#x53EA;&#x6709;&#x5171;&#x4EAB;&#x5F15;&#x7528;&#xFF0C;&#x5171;&#x4EAB;&#x5F15;&#x7528;&#x662F;Clone &#x548C;Copy&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x79CD;&#x95ED;&#x5305;&#x4E5F;&#x662F;Clone &#x548C;Copy&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> y = <span class="hljs-number">10</span>; 
+<span class="hljs-keyword">let</span> add_y = |x| x + y; 
+<span class="hljs-keyword">let</span> copy_of_add_y = add_y; <span class="hljs-comment">// &#x8FD9;&#x4E2A;&#x95ED;&#x5305;&#x662F;`Copy`</span>
+<span class="hljs-built_in">assert_eq!</span>(add_y(copy_of_add_y(<span class="hljs-number">22</span>)), <span class="hljs-number">42</span>); <span class="hljs-comment">// &#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;</span>
+</code></pre>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;fnmut">&#xFF08;&#x4E8C;&#xFF09;FnMut</h3>
+<p>&#x4E00;&#x4E2A;&#x6709;&#x53EF;&#x53D8;&#x503C;&#x7684;non-move &#x95ED;&#x5305;&#x5728;&#x5185;&#x90E8;&#x7684;&#x8868;&#x793A;&#x4E2D;&#x5305;&#x542B;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x3002;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x65E2;&#x4E0D;&#x662F;Clone &#x4E5F;&#x4E0D;&#x662F;Copy&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#x65E2;&#x4E0D;&#x662F;Copy &#x4E5F;&#x4E0D;&#x662F;Clone&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = <span class="hljs-number">0</span>; 
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> add_to_x = |n| { 
+    x += n; 
+    x 
+}; 
+<span class="hljs-keyword">let</span> copy_of_add_to_x = add_to_x; <span class="hljs-comment">// &#x79FB;&#x52A8;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x62F7;&#x8D1D; </span>
+<span class="hljs-built_in">assert_eq!</span>(add_to_x(copy_of_add_to_x(<span class="hljs-number">1</span>)), <span class="hljs-number">2</span>); <span class="hljs-comment">// &#x9519;&#x8BEF;&#xFF1A;&#x4F7F;&#x7528;&#x4E86;&#x88AB;&#x79FB;&#x52A8;&#x7684;&#x503C;</span>
+</code></pre>
+<h3 id="&#xFF08;&#x4E09;&#xFF09;fnonce">&#xFF08;&#x4E09;&#xFF09;FnOnce</h3>
+<p>&#x5BF9;&#x4E8E;move &#x95ED;&#x5305;&#x6765;&#x8BF4;&#xFF0C;&#x89C4;&#x5219;&#x53D8;&#x5F97;&#x66F4;&#x7B80;&#x5355;&#x4E86;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;move &#x95ED;&#x5305;&#x6355;&#x83B7;&#x7684;&#x6240;&#x6709;&#x503C;&#x90FD;&#x662F;Copy&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4E5F;&#x662F;Copy&#x3002;&#x5982;&#x679C;&#x5B83;&#x6355;&#x83B7;&#x7684;&#x6240;&#x6709;&#x503C;&#x90FD;&#x662F;Clone&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4E5F;&#x662F;Clone&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> greeting = <span class="hljs-built_in">String</span>::from(<span class="hljs-string">&quot;Hello, &quot;</span>); 
+<span class="hljs-keyword">let</span> greet = move |name| { 
+    greeting.push_str(name); 
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, greeting); 
+}; 
+greet.clone()(<span class="hljs-string">&quot;Alfred&quot;</span>); <span class="hljs-comment">// Hello, Alfred </span>
+greet.clone()(<span class="hljs-string">&quot;Bruce&quot;</span>); <span class="hljs-comment">// Hello, Bruce</span>
+</code></pre>
+<p>&#x5F53;greeting &#x5728;greet &#x4E2D;&#x88AB;&#x7528;&#x5230;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;&#x79FB;&#x52A8;&#x8FDB;&#x8868;&#x793A;greet &#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;&#x4F53;&#x91CC;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x662F;move &#x95ED;&#x5305;&#x3002;</p>
+<p>&#x5F53;&#x514B;&#x9686;greet &#x65F6;&#xFF0C;&#x91CC;&#x9762;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x90FD;&#x4F1A;&#x88AB;&#x514B;&#x9686;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A;greeting &#x7684;&#x62F7;&#x8D1D;&#xFF0C;&#x5F53;&#x8C03;&#x7528;&#x514B;&#x9686;&#x7684;greet &#x65F6;&#x5B83;&#x4EEC;&#x4F1A;&#x88AB;&#x72EC;&#x7ACB;&#x5730;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x5B83;&#x672C;&#x8EAB;&#x7528;&#x5904;&#x4E0D;&#x5927;&#xFF0C;&#x4F46;&#x5F53;&#x4F60;&#x9700;&#x8981;&#x628A;&#x540C;&#x6837;&#x7684;&#x95ED;&#x5305;&#x4F20;&#x9012;&#x7ED9;&#x4E0D;&#x6B62;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="11-ops.html" class="navigation navigation-prev " aria-label="Previous page: Rust 运算符重载：开启高效编程之旅">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../web3/" class="navigation navigation-next " aria-label="Next page: Web3">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust 闭包：高效编程的秘密武器","level":"1.2.12","depth":2,"next":{"title":"Web3","level":"1.3","depth":1,"path":"web3/README.md","ref":"web3/README.md","articles":[{"title":"前端工程师，你了解Web3了么？","level":"1.3.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},{"title":"web3世界的通行证-加密钱包","level":"1.3.2","depth":2,"path":"web3/2-wallet.md","ref":"web3/2-wallet.md","articles":[]}]},"previous":{"title":"Rust 运算符重载：开启高效编程之旅","level":"1.2.11","depth":2,"path":"rust/11-ops.md","ref":"rust/11-ops.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"rust/12-closures.md","mtime":"2024-12-25T15:59:53.435Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-12-25T16:04:59.790Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
