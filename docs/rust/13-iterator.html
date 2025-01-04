@@ -1,0 +1,1044 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust 迭代器：从基础到实践 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../web3/" />
+    
+    
+    <link rel="prev" href="12-closures.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-baseType.html">
+            
+                <a href="2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-ownership.html">
+            
+                <a href="3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-ref.html">
+            
+                <a href="4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5-expression.html">
+            
+                <a href="5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6-err.html">
+            
+                <a href="6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="7-crate.html">
+            
+                <a href="7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="8-struct.html">
+            
+                <a href="8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="9-enum.html">
+            
+                <a href="9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="10-trait.html">
+            
+                <a href="10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="11-ops.html">
+            
+                <a href="11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="12-closures.html">
+            
+                <a href="12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.13" data-path="13-iterator.html">
+            
+                <a href="13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust 迭代器：从基础到实践</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/229bbc47caf34f2290418447f30ad5f8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?rk3s=f64ab15b&amp;x-expires=1726280234&amp;x-signature=U7x5IBo0%2BwITHIKd4PqOw80dXHM%3D" alt=""></p>
+<h1 id="rust-&#x8FED;&#x4EE3;&#x5668;&#xFF1A;&#x4ECE;&#x57FA;&#x7840;&#x5230;&#x5B9E;&#x8DF5;">Rust &#x8FED;&#x4EE3;&#x5668;&#xFF1A;&#x4ECE;&#x57FA;&#x7840;&#x5230;&#x5B9E;&#x8DF5;</h1>
+<h2 id="&#x4E00;-&#x8FED;&#x4EE3;&#x5668;&#x521D;&#x5370;&#x8C61;">&#x4E00; &#x8FED;&#x4EE3;&#x5668;&#x521D;&#x5370;&#x8C61;</h2>
+<p>&#x8FED;&#x4EE3;&#x5668;(iterator) &#x7528;&#x4E8E;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x503C;&#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5FAA;&#x73AF;&#x6765;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;</p>
+<p>Rust &#x4E2D;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x57FA;&#x4E8E;&#x4E24;&#x5927;&#x5173;&#x952E;&#x7279;&#x8D28;&#xFF1A;Iterator&#x548C;IntoIterator&#x3002;</p>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;iterator">&#xFF08;&#x4E00;&#xFF09;Iterator</h3>
+<p>&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x662F;&#x4EFB;&#x4F55;&#x5B9E;&#x73B0;&#x4E86;std::iter::Iterator trait &#x7684;&#x7C7B;&#x578B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Iterator</span></span> {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Item</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">next</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;;
+    ... <span class="hljs-comment">// &#x5F88;&#x591A;&#x9ED8;&#x8BA4;&#x65B9;&#x6CD5;</span>
+}
+</code></pre>
+<p>Item &#x662F;&#x8FED;&#x4EE3;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x503C;&#x7684;&#x7C7B;&#x578B;&#x3002;next &#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x8FD4;&#x56DE;Some(v)&#xFF0C;&#x5176;&#x4E2D;v &#x662F;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x503C;&#xFF1B;&#x6216;&#x8005;&#x8FD4;&#x56DE;None&#xFF0C;&#x8868;&#x793A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5E8F;&#x5217;&#x7684;&#x7EC8;&#x70B9;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;intoiterator">&#xFF08;&#x4E8C;&#xFF09;IntoIterator</h3>
+<p>&#x5B9E;&#x73B0;&#x4E86;std::iter::IntoIterator&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x79F0;&#x4E3A;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x7684;into_iter &#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x503C;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5B83;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">IntoIterator</span></span> <span class="hljs-keyword">where</span> Self::IntoIter: <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Item</span></span>;
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">IntoIter</span></span>: <span class="hljs-built_in">Iterator</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">into_iter</span></span>(<span class="hljs-keyword">self</span>) -&gt; Self::IntoIter;
+}
+</code></pre>
+<p>for&#x5FAA;&#x73AF;&#x5B9E;&#x9645;&#x662F;&#x5BF9;IntoIterator&#x548C;Iterator&#x7684;&#x7EC4;&#x5408;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;There&apos;s:&quot;</span>);
+<span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-string">&quot;antimony&quot;</span>, <span class="hljs-string">&quot;arsenic&quot;</span>, <span class="hljs-string">&quot;alumium&quot;</span>, <span class="hljs-string">&quot;selenium&quot;</span>];
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> &amp;v {
+   <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, element);
+}
+</code></pre>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;for &#x5FAA;&#x73AF;&#x53EA;&#x662F;IntoIterator &#x548C;Iterator &#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x7EC4;&#x5408;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;There&apos;s:&quot;</span>);
+<span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-string">&quot;antimony&quot;</span>, <span class="hljs-string">&quot;arsenic&quot;</span>, <span class="hljs-string">&quot;alumium&quot;</span>, <span class="hljs-string">&quot;selenium&quot;</span>];
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> iterator = (&amp;v).into_iter();
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(element) = iterator.next() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, element);
+}
+</code></pre>
+<p>&#x63A5;&#x53D7;&#x7531;itertor.next()&#x4EA7;&#x751F;&#x7684;&#x503C;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x8FED;&#x4EE3;&#x5668;&#x6D88;&#x8D39;&#x8005;&#xFF08;consumer&#xFF09;&#xFF0C;&#x4E0A;&#x8FF0;&#x7684;for&#x5FAA;&#x73AF;&#x4EE3;&#x7801;&#x5C31;&#x662F;&#x6D88;&#x8D39;&#x8005;&#x3002;</p>
+<p>for &#x5FAA;&#x73AF;&#x603B;&#x662F;&#x8C03;&#x7528;&#x64CD;&#x4F5C;&#x6570;&#x7684;into_iter&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5411;for &#x5FAA;&#x73AF;&#x4F20;&#x9012;&#x8FED;&#x4EE3;&#x5668;&#xFF1B;&#x4F8B;&#x5982;&#xFF0C;&#x76F4;&#x63A5;&#x5728;Range &#x4E0A;&#x5FAA;&#x73AF;&#x65F6;&#x5C31;&#x662F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x3002;&#x6240;&#x6709;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x5B9E;&#x73B0;IntoIterator&#xFF0C;&#x5B83;&#x4EEC;&#x7684;into_iter &#x65B9;&#x6CD5;&#x7B80;&#x5355;&#x5730;&#x8FD4;&#x56DE;&#x8FED;&#x4EE3;&#x5668;&#x81EA;&#x8EAB;&#x3002;</p>
+<h2 id="&#x4E8C;-&#x521B;&#x5EFA;&#x8FED;&#x4EE3;&#x5668;">&#x4E8C; &#x521B;&#x5EFA;&#x8FED;&#x4EE3;&#x5668;</h2>
+<h3 id="&#x4E00;&#xFF09;iter-&#x548C;itermut-&#x65B9;&#x6CD5;">(&#x4E00;&#xFF09;iter &#x548C;iter_mut &#x65B9;&#x6CD5;</h3>
+<p>&#x5927;&#x591A;&#x6570;&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x63D0;&#x4F9B;iter &#x548C;iter_mut &#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x4EEC;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x8FED;&#x4EE3;&#x5668;&#x4F1A;&#x4EA7;&#x751F;&#x6BCF;&#x4E00;&#x4E2A;item &#x7684;&#x5171;&#x4EAB;&#x5F15;&#x7528;&#x6216;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x3002;&#x6570;&#x7EC4;&#x5207;&#x7247;&#x4F8B;&#x5982;&amp;[T] &#x548C;&amp;mut [T] &#x4E5F;&#x6709;iter &#x548C;iter_mut &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x9664;&#x4E86;&#x4F7F;&#x7528;for &#x5FAA;&#x73AF;&#x81EA;&#x52A8;&#x5904;&#x7406;&#x4E4B;&#x5916;&#xFF0C;next&#x65B9;&#x6CD5;&#x662F;&#x6700;&#x5E38;&#x7528;&#x7684;&#x83B7;&#x5F97;&#x8FED;&#x4EE3;&#x5668;&#x6570;&#x636E;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">4</span>, <span class="hljs-number">20</span>, <span class="hljs-number">12</span>, <span class="hljs-number">8</span>, <span class="hljs-number">6</span>];
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> iterator = v.iter();
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">Some</span>(&amp;<span class="hljs-number">4</span>));
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">Some</span>(&amp;<span class="hljs-number">20</span>));
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">Some</span>(&amp;<span class="hljs-number">12</span>));
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">Some</span>(&amp;<span class="hljs-number">8</span>));
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">Some</span>(&amp;<span class="hljs-number">6</span>));
+<span class="hljs-built_in">assert_eq!</span>(iterator.next(), <span class="hljs-literal">None</span>);
+</code></pre>
+<p>&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x7C7B;&#x578B;&#x6709;&#x4E0D;&#x6B62;&#x4E00;&#x79CD;&#x8FED;&#x4EE3;&#x65B9;&#x5F0F;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x7C7B;&#x578B;&#x901A;&#x5E38;&#x4E3A;&#x6BCF;&#x79CD;&#x904D;&#x5386;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x7279;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&amp;str &#x5B57;&#x7B26;&#x4E32;&#x5207;&#x7247;&#x7C7B;&#x578B;&#x6CA1;&#x6709;iter &#x65B9;&#x6CD5;&#x3002;&#x4F5C;&#x4E3A;&#x66FF;&#x4EE3;&#xFF0C;&#x5047;&#x8BBE;s &#x662F;&amp;str&#xFF0C;&#x90A3;&#x4E48;s.bytes() &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x4EA7;&#x751F;s &#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x8282;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x800C;s.chars() &#x4F1A;&#x4EE5;UTF-8 &#x7F16;&#x7801;&#x89E3;&#x6790;&#x5B83;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x4EA7;&#x751F;&#x6BCF;&#x4E00;&#x4E2A;Unicode &#x5B57;&#x7B26;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;intoiterator-&#x5B9E;&#x73B0;">&#xFF08;&#x4E8C;&#xFF09;IntoIterator &#x5B9E;&#x73B0;</h3>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x5B9E;&#x73B0;&#x4E86;IntoIterator &#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5B83;&#x7684;into_iter &#x65B9;&#x6CD5;&#xFF0C;&#x83B7;&#x5F97;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x6B63;&#x5982;for &#x5FAA;&#x73AF;&#x4E00;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::collections::BTreeSet;
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> favorites = BTreeSet::new();
+favorites.insert(<span class="hljs-string">&quot;Lucy in the Sky With Diamonds&quot;</span>.to_string());
+favorites.insert(<span class="hljs-string">&quot;Liebestr&#xE4;ume No. 3&quot;</span>.to_string());
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> it = favorites.into_iter();
+<span class="hljs-built_in">assert_eq!</span>(it.next(), <span class="hljs-literal">Some</span>(<span class="hljs-string">&quot;Liebestr&#xE4;ume No. 3&quot;</span>.to_string()));
+<span class="hljs-built_in">assert_eq!</span>(it.next(), <span class="hljs-literal">Some</span>(<span class="hljs-string">&quot;Lucy in the Sky With Diamonds&quot;</span>.to_string()));
+<span class="hljs-built_in">assert_eq!</span>(it.next(), <span class="hljs-literal">None</span>);
+</code></pre>
+<p>&#x5927;&#x591A;&#x6570;&#x96C6;&#x5408;&#x90FD;&#x63D0;&#x4F9B;&#x4E86;&#x597D;&#x51E0;&#x4E2A;IntoIterator &#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x4E3A;&#x5171;&#x4EAB;&#x5F15;&#x7528;(&amp;T)&#x3001;&#x53EF;&#x53D8;&#x5F15;&#x7528;(&amp;mut T)&#x3001;&#x79FB;&#x52A8;(T) &#x63D0;&#x4F9B;&#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-rust">or element <span class="hljs-keyword">in</span> &amp;collection { ... }
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> &amp;<span class="hljs-keyword">mut</span> collection { ... }
+<span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> collection { ... }
+</code></pre>
+<p>&#x5207;&#x7247;&#x5B9E;&#x73B0;&#x4E86;&#x4E09;&#x79CD;IntoIterator &#x53D8;&#x4F53;&#x4E2D;&#x7684;&#x4E24;&#x4E2A;&#xFF1B;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5E76;&#x4E0D;&#x62E5;&#x6709;&#x81EA;&#x5DF1;&#x5F15;&#x7528;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x56E0;&#x6B64;&#x6CA1;&#x6709;&#x201C;&#x4EE5;&#x503C;&#x201D;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>IntoIterator &#x4EA7;&#x751F;&#x5171;&#x4EAB;&#x548C;&#x53EF;&#x53D8;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x4E0E;&#x8C03;&#x7528;iter &#x6216;&#x8005;iter_mut &#x662F;&#x7B49;&#x4EF7;&#x7684;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;Rust &#x540C;&#x65F6;&#x63D0;&#x4F9B;&#x4E24;&#x8005;&#xFF1F;</p>
+<p>1&#x3001;IntoIterator &#x4F7F;for &#x5FAA;&#x73AF;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#xFF0C;&#x56E0;&#x6B64;&#x662F;&#x5FC5;&#x8981;&#x7684;&#xFF1B;&#x4F46;&#x5F53;&#x4E0D;&#x4F7F;&#x7528;for &#x5FAA;&#x73AF;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;favorites.iter() &#x6BD4;(&amp;favorites).into_iter() &#x66F4;&#x52A0;&#x6E05;&#x6670;&#x3002;&#x5F53;&#x9891;&#x7E41;&#x4EE5;&#x5171;&#x4EAB;&#x5F15;&#x7528;&#x65B9;&#x5F0F;&#x8FED;&#x4EE3;&#xFF0C;iter &#x548C;iter_mut &#x5C31;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+<p>2&#x3001;IntoIterator &#x5728;&#x6CDB;&#x578B;&#x4EE3;&#x7801;&#x4E2D;&#x5F88;&#x6709;&#x7528;&#xFF1A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x7EA6;&#x675F;&#xFF0C;&#x4F8B;&#x5982;T: IntoIterator &#x6765;&#x9650;&#x5236;&#x7C7B;&#x578B;&#x53C2;&#x6570;T &#x5FC5;&#x987B;&#x662F;&#x53EF;&#x4EE5;&#x8FED;&#x4EE3;&#x7684;&#x7C7B;&#x578B;&#x3002;&#x6216;&#x8005;&#xFF0C;&#x53EF;&#x4EE5;&#x5199;T: IntoIterator &#x6765;&#x8FDB;&#x4E00;&#x6B65;&#x8981;&#x6C42;&#x8FED;&#x4EE3;&#x4F1A;&#x4EA7;&#x751F;U &#x7C7B;&#x578B;&#x7684;&#x503C;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::fmt::Debug;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dump</span></span>&lt;T, U&gt;(t: T)
+<span class="hljs-keyword">where</span> T: <span class="hljs-built_in">IntoIterator</span>&lt;Item=U&gt;, U: Debug
+{
+    <span class="hljs-keyword">for</span> u <span class="hljs-keyword">in</span> t {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{:?}&quot;</span>, u);
+    }
+}
+</code></pre>
+<p>&#x4E0D;&#x80FD;&#x5728;&#x6CDB;&#x578B;&#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528;iter &#x6216;&#x8005;iter_mut&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x4E0D;&#x662F;&#x4EFB;&#x4F55;trait &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x53EF;&#x8FED;&#x4EE3;&#x7C7B;&#x578B;&#x53EA;&#x662F;&#x6070;&#x597D;&#x6709;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E09;&#xFF09;fromfn-&#x548C;successors">&#xFF08;&#x4E09;&#xFF09;from_fn &#x548C;successors</h3>
+<p>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;Option &#x7684;&#x51FD;&#x6570;&#xFF0C;std::iter::from_fn &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x90A3;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x4EA7;&#x751F;item&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> rand::random; <span class="hljs-comment">// &#x5728;Cargo.toml &#x4E2D;&#x6DFB;&#x52A0;&#x4F9D;&#x8D56;&#xFF1A;rand = &quot;0.7&quot;</span>
+<span class="hljs-keyword">use</span> std::iter::from_fn;
+<span class="hljs-comment">// &#x4EA7;&#x751F;1000 &#x4E2A;&#x968F;&#x673A;&#x6570;&#xFF0C;&#x5728;[0, 1] &#x4E4B;&#x95F4;&#x5747;&#x5300;&#x5206;&#x5E03;&#x3002;</span>
+<span class="hljs-comment">// &#xFF08;&#x8FD9;&#x5E76;&#x4E0D;&#x662F;&#x4F60;&#x60F3;&#x5728;`rand_distr` crate &#x4E2D;&#x627E;&#x5230;&#x7684;&#x5206;&#x5E03;&#xFF0C;</span>
+<span class="hljs-comment">// &#x4F46;&#x4F60;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5730;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x5B83;&#xFF09;</span>
+<span class="hljs-keyword">let</span> lengths: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">f64</span>&gt; =
+from_fn(|| <span class="hljs-literal">Some</span>((random::&lt;<span class="hljs-keyword">f64</span>&gt;() - random::&lt;<span class="hljs-keyword">f64</span>&gt;()).abs()))
+.take(<span class="hljs-number">1000</span>)
+.collect();
+</code></pre>
+<p>&#x5982;&#x679C;&#x6BCF;&#x4E00;&#x4E2A;item &#x90FD;&#x4F9D;&#x8D56;&#x4E0A;&#x4E00;&#x4E2A;&#xFF0C;std::iter::successors &#x51FD;&#x6570;&#x662F;&#x66F4;&#x597D;&#x7684;&#x9009;&#x62E9;&#x3002;&#x53EA;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x521D;&#x59CB;item &#x548C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8981;&#x83B7;&#x53D6;&#x4E0A;&#x4E00;&#x4E2A;item &#x5E76;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;item &#x7684;Option&#x3002;&#x5982;&#x679C;&#x8FD4;&#x56DE;None&#xFF0C;&#x90A3;&#x4E48;&#x8FED;&#x4EE3;&#x7EC8;&#x6B62;&#x3002;</p>
+<p>from_fn &#x548C;successors &#x90FD;&#x63A5;&#x53D7;FnMut &#x95ED;&#x5305;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x6355;&#x83B7;&#x5E76;&#x4FEE;&#x6539;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;fibonacci &#x51FD;&#x6570;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;move &#x95ED;&#x5305;&#x6765;&#x6355;&#x83B7;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x5E76;&#x4F7F;&#x7528;&#x5B83;&#x4F5C;&#x4E3A;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">fibonacci</span></span>() -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=usize&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> state = (<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+    std::iter::from_fn(move || {
+        state = (state.<span class="hljs-number">1</span>, state.<span class="hljs-number">0</span> + state.<span class="hljs-number">1</span>);
+        <span class="hljs-literal">Some</span>(state.<span class="hljs-number">0</span>)
+    })
+}
+<span class="hljs-built_in">assert_eq!</span>(fibonacci().take(<span class="hljs-number">8</span>).collect::&lt;<span class="hljs-built_in">Vec</span>&lt;_&gt;&gt;(), <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">13</span>, <span class="hljs-number">21</span>]);
+</code></pre>
+<h3 id="&#xFF08;&#x56DB;&#xFF09;drain-&#x65B9;&#x6CD5;">&#xFF08;&#x56DB;&#xFF09;drain &#x65B9;&#x6CD5;</h3>
+<p>drain&#x65B9;&#x6CD5;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x4ECE;&#x96C6;&#x5408;&#xFF08;&#x5982;Vec&#x3001;HashMap&#x7B49;&#xFF09;&#x4E2D;&#x79FB;&#x9664;&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x904D;&#x5386;&#x88AB;&#x79FB;&#x9664;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;&#x9700;&#x8981;&#x540C;&#x65F6;&#x79FB;&#x9664;&#x548C;&#x5904;&#x7406;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x65F6;&#x975E;&#x5E38;&#x6709;&#x7528;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::iter::FromIterator;
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> outer = <span class="hljs-string">&quot;Earth&quot;</span>.to_string();
+<span class="hljs-keyword">let</span> inner = <span class="hljs-built_in">String</span>::from_iter(outer.drain(<span class="hljs-number">1</span>..<span class="hljs-number">4</span>));
+<span class="hljs-built_in">assert_eq!</span>(outer, <span class="hljs-string">&quot;Eh&quot;</span>);
+<span class="hljs-built_in">assert_eq!</span>(inner, <span class="hljs-string">&quot;art&quot;</span>);
+</code></pre>
+<p>&#x5982;&#x679C;&#x4F60;&#x786E;&#x5B9E;&#x8981;&#x6D88;&#x8017;&#x6574;&#x4E2A;&#x5E8F;&#x5217;&#xFF0C;&#x4F7F;&#x7528;&#x6574;&#x4E2A;&#x8303;&#x56F4;.. &#x4F5C;&#x4E3A;&#x53C2;&#x6570;</p>
+<h2 id="&#x4E09;-&#x8FED;&#x4EE3;&#x5668;&#x9002;&#x914D;&#x5668;&#xFF1A;&#x4EE3;&#x7801;&#x7684;-&#x9B54;&#x6CD5;&#x68D2;">&#x4E09; &#x8FED;&#x4EE3;&#x5668;&#x9002;&#x914D;&#x5668;&#xFF1A;&#x4EE3;&#x7801;&#x7684; &#x201C;&#x9B54;&#x6CD5;&#x68D2;&#x201D;</h2>
+<p>Iterator trait &#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5E7F;&#x6CDB;&#x7684;&#x9002;&#x914D;&#x5668;&#x65B9;&#x6CD5;(adapter method)&#xFF0C;&#x6216;&#x8005;&#x7B80;&#x79F0;&#x4E3A;&#x9002;&#x914D;&#x5668;(adapter)&#xFF0C;&#x5B83;&#x4EEC;&#x6D88;&#x8017;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x7136;&#x540E;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x5305;&#x62EC;&#xFF1A;&#x622A;&#x65AD;&#x3001;&#x8DF3;&#x8FC7;&#x3001;&#x7EC4;&#x5408;&#x3001;&#x53CD;&#x5411;&#x3001;&#x8FDE;&#x63A5;&#x3001;&#x91CD;&#x590D;&#xFF0C;&#x7B49;&#x7B49;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// &#x7C7B;&#x4F3C;javascript&#x4E2D;&#x7684;map&#xFF0C;&#x4F46;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x65B0;&#x7684;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">map</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=B&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; B;
+<span class="hljs-comment">// &#x8FC7;&#x6EE4;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">filter</span></span>&lt;P&gt;(<span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>;
+
+<span class="hljs-comment">// &#x517C;&#x5177;filter&#x548C;map</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">filter_map</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=B&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-built_in">Option</span>&lt;B&gt;;
+<span class="hljs-comment">// &#x517C;&#x5177;flaten&#x548C;map</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">flat_map</span></span>&lt;U, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=U::Item&gt;
+<span class="hljs-keyword">where</span> F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; U, U: <span class="hljs-built_in">IntoIterator</span>;
+<span class="hljs-comment">// &#x62CD;&#x5E73;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">flatten</span></span>(<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item::Item&gt;
+<span class="hljs-keyword">where</span> Self::Item: <span class="hljs-built_in">IntoIterator</span>;
+
+<span class="hljs-comment">//Iterator trait &#x7684;take &#x548C;take_while &#x9002;&#x914D;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x8FED;&#x4EE3;&#x4E86;&#x4E00;&#x5B9A;&#x7684;&#x6B21;&#x6570;&#x6216;&#x8005;&#x5F53;&#x4E00;&#x4E2A;&#x95ED;&#x5305;</span>
+&#x51B3;&#x5B9A;&#x622A;&#x65AD;&#x65F6;&#x505C;&#x6B62;&#x8FED;&#x4EE3;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">take</span></span>(<span class="hljs-keyword">self</span>, n: usize) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">take_while</span></span>&lt;P&gt;(<span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>;
+
+<span class="hljs-comment">// Iterator trait &#x7684;skip &#x548C;skip_while &#x65B9;&#x6CD5;&#x662F;take &#x548C;take_while &#x7684;&#x8865;&#x5145;&#xFF1A;&#x5B83;&#x4EEC;&#x4E22;&#x5F03;&#x8FED;&#x4EE3;&#x8D77;</span>
+&#x59CB;&#x7684;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;item&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x5230;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x53EF;&#x63A5;&#x53D7;&#x7684;item &#x65F6;&#xFF0C;&#x6309;&#x539F;&#x6837;&#x4F20;&#x9012;&#x8FD9;&#x4E2A;&#x548C;&#x5269;&#x4F59;
+&#x7684;item&#x3002;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">skip</span></span>(<span class="hljs-keyword">self</span>, n: usize) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">skip_while</span></span>&lt;P&gt;(<span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>;
+
+<span class="hljs-comment">// peekable &#x8FED;&#x4EE3;&#x5668;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x4E0B;&#x4E00;&#x4E2A;&#x5C06;&#x88AB;&#x4EA7;&#x751F;&#x7684;item&#xFF0C;&#x800C;&#x4E0D;&#x5B9E;&#x9645;&#x6D88;&#x8017;&#x5B83;&#x3002;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">peekable</span></span>(<span class="hljs-keyword">self</span>) -&gt; std::iter::Peekable&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-comment">// fuse &#x9002;&#x914D;&#x5668;&#x63A5;&#x53D7;&#x4EFB;&#x4F55;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x5E76;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x4FDD;&#x8BC1;&#x7B2C;&#x4E00;&#x6B21;&#x8FD4;&#x56DE;None&#x4E4B;&#x540E;&#x4E00;&#x76F4;&#x8FD4;&#x56DE;None&#x7684;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">fuse</span></span>(<span class="hljs-keyword">self</span>) -&gt; std::iter::Fuse&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-comment">// &#x53EF;&#x4EE5;&#x4ECE;&#x5E8F;&#x5217;&#x7684;&#x4EFB;&#x610F;&#x4E00;&#x7AEF;&#x4EA7;&#x751F;item&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;rev &#x9002;&#x914D;&#x5668;&#x6765;&#x53CD;&#x8F6C;&#x8FD9;&#x6837;&#x7684;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rev</span></span>(<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span> + <span class="hljs-built_in">DoubleEndedIterator</span>;
+
+<span class="hljs-comment">// inspect &#x9002;&#x914D;&#x5668;&#x7528;&#x5728;&#x8C03;&#x8BD5;&#x8FED;&#x4EE3;&#x5668;&#x9002;&#x914D;&#x5668;&#x7684;&#x6D41;&#x6C34;&#x7EBF;&#x4E2D;&#xFF0C;&#x4F46;&#x901A;&#x5E38;&#x4E0D;&#x7528;&#x5728;&#x751F;&#x4EA7;&#x4EE3;&#x7801;&#x4E2D;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">inspect</span></span>&lt;F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; Inspect&lt;<span class="hljs-keyword">Self</span>, F&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item);
+
+<span class="hljs-comment">// chain &#x8FED;&#x4EE3;&#x5668;&#x9002;&#x914D;&#x5668;&#x5C06;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x9644;&#x52A0;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x4E4B;&#x540E;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">chain</span></span>&lt;U&gt;(<span class="hljs-keyword">self</span>, other: U) -&gt; <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span>&lt;Item=Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, U: <span class="hljs-built_in">IntoIterator</span>&lt;Item=Self::Item&gt;;
+
+<span class="hljs-comment">// enumerate &#x9002;&#x914D;&#x5668;&#x628A;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x9644;&#x52A0;&#x5230;&#x5E8F;&#x5217;&#x4E2D;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x4EA7;&#x751F;(0, A), (1, B), (2, C), ... &#x7684;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">enumerate</span></span>(<span class="hljs-keyword">self</span>) -&gt; Enumerate&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-comment">// zip &#x9002;&#x914D;&#x5668;&#x5C06;&#x4E24;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x7EC4;&#x5408;&#x6210;&#x5355;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x5B83;&#x4E00;&#x6B21;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;pair&#xFF1B;&#x5F53;&#x4E24;&#x4E2A;&#x5E95;&#x5C42;&#x8FED;&#x4EE3;&#x5668;&#x4E2D;&#x6709;&#x4EFB;&#x4F55;</span>
+&#x4E00;&#x4E2A;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;zip &#x8FED;&#x4EE3;&#x5668;&#x4E5F;&#x4F1A;&#x7ED3;&#x675F;&#x3002;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">zip</span></span>&lt;U&gt;(<span class="hljs-keyword">self</span>, other: U) -&gt; Zip&lt;<span class="hljs-keyword">Self</span>, U::IntoIter&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, U: <span class="hljs-built_in">IntoIterator</span>;
+
+<span class="hljs-comment">// by_ref &#x65B9;&#x6CD5;&#x501F;&#x7528;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#xFF0C;&#x5F53;&#x6D88;&#x8017;&#x5B8C;&#x8FD9;&#x4E9B;&#x9002;&#x914D;&#x5668;&#x7684;item &#x4E4B;&#x540E;&#xFF0C;&#x501F;&#x7528;&#x7ED3;&#x675F;&#xFF1B;&#x8FD8;&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x8BBF;&#x95EE;&#x539F;&#x672C;&#x7684;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">by_ref</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">Self</span>
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-comment">// cloned &#x9002;&#x914D;&#x5668;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;iter.map(|item| item.clone())&#xFF1B;&#x88AB;&#x5F15;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;Clone</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">cloned</span></span>&lt;<span class="hljs-symbol">&apos;a</span>, T&gt;(<span class="hljs-keyword">self</span>) -&gt; Cloned&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> T: <span class="hljs-symbol">&apos;a</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span> + <span class="hljs-built_in">Iterator</span>&lt;Item = &amp;<span class="hljs-symbol">&apos;a</span> T&gt;, T: <span class="hljs-built_in">Clone</span>;
+
+<span class="hljs-comment">// copied &#x9002;&#x914D;&#x5668;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x4F46;&#x66F4;&#x52A0;&#x4E25;&#x683C;&#xFF1A;&#x88AB;&#x5F15;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;Copy&#x3002;iter.copied() &#x8C03;&#x7528;&#x7C7B;&#x4F3C;&#x4E8E;iter.map(|r| *r)&#x3002;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">copied</span></span>&lt;<span class="hljs-symbol">&apos;a</span>, T&gt;(<span class="hljs-keyword">self</span>) -&gt; Copied&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> T: <span class="hljs-symbol">&apos;a</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span> + <span class="hljs-built_in">Iterator</span>&lt;Item = &amp;<span class="hljs-symbol">&apos;a</span> T&gt;, T: <span class="hljs-built_in">Copy</span>;
+
+<span class="hljs-comment">// cycle &#x9002;&#x914D;&#x5668;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65E0;&#x9650;&#x91CD;&#x590D;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;&#x5E95;&#x5C42;&#x8FED;&#x4EE3;&#x5668;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;std::clone::Clone&#xFF0C;</span>
+<span class="hljs-comment">// &#x8FD9;&#x6837;cycle &#x624D;&#x53EF;&#x4EE5;&#x4FDD;&#x5B58;&#x5B83;&#x7684;&#x521D;&#x59CB;&#x72B6;&#x6001;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x6BCF;&#x4E00;&#x6B21;&#x5FAA;&#x73AF;&#x5F00;&#x59CB;&#x65F6;&#x91CD;&#x7528;&#x5B83;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">cycle</span></span>(<span class="hljs-keyword">self</span>) -&gt; Cycle&lt;<span class="hljs-keyword">Self</span>&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span> + <span class="hljs-built_in">Clone</span>;
+</code></pre>
+<h2 id="&#x56DB;-&#x6D88;&#x8017;&#x8FED;&#x4EE3;&#x5668;&#xFF1A;&#x83B7;&#x53D6;&#x6700;&#x7EC8;&#x7ED3;&#x679C;">&#x56DB; &#x6D88;&#x8017;&#x8FED;&#x4EE3;&#x5668;&#xFF1A;&#x83B7;&#x53D6;&#x6700;&#x7EC8;&#x7ED3;&#x679C;</h2>
+<p>&#x521B;&#x5EFA;&#x8FED;&#x4EE3;&#x5668;&#x53CA;&#x7528;&#x9002;&#x914D;&#x5668;&#x5C06;&#x5B83;&#x4EEC;&#x5305;&#x88C5;&#x6210;&#x65B0;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x662F;&#x6D88;&#x8017;&#x5B83;&#x4EEC;&#x6765;&#x7ED3;&#x675F;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;for &#x5FAA;&#x73AF;&#x6765;&#x6D88;&#x8017;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x6216;&#x8005;&#x663E;&#x5F0F;&#x5730;&#x8C03;&#x7528;next&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6D88;&#x8017;&#x8FED;&#x4EE3;&#x5668;&#x6765;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// &#x7B80;&#x5355;&#x7684;&#x7D2F;&#x8BA1;&#xFF1A;count(&#x6C42;&#x6570;&#x91CF;), sum&#xFF08;&#x6C42;&#x548C;&#xFF09;, product&#xFF08;&#x6C42;&#x4E58;&#xFF09;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">count</span></span>(<span class="hljs-keyword">self</span>) -&gt; usize
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sum</span></span>&lt;S&gt;(<span class="hljs-keyword">self</span>) -&gt; S
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, S: Sum&lt;Self::Item&gt;
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">product</span></span>&lt;P&gt;(<span class="hljs-keyword">self</span>) -&gt; P
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: Product&lt;Self::Item&gt;
+
+<span class="hljs-comment">// Item &#x7684;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x4E86;std::cmp::Ord</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">max</span></span>(<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, Self::Item: <span class="hljs-built_in">Ord</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">min</span></span>(<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, Self::Item: <span class="hljs-built_in">Ord</span>
+
+<span class="hljs-comment">// &#x901A;&#x8FC7;&#x63D0;&#x4F9B;&#x6BD4;&#x8F83;&#x51FD;&#x6570;&#x6765;&#x5224;&#x65AD;&#x5927;&#x5C0F;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">max_by</span></span>&lt;F&gt;(<span class="hljs-keyword">self</span>, compare: F) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item, &amp;Self::Item) -&gt; Ordering
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">min_by</span></span>&lt;F&gt;(<span class="hljs-keyword">self</span>, compare: F) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item, &amp;Self::Item) -&gt; Ordering
+
+<span class="hljs-comment">// max_by_key &#x548C;min_by_key &#x65B9;&#x6CD5;&#x901A;&#x8FC7;&#x6BD4;&#x8F83;&#x5BF9;item &#x8C03;&#x7528;&#x95ED;&#x5305;&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x6765;&#x5206;&#x522B;&#x8FD4;</span>
+&#x56DE;&#x6700;&#x5927;&#x503C;&#x548C;&#x6700;&#x5C0F;&#x503C;&#x3002;
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">max_by_key</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> B: <span class="hljs-built_in">Ord</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; B
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">min_by_key</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> B: <span class="hljs-built_in">Ord</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; B,
+
+
+<span class="hljs-comment">// &#x8FED;&#x4EE3;&#x5668;&#x63D0;&#x4F9B;eq &#x548C;ne &#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x76F8;&#x7B49;&#x6027;&#x6BD4;&#x8F83;&#xFF0C;&#x4EE5;&#x53CA;lt, le, gt, ge &#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x987A;&#x5E8F;&#x6027;&#x6BD4;&#x8F83;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">eq</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialEq</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">ne</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialEq</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">lt</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialOrd</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+ <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">le</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialOrd</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">ge</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialOrd</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">gt</span></span>&lt;I&gt;(<span class="hljs-keyword">self</span>, other: I) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> I: <span class="hljs-built_in">IntoIterator</span>, Self::Item: <span class="hljs-built_in">PartialOrd</span>&lt;I::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;   
+
+<span class="hljs-comment">// any &#x548C;all &#x65B9;&#x6CD5;&#xFF0C;&#x5206;&#x522B;&#x5F53;&#x4EFB;&#x610F;item &#x4F7F;&#x95ED;&#x5305;&#x8FD4;&#x56DE;true &#x548C;&#x6240;&#x6709;item &#x90FD;&#x4F7F;&#x95ED;&#x5305;&#x8FD4;&#x56DE;true &#x65F6;&#x8FD4;&#x56DE;true                                                                        </span>
+ <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">any</span></span>&lt;F&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-keyword">bool</span>;              
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">all</span></span>&lt;F&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-keyword">bool</span>
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-keyword">bool</span>;                
+
+<span class="hljs-comment">// position &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;&#x4F7F;&#x95ED;&#x5305;&#x8FD4;&#x56DE;true &#x7684;item &#x7684;&#x7D22;&#x5F15;&#x7684;Option              </span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">position</span></span>&lt;P&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-built_in">Option</span>&lt;usize&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-keyword">bool</span>;               
+<span class="hljs-comment">// rposition &#x65B9;&#x6CD5;&#x8981;&#x6C42;&#x4E00;&#x4E2A;&#x53EF;&#x9006;&#x8FED;&#x4EE3;&#x5668;&#x53CA;&#x4E00;&#x4E2A;exact-size &#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-comment">// &#x8FD9;&#x6837;&#x624D;&#x53EF;&#x4EE5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x548C;position &#x4E00;&#x6837;&#x7684;&#x7D22;&#x5F15;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rposition</span></span>&lt;P&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-built_in">Option</span>&lt;usize&gt;
+<span class="hljs-keyword">where</span> P: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-keyword">bool</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span> + <span class="hljs-built_in">ExactSizeIterator</span> + <span class="hljs-built_in">DoubleEndedIterator</span>;
+
+<span class="hljs-comment">// &#x7528;&#x4E8E;&#x8FDB;&#x884C;&#x7D2F;&#x8BA1;&#x6240;&#x6709;item &#x7684;&#x8BA1;&#x7B97;                           </span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">fold</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, init: B, <span class="hljs-keyword">mut</span> f: F) -&gt; B
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(B, Self::Item) -&gt; B;
+
+<span class="hljs-comment">// rfold &#x65B9;&#x6CD5;&#x548C;fold &#x65B9;&#x6CD5;&#x76F8;&#x540C;&#xFF0C;&#x53EA;&#x662F;&#x9700;&#x8981;&#x53CC;&#x7AEF;&#x8FED;&#x4EE3;&#x5668;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rfold</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, init: B, <span class="hljs-keyword">mut</span> f: F) -&gt; B
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(B, Self::Item) -&gt; B, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Iterator</span>;               
+
+<span class="hljs-comment">// try_fold &#x65B9;&#x6CD5;&#x548C;fold &#x57FA;&#x672C;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x8FED;&#x4EE3;&#x8FC7;&#x7A0B;&#x53EF;&#x4EE5;&#x63D0;&#x524D;&#x9000;&#x51FA;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6D88;&#x8017;&#x8FED;&#x4EE3;&#x5668;&#x91CC;&#x7684;&#x6240;&#x6709;&#x503C;           </span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">try_fold</span></span>&lt;B, F, R&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, init: B, <span class="hljs-keyword">mut</span> f: F) -&gt; R
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(B, Self::Item) -&gt; R, R: Try&lt;Output = B&gt;;                
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">try_rfold</span></span>&lt;B, F, R&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, init: B, <span class="hljs-keyword">mut</span> f: F) -&gt; R
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(B, Self::Item) -&gt; R, R: Try&lt;Output = B&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Iterator</span>;              
+
+<span class="hljs-comment">// nth &#x65B9;&#x6CD5;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;n&#xFF0C;&#x8DF3;&#x8FC7;&#x8FED;&#x4EE3;&#x5668;&#x4E2D;&#x63A5;&#x4E0B;&#x6765;n&#x4E2A;item&#xFF0C;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;item</span>
+ <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">nth</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, n: usize) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+ <span class="hljs-comment">// nth_back &#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x662F;&#x4ECE;&#x53CC;&#x7AEF;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x5C3E;&#x90E8;&#x5F80;&#x524D;&#x79FB;&#x52A8;&#x3002;               </span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">nth_back</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, n: usize) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Iterator</span>;  
+
+<span class="hljs-comment">// last &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x8FED;&#x4EE3;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;item&#xFF0C;&#x6216;&#x8005;&#x5982;&#x679C;&#x8FED;&#x4EE3;&#x5668;&#x4E3A;&#x7A7A;&#x65F6;&#x8FD4;&#x56DE;None</span>
+<span class="hljs-comment">// &#x4F1A;&#x6D88;&#x8017;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x6240;&#x6709;item&#xFF0C;&#x5373;&#x4F7F;&#x8FED;&#x4EE3;&#x5668;&#x53EF;&#x9006;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">last</span></span>(<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;;
+
+<span class="hljs-comment">// find &#x65B9;&#x6CD5;&#x4ECE;&#x8FED;&#x4EE3;&#x5668;&#x67E5;&#x627E;item&#xFF0C;&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;&#x4F7F;&#x7ED9;&#x5B9A;&#x95ED;&#x5305;&#x8FD4;&#x56DE;true &#x7684;item</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">find</span></span>&lt;P&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>;
+
+<span class="hljs-comment">// rfind &#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x662F;&#x9700;&#x8981;&#x53CC;&#x7AEF;&#x8FED;&#x4EE3;&#x5668;&#x5E76;&#x4E14;&#x4ECE;&#x6700;&#x540E;&#x5F80;&#x524D;&#x641C;&#x7D22;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rfind</span></span>&lt;P&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, predicate: P) -&gt; <span class="hljs-built_in">Option</span>&lt;Self::Item&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, P: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Iterator</span>;
+
+
+<span class="hljs-comment">// &#x8FD9;&#x7C7B;&#x4F3C;&#x4E8E;find&#xFF0C;&#x533A;&#x522B;&#x5728;&#x4E8E;&#x5B83;&#x63A5;&#x53D7;&#x7684;&#x95ED;&#x5305;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;Option&#x3002;find_map &#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;&#x662F;Some &#x7684;Option</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">find_map</span></span>&lt;B, F&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, f: F) -&gt; <span class="hljs-built_in">Option</span>&lt;B&gt;
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; <span class="hljs-built_in">Option</span>&lt;B&gt;;
+
+
+<span class="hljs-comment">// &#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684;&#x4EFB;&#x610F;&#x96C6;&#x5408;&#xFF0C;&#x53EA;&#x8981;&#x8FED;&#x4EE3;&#x5668;&#x4EA7;&#x751F;&#x5408;&#x9002;&#x7684;item &#x7C7B;&#x578B;</span>
+<span class="hljs-comment">// &#x9700;&#x8981;B&#x5B9E;&#x73B0;FromIterator</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">collect</span></span>&lt;B&gt;(<span class="hljs-keyword">self</span>) -&gt; B
+<span class="hljs-keyword">where</span> B: FromIterator&lt;Self::Item&gt;, <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>;
+
+<span class="hljs-comment">// &#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x5B9E;&#x73B0;&#x4E86;std::iter::Extend trait&#xFF0C;</span>
+<span class="hljs-comment">// &#x90A3;&#x4E48;&#x5B83;&#x7684;extend &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x628A;&#x4E00;&#x4E2A;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#x7684;item &#x6DFB;&#x52A0;&#x5230;&#x96C6;&#x5408;</span>
+<span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Extend</span></span>&lt;A&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">extend</span></span>&lt;T&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, iter: T)
+    <span class="hljs-keyword">where</span> T: <span class="hljs-built_in">IntoIterator</span>&lt;Item=A&gt;;
+}
+<span class="hljs-comment">// &#x5982;&#x4E0B;extend&#x4EE3;&#x7801;</span>
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> v: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt; = (<span class="hljs-number">0</span>..<span class="hljs-number">5</span>).map(|i| <span class="hljs-number">1</span> &lt;&lt; i).collect();
+v.extend(&amp;[<span class="hljs-number">31</span>, <span class="hljs-number">57</span>, <span class="hljs-number">99</span>, <span class="hljs-number">163</span>]);
+<span class="hljs-built_in">assert_eq!</span>(v, &amp;[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">16</span>, <span class="hljs-number">31</span>, <span class="hljs-number">57</span>, <span class="hljs-number">99</span>, <span class="hljs-number">163</span>]);
+
+<span class="hljs-comment">// &#x548C;std::iter::FromIterator &#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF1A;</span>
+<span class="hljs-comment">// &#x4E0D;&#x8FC7;FromIterator&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x96C6;&#x5408;&#xFF0C;&#x800C;Extend &#x6269;&#x5C55;&#x4E00;&#x4E2A;&#x5DF2;&#x6709;&#x96C6;&#x5408;&#x3002;</span>
+<span class="hljs-comment">// &#x5B9E;&#x9645;&#x4E0A;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684;&#x597D;&#x51E0;&#x4E2A;&#x7C7B;&#x578B;&#x7684;FromIterator </span>
+<span class="hljs-comment">// &#x7684;&#x5B9E;&#x73B0;&#x90FD;&#x662F;&#x7B80;&#x5355;&#x5730;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7A7A;&#x96C6;&#x5408;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;extend &#x6765;&#x586B;&#x5145;&#x5B83;</span>
+
+<span class="hljs-keyword">impl</span>&lt;T&gt; FromIterator&lt;T&gt; <span class="hljs-keyword">for</span> LinkedList&lt;T&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">from_iter</span></span>&lt;I: IntoIter&lt;Item = T&gt;&gt;(iter: I) -&gt; <span class="hljs-keyword">Self</span> {
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> list = Self::new();
+        list.extend(iter);
+        list
+    }
+}
+
+<span class="hljs-comment">// partition &#x65B9;&#x6CD5;&#x5C06;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x7684;item &#x5206;&#x6210;&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#xFF0C;</span>
+<span class="hljs-comment">// &#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x95ED;&#x5305;&#x6765;&#x51B3;&#x5B9A;&#x6BCF;&#x4E2A;item &#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x96C6;&#x5408;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">partition</span></span>&lt;B, F&gt;(<span class="hljs-keyword">self</span>, f: F) -&gt; (B, B)
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, B: <span class="hljs-built_in">Default</span> + <span class="hljs-built_in">Extend</span>&lt;Self::Item&gt;, F: <span class="hljs-built_in">FnMut</span>(&amp;Self::Item) -&gt; <span class="hljs-keyword">bool</span>;
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">for_each</span></span>&lt;F&gt;(<span class="hljs-keyword">self</span>, f: F)
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item);
+
+<span class="hljs-comment">// &#x95ED;&#x5305;&#x9700;&#x8981;&#x5BB9;&#x9519;&#x6216;&#x8005;&#x63D0;&#x524D;&#x9000;&#x51FA;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;try_for_each</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">try_for_each</span></span>&lt;F, R&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, f: F) -&gt; R
+<span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-built_in">Sized</span>, F: <span class="hljs-built_in">FnMut</span>(Self::Item) -&gt; R, R: Try&lt;Output = ()&gt;;
+</code></pre>
+<h2 id="&#x5B9E;&#x6218;&#xFF1A;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;">&#x5B9E;&#x6218;&#xFF1A;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;</h2>
+<p>&#x53EF;&#x4EE5;&#x4E3A;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x578B;&#x5B9E;&#x73B0;IntoIterator &#x548C;Iterator trait&#xFF0C;&#x5185;&#x7F6E;&#x7684;&#x6240;&#x6709;&#x9002;&#x914D;&#x5668;&#x548C;&#x6D88;&#x8017;&#x5668;&#xFF0C;&#x53CA;&#x5176;&#x4ED6;&#x53EF;&#x4EE5;&#x548C;&#x6807;&#x51C6;&#x5E93;&#x8FED;&#x4EE3;&#x5668;&#x63A5;&#x53E3;&#x534F;&#x540C;&#x5DE5;&#x4F5C;&#x7684;&#x5E93;&#x548C;crate &#x90FD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</p>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;-&#x7B80;&#x5355;&#x7684;&#x8303;&#x56F4;&#x7C7B;&#x578B;&#x7684;&#x8FED;&#x4EE3;&#x5668;">&#xFF08;&#x4E00;&#xFF09; &#x7B80;&#x5355;&#x7684;&#x8303;&#x56F4;&#x7C7B;&#x578B;&#x7684;&#x8FED;&#x4EE3;&#x5668;</h3>
+<p>1&#x3001;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;I32Range&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">I32Range</span></span> {
+    start: <span class="hljs-keyword">i32</span>,
+    end: <span class="hljs-keyword">i32</span>
+}
+</code></pre>
+<p>2&#x3001;&#x5B9E;&#x73B0;Iterator</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span> <span class="hljs-built_in">Iterator</span> <span class="hljs-keyword">for</span> I32Range {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Item</span></span> = <span class="hljs-keyword">i32</span>;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">next</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">i32</span>&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.start &gt;= <span class="hljs-keyword">self</span>.end {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>;
+        }
+        <span class="hljs-keyword">let</span> result = <span class="hljs-literal">Some</span>(<span class="hljs-keyword">self</span>.start);
+        <span class="hljs-keyword">self</span>.start += <span class="hljs-number">1</span>;
+        result
+    }
+}
+</code></pre>
+<p>3&#x3001;&#x4F7F;&#x7528;for&#x5FAA;&#x73AF;&#x8FDB;&#x884C;&#x904D;&#x5386;</p>
+<p>for &#x5FAA;&#x73AF;&#x4F1A;&#x4F7F;&#x7528;IntoIterator::into_iter &#x6765;&#x628A;&#x64CD;&#x4F5C;&#x6570;&#x8F6C;&#x6362;&#x6210;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x6807;&#x51C6;&#x5E93;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;Iterator &#x7684;&#x7C7B;&#x578B;&#x81EA;&#x52A8;&#x63D0;&#x4F9B;&#x4E86;IntoIterator &#x5B9E;&#x73B0;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> pi = <span class="hljs-number">0.0</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> numerator = <span class="hljs-number">1.0</span>;
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> (I32Range { start: <span class="hljs-number">0</span>, end: <span class="hljs-number">14</span> }) {
+    pi += numerator / (<span class="hljs-number">2</span>*k + <span class="hljs-number">1</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span>;
+    numerator /= -<span class="hljs-number">3.0</span>;
+}
+pi *= f64::sqrt(<span class="hljs-number">12.0</span>);
+<span class="hljs-comment">// IEEE 754 &#x6807;&#x51C6;&#x6307;&#x5B9A;&#x4E86;&#x7CBE;&#x786E;&#x7684;&#x7ED3;&#x679C;&#x3002;</span>
+<span class="hljs-built_in">assert_eq!</span>(pi <span class="hljs-keyword">as</span> <span class="hljs-keyword">f32</span>, std::f32::consts::PI);
+</code></pre>
+<p>I32Range &#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#xFF0C;&#x5B83;&#x7684;&#x53EF;&#x8FED;&#x4EE3;&#x5BF9;&#x8C61;&#x548C;&#x8FED;&#x4EE3;&#x5668;&#x6070;&#x597D;&#x662F;&#x540C;&#x4E00;&#x79CD;&#x7C7B;&#x578B;&#x3002;</p>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;&#x5B9E;&#x73B0;&#x4E8C;&#x53C9;&#x6811;&#x8FED;&#x4EE3;&#x5668;">&#xFF08;&#x4E8C;&#xFF09;&#x5B9E;&#x73B0;&#x4E8C;&#x53C9;&#x6811;&#x8FED;&#x4EE3;&#x5668;</h3>
+<p>1&#x3001;&#x5B9A;&#x4E49;&#x4E8C;&#x53C9;&#x6811;</p>
+<pre><code class="lang-rust"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">BinaryTree</span></span>&lt;T&gt; {
+    Empty,
+    NonEmpty(<span class="hljs-built_in">Box</span>&lt;TreeNode&lt;T&gt;&gt;)
+}
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeNode</span></span>&lt;T&gt; {
+    element: T,
+    left: BinaryTree&lt;T&gt;,
+    right: BinaryTree&lt;T&gt;
+}
+</code></pre>
+<p>2&#x3001;&#x5B9A;&#x4E49;&#x8FED;&#x4EE3;&#x5668;&#x7C7B;&#x578B;</p>
+<p>&#x5F53;&#x4E3A;BinaryTree &#x5B9E;&#x73B0;Iterator &#x65F6;&#xFF0C;&#x6BCF;&#x4E00;&#x6B21;next &#x8C03;&#x7528;&#x90FD;&#x5FC5;&#x987B;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x503C;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x8FFD;&#x8E2A;&#x8981;&#x4EA7;&#x751F;&#x7684;&#x6811;&#x8282;&#x70B9;&#xFF0C;&#x8FED;&#x4EE3;&#x5668;&#x5FC5;&#x987B;&#x4FDD;&#x6301;&#x81EA;&#x5DF1;&#x7684;&#x6808;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> self::BinaryTree::*;
+<span class="hljs-comment">// &#x4E2D;&#x5E8F;&#x904D;&#x5386;`BinaryTree`&#x65F6;&#x7684;&#x72B6;&#x6001;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TreeIter</span></span>&lt;<span class="hljs-symbol">&apos;a</span>, T&gt; {
+    <span class="hljs-comment">// &#x4E00;&#x4E2A;&#x6811;&#x8282;&#x70B9;&#x7684;&#x5F15;&#x7528;&#x7684;&#x6808;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x8981;&#x4F7F;&#x7528;`Vec`&#x7684;</span>
+    <span class="hljs-comment">// `push`&#x548C;`pop`&#x65B9;&#x6CD5;&#xFF0C;&#x6808;&#x7684;&#x9876;&#x90E8;&#x662F;vector &#x7684;&#x5C3E;&#x90E8;&#x3002;</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// &#x8FED;&#x4EE3;&#x5668;&#x4E0B;&#x4E00;&#x4E2A;&#x8981;&#x8BBF;&#x95EE;&#x7684;&#x8282;&#x70B9;&#x5728;&#x6808;&#x9876;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x90A3;&#x4E9B;&#x8FD8;&#x6CA1;&#x8BBF;&#x95EE;&#x7684;&#x7956;&#x5148;&#x8282;&#x70B9;&#x5728;&#x5B83;&#x4E0B;&#x9762;&#x3002;&#x5982;&#x679C;&#x6808;&#x4E3A;&#x7A7A;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x5C31;&#x4EE3;&#x8868;&#x8FED;&#x4EE3;&#x7ED3;&#x675F;&#x4E86;&#x3002;</span>
+    unvisited: <span class="hljs-built_in">Vec</span>&lt;&amp;<span class="hljs-symbol">&apos;a</span> TreeNode&lt;T&gt;&gt;
+}
+</code></pre>
+<p>3&#x3001;&#x5B9E;&#x73B0;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x8282;&#x70B9;&#x751F;&#x6210;&#x51FD;&#x6570;</p>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;TreeIter &#x65F6;&#xFF0C;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x662F;&#x6811;&#x4E2D;&#x6700;&#x5DE6;&#x8FB9;&#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x6839;&#x636E;unvisited &#x6808;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x6808;&#x9876;&#x5E94;&#x8BE5;&#x662F;&#x90A3;&#x4E2A;&#x53F6;&#x8282;&#x70B9;&#xFF0C;&#x518D;&#x5F80;&#x4E0B;&#x5C31;&#x662F;&#x5B83;&#x7684;&#x7956;&#x5148;&#x8282;&#x70B9;&#xFF1A;&#x6811;&#x4E2D;&#x5DE6;&#x4FA7;&#x8FB9;&#x7F18;&#x4E0A;&#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x4ECE;&#x6839;&#x8282;&#x70B9;&#x8BBF;&#x95EE;&#x5DE6;&#x4FA7;&#x8FB9;&#x7F18;&#x4E00;&#x76F4;&#x5230;&#x53F6;&#x8282;&#x70B9;&#xFF0C;&#x628A;&#x9047;&#x5230;&#x7684;&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x5165;&#x6808;&#xFF0C;&#x6765;&#x521D;&#x59CB;&#x5316;unvisited&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span>&lt;<span class="hljs-symbol">&apos;a</span>, T: <span class="hljs-symbol">&apos;a</span>&gt; TreeIter&lt;<span class="hljs-symbol">&apos;a</span>, T&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">push_left_edge</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, <span class="hljs-keyword">mut</span> tree: &amp;<span class="hljs-symbol">&apos;a</span> BinaryTree&lt;T&gt;) {
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">let</span> NonEmpty(<span class="hljs-keyword">ref</span> node) = *tree {
+            <span class="hljs-keyword">self</span>.unvisited.push(node);
+            tree = &amp;node.left;
+        }
+    }
+}
+</code></pre>
+<p>4&#x3001;&#x4E3A;BinaryTree&#x5B9E;&#x73B0;iter&#x65B9;&#x6CD5;</p>
+<p>&#x7ED9;BinaryTree &#x4E00;&#x4E2A;iter &#x65B9;&#x6CD5;&#x6765;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x6811;&#x7684;&#x8FED;&#x4EE3;&#x5668;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span>&lt;T&gt; BinaryTree&lt;T&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">iter</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; TreeIter&lt;T&gt; {
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> iter = TreeIter { unvisited: <span class="hljs-built_in">Vec</span>::new() };
+        iter.push_left_edge(<span class="hljs-keyword">self</span>);
+        iter
+    }
+}
+</code></pre>
+<p>5&#x3001;&#x4E3A;BinryTree&#x5B9E;&#x73B0;IntoIterator</p>
+<p>&#x9075;&#x5FAA;&#x6807;&#x51C6;&#x5E93;&#x7684;&#x5B9E;&#x8DF5;&#xFF0C;&#x4E3A;&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x5F15;&#x7528;&#x5B9E;&#x73B0;IntoIterator&#xFF0C;&#x8C03;&#x7528;BinaryTree::iter&#x65B9;&#x6CD5;&#x3002;</p>
+<p>IntoIter &#x5B9A;&#x4E49;&#x5C06;TreeIter &#x8BBE;&#x7F6E;&#x4E3A;&amp;BinaryTree &#x7684;&#x8FED;&#x4EE3;&#x5668;&#x7C7B;&#x578B;&#x3002;</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">impl</span>&lt;<span class="hljs-symbol">&apos;a</span>, T: <span class="hljs-symbol">&apos;a</span>&gt; <span class="hljs-built_in">IntoIterator</span> <span class="hljs-keyword">for</span> &amp;<span class="hljs-symbol">&apos;a</span> BinaryTree&lt;T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Item</span></span> = &amp;<span class="hljs-symbol">&apos;a</span> T;
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">IntoIter</span></span> = TreeIter&lt;<span class="hljs-symbol">&apos;a</span>, T&gt;;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">into_iter</span></span>(<span class="hljs-keyword">self</span>) -&gt; Self::IntoIter {
+        <span class="hljs-keyword">self</span>.iter()
+    }
+}
+</code></pre>
+<p>6&#x3001;&#x4E3A;TreeIter&#x7C7B;&#x578B;&#x5B9E;&#x73B0;Iterator</p>
+<p>TreeIter&#x7C7B;&#x578B;&#x9700;&#x8981;&#x5B9E;&#x73B0;Iterator&#x7684;next&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">impl</span>&lt;<span class="hljs-symbol">&apos;a</span>, T&gt; <span class="hljs-built_in">Iterator</span> <span class="hljs-keyword">for</span> TreeIter&lt;<span class="hljs-symbol">&apos;a</span>, T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Item</span></span> = &amp;<span class="hljs-symbol">&apos;a</span> T;
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">next</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;&amp;<span class="hljs-symbol">&apos;a</span> T&gt; {
+        <span class="hljs-comment">// &#x627E;&#x5230;&#x8FD9;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x8981;&#x4EA7;&#x751F;&#x7684;&#x8282;&#x70B9;&#xFF0C;</span>
+        <span class="hljs-comment">// &#x6216;&#x8005;&#x7ED3;&#x675F;&#x8FED;&#x4EE3;&#x3002;&#xFF08;&#x5982;&#x679C;&#x7ED3;&#x679C;&#x662F;`None`&#x5C31;&#x901A;&#x8FC7;</span>
+        <span class="hljs-comment">// `?`&#x8FD0;&#x7B97;&#x7B26;&#x7ACB;&#x5373;&#x8FD4;&#x56DE;&#x3002;&#xFF09;</span>
+        <span class="hljs-keyword">let</span> node = <span class="hljs-keyword">self</span>.unvisited.pop()?;
+        <span class="hljs-comment">// &#x5728;`node`&#x4E4B;&#x540E;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;&#x4EA7;&#x751F;&#x7684;&#x5E94;&#x8BE5;&#x662F;`node`&#x7684;&#x53F3;&#x5B50;&#x6811;</span>
+        <span class="hljs-comment">// &#x4E2D;&#x7684;&#x6700;&#x5DE6;&#x4FA7;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x56E0;&#x6B64;&#x6DFB;&#x52A0;&#x8FD9;&#x6761;&#x7EBF;&#x4E0A;&#x7684;&#x8282;&#x70B9;&#x3002;&#x6211;&#x4EEC;&#x7684;&#x8F85;&#x52A9;&#x51FD;&#x6570;</span>
+        <span class="hljs-comment">// &#x6070;&#x597D;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x3002;</span>
+        <span class="hljs-keyword">self</span>.push_left_edge(&amp;node.right);
+        <span class="hljs-comment">// &#x4EA7;&#x751F;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x7684;&#x5F15;&#x7528;&#x3002;</span>
+        <span class="hljs-literal">Some</span>(&amp;node.element);
+    }
+}
+</code></pre>
+<p>7&#x3001;for&#x5FAA;&#x73AF;&#x904D;&#x5386;</p>
+<p>&#x5B9E;&#x73B0;&#x4E86;IntoIterator &#x548C;Iterator &#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;for &#x5FAA;&#x73AF;&#x6765;&#x8FED;&#x4EE3;BinaryTree &#x7684;&#x5F15;&#x7528;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// &#x5EFA;&#x9020;&#x4E00;&#x68F5;&#x5C0F;&#x6811;&#x3002;</span>
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> tree = BinaryTree::Empty;
+tree.add(<span class="hljs-string">&quot;Jaeger&quot;</span>);
+tree.add(<span class="hljs-string">&quot;robot&quot;</span>);
+tree.add(<span class="hljs-string">&quot;droid&quot;</span>);
+tree.add(<span class="hljs-string">&quot;mecha&quot;</span>);
+
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> v = <span class="hljs-built_in">Vec</span>::new();
+<span class="hljs-keyword">for</span> kind <span class="hljs-keyword">in</span> &amp;tree {
+    v.push(*kind);
+}
+<span class="hljs-built_in">assert_eq!</span>(v, [<span class="hljs-string">&quot;droid&quot;</span>, <span class="hljs-string">&quot;Jaeger&quot;</span>, <span class="hljs-string">&quot;mecha&quot;</span>, <span class="hljs-string">&quot;robot&quot;</span>]);
+</code></pre>
+<p>8&#x3001;&#x5176;&#x4ED6;&#x8FED;&#x4EE3;&#x65B9;&#x5F0F;</p>
+<p>&#x6240;&#x6709;&#x5E38;&#x7528;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x9002;&#x914D;&#x5668;&#x548C;&#x6D88;&#x8017;&#x5668;&#x90FD;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-built_in">assert_eq!</span>(tree.iter()
+.map(|name| <span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;mega-{}&quot;</span>, name))
+.collect::&lt;<span class="hljs-built_in">Vec</span>&lt;_&gt;&gt;(),
+<span class="hljs-built_in">vec!</span>[<span class="hljs-string">&quot;mega-droid&quot;</span>, <span class="hljs-string">&quot;mega-jaeger&quot;</span>, <span class="hljs-string">&quot;mega-mecha&quot;</span>, <span class="hljs-string">&quot;mega-robot&quot;</span>]);
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="12-closures.html" class="navigation navigation-prev " aria-label="Previous page: Rust 闭包：高效编程的秘密武器">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../web3/" class="navigation navigation-next " aria-label="Next page: Web3">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust 迭代器：从基础到实践","level":"1.2.13","depth":2,"next":{"title":"Web3","level":"1.3","depth":1,"path":"web3/README.md","ref":"web3/README.md","articles":[{"title":"前端工程师，你了解Web3了么？","level":"1.3.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},{"title":"web3世界的通行证-加密钱包","level":"1.3.2","depth":2,"path":"web3/2-wallet.md","ref":"web3/2-wallet.md","articles":[]}]},"previous":{"title":"Rust 闭包：高效编程的秘密武器","level":"1.2.12","depth":2,"path":"rust/12-closures.md","ref":"rust/12-closures.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"rust/13-iterator.md","mtime":"2025-01-04T14:05:33.249Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-01-04T14:06:24.227Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

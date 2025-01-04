@@ -14,6 +14,7 @@
     * [Rust 之 trait 与泛型的奥秘](rust/10-trait.md)
     * [Rust 运算符重载：开启高效编程之旅](rust/11-ops.md)
     * [Rust 闭包：高效编程的秘密武器](rust/12-closures.md)
+    * [Rust 迭代器：从基础到实践](rust/13-iterator.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
