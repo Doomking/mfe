@@ -16,6 +16,7 @@
     * [Rust 闭包：高效编程的秘密武器](rust/12-closures.md)
     * [Rust 迭代器：从基础到实践](rust/13-iterator.md)
     * [Rust 集合：编程中的得力助手](rust/14-collection.md)
+    * [Rust IO魔法：输入输出大揭秘](rust/15-io.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
