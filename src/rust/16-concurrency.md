@@ -169,6 +169,7 @@ fn main() {
 ### （三）代码示例
 #### Mutex（互斥锁）
 下面是一个使用Mutex来保护共享可变状态的简单示例：
+
 ```rust
 use std::sync::{Arc, Mutex};
 use std::thread;
@@ -208,6 +209,7 @@ fn main() {
 
 #### RwLock（读写锁）
 以下是一个简单的使用 RwLock 的示例：
+
 ```rust
 use std::sync::{Arc, RwLock};
 use std::thread;
@@ -260,6 +262,7 @@ fn main() {
 4、主线程等待所有线程完成后，打印最终的共享数据值。
 #### 条件变量（Condition Variable）
 以下是一个简单的使用条件变量的示例：
+
 ```rust
 use std::sync::{Arc, Condvar, Mutex};
 use std::thread;
@@ -307,6 +310,7 @@ fn main() {
 
 #### 原子量（Atomic Types）
 以下是一个简单的使用原子量的示例：
+
 ```rust
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
