@@ -18,6 +18,7 @@
     * [Rust 集合：编程中的得力助手](rust/14-collection.md)
     * [Rust IO魔法：输入输出大揭秘](rust/15-io.md)
     * [Rust并发编程：解锁高效与安全的编程新姿势](rust/16-concurrency.md)
+    * [Rust异步编程：从入门到精通](rust/17-async.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
