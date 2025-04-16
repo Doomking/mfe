@@ -1,0 +1,1047 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust 进阶修炼：掌握 Unsafe 编程的核心能力 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../web3/" />
+    
+    
+    <link rel="prev" href="18-macro.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-baseType.html">
+            
+                <a href="2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-ownership.html">
+            
+                <a href="3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-ref.html">
+            
+                <a href="4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5-expression.html">
+            
+                <a href="5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6-err.html">
+            
+                <a href="6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="7-crate.html">
+            
+                <a href="7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="8-struct.html">
+            
+                <a href="8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="9-enum.html">
+            
+                <a href="9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="10-trait.html">
+            
+                <a href="10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="11-ops.html">
+            
+                <a href="11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="12-closures.html">
+            
+                <a href="12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="13-iterator.html">
+            
+                <a href="13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="14-collection.html">
+            
+                <a href="14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="15-io.html">
+            
+                <a href="15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="16-concurrency.html">
+            
+                <a href="16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.17" data-path="17-async.html">
+            
+                <a href="17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.18" data-path="18-macro.html">
+            
+                <a href="18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.19" data-path="19-unsafe.html">
+            
+                <a href="19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust 进阶修炼：掌握 Unsafe 编程的核心能力</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/229bbc47caf34f2290418447f30ad5f8~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?rk3s=f64ab15b&amp;x-expires=1726280234&amp;x-signature=U7x5IBo0%2BwITHIKd4PqOw80dXHM%3D" alt=""></p>
+<h1 id="rust-&#x8FDB;&#x9636;&#x4FEE;&#x70BC;&#xFF1A;&#x638C;&#x63E1;-unsafe-&#x7F16;&#x7A0B;&#x7684;&#x6838;&#x5FC3;&#x80FD;&#x529B;">Rust &#x8FDB;&#x9636;&#x4FEE;&#x70BC;&#xFF1A;&#x638C;&#x63E1; Unsafe &#x7F16;&#x7A0B;&#x7684;&#x6838;&#x5FC3;&#x80FD;&#x529B;</h1>
+<h2 id="&#x4E00;&#x3001;&#x63ED;&#x5F00;-rust-&#x7684;&#x795E;&#x79D8;&#x9762;&#x7EB1;&#xFF1A;&#x6DF1;&#x5165;&#x7406;&#x89E3;-unsafe-&#x5173;&#x952E;&#x5B57;">&#x4E00;&#x3001;&#x63ED;&#x5F00; Rust &#x7684;&#x795E;&#x79D8;&#x9762;&#x7EB1;&#xFF1A;&#x6DF1;&#x5165;&#x7406;&#x89E3; unsafe &#x5173;&#x952E;&#x5B57;</h2>
+<h3 id="11-&#x4EC0;&#x4E48;&#x662F;-unsafe&#xFF1F;">1.1 &#x4EC0;&#x4E48;&#x662F; unsafe&#xFF1F;</h3>
+<p><code>unsafe</code>&#x5173;&#x952E;&#x5B57;&#x5C31;&#x50CF;&#x662F;&#x4E00;&#x628A;&#x7279;&#x6B8A;&#x7684;&#x94A5;&#x5319;&#xFF0C;&#x80FD;&#x591F;&#x6253;&#x5F00;&#x90A3;&#x4E9B;&#x88AB; Rust &#x5B89;&#x5168;&#x673A;&#x5236;&#x6240;&#x9650;&#x5236;&#x7684;&#x5927;&#x95E8;&#xFF0C;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x5E95;&#x5C42;&#x7684;&#x3001;&#x4E0D;&#x53D7;&#x5E38;&#x89C4;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>Rust &#x8BED;&#x8A00;&#x4EE5;&#x5176;&#x5F3A;&#x5927;&#x7684;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x6027;&#x548C;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x6027;&#x800C;&#x95FB;&#x540D;&#xFF0C;&#x5B83;&#x901A;&#x8FC7;&#x6240;&#x6709;&#x6743;&#x7CFB;&#x7EDF;&#x3001;&#x501F;&#x7528;&#x68C0;&#x67E5;&#x548C;&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x7B49;&#x673A;&#x5236;&#xFF0C;&#x786E;&#x4FDD;&#x4E86;&#x5728;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7A0B;&#x5E8F;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x8BF8;&#x5982;&#x7A7A;&#x6307;&#x9488;&#x89E3;&#x5F15;&#x7528;&#x3001;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x3001;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x7B49;&#x5E38;&#x89C1;&#x7684;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5728;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x7684;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E9B;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#x53EF;&#x80FD;&#x4F1A;&#x6210;&#x4E3A;&#x5B9E;&#x73B0;&#x7279;&#x5B9A;&#x529F;&#x80FD;&#x6216;&#x4F18;&#x5316;&#x6027;&#x80FD;&#x7684;&#x963B;&#x788D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E0E; C &#x8BED;&#x8A00;&#x5E93;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x6216;&#x8005;&#x5B9E;&#x73B0;&#x4E00;&#x4E9B;&#x5E95;&#x5C42;&#x7684;&#x7CFB;&#x7EDF;&#x7F16;&#x7A0B;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x6682;&#x65F6;&#x8131;&#x79BB; Rust &#x7684;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#xFF0C;&#x4F7F;&#x7528;<code>unsafe</code>&#x5173;&#x952E;&#x5B57;&#x6765;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 id="12-unsafe-&#x7684;&#x4E09;&#x5927;&#x7279;&#x6027;">1.2 unsafe &#x7684;&#x4E09;&#x5927;&#x7279;&#x6027;</h3>
+<p><strong>&#x65E0;&#x81EA;&#x52A8;&#x68C0;&#x67E5;</strong>&#xFF1A;<code>unsafe</code>&#x4EE3;&#x7801;&#x5757;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x4E0D;&#x4F1A;&#x50CF;&#x666E;&#x901A; Rust &#x4EE3;&#x7801;&#x90A3;&#x6837;&#xFF0C;&#x53D7;&#x5230;&#x7F16;&#x8BD1;&#x5668;&#x4E25;&#x683C;&#x7684;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x548C;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x68C0;&#x67E5;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x786E;&#x4FDD;&#x4EE3;&#x7801;&#x7684;&#x6B63;&#x786E;&#x6027;&#x548C;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x5426;&#x5219;&#x5F88;&#x5BB9;&#x6613;&#x5F15;&#x5165;&#x96BE;&#x4EE5;&#x8C03;&#x8BD5;&#x7684;&#x9519;&#x8BEF;&#x3002;</p>
+<p><strong>&#x4E94;&#x5927;&#x8D85;&#x80FD;&#x529B;</strong>&#xFF1A;<code>unsafe</code>&#x5173;&#x952E;&#x5B57;&#x8D4B;&#x4E88;&#x4E86;&#x5F00;&#x53D1;&#x8005;&#x4E94;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x8FD9;&#x4E9B;&#x80FD;&#x529B;&#x5728;&#x666E;&#x901A;&#x7684; Rust &#x4EE3;&#x7801;&#x4E2D;&#x662F;&#x88AB;&#x7981;&#x6B62;&#x7684;&#xFF0C;&#x5305;&#x62EC;&#x89E3;&#x5F15;&#x7528;&#x88F8;&#x6307;&#x9488;&#x3001;&#x8C03;&#x7528;<code>unsafe</code>&#x51FD;&#x6570;&#x3001;&#x8BBF;&#x95EE;&#x53EF;&#x53D8;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x3001;&#x5B9E;&#x73B0;<code>unsafe</code> trait&#x3001;&#x64CD;&#x4F5C;<code>union</code>&#x3002;&#x8FD9;&#x4E9B;&#x80FD;&#x529B;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x5927;&#x7684;&#x7075;&#x6D3B;&#x6027;&#xFF0C;&#x4F46;&#x540C;&#x65F6;&#x4E5F;&#x5E26;&#x6765;&#x4E86;&#x66F4;&#x9AD8;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<p><strong>&#x663E;&#x5F0F;&#x6807;&#x8BB0;</strong>&#xFF1A;&#x4E3A;&#x4E86;&#x63D0;&#x9192;&#x5F00;&#x53D1;&#x8005;&#x6CE8;&#x610F;<code>unsafe</code>&#x4EE3;&#x7801;&#x7684;&#x6F5C;&#x5728;&#x98CE;&#x9669;&#xFF0C;Rust &#x8981;&#x6C42;&#x6240;&#x6709;&#x7684;<code>unsafe</code>&#x4EE3;&#x7801;&#x5FC5;&#x987B;&#x660E;&#x786E;&#x5730;&#x4F7F;&#x7528;<code>unsafe</code>&#x5173;&#x952E;&#x5B57;&#x8FDB;&#x884C;&#x6807;&#x8BB0;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x5728;&#x9605;&#x8BFB;&#x548C;&#x7EF4;&#x62A4;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x5176;&#x4ED6;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x5730;&#x8BC6;&#x522B;&#x51FA;&#x54EA;&#x4E9B;&#x90E8;&#x5206;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x4ECE;&#x800C;&#x66F4;&#x52A0;&#x8C28;&#x614E;&#x5730;&#x5BF9;&#x5F85;&#x3002;</p>
+<h3 id="13-&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;-unsafe&#xFF1F;">1.3 &#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981; unsafe&#xFF1F;</h3>
+<p><strong>&#x5E95;&#x5C42;&#x7CFB;&#x7EDF;&#x7F16;&#x7A0B;</strong>&#xFF1A;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5F00;&#x53D1;&#x3001;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x7F16;&#x5199;&#x6216;&#x5D4C;&#x5165;&#x5F0F;&#x7CFB;&#x7EDF;&#x7F16;&#x7A0B;&#x7B49;&#x9886;&#x57DF;&#xFF0C;&#x5E38;&#x5E38;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x786C;&#x4EF6;&#x8D44;&#x6E90;&#x6216;&#x4F7F;&#x7528;&#x7279;&#x5B9A;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#x3002;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x5F80;&#x5F80;&#x6D89;&#x53CA;&#x5230;&#x5BF9;&#x5185;&#x5B58;&#x7684;&#x76F4;&#x63A5;&#x8BFB;&#x5199;&#x3001;&#x6307;&#x9488;&#x8FD0;&#x7B97;&#x7B49;&#x5E95;&#x5C42;&#x64CD;&#x4F5C;&#xFF0C;&#x800C; Rust &#x7684;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#x673A;&#x5236;&#x65E0;&#x6CD5;&#x5BF9;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x8FDB;&#x884C;&#x6709;&#x6548;&#x7684;&#x9A8C;&#x8BC1;&#x3002;</p>
+<p><strong>&#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4EA4;&#x4E92;</strong>&#xFF1A;Rust &#x4F5C;&#x4E3A;&#x4E00;&#x95E8;&#x65B0;&#x5174;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF0C;&#x867D;&#x7136;&#x53D1;&#x5C55;&#x8FC5;&#x901F;&#xFF0C;&#x4F46;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x4ECD;&#x7136;&#x4E0D;&#x53EF;&#x907F;&#x514D;&#x5730;&#x9700;&#x8981;&#x4E0E;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x7F16;&#x5199;&#x7684;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x5C24;&#x5176;&#x662F; C &#x548C; C++ &#x8BED;&#x8A00;&#x3002;&#x7531;&#x4E8E; C &#x548C; C++ &#x8BED;&#x8A00;&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x5177;&#x5907; Rust &#x90A3;&#x6837;&#x4E25;&#x683C;&#x7684;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#x673A;&#x5236;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x4E0E;&#x5B83;&#x4EEC;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>unsafe</code>&#x4EE3;&#x7801;&#x6765;&#x6865;&#x63A5;&#x4E0D;&#x540C;&#x8BED;&#x8A00;&#x4E4B;&#x95F4;&#x7684;&#x8FB9;&#x754C;&#x3002;</p>
+<p><strong>&#x6027;&#x80FD;&#x4F18;&#x5316;</strong>&#xFF1A;&#x5728;&#x67D0;&#x4E9B;&#x6027;&#x80FD;&#x5173;&#x952E;&#x7684;&#x573A;&#x666F;&#x4E2D;&#xFF0C;Rust &#x7684;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#x673A;&#x5236;&#x53EF;&#x80FD;&#x4F1A;&#x5E26;&#x6765;&#x4E00;&#x5B9A;&#x7684;&#x6027;&#x80FD;&#x5F00;&#x9500;&#x3002;&#x4E3A;&#x4E86;&#x8FFD;&#x6C42;&#x6781;&#x81F4;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>unsafe</code>&#x4EE3;&#x7801;&#x6765;&#x7ED5;&#x8FC7;&#x8FD9;&#x4E9B;&#x68C0;&#x67E5;&#xFF0C;&#x5B9E;&#x73B0;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x7B97;&#x6CD5;&#x548C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x6765;&#x5C55;&#x793A;<code>unsafe</code>&#x4EE3;&#x7801;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num = <span class="hljs-number">5</span>;
+   <span class="hljs-comment">// &#x521B;&#x5EFA;&#x88F8;&#x6307;&#x9488;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x662F;&#x5B89;&#x5168;&#x7684;</span>
+   <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+   <span class="hljs-comment">// &#x89E3;&#x5F15;&#x7528;&#x88F8;&#x6307;&#x9488;&#xFF0C;&#x9700;&#x8981;&#x5728; unsafe &#x5757;&#x4E2D;&#x8FDB;&#x884C;</span>
+   <span class="hljs-keyword">unsafe</span> {
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value pointed by ptr is: {}&quot;</span>, *ptr);
+   }
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x6307;&#x5411;<code>num</code>&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x88F8;&#x6307;&#x9488;<code>ptr</code>&#x3002;&#x521B;&#x5EFA;&#x88F8;&#x6307;&#x9488;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x662F;&#x83B7;&#x53D6;&#x4E86;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5BF9;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x8BD5;&#x56FE;&#x89E3;&#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x88F8;&#x6307;&#x9488;&#xFF0C;&#x8BFB;&#x53D6;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x503C;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>unsafe</code>&#x5757;&#x6765;&#x544A;&#x8BC9;&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x4E14;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x786E;&#x4FDD;&#x4E86;&#x6307;&#x9488;&#x7684;&#x6709;&#x6548;&#x6027;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x638C;&#x63A7;&#x5371;&#x9669;&#x533A;&#x57DF;&#xFF1A;unsafe-&#x5757;&#x4E0E;-unsafe-&#x51FD;&#x6570;&#x7684;&#x5BF9;&#x6BD4;">&#x4E8C;&#x3001;&#x638C;&#x63A7;&#x5371;&#x9669;&#x533A;&#x57DF;&#xFF1A;unsafe &#x5757;&#x4E0E; unsafe &#x51FD;&#x6570;&#x7684;&#x5BF9;&#x6BD4;</h2>
+<p>&#x5728; Rust &#x7684;<code>unsafe</code>&#x7F16;&#x7A0B;&#x9886;&#x57DF;&#x4E2D;&#xFF0C;<code>unsafe</code>&#x5757;&#x548C;<code>unsafe</code>&#x51FD;&#x6570;&#x662F;&#x4E24;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5B83;&#x4EEC;&#x5404;&#x81EA;&#x6709;&#x7740;&#x72EC;&#x7279;&#x7684;&#x7528;&#x9014;&#x548C;&#x7279;&#x70B9;&#x3002;&#x7406;&#x89E3;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x533A;&#x522B;&#x548C;&#x9002;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x5B89;&#x5168;&#x3001;&#x9AD8;&#x6548;&#x7684;<code>unsafe</code>&#x4EE3;&#x7801;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x3002;</p>
+<h3 id="21-unsafe-&#x5757;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;">2.1 unsafe &#x5757;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;</h3>
+<p><code>unsafe</code>&#x5757;&#x662F;&#x4E00;&#x79CD;&#x5C06;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x6807;&#x8BB0;&#x4E3A;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5728;&#x5176;&#x4E2D;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x5728;&#x666E;&#x901A; Rust &#x4EE3;&#x7801;&#x4E2D;&#x88AB;&#x7981;&#x6B62;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><code>unsafe</code>&#x5757;&#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x7684;&#x8303;&#x56F4;&#x9650;&#x5236;&#x5728;&#x4E00;&#x4E2A;&#x5C40;&#x90E8;&#x533A;&#x57DF;&#x5185;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x6F5C;&#x5728;&#x7684;&#x98CE;&#x9669;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x89E3;&#x5F15;&#x7528;&#x88F8;&#x6307;&#x9488;&#x65F6;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x5C06;&#x89E3;&#x5F15;&#x7528;&#x64CD;&#x4F5C;&#x653E;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+   <span class="hljs-keyword">unsafe</span> {
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value pointed by ptr is: {}&quot;</span>, *ptr);
+   }
+}
+</code></pre>
+<p><code>unsafe</code>&#x5757;&#x660E;&#x786E;&#x5730;&#x6807;&#x8BC6;&#x4E86;&#x89E3;&#x5F15;&#x7528;&#x88F8;&#x6307;&#x9488;&#x8FD9;&#x4E00;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x4F7F;&#x5F97;&#x4EE3;&#x7801;&#x7684;&#x5B89;&#x5168;&#x6027;&#x548C;&#x53EF;&#x8BFB;&#x6027;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x5B9A;&#x7684;&#x4FDD;&#x969C;&#x3002;</p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x7531;&#x4E8E;<code>unsafe</code>&#x5757;&#x53EA;&#x5F71;&#x54CD;&#x5176;&#x5185;&#x90E8;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5916;&#x90E8;&#x7684;&#x4EE3;&#x7801;&#x4ECD;&#x7136;&#x53D7;&#x5230; Rust &#x5B89;&#x5168;&#x673A;&#x5236;&#x7684;&#x4FDD;&#x62A4;&#xFF0C;&#x8FD9;&#x5C31;&#x907F;&#x514D;&#x4E86;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x5BF9;&#x6574;&#x4E2A;&#x7A0B;&#x5E8F;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
+<h3 id="22-unsafe-&#x51FD;&#x6570;&#x7684;&#x5951;&#x7EA6;&#x8BBE;&#x8BA1;">2.2 unsafe &#x51FD;&#x6570;&#x7684;&#x5951;&#x7EA6;&#x8BBE;&#x8BA1;</h3>
+<p><code>unsafe</code>&#x51FD;&#x6570;&#x5219;&#x662F;&#x4E00;&#x79CD;&#x66F4;&#x9AD8;&#x7EA7;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x5B83;&#x5C06;&#x4E00;&#x7CFB;&#x5217;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#x548C;&#x6587;&#x6863;&#x6765;&#x660E;&#x786E;&#x5176;&#x8C03;&#x7528;&#x8005;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x7684;&#x5951;&#x7EA6;&#x3002;<code>unsafe</code>&#x51FD;&#x6570;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x66F4;&#x65B9;&#x4FBF;&#x3001;&#x66F4;&#x53EF;&#x7EF4;&#x62A4;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x7BA1;&#x7406;&#x4E0D;&#x5B89;&#x5168;&#x4EE3;&#x7801;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;<code>unsafe</code>&#x51FD;&#x6570;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-keyword">unsafe</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">read_value</span></span>(ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+   *ptr
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+   <span class="hljs-keyword">unsafe</span> {
+       <span class="hljs-keyword">let</span> value = read_value(ptr);
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value read from ptr is: {}&quot;</span>, value);
+
+   }
+
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;<code>read_value</code>&#x51FD;&#x6570;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;<code>unsafe</code>&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x8C03;&#x7528;&#x8005;&#x5728;&#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#x65F6;&#x5FC5;&#x987B;&#x786E;&#x4FDD;&#x4F20;&#x5165;&#x7684;&#x6307;&#x9488;&#x662F;&#x6709;&#x6548;&#x7684;&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x672A;&#x5B9A;&#x4E49;&#x884C;&#x4E3A;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x5C06;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x5C01;&#x88C5;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#x548C;&#x6587;&#x6863;&#x4E2D;&#x660E;&#x786E;&#x5951;&#x7EA6;&#xFF0C;<code>unsafe</code>&#x51FD;&#x6570;&#x4F7F;&#x5F97;&#x4EE3;&#x7801;&#x7684;&#x5B89;&#x5168;&#x6027;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x5F97;&#x5230;&#x4E86;&#x63D0;&#x5347;&#x3002;&#x540C;&#x65F6;&#xFF0C;<code>unsafe</code>&#x51FD;&#x6570;&#x8FD8;&#x53EF;&#x4EE5;&#x88AB;&#x5176;&#x4ED6;<code>unsafe</code>&#x51FD;&#x6570;&#x6216;<code>unsafe</code>&#x5757;&#x8C03;&#x7528;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x66F4;&#x590D;&#x6742;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<h3 id="23-&#x4E24;&#x8005;&#x7684;&#x6838;&#x5FC3;&#x533A;&#x522B;">2.3 &#x4E24;&#x8005;&#x7684;&#x6838;&#x5FC3;&#x533A;&#x522B;</h3>
+<table>
+<thead>
+<tr>
+<th>&#x7279;&#x6027;</th>
+<th>unsafe &#x5757;</th>
+<th>unsafe &#x51FD;&#x6570;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x4F5C;&#x7528;&#x8303;&#x56F4;</td>
+<td>&#x5C40;&#x90E8;&#x4EE3;&#x7801;&#x5757;</td>
+<td>&#x5168;&#x5C40;&#x51FD;&#x6570;</td>
+</tr>
+<tr>
+<td>&#x5B89;&#x5168;&#x8D23;&#x4EFB;</td>
+<td>&#x8C03;&#x7528;&#x8005;&#x8D1F;&#x8D23;</td>
+<td>&#x5B9E;&#x73B0;&#x8005;&#x4E0E;&#x8C03;&#x7528;&#x8005;&#x5171;&#x540C;&#x8D1F;&#x8D23;</td>
+</tr>
+<tr>
+<td>&#x53EF;&#x7EC4;&#x5408;&#x6027;</td>
+<td>&#x9002;&#x5408;&#x4E00;&#x6B21;&#x6027;&#x64CD;&#x4F5C;</td>
+<td>&#x9002;&#x5408;&#x5C01;&#x88C5;&#x590D;&#x6742;&#x903B;&#x8F91;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x4ECE;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x6765;&#x770B;&#xFF0C;<code>unsafe</code>&#x5757;&#x53EA;&#x5F71;&#x54CD;&#x5176;&#x5185;&#x90E8;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x800C;<code>unsafe</code>&#x51FD;&#x6570;&#x5219;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x591A;&#x4E2A;&#x5730;&#x65B9;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#x5C31;&#x4F7F;&#x5F97;<code>unsafe</code>&#x51FD;&#x6570;&#x66F4;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x5C01;&#x88C5;&#x4E00;&#x4E9B;&#x901A;&#x7528;&#x7684;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#xFF0C;&#x800C;<code>unsafe</code>&#x5757;&#x5219;&#x66F4;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x4E00;&#x4E9B;&#x4E34;&#x65F6;&#x6027;&#x7684;&#x3001;&#x5C40;&#x90E8;&#x7684;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x5728;&#x5B89;&#x5168;&#x8D23;&#x4EFB;&#x65B9;&#x9762;&#xFF0C;<code>unsafe</code>&#x5757;&#x7684;&#x5B89;&#x5168;&#x8D23;&#x4EFB;&#x4E3B;&#x8981;&#x7531;&#x8C03;&#x7528;&#x8005;&#x627F;&#x62C5;&#xFF0C;&#x8C03;&#x7528;&#x8005;&#x9700;&#x8981;&#x786E;&#x4FDD;<code>unsafe</code>&#x5757;&#x5185;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF1B;</p>
+<p>&#x800C;<code>unsafe</code>&#x51FD;&#x6570;&#x7684;&#x5B89;&#x5168;&#x8D23;&#x4EFB;&#x5219;&#x7531;&#x5B9E;&#x73B0;&#x8005;&#x548C;&#x8C03;&#x7528;&#x8005;&#x5171;&#x540C;&#x627F;&#x62C5;&#xFF0C;&#x5B9E;&#x73B0;&#x8005;&#x9700;&#x8981;&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x786E;&#x4FDD;&#x64CD;&#x4F5C;&#x7684;&#x6B63;&#x786E;&#x6027;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x6587;&#x6863;&#x660E;&#x786E;&#x8C03;&#x7528;&#x8005;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x8C03;&#x7528;&#x8005;&#x5219;&#x9700;&#x8981;&#x5728;&#x8C03;&#x7528;&#x65F6;&#x786E;&#x4FDD;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x4ECE;&#x53EF;&#x7EC4;&#x5408;&#x6027;&#x6765;&#x770B;&#xFF0C;<code>unsafe</code>&#x5757;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x4E00;&#x6B21;&#x6027;&#x7684;&#x4E0D;&#x5B89;&#x5168;&#x64CD;&#x4F5C;&#xFF0C;&#x5B83;&#x7684;&#x4F7F;&#x7528;&#x76F8;&#x5BF9;&#x8F83;&#x4E3A;&#x7075;&#x6D3B;&#xFF0C;&#x4F46;&#x4E0D;&#x592A;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x5C01;&#x88C5;&#x590D;&#x6742;&#x7684;&#x903B;&#x8F91;&#xFF1B;</p>
+<p>&#x800C;<code>unsafe</code>&#x51FD;&#x6570;&#x5219;&#x66F4;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x5C01;&#x88C5;&#x590D;&#x6742;&#x7684;&#x4E0D;&#x5B89;&#x5168;&#x903B;&#x8F91;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x88AB;&#x591A;&#x4E2A;&#x5730;&#x65B9;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#x6765;&#x5B9E;&#x73B0;&#x66F4;&#x7075;&#x6D3B;&#x7684;&#x529F;&#x80FD;&#x7EC4;&#x5408;&#x3002;</p>
+<h2 id="&#x4E09;&#x3001;&#x6784;&#x5EFA;&#x4E0D;&#x5B89;&#x5168;&#x63A5;&#x53E3;&#xFF1A;&#x6DF1;&#x5165;&#x5256;&#x6790;-unsafe-trait">&#x4E09;&#x3001;&#x6784;&#x5EFA;&#x4E0D;&#x5B89;&#x5168;&#x63A5;&#x53E3;&#xFF1A;&#x6DF1;&#x5165;&#x5256;&#x6790; unsafe trait</h2>
+<h3 id="31-&#x5B9A;&#x4E49;&#x4E0E;&#x5B9E;&#x73B0;">3.1 &#x5B9A;&#x4E49;&#x4E0E;&#x5B9E;&#x73B0;</h3>
+<p>&#x5728; Rust &#x7684;&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;<code>unsafe trait</code> &#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684; <code>trait</code>&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5B9E;&#x73B0;&#x8005;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x7F16;&#x8BD1;&#x5668;&#x65E0;&#x6CD5;&#x5B8C;&#x5168;&#x9A8C;&#x8BC1;&#x5B89;&#x5168;&#x6027;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x5F53; <code>trait</code> &#x4E2D;&#x7684;&#x67D0;&#x4E9B;&#x65B9;&#x6CD5;&#x6D89;&#x53CA;&#x5230;&#x88F8;&#x6307;&#x9488;&#x64CD;&#x4F5C;&#x3001;&#x5E95;&#x5C42;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x6216;&#x5176;&#x4ED6;&#x53EF;&#x80FD;&#x7834;&#x574F;&#x5185;&#x5B58;&#x5B89;&#x5168;&#x7684;&#x884C;&#x4E3A;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A; <code>trait</code> &#x5C31;&#x5E94;&#x8BE5;&#x88AB;&#x5B9A;&#x4E49;&#x4E3A; <code>unsafe</code>&#x3002;</p>
+<p>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; <code>unsafe trait</code> &#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x5728; <code>trait</code> &#x5173;&#x952E;&#x5B57;&#x524D;&#x52A0;&#x4E0A; <code>unsafe</code> &#x5173;&#x952E;&#x5B57;&#x5373;&#x53EF;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; <code>MyUnsafeTrait</code>&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-keyword">unsafe</span> <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">MyUnsafeTrait</span></span> {
+   <span class="hljs-keyword">unsafe</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">do_something_unsafe</span></span>(&amp;<span class="hljs-keyword">self</span>);
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;<code>MyUnsafeTrait</code> &#x88AB;&#x6807;&#x8BB0;&#x4E3A; <code>unsafe</code>&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x5305;&#x542B;&#x4E00;&#x4E2A; <code>unsafe</code> &#x65B9;&#x6CD5; <code>do_something_unsafe</code>&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x9700;&#x8981;&#x5728; <code>unsafe</code> &#x5757;&#x4E2D;&#x8FDB;&#x884C;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x8C03;&#x7528;&#x8005;&#x77E5;&#x9053;&#x8BE5;&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x4F1A;&#x6267;&#x884C;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x5B9E;&#x73B0; <code>unsafe trait</code> &#x65F6;&#xFF0C;&#x540C;&#x6837;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>unsafe impl</code> &#x5173;&#x952E;&#x5B57;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x4E3A;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B; <code>MyStruct</code> &#x5B9E;&#x73B0; <code>MyUnsafeTrait</code>&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyStruct</span></span>;
+<span class="hljs-keyword">unsafe</span> <span class="hljs-keyword">impl</span> MyUnsafeTrait <span class="hljs-keyword">for</span> MyStruct {
+   <span class="hljs-keyword">unsafe</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">do_something_unsafe</span></span>(&amp;<span class="hljs-keyword">self</span>) {
+       <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;&#x89E3;&#x5F15;&#x7528;&#x88F8;&#x6307;&#x9488;</span>
+       <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = std::ptr::null();
+       <span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF0C;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x65F6;&#x5E94;&#x786E;&#x4FDD;&#x6307;&#x9488;&#x6709;&#x6548;</span>
+       <span class="hljs-comment">// &#x6B64;&#x4EE3;&#x7801;&#x4F1A;&#x5F15;&#x8D77;panicked</span>
+       std::mem::forget(std::ptr::read_volatile(ptr));
+   }
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5728; <code>do_something_unsafe</code> &#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x6267;&#x884C;&#x4E86;&#x4E00;&#x4E9B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x7531;&#x4E8E;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x7ED5;&#x8FC7;&#x4E86; Rust &#x7684;&#x5E38;&#x89C4;&#x5B89;&#x5168;&#x68C0;&#x67E5;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>unsafe</code> &#x5757;&#x6765;&#x5305;&#x88F9;&#xFF0C;&#x4EE5;&#x63D0;&#x9192;&#x5F00;&#x53D1;&#x8005;&#x6CE8;&#x610F;&#x6F5C;&#x5728;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<h3 id="32-&#x5B89;&#x5168;&#x8C03;&#x7528;&#x6A21;&#x5F0F;">3.2 &#x5B89;&#x5168;&#x8C03;&#x7528;&#x6A21;&#x5F0F;</h3>
+<p>&#x8C03;&#x7528; <code>unsafe trait</code> &#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x5728; <code>unsafe</code> &#x5757;&#x4E2D;&#x8FDB;&#x884C;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x8C03;&#x7528;&#x8005;&#x6E05;&#x695A;&#x4E86;&#x89E3;&#x53EF;&#x80FD;&#x7684;&#x98CE;&#x9669;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> my_struct = MyStruct;
+
+   <span class="hljs-keyword">unsafe</span> {
+       my_struct.do_something_unsafe();
+   }
+}
+</code></pre>
+<p>&#x5728; <code>main</code> &#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A; <code>MyStruct</code> &#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x5728; <code>unsafe</code> &#x5757;&#x4E2D;&#x8C03;&#x7528;&#x4E86; <code>do_something_unsafe</code> &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x505A;&#x662F;&#x4E3A;&#x4E86;&#x660E;&#x786E;&#x8868;&#x660E;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x9192;&#x5F00;&#x53D1;&#x8005;&#x5728;&#x8C03;&#x7528;&#x524D;&#x786E;&#x4FDD;&#x6240;&#x6709;&#x7684;&#x524D;&#x7F6E;&#x6761;&#x4EF6;&#x90FD;&#x5DF2;&#x6EE1;&#x8DB3;&#x3002;</p>
+<p>&#x5728;&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;<code>Send</code> &#x548C; <code>Sync</code> &#x662F;&#x4E24;&#x4E2A;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684; <code>unsafe trait</code>&#x3002;</p>
+<p><code>Send</code> &#x6807;&#x8BB0; <code>trait</code> &#x8868;&#x793A;&#x5B9E;&#x73B0;&#x8BE5; <code>trait</code> &#x7684;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x5728;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x4F20;&#x9012;&#x6240;&#x6709;&#x6743;&#xFF0C;&#x800C; <code>Sync</code> &#x6807;&#x8BB0; <code>trait</code> &#x8868;&#x793A;&#x5B9E;&#x73B0;&#x8BE5; <code>trait</code> &#x7684;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x5728;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x4E0D;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#xFF08;&#x5982; <code>i32</code>&#x3001;<code>f64</code> &#x7B49;&#xFF09;&#x90FD;&#x81EA;&#x52A8;&#x5B9E;&#x73B0;&#x4E86; <code>Send</code> &#x548C; <code>Sync</code>&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E2D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E9B;&#x5305;&#x542B;&#x88F8;&#x6307;&#x9488;&#x6216;&#x5185;&#x90E8;&#x53EF;&#x53D8;&#x72B6;&#x6001;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x624B;&#x52A8;&#x5B9E;&#x73B0; <code>Send</code> &#x548C; <code>Sync</code>&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x5B9E;&#x73B0;&#x65F6;&#x9700;&#x8981;&#x7279;&#x522B;&#x5C0F;&#x5FC3;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<pre><code class="lang-Rust"><span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x88F8;&#x6307;&#x9488;&#x7684;&#x7ED3;&#x6784;&#x4F53;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyPtrStruct</span></span> {
+   ptr: *<span class="hljs-keyword">mut</span> <span class="hljs-keyword">i32</span>,
+}
+
+<span class="hljs-comment">// &#x624B;&#x52A8;&#x5B9E;&#x73B0; Send trait&#xFF0C;&#x8FD9;&#x91CC;&#x5047;&#x8BBE;&#x8BE5;&#x7ED3;&#x6784;&#x4F53;&#x5728;&#x7EBF;&#x7A0B;&#x95F4;&#x4F20;&#x9012;&#x662F;&#x5B89;&#x5168;&#x7684;</span>
+<span class="hljs-keyword">unsafe</span> <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Send</span> <span class="hljs-keyword">for</span> MyPtrStruct {}
+<span class="hljs-comment">// &#x624B;&#x52A8;&#x5B9E;&#x73B0; Sync trait&#xFF0C;&#x8FD9;&#x91CC;&#x5047;&#x8BBE;&#x8BE5;&#x7ED3;&#x6784;&#x4F53;&#x5728;&#x7EBF;&#x7A0B;&#x95F4;&#x5171;&#x4EAB;&#x662F;&#x5B89;&#x5168;&#x7684;</span>
+<span class="hljs-keyword">unsafe</span> <span class="hljs-keyword">impl</span> <span class="hljs-built_in">Sync</span> <span class="hljs-keyword">for</span> MyPtrStruct {}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4E3A; <code>MyPtrStruct</code> &#x624B;&#x52A8;&#x5B9E;&#x73B0;&#x4E86; <code>Send</code> &#x548C; <code>Sync</code> <code>trait</code>&#x3002;&#x7531;&#x4E8E;&#x8BE5;&#x7ED3;&#x6784;&#x4F53;&#x5305;&#x542B;&#x88F8;&#x6307;&#x9488;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5B9E;&#x73B0;&#x65F6;&#x9700;&#x8981;&#x7279;&#x522B;&#x5C0F;&#x5FC3;&#xFF0C;&#x786E;&#x4FDD;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E2D;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x6216;&#x5176;&#x4ED6;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x56DB;&#x3001;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF1A;rust-&#x7684;&#x5E95;&#x5C42;&#x64CD;&#x63A7;&#x5229;&#x5668;">&#x56DB;&#x3001;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF1A;Rust &#x7684;&#x5E95;&#x5C42;&#x64CD;&#x63A7;&#x5229;&#x5668;</h2>
+<p>&#x539F;&#x59CB;&#x6307;&#x9488;&#x5728; Rust &#x7684;&#x5E95;&#x5C42;&#x7F16;&#x7A0B;&#x4E2D;&#x626E;&#x6F14;&#x7740;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x7684;&#x89D2;&#x8272;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5F00;&#x53D1;&#x8005;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x5B9E;&#x73B0;&#x4E00;&#x4E9B;&#x9AD8;&#x6548;&#x4F46;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x5728;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6DF1;&#x5165;&#x63A2;&#x8BA8;&#x539F;&#x59CB;&#x6307;&#x9488;&#x7684;&#x5404;&#x4E2A;&#x65B9;&#x9762;&#xFF0C;&#x5305;&#x62EC;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x4E0E;&#x8F6C;&#x6362;&#x3001;&#x6307;&#x9488;&#x7B97;&#x672F;&#x64CD;&#x4F5C;&#x4EE5;&#x53CA;&#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x4E0E;&#x5927;&#x5C0F;&#x7B49;&#x6982;&#x5FF5;&#x3002;</p>
+<h3 id="41-&#x6307;&#x9488;&#x7C7B;&#x578B;&#x4E0E;&#x8F6C;&#x6362;">4.1 &#x6307;&#x9488;&#x7C7B;&#x578B;&#x4E0E;&#x8F6C;&#x6362;</h3>
+<p>Rust &#x4E2D;&#x6709;&#x4E24;&#x79CD;&#x539F;&#x59CB;&#x6307;&#x9488;&#x7C7B;&#x578B;&#xFF1A;<code>*const T</code>&#xFF08;&#x4E0D;&#x53EF;&#x53D8;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF09;&#x548C;<code>*mut T</code>&#xFF08;&#x53EF;&#x53D8;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF09;&#x3002;&#x5B83;&#x4EEC;&#x4E0E;&#x666E;&#x901A;&#x7684;&#x5F15;&#x7528;&#xFF08;<code>&amp;T</code>&#x548C;<code>&amp;mut T</code>&#xFF09;&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x539F;&#x59CB;&#x6307;&#x9488;&#x4E0D;&#x9075;&#x5FAA; Rust &#x7684;&#x6240;&#x6709;&#x6743;&#x548C;&#x501F;&#x7528;&#x89C4;&#x5219;&#xFF0C;&#x56E0;&#x6B64;&#x4F7F;&#x7528;&#x65F6;&#x9700;&#x8981;&#x683C;&#x5916;&#x5C0F;&#x5FC3;&#x3002;</p>
+<p>&#x521B;&#x5EFA;&#x539F;&#x59CB;&#x6307;&#x9488;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;<code>as</code>&#x64CD;&#x4F5C;&#x7B26;&#x5C06;&#x5F15;&#x7528;&#x8F6C;&#x6362;&#x4E3A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x5373;&#x53EF;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> const_ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+   <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> num_mut = <span class="hljs-number">10</span>;
+
+   <span class="hljs-keyword">let</span> mut_ptr: *<span class="hljs-keyword">mut</span> <span class="hljs-keyword">i32</span> = &amp;<span class="hljs-keyword">mut</span> num_mut <span class="hljs-keyword">as</span> *<span class="hljs-keyword">mut</span> <span class="hljs-keyword">i32</span>;
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5206;&#x522B;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x6307;&#x5411;<code>num</code>&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x539F;&#x59CB;&#x6307;&#x9488;<code>const_ptr</code>&#x548C;&#x4E00;&#x4E2A;&#x6307;&#x5411;<code>num_mut</code>&#x7684;&#x53EF;&#x53D8;&#x539F;&#x59CB;&#x6307;&#x9488;<code>mut_ptr</code>&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x521B;&#x5EFA;&#x539F;&#x59CB;&#x6307;&#x9488;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x662F;&#x83B7;&#x53D6;&#x4E86;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5BF9;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x8BFB;&#x5199;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x89E3;&#x5F15;&#x7528;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF0C;&#x8BBF;&#x95EE;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x503C;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>unsafe</code>&#x5757;&#x6765;&#x786E;&#x4FDD;&#x64CD;&#x4F5C;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> const_ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">let</span> ptr_x = &amp;<span class="hljs-keyword">mut</span> x <span class="hljs-keyword">as</span> *<span class="hljs-keyword">mut</span> <span class="hljs-keyword">i32</span>;
+    <span class="hljs-keyword">let</span> y = <span class="hljs-built_in">Box</span>::new(<span class="hljs-number">20</span>);
+    <span class="hljs-keyword">let</span> ptr_y = &amp;*y <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+   <span class="hljs-keyword">unsafe</span> {
+       *ptr_x += *ptr_y;
+       <span class="hljs-keyword">let</span> value = *const_ptr;
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The value pointed by const_ptr is: {}&quot;</span>, value);
+   }
+   <span class="hljs-built_in">assert_eq!</span>(x, <span class="hljs-number">30</span>);
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#x89E3;&#x5F15;&#x7528;&#x4E86;<code>const_ptr</code>&#xFF0C;&#x5E76;&#x6253;&#x5370;&#x51FA;&#x4E86;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x503C;&#x3002;&#x540C;&#x65F6;&#x5BF9;<code>ptr_x</code>&#x6307;&#x5411;&#x7684;&#x503C;&#x8FDB;&#x884C;&#x4E86;&#x8FD0;&#x7B97;&#xFF0C;&#x7531;&#x4E8E;&#x89E3;&#x5F15;&#x7528;&#x539F;&#x59CB;&#x6307;&#x9488;&#x662F;&#x4E00;&#x79CD;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x7A7A;&#x6307;&#x9488;&#x89E3;&#x5F15;&#x7528;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#x8FDB;&#x884C;&#x3002;</p>
+<p>&#x5C3D;&#x7BA1; Rust &#x5728;&#x5F88;&#x591A;&#x573A;&#x666F;&#x53EF;&#x4EE5;&#x9690;&#x5F0F;&#x89E3;&#x5F15;&#x7528; safe &#x7684;&#x6307;&#x9488;&#x7C7B;&#x578B;&#xFF0C;&#x4F46;&#x539F;&#x59CB;&#x6307;&#x9488;&#x7684;&#x89E3;&#x5F15;&#x7528;&#x5FC5;&#x987B;&#x662F;&#x663E;&#x5F0F;&#x7684;&#xFF1A;</p>
+<ol>
+<li><p>. &#x8FD0;&#x7B97;&#x7B26;&#x4E0D;&#x4F1A;&#x9690;&#x5F0F;&#x89E3;&#x5F15;&#x7528;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x7528; (<em>raw).field &#x6216;&#x8005; (</em>raw).method(...)&#x3002;</p>
+</li>
+<li><p>&#x539F;&#x59CB;&#x6307;&#x9488;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x73B0; Deref&#xFF0C;&#x56E0;&#x6B64;&#x5F3A;&#x5236;&#x89E3;&#x5F15;&#x7528;&#x5E76;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x5B83;&#x4EEC;&#x3002;</p>
+</li>
+<li><p>== &#x548C; &lt; &#x4E4B;&#x7C7B;&#x7684;&#x8FD0;&#x7B97;&#x7B26;&#x4EE5;&#x5730;&#x5740;&#x6BD4;&#x8F83;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF1A;&#x53EA;&#x6709;&#x4E24;&#x4E2A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x6307;&#x5411;&#x540C;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x4F4D;&#x7F6E;&#x5B83;&#x624D;&#x662F;&#x76F8;&#x7B49;&#x7684;&#x3002;&#x4E0E;&#x6B64;&#x7C7B;&#x4F3C;&#xFF0C;&#x54C8;&#x5E0C;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x4F1A;&#x5BF9;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5730;&#x5740;&#x8FDB;&#x884C;&#x54C8;&#x5E0C;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5BF9;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x503C;&#x8FDB;&#x884C;&#x54C8;&#x5E0C;&#x3002;</p>
+</li>
+<li><p>&#x683C;&#x5F0F;&#x5316; <code>trait</code> &#x4F8B;&#x5982; <code>std::fmt::Dispaly</code> &#x4F1A;&#x81EA;&#x52A8;&#x89E3;&#x5F15;&#x7528;&#xFF0C;&#x4F46;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x539F;&#x59CB;&#x6307;&#x9488;&#x3002;&#x4F8B;&#x5916;&#x7684;&#x662F; <code>std::fmt::Debug</code> &#x548C; <code>std::fmt::Pointer</code>&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x4EE5; 16 &#x8FDB;&#x5236;&#x5730;&#x5740;&#x7684;&#x5F62;&#x5F0F;&#x663E;&#x793A;&#x539F;&#x59CB;&#x6307;&#x9488;&#xFF0C;&#x4E0D;&#x4F1A;&#x89E3;&#x5F15;&#x7528;&#x5B83;&#x4EEC;&#x3002;</p>
+</li>
+</ol>
+<h3 id="42-&#x6307;&#x9488;&#x7B97;&#x672F;&#x64CD;&#x4F5C;">4.2 &#x6307;&#x9488;&#x7B97;&#x672F;&#x64CD;&#x4F5C;</h3>
+<p>&#x539F;&#x59CB;&#x6307;&#x9488;&#x652F;&#x6301;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x7684;&#x7B97;&#x672F;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x6307;&#x9488;&#x504F;&#x79FB;&#x3001;&#x6307;&#x9488;&#x6BD4;&#x8F83;&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x5728;&#x5E95;&#x5C42;&#x7F16;&#x7A0B;&#x4E2D;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x4F46;&#x540C;&#x6837;&#x9700;&#x8981;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#x8FDB;&#x884C;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x64CD;&#x4F5C;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<p>&#x6307;&#x9488;&#x504F;&#x79FB;&#x662F;&#x6307;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#x6216;&#x51CF;&#x5C11;&#x6307;&#x9488;&#x7684;&#x503C;&#xFF0C;&#x4F7F;&#x5176;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x4E0D;&#x540C;&#x4F4D;&#x7F6E;&#x3002;&#x5728; Rust &#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>offset</code>&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x6307;&#x9488;&#x504F;&#x79FB;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+   <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;arr[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+   <span class="hljs-keyword">unsafe</span> {
+       <span class="hljs-keyword">let</span> second_ptr = ptr.offset(<span class="hljs-number">1</span>);
+
+       <span class="hljs-keyword">let</span> second_value = *second_ptr;
+
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The second value in the array is: {}&quot;</span>, second_value);
+   }
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x83B7;&#x53D6;&#x4E86;&#x6570;&#x7EC4;<code>arr</code>&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x6307;&#x9488;<code>ptr</code>&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;<code>offset(1)</code>&#x65B9;&#x6CD5;&#x5C06;&#x6307;&#x9488;&#x504F;&#x79FB;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x6307;&#x5411;&#x6570;&#x7EC4;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#x89E3;&#x5F15;&#x7528;<code>second_ptr</code>&#xFF0C;&#x83B7;&#x53D6;&#x5E76;&#x6253;&#x5370;&#x51FA;&#x4E86;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x6307;&#x9488;&#x504F;&#x79FB;&#x7684;&#x6B65;&#x957F;&#x662F;&#x6839;&#x636E;&#x6307;&#x9488;&#x6240;&#x6307;&#x5411;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x5927;&#x5C0F;&#x6765;&#x8BA1;&#x7B97;&#x7684;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;<code>i32</code>&#x7C7B;&#x578B;&#x7684;&#x5927;&#x5C0F;&#x4E3A; 4 &#x5B57;&#x8282;&#xFF0C;&#x6240;&#x4EE5;<code>offset(1)</code>&#x4F1A;&#x5C06;&#x6307;&#x9488;&#x504F;&#x79FB; 4 &#x4E2A;&#x5B57;&#x8282;&#x3002;</p>
+<h3 id="43-&#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x4E0E;&#x5927;&#x5C0F;">4.3 &#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x4E0E;&#x5927;&#x5C0F;</h3>
+<p>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4E2D;&#xFF0C;&#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x662F;&#x4E00;&#x79CD;&#x4F18;&#x5316;&#x6280;&#x672F;&#xFF0C;&#x5B83;&#x786E;&#x4FDD;&#x6570;&#x636E;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&#x6EE1;&#x8DB3;&#x7279;&#x5B9A;&#x7684;&#x5BF9;&#x9F50;&#x8981;&#x6C42;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x9AD8;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#x7684;&#x6548;&#x7387;&#x3002;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5177;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x9F50;&#x8981;&#x6C42;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;<code>i32</code>&#x7C7B;&#x578B;&#x901A;&#x5E38;&#x9700;&#x8981; 4 &#x5B57;&#x8282;&#x5BF9;&#x9F50;&#xFF0C;&#x800C;<code>i64</code>&#x7C7B;&#x578B;&#x901A;&#x5E38;&#x9700;&#x8981; 8 &#x5B57;&#x8282;&#x5BF9;&#x9F50;&#x3002;</p>
+<p>Rust &#x4E2D;&#x7684;&#x539F;&#x59CB;&#x6307;&#x9488;&#x4E5F;&#x9075;&#x5FAA;&#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x7684;&#x89C4;&#x5219;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x65F6;&#xFF0C;&#x5B83;&#x6240;&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x5FC5;&#x987B;&#x6EE1;&#x8DB3;&#x5176;&#x6240;&#x6307;&#x5411;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x9F50;&#x8981;&#x6C42;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> num: <span class="hljs-keyword">i32</span> = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = &amp;num <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+
+   <span class="hljs-comment">// &#x68C0;&#x67E5;&#x6307;&#x9488;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;</span>
+   <span class="hljs-keyword">let</span> alignment = std::mem::align_of_val(&amp;num);
+
+   <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The alignment of i32 is: {}&quot;</span>, alignment);
+
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<code>std::mem::align_of_val</code>&#x51FD;&#x6570;&#x83B7;&#x53D6;&#x4E86;<code>num</code>&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;&#xFF0C;&#x5E76;&#x6253;&#x5370;&#x51FA;&#x4E86;&#x7ED3;&#x679C;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>i32</code>&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;&#x4E3A; 4 &#x5B57;&#x8282;&#x3002;</p>
+<p>&#x4E86;&#x89E3;&#x5185;&#x5B58;&#x5BF9;&#x9F50;&#x548C;&#x6307;&#x9488;&#x7684;&#x5927;&#x5C0F;&#x5BF9;&#x4E8E;&#x7F16;&#x5199;&#x9AD8;&#x6548;&#x7684;&#x5E95;&#x5C42;&#x4EE3;&#x7801;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;&#x5728;&#x8FDB;&#x884C;&#x6307;&#x9488;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x786E;&#x4FDD;&#x6307;&#x9488;&#x7684;&#x5BF9;&#x9F50;&#x65B9;&#x5F0F;&#x548C;&#x6240;&#x6307;&#x5411;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x9F50;&#x8981;&#x6C42;&#x4E00;&#x81F4;&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x672A;&#x5B9A;&#x4E49;&#x884C;&#x4E3A;&#x3002;</p>
+<h3 id="44-&#x53EF;&#x7A7A;&#x6307;&#x9488;">4.4 &#x53EF;&#x7A7A;&#x6307;&#x9488;</h3>
+<p>Rust &#x4E2D;&#x7684;&#x7A7A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x548C; C/C++ &#x4E2D;&#x4E00;&#x6837;&#xFF0C;&#x90FD;&#x662F; 0 &#x5730;&#x5740;&#x3002;&#x5BF9;&#x4EFB;&#x4F55;&#x7C7B;&#x578B; T&#xFF0C;<code>std::ptr::null&lt;T&gt;</code> &#x51FD;&#x6570;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>*const T</code> &#x7A7A;&#x6307;&#x9488;&#xFF0C;<code>std::ptr::null_mut&lt;T&gt;</code> &#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>*mut T</code> &#x7A7A;&#x6307;&#x9488;&#x3002;</p>
+<p>&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x6307;&#x9488;&#x662F;&#x4E0D;&#x662F;&#x7A7A;&#x7684;&#x3002;</p>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x662F; <code>is_null</code> &#x65B9;&#x6CD5;&#xFF0C;&#x4F46; <code>as_ref</code> &#x65B9;&#x6CD5;&#x4E5F;&#x5F88;&#x65B9;&#x4FBF;&#xFF1A;</p>
+<p>&#x5B83;&#x63A5;&#x53D7;&#x4E00;&#x4E2A; <code>*const T</code> &#x6307;&#x9488;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>Option&lt;&amp;&apos;a T&gt;</code>&#xFF0C;&#x628A;&#x7A7A;&#x6307;&#x9488;&#x8F6C;&#x6362;&#x4E3A; <code>None</code>&#x3002;</p>
+<p>&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;<code>as_mut</code> &#x65B9;&#x6CD5;&#x628A;&#x4E00;&#x4E2A; <code>*mut T</code> &#x8F6C;&#x6362;&#x6210; <code>Option&lt;&amp;&apos;a mut T&gt;</code>&#x3002;</p>
+<h2 id="&#x4E94;&#x3001;&#x5185;&#x5B58;&#x590D;&#x7528;&#x9ED1;&#x79D1;&#x6280;&#xFF1A;union-&#x7684;&#x9AD8;&#x7EA7;&#x5E94;&#x7528;">&#x4E94;&#x3001;&#x5185;&#x5B58;&#x590D;&#x7528;&#x9ED1;&#x79D1;&#x6280;&#xFF1A;Union &#x7684;&#x9AD8;&#x7EA7;&#x5E94;&#x7528;</h2>
+<h3 id="51-&#x57FA;&#x7840;&#x7528;&#x6CD5;&#x793A;&#x4F8B;">5.1 &#x57FA;&#x7840;&#x7528;&#x6CD5;&#x793A;&#x4F8B;</h3>
+<p><code>union</code>&#x662F; Rust &#x4E2D;&#x7684;&#x8054;&#x5408;&#x4F53;&#x7C7B;&#x578B;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x5B58;&#x50A8;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4F46;&#x5728;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x503C;&#x3002;</p>
+<p>&#x8FD9;&#x4E0E;&#x7ED3;&#x6784;&#x4F53;&#xFF08;<code>struct</code>&#xFF09;&#x6709;&#x6240;&#x4E0D;&#x540C;&#xFF0C;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x72EC;&#x7ACB;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;<code>union</code>&#x7684;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x5757;&#x5185;&#x5B58;&#xFF0C;&#x56E0;&#x6B64;<code>union</code>&#x7684;&#x5927;&#x5C0F;&#x7531;&#x5176;&#x6700;&#x5927;&#x5B57;&#x6BB5;&#x7684;&#x5927;&#x5C0F;&#x51B3;&#x5B9A;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x7279;&#x6027;&#x4F7F;&#x5F97;<code>union</code>&#x5728;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x573A;&#x666F;&#x4E0B;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x9700;&#x8981;&#x5BF9;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x7CBE;&#x7EC6;&#x63A7;&#x5236;&#x6216;&#x8005;&#x4E0E; C &#x8BED;&#x8A00;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x65F6;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;<code>union</code>&#x793A;&#x4F8B;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x4F4D;&#x7F6E;&#x5B58;&#x50A8;<code>i32</code>&#x548C;<code>f32</code>&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-meta">#[repr(C)]</span>
+union MyUnion {
+   int_value: <span class="hljs-keyword">i32</span>,
+   float_value: <span class="hljs-keyword">f32</span>,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+   <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> my_union = MyUnion { int_value: <span class="hljs-number">42</span> };
+
+   <span class="hljs-keyword">unsafe</span> {
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;int_value: {}&quot;</span>, my_union.int_value);
+
+       my_union.float_value = <span class="hljs-number">3.14</span>;
+
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;float_value: {}&quot;</span>, my_union.float_value);
+   }
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>MyUnion</code>&#x7684;<code>union</code>&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;<code>int_value</code>&#x548C;<code>float_value</code>&#x3002;</p>
+<p><code>#[repr(C)]</code>&#x5C5E;&#x6027;&#x7528;&#x4E8E;&#x6307;&#x5B9A;<code>union</code>&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#x4E0E; C &#x8BED;&#x8A00;&#x4E2D;&#x7684;<code>union</code>&#x5E03;&#x5C40;&#x4E00;&#x81F4;&#xFF0C;&#x8FD9;&#x5728;&#x4E0E; C &#x8BED;&#x8A00;&#x4EE3;&#x7801;&#x4EA4;&#x4E92;&#x65F6;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</p>
+<p>&#x5728;<code>main</code>&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;<code>MyUnion</code>&#x7684;&#x5B9E;&#x4F8B;<code>my_union</code>&#xFF0C;&#x5E76;&#x521D;&#x59CB;&#x5316;&#x4E3A;<code>int_value</code>&#x4E3A; 42&#x3002;</p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728;<code>unsafe</code>&#x5757;&#x4E2D;&#x8BBF;&#x95EE;<code>int_value</code>&#x5B57;&#x6BB5;&#x5E76;&#x6253;&#x5370;&#x5176;&#x503C;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;<code>float_value</code>&#x5B57;&#x6BB5;&#x8D4B;&#x503C;&#x4E3A; 3.14&#xFF0C;&#x5E76;&#x518D;&#x6B21;&#x6253;&#x5370;&#x5176;&#x503C;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x7531;&#x4E8E;<code>union</code>&#x7684;&#x5B57;&#x6BB5;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#xFF0C;&#x5728;&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EA;&#x80FD;&#x5B89;&#x5168;&#x5730;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x672A;&#x5B9A;&#x4E49;&#x884C;&#x4E3A;&#x3002;</p>
+<h3 id="52-&#x5B89;&#x5168;&#x5C01;&#x88C5;&#x6A21;&#x5F0F;">5.2 &#x5B89;&#x5168;&#x5C01;&#x88C5;&#x6A21;&#x5F0F;</h3>
+<p>&#x7531;&#x4E8E; Rust &#x7684;&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x65E0;&#x6CD5;&#x9759;&#x6001;&#x8DDF;&#x8E2A;<code>union</code>&#x5F53;&#x524D;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x56E0;&#x6B64;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;<code>union</code>&#x7684;&#x5B57;&#x6BB5;&#x901A;&#x5E38;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>unsafe</code>&#x4EE3;&#x7801;&#x5757;&#xFF0C;&#x8FD9;&#x589E;&#x52A0;&#x4E86;&#x51FA;&#x9519;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x5B89;&#x5168;&#x6027;&#x548C;&#x6613;&#x7528;&#x6027;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;<code>union</code>&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;<code>union</code>&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x6539;&#x8FDB;&#x540E;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5C06;<code>union</code>&#x5C01;&#x88C5;&#x5728;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x5B89;&#x5168;&#x7684;&#x8BBF;&#x95EE;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-meta">#[repr(C)]</span>
+union DataUnion {
+    int_value: <span class="hljs-keyword">i32</span>,
+    float_value: <span class="hljs-keyword">f32</span>,
+}
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">DataType</span></span> {
+    Int,
+    Float,
+}
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SafeData</span></span> {
+    data: DataUnion,
+    data_type: DataType,
+}
+
+<span class="hljs-keyword">impl</span> SafeData {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new_int</span></span>(value: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        SafeData {
+            data: DataUnion { int_value: value },
+            data_type: DataType::Int,
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new_float</span></span>(value: <span class="hljs-keyword">f32</span>) -&gt; <span class="hljs-keyword">Self</span> {
+        SafeData {
+            data: DataUnion { float_value: value },
+            data_type: DataType::Float,
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_int</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">i32</span>&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> DataType::Int = <span class="hljs-keyword">self</span>.data_type {
+            <span class="hljs-keyword">unsafe</span> { <span class="hljs-literal">Some</span>(<span class="hljs-keyword">self</span>.data.int_value) }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">None</span>
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_float</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">f32</span>&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> DataType::Float = <span class="hljs-keyword">self</span>.data_type {
+            <span class="hljs-keyword">unsafe</span> { <span class="hljs-literal">Some</span>(<span class="hljs-keyword">self</span>.data.float_value) }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">None</span>
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> data1 = SafeData::new_int(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">let</span> data2 = SafeData::new_float(<span class="hljs-number">3.14</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;data1 as int: {:?}&quot;</span>, data1.get_int());
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;data1 as float: {:?}&quot;</span>, data1.get_float());
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;data2 as int: {:?}&quot;</span>, data2.get_int());
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;data2 as float: {:?}&quot;</span>, data2.get_float());
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;<code>DataUnion</code>&#x7684;<code>union</code>&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;<code>i32</code>&#x548C;<code>f32</code>&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;<code>DataType</code>&#x679A;&#x4E3E;&#xFF0C;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x5F53;&#x524D;<code>union</code>&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#xFF0C;&#x5C06;<code>DataUnion</code>&#x548C;<code>DataType</code>&#x5C01;&#x88C5;&#x5728;<code>SafeData</code>&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#xFF0C;&#x5E76;&#x4E3A;<code>SafeData</code>&#x5B9E;&#x73B0;&#x4E86;<code>new_int</code>&#x548C;<code>new_float</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5305;&#x542B;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x6570;&#x636E;&#x7684;<code>SafeData</code>&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x8FD8;&#x5B9E;&#x73B0;&#x4E86;<code>get_int</code>&#x548C;<code>get_float</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x5B89;&#x5168;&#x5730;&#x83B7;&#x53D6;<code>union</code>&#x4E2D;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x5728;<code>main</code>&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E24;&#x4E2A;<code>SafeData</code>&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x5206;&#x522B;&#x8C03;&#x7528;<code>get_int</code>&#x548C;<code>get_float</code>&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x5728;&#x8BBF;&#x95EE;<code>union</code>&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x7C7B;&#x578B;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x548C;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<h2 id="&#x516D;&#x3001;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x4E0E;&#x5B89;&#x5168;&#x51C6;&#x5219;">&#x516D;&#x3001;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x4E0E;&#x5B89;&#x5168;&#x51C6;&#x5219;</h2>
+<p>&#x5728;&#x4F7F;&#x7528;<code>unsafe</code> Rust &#x8FDB;&#x884C;&#x7F16;&#x7A0B;&#x65F6;&#xFF0C;&#x867D;&#x7136;&#x5B83;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x5F3A;&#x5927;&#x7684;&#x5E95;&#x5C42;&#x63A7;&#x5236;&#x80FD;&#x529B;&#xFF0C;&#x4F46;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x66F4;&#x9AD8;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x786E;&#x4FDD;&#x4EE3;&#x7801;&#x7684;&#x5B89;&#x5168;&#x6027;&#x548C;&#x53EF;&#x9760;&#x6027;&#xFF0C;&#x9075;&#x5FAA;&#x4E00;&#x4E9B;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x548C;&#x5B89;&#x5168;&#x51C6;&#x5219;&#x662F;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x7684;&#x3002;</p>
+<h3 id="61-&#x6700;&#x5C0F;&#x5316;-unsafe-&#x8303;&#x56F4;">6.1 &#x6700;&#x5C0F;&#x5316; unsafe &#x8303;&#x56F4;</h3>
+<p>&#x5728;&#x7F16;&#x5199;<code>unsafe</code>&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x5E94;&#x5C3D;&#x91CF;&#x5C06;&#x5176;&#x9650;&#x5236;&#x5728;&#x6700;&#x5C0F;&#x7684;&#x8303;&#x56F4;&#x5185;&#x3002;&#x53EA;&#x5728;&#x5FC5;&#x8981;&#x7684;&#x5730;&#x65B9;&#x4F7F;&#x7528;<code>unsafe</code>&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x907F;&#x514D;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x98CE;&#x9669;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x8C03;&#x7528;&#x4E00;&#x4E2A;<code>unsafe</code>&#x51FD;&#x6570;&#xFF0C;&#x5C3D;&#x91CF;&#x5C06;&#x8FD9;&#x4E2A;&#x8C03;&#x7528;&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x4E2A;<code>unsafe</code>&#x5757;&#x4E2D;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5C06;&#x6574;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x6807;&#x8BB0;&#x4E3A;<code>unsafe</code>&#x3002;</p>
+<pre><code class="lang-Rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">safe_function</span></span>() {
+   <span class="hljs-keyword">let</span> value = <span class="hljs-number">5</span>;
+   <span class="hljs-keyword">let</span> ptr = &amp;value <span class="hljs-keyword">as</span> *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>;
+   <span class="hljs-comment">// &#x53EA;&#x5728;&#x9700;&#x8981;&#x89E3;&#x5F15;&#x7528;&#x6307;&#x9488;&#x65F6;&#x4F7F;&#x7528; unsafe &#x5757;</span>
+   <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">unsafe</span> { *ptr };
+   <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;The result is: {}&quot;</span>, result);
+}
+</code></pre>
+<h3 id="62-&#x6587;&#x6863;&#x5316;&#x5B89;&#x5168;&#x5951;&#x7EA6;">6.2 &#x6587;&#x6863;&#x5316;&#x5B89;&#x5168;&#x5951;&#x7EA6;</h3>
+<p>&#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x7684;<code>unsafe</code>&#x51FD;&#x6570;&#x548C;<code>unsafe</code> trait&#xFF0C;&#x90FD;&#x5E94;&#x8BE5;&#x63D0;&#x4F9B;&#x6E05;&#x6670;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x8BF4;&#x660E;&#x5176;&#x5B89;&#x5168;&#x5951;&#x7EA6;&#x3002;&#x8FD9;&#x5305;&#x62EC;&#x51FD;&#x6570;&#x7684;&#x524D;&#x7F6E;&#x6761;&#x4EF6;&#x3001;&#x540E;&#x7F6E;&#x6761;&#x4EF6;&#xFF0C;&#x4EE5;&#x53CA;&#x8C03;&#x7528;&#x8005;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x7684;&#x8981;&#x6C42;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-Rust"><span class="hljs-comment">/// &#x4ECE;&#x7ED9;&#x5B9A;&#x7684;&#x6307;&#x9488;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A; i32 &#x503C;&#x3002;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// # &#x5B89;&#x5168;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;</span>
+<span class="hljs-comment">/// - `ptr` &#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x7684;&#x3001;&#x6307;&#x5411; i32 &#x7C7B;&#x578B;&#x7684;&#x6307;&#x9488;&#x3002;</span>
+<span class="hljs-comment">/// - &#x8C03;&#x7528;&#x8005;&#x5FC5;&#x987B;&#x786E;&#x4FDD;&#x5728;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x65F6;&#xFF0C;`ptr` &#x4E0D;&#x4F1A;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x5DF2;&#x91CA;&#x653E;&#x7684;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x3002;</span>
+<span class="hljs-keyword">unsafe</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">read_i32</span></span>(ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+   *ptr
+}
+</code></pre>
+<h3 id="63-&#x6D4B;&#x8BD5;&#x8FB9;&#x754C;&#x6761;&#x4EF6;">6.3 &#x6D4B;&#x8BD5;&#x8FB9;&#x754C;&#x6761;&#x4EF6;</h3>
+<p>&#x5BF9;<code>unsafe</code>&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x5168;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x662F;&#x786E;&#x4FDD;&#x5176;&#x6B63;&#x786E;&#x6027;&#x7684;&#x5173;&#x952E;&#x3002;</p>
+<p>&#x7279;&#x522B;&#x662F;&#x8981;&#x6CE8;&#x610F;&#x6D4B;&#x8BD5;&#x5404;&#x79CD;&#x8FB9;&#x754C;&#x6761;&#x4EF6;&#xFF0C;&#x4F8B;&#x5982;&#x7A7A;&#x6307;&#x9488;&#x3001;&#x8D8A;&#x754C;&#x6307;&#x9488;&#x7B49;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Rust &#x7684;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#xFF0C;&#x5982;<code>cargo test</code>&#xFF0C;&#x7ED3;&#x5408;<code>should_panic</code>&#x5C5E;&#x6027;&#x6765;&#x6D4B;&#x8BD5;<code>unsafe</code>&#x4EE3;&#x7801;&#x5728;&#x9519;&#x8BEF;&#x60C5;&#x51B5;&#x4E0B;&#x7684;&#x884C;&#x4E3A;&#x3002;</p>
+<pre><code class="lang-Rust"><span class="hljs-meta">#[cfg(test)]</span>
+<span class="hljs-keyword">mod</span> tests {
+   <span class="hljs-keyword">use</span> super::*;
+
+   <span class="hljs-meta">#[test]</span>
+   <span class="hljs-meta">#[should_panic]</span>
+   <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">test_read_i32_with_null_pointer</span></span>() {
+       <span class="hljs-keyword">let</span> null_ptr: *<span class="hljs-keyword">const</span> <span class="hljs-keyword">i32</span> = std::ptr::null();
+       <span class="hljs-keyword">unsafe</span> {
+           read_i32(null_ptr);
+       }
+   }
+}
+</code></pre>
+<h3 id="64-&#x4F7F;&#x7528;&#x5B89;&#x5168;&#x62BD;&#x8C61;">6.4 &#x4F7F;&#x7528;&#x5B89;&#x5168;&#x62BD;&#x8C61;</h3>
+<p>&#x4E3A;&#x4E86;&#x51CF;&#x5C11;<code>unsafe</code>&#x4EE3;&#x7801;&#x7684;&#x66B4;&#x9732;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x5C01;&#x88C5;&#x5728;&#x5B89;&#x5168;&#x7684;&#x62BD;&#x8C61;&#x5C42;&#x540E;&#x9762;&#x3002;&#x901A;&#x8FC7;&#x7ED3;&#x6784;&#x4F53;&#x548C;&#x65B9;&#x6CD5;&#x6765;&#x63D0;&#x4F9B;&#x5B89;&#x5168;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x9690;&#x85CF;&#x5185;&#x90E8;&#x7684;<code>unsafe</code>&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;&#x5C06;<code>union</code>&#x5C01;&#x88C5;&#x5728;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x5B89;&#x5168;&#x7684;&#x8BBF;&#x95EE;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x5B89;&#x5168;&#x62BD;&#x8C61;&#x6A21;&#x5F0F;&#x3002;</p>
+<pre><code class="lang-Rust"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SafeData</span></span> {
+   data: DataUnion,
+   data_type: DataType,
+}
+
+<span class="hljs-keyword">impl</span> SafeData {
+   <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new_int</span></span>(value: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">Self</span> {
+       SafeData {
+           data: DataUnion { int_value: value },
+           data_type: DataType::Int,
+       }
+   }
+
+   <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new_float</span></span>(value: <span class="hljs-keyword">f32</span>) -&gt; <span class="hljs-keyword">Self</span> {
+       SafeData {
+           data: DataUnion { float_value: value },
+           data_type: DataType::Float,
+       }
+   }
+
+   <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_int</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">i32</span>&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> DataType::Int = <span class="hljs-keyword">self</span>.data_type {
+            <span class="hljs-keyword">unsafe</span> { <span class="hljs-literal">Some</span>(<span class="hljs-keyword">self</span>.data.int_value) }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">None</span>
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_float</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">f32</span>&gt; {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> DataType::Float = <span class="hljs-keyword">self</span>.data_type {
+            <span class="hljs-keyword">unsafe</span> { <span class="hljs-literal">Some</span>(<span class="hljs-keyword">self</span>.data.float_value) }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">None</span>
+        }
+    }
+}
+</code></pre>
+<p>&#x8BB0;&#x4F4F;&#xFF1A;<code>unsafe</code>&#x4E0D;&#x662F;&#x4E07;&#x80FD;&#x836F;&#xFF0C;&#x6B63;&#x786E;&#x4F7F;&#x7528;&#x624D;&#x80FD;&#x53D1;&#x6325; Rust &#x7684;&#x6700;&#x5927;&#x5A01;&#x529B;&#x3002;</p>
+<p>&#x638C;&#x63E1;&#x8FD9;&#x4E9B;&#x6838;&#x5FC3;&#x80FD;&#x529B;&#x540E;&#xFF0C;&#x4F60;&#x5C06;&#x80FD;&#x5728;&#x5B89;&#x5168;&#x4E0E;&#x6027;&#x80FD;&#x4E4B;&#x95F4;&#x627E;&#x5230;&#x5B8C;&#x7F8E;&#x5E73;&#x8861;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="18-macro.html" class="navigation navigation-prev " aria-label="Previous page: Rust 宏全解析：从基础到实战，掌握代码生成魔法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../web3/" class="navigation navigation-next " aria-label="Next page: Web3">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust 进阶修炼：掌握 Unsafe 编程的核心能力","level":"1.2.19","depth":2,"next":{"title":"Web3","level":"1.3","depth":1,"path":"web3/README.md","ref":"web3/README.md","articles":[{"title":"前端工程师，你了解Web3了么？","level":"1.3.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},{"title":"web3世界的通行证-加密钱包","level":"1.3.2","depth":2,"path":"web3/2-wallet.md","ref":"web3/2-wallet.md","articles":[]}]},"previous":{"title":"Rust 宏全解析：从基础到实战，掌握代码生成魔法","level":"1.2.18","depth":2,"path":"rust/18-macro.md","ref":"rust/18-macro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"rust/19-unsafe.md","mtime":"2025-04-16T12:18:22.528Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-04-16T12:19:31.928Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
