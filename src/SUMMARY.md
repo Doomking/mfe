@@ -21,6 +21,7 @@
     * [Rust异步编程：从入门到精通](rust/17-async.md)
     * [Rust 宏全解析：从基础到实战，掌握代码生成魔法](rust/18-macro.md)
     * [Rust 进阶修炼：掌握 Unsafe 编程的核心能力](rust/19-unsafe.md)
+    * [Rust FFI实战指南：跨越语言边界的优雅之道](rust/20-ffi.md)
 * [Web3](web3/README.md)
     * [前端工程师，你了解Web3了么？](web3/1-web3.md)
     * [web3世界的通行证-加密钱包](web3/2-wallet.md)
