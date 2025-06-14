@@ -1,0 +1,921 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust+Wasm利器：用wasm-pack引爆前端性能！ · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../rust/" />
+    
+    
+    <link rel="prev" href="1-intro.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="2-wasm-pack.html">
+            
+                <a href="2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust+Wasm利器：用wasm-pack引爆前端性能！</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4614685ad832403f9bf487eda300497b~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1747032598&amp;x-orig-sign=jXyVEBwgJ5g1SdSHDFK%2FwVi0zPo%3D" alt="197605d8-d36f-4347-9fba-e1fa2915aebc_1746803106274269925_origin~tplv-a9rns2rl98-image-qvalue.jpeg"></p>
+<ul>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E00;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/1-intro.html" target="_blank">&#x5F53; Rust &#x9047;&#x89C1; WebAssembly&#xFF1A;Wasm &#x4E0E; Rust &#x751F;&#x6001;&#x521D;&#x63A2;&#xFF08;&#x5165;&#x95E8;&#x7BC7;&#xFF09;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E8C;&#xFF1A;Rust+Wasm&#x5229;&#x5668;&#xFF1A;&#x7528;wasm-pack&#x5F15;&#x7206;&#x524D;&#x7AEF;&#x6027;&#x80FD;&#xFF01;</p>
+</li>
+</ul>
+<h1 id="rustwasm&#x5229;&#x5668;&#xFF1A;&#x7528;wasm-pack&#x5F15;&#x7206;&#x524D;&#x7AEF;&#x6027;&#x80FD;&#xFF01;">Rust+Wasm&#x5229;&#x5668;&#xFF1A;&#x7528;wasm-pack&#x5F15;&#x7206;&#x524D;&#x7AEF;&#x6027;&#x80FD;&#xFF01;</h1>
+<h2 id="&#x4E00;&#x3001;&#x6DF1;&#x5165;&#x89E3;&#x6790;-wasm-pack&#xFF1A;rust-&#x4E0E;-wasm-&#x7684;&#x6865;&#x6881;">&#x4E00;&#x3001;&#x6DF1;&#x5165;&#x89E3;&#x6790; wasm-pack&#xFF1A;Rust &#x4E0E; Wasm &#x7684;&#x6865;&#x6881;</h2>
+<h3 id="11-wasm-pack-&#x6838;&#x5FC3;&#x539F;&#x7406;">1.1 wasm-pack &#x6838;&#x5FC3;&#x539F;&#x7406;</h3>
+<p><code>wasm-pack</code> &#x662F; Rust &#x751F;&#x6001;&#x4E2D;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x6784;&#x5EFA; WebAssembly &#x6A21;&#x5757;&#x7684;&#x9AD8;&#x6548;&#x5DE5;&#x5177;&#xFF0C;&#x5176;&#x6838;&#x5FC3;&#x5728;&#x4E8E;&#x6574;&#x5408; <code>rustc</code>&#x3001;<code>wasm-bindgen</code> &#x7B49;&#x5DE5;&#x5177;&#x94FE;&#xFF0C;&#x5B9E;&#x73B0; Rust &#x4EE3;&#x7801;&#x5230; Wasm &#x6A21;&#x5757;&#x7684;&#x65E0;&#x7F1D;&#x8F6C;&#x6362;&#x3002;</p>
+<p>&#x5B83;&#x901A;&#x8FC7;&#x89E3;&#x6790; <code>Cargo.toml</code> &#x914D;&#x7F6E;&#xFF0C;&#x81EA;&#x52A8;&#x751F;&#x6210; JavaScript &#x80F6;&#x6C34;&#x4EE3;&#x7801;&#xFF08;Glue Code&#xFF09;&#xFF0C;&#x89E3;&#x51B3; Rust &#x4E0E; JavaScript &#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x6620;&#x5C04;&#x548C;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x95EE;&#x9898;&#xFF0C;&#x540C;&#x65F6;&#x786E;&#x4FDD;&#x7F16;&#x8BD1;&#x540E;&#x7684; Wasm &#x6A21;&#x5757;&#x7B26;&#x5408; Web &#x6807;&#x51C6;&#x89C4;&#x8303;&#xFF0C;&#x652F;&#x6301;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x548C; Node.js &#x73AF;&#x5883;&#x4E2D;&#x8FD0;&#x884C;&#x3002;  </p>
+<h3 id="12-&#x6838;&#x5FC3;&#x529F;&#x80FD;">1.2 &#x6838;&#x5FC3;&#x529F;&#x80FD;</h3>
+<ul>
+<li><strong>&#x4E00;&#x952E;&#x5F0F;&#x6784;&#x5EFA;</strong>&#xFF1A;&#x901A;&#x8FC7; <code>wasm-pack build</code> &#x547D;&#x4EE4;&#xFF0C;&#x81EA;&#x52A8;&#x5B8C;&#x6210; Rust &#x4EE3;&#x7801;&#x7F16;&#x8BD1;&#x3001;Wasm &#x6A21;&#x5757;&#x4F18;&#x5316;&#x53CA; JavaScript &#x7ED1;&#x5B9A;&#x751F;&#x6210;&#xFF0C;&#x65E0;&#x9700;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x590D;&#x6742;&#x7684;&#x7F16;&#x8BD1;&#x53C2;&#x6570;&#x3002;  </li>
+<li><strong>&#x5305;&#x7BA1;&#x7406;&#x96C6;&#x6210;</strong>&#xFF1A;&#x81EA;&#x52A8;&#x751F;&#x6210; <code>package.json</code>&#xFF0C;&#x652F;&#x6301;&#x901A;&#x8FC7; npm &#x8FDB;&#x884C;&#x4F9D;&#x8D56;&#x7BA1;&#x7406;&#x548C;&#x7248;&#x672C;&#x53D1;&#x5E03;&#xFF0C;&#x517C;&#x5BB9;&#x73B0;&#x4EE3;&#x524D;&#x7AEF;&#x5DE5;&#x7A0B;&#x5316;&#x6D41;&#x7A0B;&#x3002;  </li>
+<li><strong>&#x591A;&#x73AF;&#x5883;&#x9002;&#x914D;</strong>&#xFF1A;&#x652F;&#x6301;&#x751F;&#x6210;&#x4E0D;&#x540C;&#x73AF;&#x5883;&#xFF08;&#x6D4F;&#x89C8;&#x5668;&#x3001;Node.js&#x3001;Web Workers&#xFF09;&#x7684;&#x6784;&#x5EFA;&#x4EA7;&#x7269;&#xFF0C;&#x9002;&#x914D;&#x591A;&#x6837;&#x5316;&#x7684;&#x8FD0;&#x884C;&#x573A;&#x666F;&#x3002;  </li>
+<li><strong>&#x5F00;&#x53D1;&#x53CB;&#x597D;&#x6027;</strong>&#xFF1A;&#x63D0;&#x4F9B;&#x6E05;&#x6670;&#x7684;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#x548C;&#x6784;&#x5EFA;&#x65E5;&#x5FD7;&#xFF0C;&#x96C6;&#x6210; <code>wasm-bindgen-test</code> &#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7AEF;&#x6D4B;&#x8BD5;&#xFF0C;&#x63D0;&#x5347;&#x5F00;&#x53D1;&#x8C03;&#x8BD5;&#x6548;&#x7387;&#x3002;  </li>
+</ul>
+<h3 id="12-&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;">1.2 &#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;</h3>
+<p>&#x5F53;&#x4F60;&#x8FD0;&#x884C; <code>wasm-pack build</code> &#x65F6;&#xFF0C;&#x80CC;&#x540E;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;&#x4E00;&#x5F20;&#x56FE;&#x770B;&#x61C2;&#xFF1A;</p>
+<pre><code>               &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x4F60;&#x7684;Rust&#x4EE3;&#x7801;    &#x2502; #[wasm_bindgen]  &#x2502;
+(.rs)          &#x2502; fn my_func() {}  &#x2502;
+               &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+                        &#x2502;
+                        &#x25BC;
+                &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+                &#x2502; wasm-pack build&#x2502;
+                &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+                        &#x2502;
+            &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+            &#x25BC;                         &#x25BC;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;       &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; cargo build     &#x2502;       &#x2502;   wasm-bindgen   &#x2502;
+    &#x2502;(&#x7F16;&#x8BD1;&#x6210; .wasm)    &#x2502;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25B6;&#x2502; (&#x751F;&#x6210; JS/TS &#x80F6;&#x6C34;) &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;       &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+            &#x2502;
+            &#x25BC;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;     &#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684; npm &#x5305; &#xFF08;`pkg` &#x76EE;&#x5F55;&#xFF09;&#x2502;
+    &#x2502;                                  &#x2502;
+    &#x2502; - a_project_bg.wasm &#xFF08;&#x6838;&#x5FC3; Wasm&#xFF09; &#x2502;
+    &#x2502; - a_project.js       &#xFF08;JS &#x63A5;&#x53E3;&#xFF09;  &#x2502;
+    &#x2502; - a_project.d.ts     &#xFF08;TS &#x7C7B;&#x578B;&#xFF09;  &#x2502;
+    &#x2502; - package.json       &#xFF08;&#x5305;&#x63CF;&#x8FF0;&#xFF09;    &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+</code></pre><p>&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x5168;&#x81EA;&#x52A8;&#x5B8C;&#x6210;&#xFF0C;&#x53EA;&#x9700;&#x6572;&#x4E0B;&#x4E00;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x524D;&#x7AEF;&#x9879;&#x76EE;&#x4E2D; <code>import</code> &#x7684;&#x73B0;&#x4EE3;&#x5316;&#x6A21;&#x5757;&#xFF01;</p>
+<h3 id="13-&#x6838;&#x5FC3;&#x547D;&#x4EE4;">1.3 &#x6838;&#x5FC3;&#x547D;&#x4EE4;</h3>
+<ul>
+<li><strong>&#x521B;&#x5EFA;</strong>
+<code>wasm-pack neww</code> &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; RustWasm &#x9879;&#x76EE;&#x3002;&#x5B83;&#x4F9D;&#x8D56;<code>cargo-generate</code>&#x547D;&#x4EE4;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E00;&#x4E2A; Rust &#x9879;&#x76EE;&#x7ED3;&#x6784;&#xFF0C;&#x5305;&#x62EC; <code>src/lib.rs</code>&#x3001;<code>Cargo.toml</code> &#x7B49;&#x6587;&#x4EF6;&#x3002;<pre><code class="lang-bash">wasm-pack new &lt;name&gt; --template &lt;template&gt; --mode &lt;normal|noinstall|force&gt;
+</code></pre>
+&#x5176;&#x4E2D;&#xFF1A;<ul>
+<li><code>&lt;name&gt;</code>&#xFF1A;&#x9879;&#x76EE;&#x540D;&#x79F0;&#xFF1B;</li>
+<li><code>--template</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x6A21;&#x677F;&#xFF0C;&#x9ED8;&#x8BA4;&#x6A21;&#x7248;&#xFF1A;rustwasm/wasm-pack-template</li>
+<li><code>--mode</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x751F;&#x6210;&#x6A21;&#x5F0F;&#xFF0C;&#x5982; <code>normal</code>&#xFF08;&#x9ED8;&#x8BA4;&#xFF09;&#x3001;<code>noinstall</code>&#x3001;<code>force</code>&#x3002;</li>
+</ul>
+</li>
+<li><strong>&#x6784;&#x5EFA;</strong>
+  <code>wasm-pack build</code> &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x7F16;&#x8BD1; Rust &#x4EE3;&#x7801;&#x5E76;&#x751F;&#x6210; Wasm &#x6A21;&#x5757;&#x548C; JavaScript &#x7ED1;&#x5B9A;&#x3002;&#x5B83;&#x4F1A;&#x81EA;&#x52A8;&#x5904;&#x7406; Rust &#x4EE3;&#x7801;&#x5230; Wasm &#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x540C;&#x65F6;&#x751F;&#x6210; JavaScript &#x63A5;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x5F97; Rust &#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5728;&#x524D;&#x7AEF;&#x4EE3;&#x7801;&#x4E2D;&#x88AB;&#x8C03;&#x7528;&#x3002;<pre><code class="lang-bash">  wasm-pack build [--target &lt;target&gt;] [--release] [--dev]
+</code></pre>
+  &#x5176;&#x4E2D;&#xFF1A;<ul>
+<li><code>--target</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x5E73;&#x53F0;&#xFF0C;&#x5982; <code>web</code>&#x3001;<code>nodejs</code>&#x3001;<code>bundler</code> &#x7B49;&#x3002;</li>
+<li><code>--release</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x542F;&#x7528;&#x53D1;&#x5E03;&#x6A21;&#x5F0F;&#xFF0C;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x7F16;&#x8BD1;&#x3002;</li>
+<li><code>--dev</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x542F;&#x7528;&#x5F00;&#x53D1;&#x6A21;&#x5F0F;&#xFF0C;&#x751F;&#x6210;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x3002;</li>
+</ul>
+</li>
+<li><strong>&#x6D4B;&#x8BD5;</strong>
+  <code>wasm-pack test</code> &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x3002;&#x5B83;&#x4F1A;&#x81EA;&#x52A8;&#x7F16;&#x8BD1; Rust &#x4EE3;&#x7801;&#x5E76;&#x6267;&#x884C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#xFF0C;&#x786E;&#x4FDD;&#x4EE3;&#x7801;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;<pre><code class="lang-bash">  wasm-pack <span class="hljs-built_in">test</span> [--headless] [--firefox] [--chrome] [--safari] [--edge] [--node]
+</code></pre>
+  &#x5176;&#x4E2D;&#xFF1A;<ul>
+<li><code>--headless</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x542F;&#x7528;&#x65E0;&#x5934;&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x65E0;&#x5934;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x3002;</li>
+<li><code>--firefox</code>&#x3001;<code>--chrome</code>&#x3001;<code>--safari</code>&#x3001;<code>--edge</code>&#x3001;<code>--node</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x8981;&#x8FD0;&#x884C;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x6216;&#x73AF;&#x5883;&#x3002;</li>
+</ul>
+</li>
+<li><strong>&#x6253;&#x5305;</strong>&#xFF1A;
+<code>wasm-pack pack</code> &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x5C06;&#x6784;&#x5EFA;&#x597D;&#x7684; Wasm &#x6A21;&#x5757;&#x548C; JavaScript &#x7ED1;&#x5B9A;&#x6253;&#x5305;&#x6210;<code>.tgz</code>&#x6587;&#x4EF6;&#xFF0C;tgz&#x6587;&#x4EF6;&#x4F1A;&#x751F;&#x6210;&#x5728;<code>pkg</code>&#x76EE;&#x5F55;&#x4E0B;&#x3002;&#x7528;&#x4E8E;&#x53D1;&#x5E03;&#x5230; npm &#x4ED3;&#x5E93;&#x3002;<pre><code class="lang-bash">wasm-pack pack [--pkg-dir &lt;pkg-dir&gt;]
+</code></pre>
+&#x5176;&#x4E2D;&#xFF1A;<ul>
+<li><code>--pkg-dir</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x8F93;&#x51FA;&#x76EE;&#x5F55;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>pkg</code>&#x3002;</li>
+</ul>
+</li>
+<li><strong>&#x53D1;&#x5E03;</strong>&#xFF1A;
+<code>wasm-pack publish</code> &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x5C06;&#x6784;&#x5EFA;&#x597D;&#x7684; Wasm &#x6A21;&#x5757;&#x548C; JavaScript &#x7ED1;&#x5B9A;&#x53D1;&#x5E03;&#x5230; npm &#x4ED3;&#x5E93;&#x3002;<pre><code class="lang-bash">wasm-pack publish [--target &lt;bundler|nodejs|web|no-modules&gt;] [--access &lt;public|restricted&gt;] [--tag] [--pkg-dir &lt;pkg-dir&gt;]
+</code></pre>
+&#x5176;&#x4E2D;&#xFF1A;<ul>
+<li><code>--access</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x5305;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>public</code>&#xFF1B;</li>
+<li><code>--tag</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x6807;&#x7B7E;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>latest</code>&#xFF1B;</li>
+<li><code>--pkg-dir</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x8F93;&#x51FA;&#x76EE;&#x5F55;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>pkg</code>&#xFF1B;</li>
+<li><code>--target</code>&#xFF1A;&#x53EF;&#x9009;&#xFF0C;&#x6307;&#x5B9A;&#x76EE;&#x6807;&#x5E73;&#x53F0;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; <code>bundler</code>&#xFF1B;</li>
+</ul>
+</li>
+<li><strong>&#x5E2E;&#x52A9;</strong>&#xFF1A;<code>wasm-pack --help</code>&#xFF0C;&#x67E5;&#x770B;&#x547D;&#x4EE4;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#xFF1B;</li>
+</ul>
+<h2 id="&#x4E8C;&#x3001;&#x4ECE;-0-&#x5230;-1&#xFF1A;wasm-pack-&#x5F00;&#x53D1;&#x6307;&#x5357;">&#x4E8C;&#x3001;&#x4ECE; 0 &#x5230; 1&#xFF1A;wasm-pack &#x5F00;&#x53D1;&#x6307;&#x5357;</h2>
+<h3 id="21-&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x4E0E;&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;">2.1 &#x73AF;&#x5883;&#x642D;&#x5EFA;&#x4E0E;&#x9879;&#x76EE;&#x521D;&#x59CB;&#x5316;</h3>
+<h4 id="211-&#x5FC5;&#x5907;&#x5DE5;&#x5177;&#x5B89;&#x88C5;">2.1.1 &#x5FC5;&#x5907;&#x5DE5;&#x5177;&#x5B89;&#x88C5;</h4>
+<ul>
+<li><strong>Rust &#x73AF;&#x5883;</strong>&#xFF1A;&#x901A;&#x8FC7; <code>rustup</code> &#x5B89;&#x88C5; Rust&#xFF0C;&#x4F7F;&#x7528;<code>rustup target add wasm32-unknown-unknown</code>&#x914D;&#x7F6E;&#x76EE;&#x6807;&#x67B6;&#x6784;&#x4E3A; <code>wasm32-unknown-unknown</code>&#xFF0C;&#x786E;&#x4FDD;&#x7F16;&#x8BD1;&#x8F93;&#x51FA;&#x4E3A; Wasm &#x683C;&#x5F0F;&#x3002;  </li>
+<li><strong>wasm-pack</strong>&#xFF1A;&#x4F7F;&#x7528; <code>cargo install wasm-pack</code> <a href="https://rustwasm.github.io/wasm-pack/installer/" target="_blank">&#x5B89;&#x88C5;</a>&#xFF0C;&#x652F;&#x6301;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x5FEB;&#x901F;&#x8C03;&#x7528;&#x6838;&#x5FC3;&#x529F;&#x80FD;&#x3002;  </li>
+<li><strong>Node.js &#x4E0E; npm</strong>&#xFF1A;&#x7528;&#x4E8E;&#x524D;&#x7AEF;&#x96C6;&#x6210;&#x548C;&#x5305;&#x7BA1;&#x7406;&#xFF0C;&#x9700;&#x786E;&#x4FDD;&#x7248;&#x672C;&#x517C;&#x5BB9;&#x73B0;&#x4EE3; npm &#x5DE5;&#x4F5C;&#x6D41;&#x3002;  </li>
+</ul>
+<h4 id="212-&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;">2.1.2 &#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</h4>
+<pre><code class="lang-bash">wasm-pack new hello-wasm
+</code></pre>
+<h3 id="22-&#x4EE3;&#x7801;&#x5F00;&#x53D1;&#x4E0E;&#x63A5;&#x53E3;&#x5BFC;&#x51FA;">2.2 &#x4EE3;&#x7801;&#x5F00;&#x53D1;&#x4E0E;&#x63A5;&#x53E3;&#x5BFC;&#x51FA;</h3>
+<h4 id="221-&#x7F16;&#x5199;-rust-&#x903B;&#x8F91;">2.2.1 &#x7F16;&#x5199; Rust &#x903B;&#x8F91;</h4>
+<p>&#x5728; <code>src/lib.rs</code> &#x4E2D;&#x5B9A;&#x4E49;&#x53EF;&#x5BFC;&#x51FA;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x901A;&#x8FC7; <code>wasm-bindgen</code> &#x5B8F;&#x58F0;&#x660E;&#x5BF9;&#x5916;&#x63A5;&#x53E3;&#xFF1A;  </p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen;  
+
+<span class="hljs-meta">#[wasm_bindgen]</span>  
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add</span></span>(a: <span class="hljs-keyword">i32</span>, b: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {  
+    a + b  
+}  
+
+<span class="hljs-meta">#[wasm_bindgen]</span>  
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MathUtils</span></span> {  
+    value: <span class="hljs-keyword">i32</span>,  
+}  
+
+<span class="hljs-meta">#[wasm_bindgen]</span>  
+<span class="hljs-keyword">impl</span> MathUtils {  
+    <span class="hljs-meta">#[wasm_bindgen(constructor)]</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new</span></span>(value: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">Self</span> {  
+        MathUtils { value }  
+    }  
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">multiply</span></span>(&amp;<span class="hljs-keyword">self</span>, factor: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {  
+        <span class="hljs-keyword">self</span>.value * factor  
+    }  
+}
+</code></pre>
+<h4 id="222-&#x914D;&#x7F6E;-cargotoml">2.2.2 &#x914D;&#x7F6E; Cargo.toml</h4>
+<p>&#x6307;&#x5B9A; crate &#x7C7B;&#x578B;&#x4E3A; <code>cdylib</code>&#xFF0C;&#x5F15;&#x5165; <code>wasm-bindgen</code> &#x4F9D;&#x8D56;&#xFF1A;  </p>
+<pre><code class="lang-toml"><span class="hljs-section">[package]</span>  
+<span class="hljs-attr">name</span> = <span class="hljs-string">&quot;hello_wasm&quot;</span>  
+<span class="hljs-attr">version</span> = <span class="hljs-string">&quot;0.1.0&quot;</span>  
+<span class="hljs-attr">edition</span> = <span class="hljs-string">&quot;2021&quot;</span>  
+<span class="hljs-section">
+[lib]</span>  
+<span class="hljs-attr">crate-type</span> = [<span class="hljs-string">&quot;cdylib&quot;</span>]  
+<span class="hljs-section">
+[dependencies]</span>  
+<span class="hljs-attr">wasm-bindgen</span> = <span class="hljs-string">&quot;0.2&quot;</span>
+</code></pre>
+<h3 id="23-&#x6D4B;&#x8BD5;&#x9A71;&#x52A8;&#x5F00;&#x53D1;&#xFF08;tdd&#xFF09;">2.3 &#x6D4B;&#x8BD5;&#x9A71;&#x52A8;&#x5F00;&#x53D1;&#xFF08;TDD&#xFF09;</h3>
+<h4 id="231-&#x5355;&#x5143;&#x6D4B;&#x8BD5;">2.3.1 &#x5355;&#x5143;&#x6D4B;&#x8BD5;</h4>
+<p>&#x4F7F;&#x7528; <code>wasm-bindgen-test</code> &#x7F16;&#x5199;&#x6D4F;&#x89C8;&#x5668;&#x7AEF;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#xFF0C;&#x4FDD;&#x5B58;&#x4E8E; <code>tests/</code> &#x76EE;&#x5F55;&#xFF1A;  </p>
+<pre><code class="lang-rust"><span class="hljs-meta">#[cfg(test)]</span>  
+<span class="hljs-keyword">mod</span> tests {  
+    <span class="hljs-keyword">use</span> super::*;  
+    <span class="hljs-keyword">use</span> wasm_bindgen_test::{wasm_bindgen_test, wasm_bindgen_test_configure};
+
+    <span class="hljs-comment">// &#x914D;&#x7F6E;&#x6D4B;&#x8BD5;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;&#x4E2D;&#x8FD0;&#x884C;</span>
+    wasm_bindgen_test_configure!(run_in_browser);  
+
+    <span class="hljs-meta">#[wasm_bindgen_test]</span>  
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">test_add</span></span>() {  
+        <span class="hljs-built_in">assert_eq!</span>(add(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>), <span class="hljs-number">5</span>);  
+    }  
+
+    <span class="hljs-meta">#[wasm_bindgen_test]</span>  
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">test_math_utils</span></span>() {  
+        <span class="hljs-keyword">let</span> utils = MathUtils::new(<span class="hljs-number">4</span>);  
+        <span class="hljs-built_in">assert_eq!</span>(utils.multiply(<span class="hljs-number">3</span>), <span class="hljs-number">12</span>);  
+    }  
+}
+</code></pre>
+<h4 id="232-&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;">2.3.2 &#x8FD0;&#x884C;&#x6D4B;&#x8BD5;</h4>
+<pre><code class="lang-bash">wasm-pack <span class="hljs-built_in">test</span> --headless --chrome <span class="hljs-comment"># &#x5728;&#x65E0;&#x5934;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x6267;&#x884C;&#x6D4B;&#x8BD5;</span>
+</code></pre>
+<h2 id="&#x4E09;&#x3001;&#x6784;&#x5EFA;&#x3001;&#x6253;&#x5305;&#x4E0E;&#x53D1;&#x5E03;&#xFF1A;&#x4ECE;&#x672C;&#x5730;&#x5230;&#x751F;&#x4EA7;&#x73AF;&#x5883;">&#x4E09;&#x3001;&#x6784;&#x5EFA;&#x3001;&#x6253;&#x5305;&#x4E0E;&#x53D1;&#x5E03;&#xFF1A;&#x4ECE;&#x672C;&#x5730;&#x5230;&#x751F;&#x4EA7;&#x73AF;&#x5883;</h2>
+<h3 id="31-&#x6784;&#x5EFA;&#x4F18;&#x5316;&#x4E0E;&#x4EA7;&#x7269;&#x751F;&#x6210;">3.1 &#x6784;&#x5EFA;&#x4F18;&#x5316;&#x4E0E;&#x4EA7;&#x7269;&#x751F;&#x6210;</h3>
+<h4 id="311-&#x5F00;&#x53D1;&#x6A21;&#x5F0F;&#x6784;&#x5EFA;">3.1.1 &#x5F00;&#x53D1;&#x6A21;&#x5F0F;&#x6784;&#x5EFA;</h4>
+<pre><code class="lang-bash">wasm-pack build --dev  <span class="hljs-comment"># &#x751F;&#x6210;&#x672A;&#x4F18;&#x5316;&#x7684;&#x8C03;&#x8BD5;&#x7248;&#x672C;&#xFF0C;&#x5305;&#x542B;&#x8BE6;&#x7EC6;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;</span>
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x76EE;&#x5F55; <code>pkg/</code> &#x5305;&#x542B; <code>.wasm</code> &#x6587;&#x4EF6;&#x3001;JS &#x7ED1;&#x5B9A;&#x6587;&#x4EF6;&#x53CA; <code>package.json</code>&#xFF0C;&#x652F;&#x6301;&#x76F4;&#x63A5;&#x5F15;&#x5165;&#x524D;&#x7AEF;&#x9879;&#x76EE;&#x3002;  </p>
+<h4 id="312-&#x751F;&#x4EA7;&#x6A21;&#x5F0F;&#x6784;&#x5EFA;">3.1.2 &#x751F;&#x4EA7;&#x6A21;&#x5F0F;&#x6784;&#x5EFA;</h4>
+<pre><code class="lang-bash">wasm-pack build --release  <span class="hljs-comment"># &#x542F;&#x7528;&#x7F16;&#x8BD1;&#x5668;&#x4F18;&#x5316;&#xFF0C;&#x51CF;&#x5C0F;&#x6587;&#x4EF6;&#x4F53;&#x79EF;&#x5E76;&#x63D0;&#x5347;&#x6267;&#x884C;&#x6548;&#x7387;</span>
+</code></pre>
+<p>&#x901A;&#x8FC7;&#x914D;&#x7F6E; <code>Cargo.toml</code> &#x4E2D;&#x7684; <code>[profile.release]</code>&#xFF0C;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x4F18;&#x5316;&#x7F16;&#x8BD1;&#x53C2;&#x6570;&#xFF08;&#x5982;&#x5F00;&#x542F;&#x94FE;&#x63A5;&#x65F6;&#x4F18;&#x5316; <code>lto = true</code>, &#x5373;<code>Link Time Optimization&#xFF08;&#x94FE;&#x63A5;&#x65F6;&#x4F18;&#x5316;&#xFF09;</code>&#xFF09;&#x3002;  </p>
+<h3 id="32-&#x53D1;&#x5E03;&#x5230;-npm-&#x4ED3;&#x5E93;">3.2 &#x53D1;&#x5E03;&#x5230; npm &#x4ED3;&#x5E93;</h3>
+<h4 id="321-&#x521D;&#x59CB;&#x5316;-npm-&#x5305;">3.2.1 &#x521D;&#x59CB;&#x5316; npm &#x5305;</h4>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> pkg  
+wasm-pack pack  <span class="hljs-comment"># &#x751F;&#x6210; tgz &#x5305; </span>
+wasm-pack publish  <span class="hljs-comment"># &#x53D1;&#x5E03;&#x5230; npm &#x4ED3;&#x5E93;</span>
+</code></pre>
+<h3 id="33-&#x524D;&#x7AEF;&#x9879;&#x76EE;&#x96C6;&#x6210;&#x793A;&#x4F8B;">3.3 &#x524D;&#x7AEF;&#x9879;&#x76EE;&#x96C6;&#x6210;&#x793A;&#x4F8B;</h3>
+<h4 id="331-&#x5B89;&#x88C5;&#x4F9D;&#x8D56;">3.3.1 &#x5B89;&#x88C5;&#x4F9D;&#x8D56;</h4>
+<pre><code class="lang-bash">npm install hello-wasm   <span class="hljs-comment"># &#x6216;&#x672C;&#x5730;&#x5F15;&#x7528; pkg &#x76EE;&#x5F55;</span>
+</code></pre>
+<h4 id="332-javascript-&#x8C03;&#x7528;">3.3.2 JavaScript &#x8C03;&#x7528;</h4>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { add, MathUtils } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;hello-wasm&apos;</span>;  
+init().then(() =&gt; {
+  <span class="hljs-built_in">console</span>.log(add(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>));  <span class="hljs-comment">// &#x8F93;&#x51FA; 30</span>
+  <span class="hljs-keyword">const</span> utils = <span class="hljs-keyword">new</span> MathUtils(<span class="hljs-number">5</span>);
+  <span class="hljs-built_in">console</span>.log(utils.multiply(<span class="hljs-number">4</span>));  <span class="hljs-comment">// &#x8F93;&#x51FA; 20</span>
+});
+</code></pre>
+<h4 id="333-webpack-&#x914D;&#x7F6E;&#xFF08;&#x53EF;&#x9009;&#xFF09;">3.3.3 Webpack &#x914D;&#x7F6E;&#xFF08;&#x53EF;&#x9009;&#xFF09;</h4>
+<p>&#x5728; <code>webpack.config.js</code> &#x4E2D;&#x6DFB;&#x52A0; Wasm &#x6A21;&#x5757;&#x89E3;&#x6790;&#x89C4;&#x5219;&#xFF0C;&#x786E;&#x4FDD;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x6B63;&#x786E;&#x5904;&#x7406;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#xFF1A;  </p>
+<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {  
+  <span class="hljs-built_in">module</span>: {  
+    rules: [  
+      {  
+        test: <span class="hljs-regexp">/\.wasm$/</span>,  
+        use: <span class="hljs-string">&apos;wasm-loader&apos;</span>,  
+      },  
+    ],  
+  },  
+};
+</code></pre>
+<h2 id="&#x56DB;&#x3001;&#x603B;&#x7ED3;&#x4E0E;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;">&#x56DB;&#x3001;&#x603B;&#x7ED3;&#x4E0E;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;</h2>
+<h3 id="41-&#x5DE5;&#x5177;&#x4F18;&#x52BF;">4.1 &#x5DE5;&#x5177;&#x4F18;&#x52BF;</h3>
+<ul>
+<li><strong>&#x6548;&#x7387;&#x63D0;&#x5347;</strong>&#xFF1A;&#x544A;&#x522B;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x7F16;&#x8BD1;&#x53C2;&#x6570;&#x548C; JS &#x7ED1;&#x5B9A;&#x4EE3;&#x7801;&#xFF0C;&#x4E13;&#x6CE8;&#x6838;&#x5FC3;&#x903B;&#x8F91;&#x5F00;&#x53D1;&#x3002;  </li>
+<li><strong>&#x751F;&#x6001;&#x517C;&#x5BB9;</strong>&#xFF1A;&#x65E0;&#x7F1D;&#x96C6;&#x6210; npm &#x4E0E;&#x73B0;&#x4EE3;&#x524D;&#x7AEF;&#x5DE5;&#x5177;&#x94FE;&#xFF0C;&#x652F;&#x6301; Webpack&#x3001;Rollup &#x7B49;&#x4E3B;&#x6D41;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x3002;  </li>
+<li><strong>&#x8DE8;&#x5E73;&#x53F0;&#x90E8;&#x7F72;</strong>&#xFF1A;&#x4E00;&#x6B21;&#x7F16;&#x5199;&#xFF0C;&#x540C;&#x65F6;&#x8FD0;&#x884C;&#x4E8E;&#x6D4F;&#x89C8;&#x5668;&#x3001;Node.js &#x53CA;&#x684C;&#x9762;&#x7AEF;&#xFF08;&#x5982; Tauri &#x6846;&#x67B6;&#xFF09;&#x3002;  </li>
+</ul>
+<h3 id="42-&#x6CE8;&#x610F;&#x4E8B;&#x9879;">4.2 &#x6CE8;&#x610F;&#x4E8B;&#x9879;</h3>
+<ul>
+<li><strong>&#x7C7B;&#x578B;&#x5B89;&#x5168;</strong>&#xFF1A;&#x901A;&#x8FC7; <code>wasm-bindgen</code> &#x4E25;&#x683C;&#x5904;&#x7406; Rust &#x4E0E; JS &#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x907F;&#x514D;&#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;&#x3002;  </li>
+<li><strong>&#x6027;&#x80FD;&#x4F18;&#x5316;</strong>&#xFF1A;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x52A1;&#x5FC5;&#x542F;&#x7528;&#x7F16;&#x8BD1;&#x5668;&#x4F18;&#x5316;&#xFF08;<code>--release</code>&#xFF09;&#xFF0C;&#x5E76;&#x5229;&#x7528; <code>wasm-opt</code> &#x8FDB;&#x4E00;&#x6B65;&#x538B;&#x7F29;&#x4F53;&#x79EF;&#x3002;  </li>
+<li><strong>&#x6587;&#x6863;&#x5B8C;&#x5584;</strong>&#xFF1A;&#x5728; <code>package.json</code> &#x4E2D;&#x6DFB;&#x52A0;&#x6E05;&#x6670;&#x7684;&#x4F7F;&#x7528;&#x8BF4;&#x660E;&#xFF0C;&#x63D0;&#x5347;&#x5F00;&#x6E90;&#x5305;&#x7684;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x3002;  </li>
+</ul>
+<p>&#x901A;&#x8FC7; wasm-pack&#xFF0C;Rust &#x5F00;&#x53D1;&#x8005;&#x80FD;&#x591F;&#x8F7B;&#x677E;&#x5C06;&#x9AD8;&#x6027;&#x80FD;&#x4EE3;&#x7801;&#x8F6C;&#x5316;&#x4E3A; WebAssembly &#x6A21;&#x5757;&#xFF0C;&#x7ED3;&#x5408; JavaScript &#x751F;&#x6001;&#x5B9E;&#x73B0;&#x9AD8;&#x6548;&#x7684;&#x5168;&#x6808;&#x5F00;&#x53D1;&#x3002;&#x65E0;&#x8BBA;&#x662F;&#x8BA1;&#x7B97;&#x5BC6;&#x96C6;&#x578B;&#x5E94;&#x7528;&#x3001;&#x6E38;&#x620F;&#x5F00;&#x53D1;&#x8FD8;&#x662F;&#x8DE8;&#x5E73;&#x53F0;&#x5DE5;&#x5177;&#xFF0C;wasm-pack &#x90FD;&#x4E3A; Rust &#x4E0E; Wasm &#x7684;&#x6DF1;&#x5EA6;&#x878D;&#x5408;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7AD9;&#x5F0F;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1-intro.html" class="navigation navigation-prev " aria-label="Previous page: 当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../rust/" class="navigation navigation-next " aria-label="Next page: Rust">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust+Wasm利器：用wasm-pack引爆前端性能！","level":"1.2.2","depth":2,"next":{"title":"Rust","level":"1.3","depth":1,"path":"rust/README.md","ref":"rust/README.md","articles":[{"title":"探索 Rust 语言：性能与安全的编程新宠🎯","level":"1.3.1","depth":2,"path":"rust/1-intro.md","ref":"rust/1-intro.md","articles":[]},{"title":"Rust 基本类型：探索 Rust 编程的基础构建块","level":"1.3.2","depth":2,"path":"rust/2-baseType.md","ref":"rust/2-baseType.md","articles":[]},{"title":"Rust 所有权与 Move：内存管理的艺术","level":"1.3.3","depth":2,"path":"rust/3-ownership.md","ref":"rust/3-ownership.md","articles":[]},{"title":"Rust 引用：强大而安全的数据使用特性","level":"1.3.4","depth":2,"path":"rust/4-ref.md","ref":"rust/4-ref.md","articles":[]},{"title":"Rust 表达式：强大而独特的编程利器","level":"1.3.5","depth":2,"path":"rust/5-expression.md","ref":"rust/5-expression.md","articles":[]},{"title":"Rust 错误处理：独特而灵活多样","level":"1.3.6","depth":2,"path":"rust/6-err.md","ref":"rust/6-err.md","articles":[]},{"title":"Rust 的 crate 和模块：强大的代码组织工具","level":"1.3.7","depth":2,"path":"rust/7-crate.md","ref":"rust/7-crate.md","articles":[]},{"title":"Rust 结构体：强大而灵活的数据类型","level":"1.3.8","depth":2,"path":"rust/8-struct.md","ref":"rust/8-struct.md","articles":[]},{"title":"Rust 的枚举与模式：灵活又安全的工具","level":"1.3.9","depth":2,"path":"rust/9-enum.md","ref":"rust/9-enum.md","articles":[]},{"title":"Rust 之 trait 与泛型的奥秘","level":"1.3.10","depth":2,"path":"rust/10-trait.md","ref":"rust/10-trait.md","articles":[]},{"title":"Rust 运算符重载：开启高效编程之旅","level":"1.3.11","depth":2,"path":"rust/11-ops.md","ref":"rust/11-ops.md","articles":[]},{"title":"Rust 闭包：高效编程的秘密武器","level":"1.3.12","depth":2,"path":"rust/12-closures.md","ref":"rust/12-closures.md","articles":[]},{"title":"Rust 迭代器：从基础到实践","level":"1.3.13","depth":2,"path":"rust/13-iterator.md","ref":"rust/13-iterator.md","articles":[]},{"title":"Rust 集合：编程中的得力助手","level":"1.3.14","depth":2,"path":"rust/14-collection.md","ref":"rust/14-collection.md","articles":[]},{"title":"Rust IO魔法：输入输出大揭秘","level":"1.3.15","depth":2,"path":"rust/15-io.md","ref":"rust/15-io.md","articles":[]},{"title":"Rust并发编程：解锁高效与安全的编程新姿势","level":"1.3.16","depth":2,"path":"rust/16-concurrency.md","ref":"rust/16-concurrency.md","articles":[]},{"title":"Rust异步编程：从入门到精通","level":"1.3.17","depth":2,"path":"rust/17-async.md","ref":"rust/17-async.md","articles":[]},{"title":"Rust 宏全解析：从基础到实战，掌握代码生成魔法","level":"1.3.18","depth":2,"path":"rust/18-macro.md","ref":"rust/18-macro.md","articles":[]},{"title":"Rust 进阶修炼：掌握 Unsafe 编程的核心能力","level":"1.3.19","depth":2,"path":"rust/19-unsafe.md","ref":"rust/19-unsafe.md","articles":[]},{"title":"Rust FFI实战指南：跨越语言边界的优雅之道","level":"1.3.20","depth":2,"path":"rust/20-ffi.md","ref":"rust/20-ffi.md","articles":[]}]},"previous":{"title":"当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）","level":"1.2.1","depth":2,"path":"wasm/1-intro.md","ref":"wasm/1-intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm/2-wasm-pack.md","mtime":"2025-06-14T06:34:21.011Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-06-14T06:34:35.176Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
