@@ -3,7 +3,7 @@
 - 《Rust Wasm 探索之旅：从入门到实践》系列一：[当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）](https://doomking.github.io/mfe/wasm/1-intro.html)
 
 - 《Rust Wasm 探索之旅：从入门到实践》系列二：[Rust+Wasm利器：用wasm-pack引爆前端性能！](https://doomking.github.io/mfe/wasm/2-wasm-pack.html)
-- 《Rust Wasm 探索之旅：从入门到实践》系列二：Rust & WASM 之 `wasm-bindgen` 基础：让 Rust 与 JavaScript 无缝对话
+- 《Rust Wasm 探索之旅：从入门到实践》系列三：Rust & WASM 之 `wasm-bindgen` 基础：让 Rust 与 JavaScript 无缝对话
 
 # Rust & WASM 之 `wasm-bindgen` 基础：让 Rust 与 JavaScript 无缝对话
 
