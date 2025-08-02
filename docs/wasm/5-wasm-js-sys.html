@@ -1,0 +1,1026 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust & WebAssembly：探索js-sys的奇妙世界 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../rust/" />
+    
+    
+    <link rel="prev" href="4-wasm-bindgen-advanced.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-wasm-pack.html">
+            
+                <a href="2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-wasm-bindgen-base.html">
+            
+                <a href="3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-wasm-bindgen-advanced.html">
+            
+                <a href="4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.5" data-path="5-wasm-js-sys.html">
+            
+                <a href="5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust & WebAssembly：探索js-sys的奇妙世界</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4614685ad832403f9bf487eda300497b~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1747032598&amp;x-orig-sign=jXyVEBwgJ5g1SdSHDFK%2FwVi0zPo%3D" alt="197605d8-d36f-4347-9fba-e1fa2915aebc_1746803106274269925_origin~tplv-a9rns2rl98-image-qvalue.jpeg"></p>
+<ul>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E00;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/1-intro.html" target="_blank">&#x5F53; Rust &#x9047;&#x89C1; WebAssembly&#xFF1A;Wasm &#x4E0E; Rust &#x751F;&#x6001;&#x521D;&#x63A2;&#xFF08;&#x5165;&#x95E8;&#x7BC7;&#xFF09;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E8C;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/2-wasm-pack.html" target="_blank">Rust+Wasm&#x5229;&#x5668;&#xFF1A;&#x7528;wasm-pack&#x5F15;&#x7206;&#x524D;&#x7AEF;&#x6027;&#x80FD;&#xFF01;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E09;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/3-wasm-bindgen-base.html" target="_blank">Rust &amp; WASM &#x4E4B; <code>wasm-bindgen</code> &#x57FA;&#x7840;&#xFF1A;&#x8BA9; Rust &#x4E0E; JavaScript &#x65E0;&#x7F1D;&#x5BF9;&#x8BDD;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x56DB;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/4-wasm-bindgen-advanced.html" target="_blank">Rust &amp; WASM &#x4E4B; <code>wasm-bindgen</code> &#x8FDB;&#x9636;&#xFF1A;&#x89E3;&#x9501; Rust &#x4E0E; JS &#x7684;&#x590D;&#x6742;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x79D8;&#x7C4D;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E94;&#xFF1A;Rust &amp; WebAssembly&#xFF1A;&#x63A2;&#x7D22;js-sys&#x7684;&#x5947;&#x5999;&#x4E16;&#x754C;</p>
+</li>
+</ul>
+<h1 id="rust--webassembly&#xFF1A;&#x63A2;&#x7D22;js-sys&#x7684;&#x5947;&#x5999;&#x4E16;&#x754C;">Rust &amp; WebAssembly&#xFF1A;&#x63A2;&#x7D22;js-sys&#x7684;&#x5947;&#x5999;&#x4E16;&#x754C;</h1>
+<h2 id="&#x4E00;-js-sys-&#x5E93;&#x7B80;&#x4ECB;">&#x4E00; js-sys &#x5E93;&#x7B80;&#x4ECB;</h2>
+<p><code>js-sys</code> &#x662F; <code>wasm-bindgen</code> &#x5DE5;&#x5177;&#x94FE;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x5E95;&#x5C42;&#x6838;&#x5FC3;&#x5E93;&#x3002;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x5BF9; JavaScript &#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x548C;&#x5185;&#x7F6E;&#x5BF9;&#x8C61;&#x7684;&#x88F8;&#x7ED1;&#x5B9A;&#xFF08;raw bindings&#xFF09;&#xFF0C;&#x5373;&#x5BF9; JavaScript &#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x548C;&#x5185;&#x7F6E;&#x7C7B;&#x578B;&#x7684;<strong>&#x539F;&#x751F;&#x7ED1;&#x5B9A;</strong>&#x3002;&#x5B83;&#x4E0D;&#x6DFB;&#x52A0;&#x62BD;&#x8C61;&#x5C42;&#xFF0C;&#x8BA9;&#x4F60;&#x5728; Rust &#x4E2D;&#x76F4;&#x63A5;&#x64CD;&#x4F5C; JS &#x539F;&#x751F;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x50CF;&#x5728; JavaScript &#x4E2D;&#x4E00;&#x6837;&#x81EA;&#x7136;&#x3002;</p>
+<p>&#x901A;&#x8FC7;<code>js-sys</code>&#x5728; Rust &#x4E2D;&#x521B;&#x5EFA;&#x548C;&#x64CD;&#x4F5C; JavaScript &#x7684;<code>Object</code>&#x3001;<code>Array</code>&#x3001;<code>Function</code>&#x7B49;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x50CF;&#x5728; JavaScript &#x4E2D;&#x64CD;&#x4F5C;&#x5B83;&#x4EEC;&#x4E00;&#x6837;&#x81EA;&#x7136;&#x3002;</p>
+<p><code>js-sys</code>&#x5E93;&#x4E3A; Rust &#x4E0E; JavaScript &#x4E4B;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x5E95;&#x5C42;&#x3001;&#x66F4;&#x76F4;&#x63A5;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x662F;&#x5B9E;&#x73B0;&#x590D;&#x6742; WebAssembly &#x5E94;&#x7528;&#x7684;&#x91CD;&#x8981;&#x57FA;&#x7840;&#x3002;</p>
+<p><strong>&#x6838;&#x5FC3;&#x5B9A;&#x4F4D;</strong>&#xFF1A;</p>
+<ul>
+<li>&#x63D0;&#x4F9B;&#x88F8;&#x7ED1;&#x5B9A;&#xFF08;Raw Bindings&#xFF09;&#x5230; JavaScript &#x5185;&#x7F6E;&#x5BF9;&#x8C61;</li>
+<li>&#x652F;&#x6301;&#x6240;&#x6709; <code>ECMAScript</code> &#x6807;&#x51C6;&#x7C7B;&#x578B;</li>
+<li>&#x4F5C;&#x4E3A; <code>wasm-bindgen</code> &#x7684;&#x5E95;&#x5C42;&#x57FA;&#x7840;&#x8BBE;&#x65BD;</li>
+</ul>
+<h2 id="&#x4E8C;-js-sys-&#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x7C7B;&#x578B;&#x4F7F;&#x7528;">&#x4E8C; js-sys &#x4E2D;&#x7684;&#x5E38;&#x89C1;&#x7C7B;&#x578B;&#x4F7F;&#x7528;</h2>
+<h3 id="&#xFF08;&#x4E00;&#xFF09;object-&#x7C7B;&#x578B;">&#xFF08;&#x4E00;&#xFF09;Object &#x7C7B;&#x578B;</h3>
+<p>&#x5728; Rust &#x4E2D;&#xFF0C;&#x901A;&#x8FC7;<code>js-sys</code>&#x5E93;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x521B;&#x5EFA;&#x548C;&#x64CD;&#x4F5C; JavaScript &#x4E2D;&#x7684;<code>Object</code>&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Object::new()</code>&#x51FD;&#x6570;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;<code>Reflect::set()</code>&#x65B9;&#x6CD5;&#x6765;&#x8BBE;&#x7F6E;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4F7F;&#x7528;<code>Reflect::get()</code>&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x503C; &#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> js_sys::{Object, Reflect};
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">create_js_object</span></span>() -&gt; <span class="hljs-built_in">Result</span>&lt;Object, JsValue&gt; {
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7A7A;&#x7684; JS &#x5BF9;&#x8C61;</span>
+    <span class="hljs-keyword">let</span> obj = Object::new();
+
+    <span class="hljs-comment">// &#x4F7F;&#x7528; Reflect::set &#x6765;&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;</span>
+    <span class="hljs-comment">// Reflect.set(target, propertyKey, value)</span>
+    Reflect::set(&amp;obj, &amp;<span class="hljs-string">&quot;message&quot;</span>.into(), &amp;<span class="hljs-string">&quot;This object was born in Rust!&quot;</span>.into())?;
+    Reflect::set(&amp;obj, &amp;<span class="hljs-string">&quot;id&quot;</span>.into(), &amp;<span class="hljs-number">99</span>.into())?;
+
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5D4C;&#x5957;&#x5BF9;&#x8C61;</span>
+    <span class="hljs-keyword">let</span> nested_obj = Object::new();
+    Reflect::set(&amp;nested_obj, &amp;<span class="hljs-string">&quot;status&quot;</span>.into(), &amp;<span class="hljs-string">&quot;active&quot;</span>.into())?;
+    Reflect::set(&amp;obj, &amp;<span class="hljs-string">&quot;data&quot;</span>.into(), &amp;nested_obj.into())?;
+
+    <span class="hljs-literal">Ok</span>(obj)
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { create_js_object } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-keyword">const</span> myObject = create_js_object();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Object from Rust:&quot;</span>, myObject);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Message:&quot;</span>, myObject.message); <span class="hljs-comment">// &quot;This object was born in Rust!&quot;</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ID:&quot;</span>, myObject.id);         <span class="hljs-comment">// 99</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Nested Status:&quot;</span>, myObject.data.status); <span class="hljs-comment">// &quot;active&quot;</span>
+};
+
+run();
+</code></pre>
+<h3 id="&#xFF08;&#x4E8C;&#xFF09;array-&#x7C7B;&#x578B;">&#xFF08;&#x4E8C;&#xFF09;Array &#x7C7B;&#x578B;</h3>
+<p>&#x5229;&#x7528;<code>js-sys</code>&#x5E93;&#xFF0C;&#x5728; Rust &#x4E2D;&#x521B;&#x5EFA;&#x548C;&#x64CD;&#x4F5C; JavaScript &#x7684;<code>Array</code>&#x6570;&#x7EC4;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Array::new()</code>&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x8FC7;<code>Array::push()</code>&#x65B9;&#x6CD5;&#x6DFB;&#x52A0;&#x5143;&#x7D20; &#xFF0C;<code>Array::pop()</code>&#x65B9;&#x6CD5;&#x5220;&#x9664;&#x5143;&#x7D20;&#xFF0C;&#x4F7F;&#x7528;&#x7D22;&#x5F15;&#x6765;&#x8BBF;&#x95EE;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> js_sys::Array;
+<span class="hljs-keyword">use</span> web_sys::console;
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">use_js_array</span></span>() -&gt; Array {
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A; JavaScript &#x6570;&#x7EC4;</span>
+    <span class="hljs-keyword">let</span> arr = Array::new();
+
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x6570;&#x636E;</span>
+    arr.push(&amp;<span class="hljs-string">&quot;Rust&quot;</span>.into());
+    arr.push(&amp;<span class="hljs-number">2023</span>.into());
+    arr.push(&amp;<span class="hljs-literal">true</span>.into());
+    arr.push(&amp;JsValue::from_str(<span class="hljs-string">&quot;Hello from Rust!&quot;</span>)); <span class="hljs-comment">// &#x5B57;&#x7B26;&#x4E32;</span>
+    arr.push(&amp;JsValue::from_f64(<span class="hljs-number">123.45</span>));           <span class="hljs-comment">// &#x6570;&#x5B57;</span>
+    arr.push(&amp;JsValue::from_bool(<span class="hljs-literal">true</span>));             <span class="hljs-comment">// &#x5E03;&#x5C14;&#x503C;</span>
+
+    <span class="hljs-comment">// &#x904D;&#x5386;&#x6570;&#x7EC4;</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..arr.length() {
+        <span class="hljs-keyword">let</span> value = arr.get(i);
+        console::log_1(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Element at index {}: {:?}&quot;</span>, i, value).into());
+    }
+    arr
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { use_js_array } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-keyword">const</span> myArray = use_js_array();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Array created in Rust:&quot;</span>, myArray);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Is it a real JS Array?&quot;</span>, <span class="hljs-built_in">Array</span>.isArray(myArray)); <span class="hljs-comment">// true</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Content:&quot;</span>, myArray[<span class="hljs-number">0</span>], myArray[<span class="hljs-number">1</span>], myArray[<span class="hljs-number">2</span>]);
+};
+
+run();
+</code></pre>
+<h3 id="&#xFF08;&#x4E09;&#xFF09;function-&#x7C7B;&#x578B;">&#xFF08;&#x4E09;&#xFF09;Function &#x7C7B;&#x578B;</h3>
+<p><code>js-sys</code>&#x5E93;&#x4E2D;&#x5BF9;&#x51FD;&#x6570;&#x7C7B;&#x578B;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x5B9A;&#x4E49;&#x548C;&#x8C03;&#x7528; JavaScript &#x51FD;&#x6570;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Function::new()</code>&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684; JavaScript &#x51FD;&#x6570;&#xFF0C;&#x901A;&#x8FC7;<code>Function::call()</code>&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::{ Array, Function, Reflect };
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">call_js_callback</span></span>(callback: &amp;Function) {
+    <span class="hljs-keyword">let</span> args = Array::new();
+    args.push(&amp;<span class="hljs-string">&quot;&#x6765;&#x81EA;Rust&#x7684;&#x6D88;&#x606F;&quot;</span>.into());
+    Reflect::apply(callback, &amp;JsValue::NULL, &amp;args).unwrap();
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">create_rust_function</span></span>() -&gt; Function {
+    Function::new_with_args(<span class="hljs-string">&quot;a, b&quot;</span>, <span class="hljs-string">&quot;return a + b&quot;</span>)
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">create_function</span></span>() -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A; JavaScript &#x51FD;&#x6570;</span>
+    <span class="hljs-keyword">let</span> func = Function::new_no_args(<span class="hljs-string">&quot;
+        console.log(&apos;Hello from JavaScript!&apos;);
+    &quot;</span>);
+
+    <span class="hljs-comment">// &#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;</span>
+    func.call0(&amp;JsValue::undefined())?;
+    <span class="hljs-literal">Ok</span>(())
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { call_js_callback, create_rust_function, create_function } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-comment">// &#x8C03;&#x7528; Rust &#x521B;&#x5EFA;&#x7684;&#x51FD;&#x6570;</span>
+    <span class="hljs-keyword">const</span> addFn = create_rust_function();
+    addFn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// &#x8FD4;&#x56DE; 5</span>
+
+    <span class="hljs-comment">// &#x4F20;&#x9012;&#x56DE;&#x8C03;&#x7ED9; Rust</span>
+    call_js_callback((msg) =&gt; alert(msg));
+    create_function(); <span class="hljs-comment">// Hello from JavaScript!</span>
+};
+
+run();
+</code></pre>
+<h3 id="&#xFF08;&#x56DB;&#xFF09;date-&#x7C7B;&#x578B;">&#xFF08;&#x56DB;&#xFF09;Date &#x7C7B;&#x578B;</h3>
+<p>&#x5728;&#x5904;&#x7406;&#x65E5;&#x671F;&#x548C;&#x65F6;&#x95F4;&#x65F6;&#xFF0C;<code>js-sys</code>&#x5E93;&#x63D0;&#x4F9B;&#x4E86;<code>Date</code>&#x7C7B;&#x578B;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Date::new()</code>&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x65E5;&#x671F;&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;<code>Date::get_full_year()</code>&#x7B49;&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x65E5;&#x671F;&#x4FE1;&#x606F;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::Date;
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">format_timestamp</span></span>(ts: <span class="hljs-keyword">f64</span>) -&gt; <span class="hljs-built_in">String</span> {
+    <span class="hljs-keyword">let</span> date = Date::new(&amp;JsValue::from(ts));
+    <span class="hljs-built_in">format!</span>(
+        <span class="hljs-string">&quot;{}-{:02}-{:02}&quot;</span>,
+        date.get_full_year(),
+        date.get_month() + <span class="hljs-number">1</span>,
+        date.get_date()
+    )
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_js_timestamp</span></span>() -&gt; <span class="hljs-keyword">f64</span> {
+    <span class="hljs-comment">// &#x4F7F;&#x7528; js_sys::Date::new_0() &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; Date &#x5BF9;&#x8C61;&#xFF0C;&#x7B49;&#x540C;&#x4E8E; JS &#x7684; new Date()</span>
+    <span class="hljs-keyword">let</span> date = Date::new_0();
+
+    <span class="hljs-comment">// &#x8C03;&#x7528; getTime() &#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&#x4ECE; 1970-01-01 &#x81F3;&#x4ECA;&#x7684;&#x6BEB;&#x79D2;&#x6570;</span>
+    <span class="hljs-comment">// &#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x7684;&#x662F; f64</span>
+    date.get_time()
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { format_timestamp, get_js_timestamp } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-keyword">const</span> ts = get_js_timestamp();
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Current timestamp:&quot;</span>, ts); <span class="hljs-comment">// &#x65F6;&#x95F4;&#x6233;</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Formatted date:&quot;</span>, format_timestamp(ts)); <span class="hljs-comment">// &#x683C;&#x5F0F;&#x5316;&#x540E;&#x7684;&#x65E5;&#x671F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5982; 2025-08-01</span>
+};
+
+run();
+</code></pre>
+<h3 id="&#xFF08;&#x4E94;&#xFF09;error-&#x7C7B;&#x578B;">&#xFF08;&#x4E94;&#xFF09;Error &#x7C7B;&#x578B;</h3>
+<p>&#x901A;&#x8FC7;<code>js-sys</code>&#x5E93;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x5904;&#x7406; JavaScript &#x9519;&#x8BEF;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Error::new()</code>&#x51FD;&#x6570;&#x521B;&#x5EFA;&#x9519;&#x8BEF;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;<code>try {} catch {}</code>&#x5757;&#x4E2D;&#x6355;&#x83B7;&#x9519;&#x8BEF;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::Error;
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">validate_input</span></span>(input: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-keyword">if</span> input.is_empty() {
+        <span class="hljs-literal">Err</span>(Error::new(<span class="hljs-string">&quot;&#x8F93;&#x5165;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&quot;</span>).into())
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-literal">Ok</span>(())
+    }
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">error_msg</span></span>() {
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x5BF9;&#x8C61;</span>
+    <span class="hljs-keyword">let</span> error = Error::new(<span class="hljs-string">&quot;Something went wrong!&quot;</span>);
+
+    <span class="hljs-comment">// &#x83B7;&#x53D6;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</span>
+    <span class="hljs-keyword">let</span> message = error.message();
+    console::log_1(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Error: {}&quot;</span>, message).into());
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { validate_input, error_msg } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-keyword">try</span> {
+        validate_input(<span class="hljs-string">&quot;&quot;</span>);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Caught error:&quot;</span>, error); <span class="hljs-comment">//Caught error:&#x8F93;&#x5165;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A; ... </span>
+        error_msg(); <span class="hljs-comment">// Error: Something went wrong!</span>
+    }
+};
+
+run();
+</code></pre>
+<h3 id="&#xFF08;&#x516D;&#xFF09;promise-&#x7C7B;&#x578B;">&#xFF08;&#x516D;&#xFF09;Promise &#x7C7B;&#x578B;</h3>
+<p><code>js-sys</code>&#x5E93;&#x4E2D;<code>Promise</code>&#x7C7B;&#x578B;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x80FD;&#x5728; Rust &#x4E2D;&#x5904;&#x7406;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Promise::new()</code>&#x51FD;&#x6570;&#x521B;&#x5EFA;<code>Promise</code>&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;<code>Promise::then()</code>&#x65B9;&#x6CD5;&#x5904;&#x7406;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::{ Promise, JsValue };
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> wasm_bindgen_futures::JsFuture;
+<span class="hljs-keyword">use</span> web_sys::console;
+
+<span class="hljs-comment">// &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x5B9E;&#x73B0;&#x5EF6;&#x65F6;</span>
+async <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sleep</span></span>(ms: <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> promise = Promise::new(&amp;<span class="hljs-keyword">mut</span> |resolve, _| {
+        <span class="hljs-keyword">let</span> window = web_sys::window().unwrap();
+        window
+            .set_timeout_with_callback_and_timeout_and_arguments_0(&amp;resolve, ms)
+            .unwrap();
+    });
+    JsFuture::from(promise).await.unwrap();
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> async <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_data_after_delay</span></span>() -&gt; <span class="hljs-built_in">Result</span>&lt;JsValue, JsValue&gt; {
+    console::log_1(&amp;<span class="hljs-string">&quot;Rust: Waiting for 2 seconds...&quot;</span>.into());
+
+    <span class="hljs-comment">// &#x6A21;&#x62DF;&#x4E00;&#x4E2A;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;</span>
+    sleep(<span class="hljs-number">2000</span>).await;
+
+    <span class="hljs-keyword">let</span> message = <span class="hljs-string">&quot;Rust: Here is your data!&quot;</span>;
+    console::log_1(&amp;message.into());
+
+    <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6210;&#x529F;&#x7684;&#x7ED3;&#x679C;</span>
+    <span class="hljs-literal">Ok</span>(JsValue::from_str(message))
+}
+</code></pre>
+<p>&#x5728;JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { get_data_after_delay } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    get_data_after_delay().then((data) =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Received data:&apos;</span>, data); <span class="hljs-comment">// Received data: Rust: Here is your data!</span>
+    });
+    <span class="hljs-comment">// Rust: Waiting for 2 seconds...</span>
+    <span class="hljs-comment">// Received data: Rust: Here is your data!</span>
+};
+
+run();
+</code></pre>
+<h2 id="&#x4E09;-js-sys-&#x4E0E;-wasm-bindgen-&#x7684;&#x5173;&#x7CFB;">&#x4E09; js-sys &#x4E0E; wasm-bindgen &#x7684;&#x5173;&#x7CFB;</h2>
+<p><code>js-sys</code> &#x901A;&#x5E38;&#x4F5C;&#x4E3A; <code>wasm-bindgen</code> &#x7684;&#x5E95;&#x5C42;&#x652F;&#x6301;&#x5E93;&#x3002;</p>
+<p><code>wasm-bindgen</code> &#x662F;&#x4E00;&#x4E2A;&#x7528;&#x4E8E;&#x5728; Rust &#x548C; JavaScript &#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x9AD8;&#x6548;&#x4EA4;&#x4E92;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x9AD8;&#x7EA7;&#x7684;&#x63A5;&#x53E3;&#x548C;&#x7C7B;&#x578B;&#x5B89;&#x5168;&#x7684;&#x7ED1;&#x5B9A;&#x3002;</p>
+<p><code>js-sys</code> &#x63D0;&#x4F9B;&#x7684;&#x88F8;&#x7ED1;&#x5B9A;&#x80FD;&#x529B;&#x4F7F;&#x5F97; <code>wasm-bindgen</code> &#x80FD;&#x591F;&#x5728;&#x5E95;&#x5C42;&#x76F4;&#x63A5;&#x64CD;&#x4F5C; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x66F4;&#x590D;&#x6742;&#x7684;&#x4EA4;&#x4E92;&#x903B;&#x8F91;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x5C06; Rust &#x7684;&#x51FD;&#x6570;&#x66B4;&#x9732;&#x4E3A; JavaScript &#x53EF;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;&#x65F6;&#xFF0C;<code>wasm-bindgen</code>&#x4F1A;&#x5229;&#x7528;<code>js-sys</code>&#x6765;&#x5904;&#x7406;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x4F7F;&#x5F97; Rust &#x51FD;&#x6570;&#x80FD;&#x591F;&#x4E0E; JavaScript &#x73AF;&#x5883;&#x65E0;&#x7F1D;&#x5BF9;&#x63A5;&#x3002;</p>
+<p>&#x4E24;&#x8005;&#x534F;&#x540C;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F7F;&#x5F97;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x66F4;&#x65B9;&#x4FBF;&#x3001;&#x66F4;&#x7075;&#x6D3B;&#x5730;&#x64CD;&#x4F5C; JavaScript &#x5BF9;&#x8C61;&#xFF0C;&#x5B9E;&#x73B0;&#x5F3A;&#x5927;&#x7684; WebAssembly &#x5E94;&#x7528; &#x3002;</p>
+<h2 id="&#x56DB;-&#x4F55;&#x65F6;&#x9009;&#x62E9;&#x4F7F;&#x7528;-js-sys">&#x56DB; &#x4F55;&#x65F6;&#x9009;&#x62E9;&#x4F7F;&#x7528; js-sys</h2>
+<p>&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x8C03;&#x7528; JavaScript &#x5185;&#x7F6E;&#x5BF9;&#x8C61;&#x6216;&#x5168;&#x5C40;&#x65B9;&#x6CD5;&#x65F6;, &#x6216;&#x8005;&#x6027;&#x80FD;&#x654F;&#x611F;&#x7684;&#x573A;&#x666F;&#x4E0B;&#xFF0C;<code>js-sys</code>&#x5C31;&#x6D3E;&#x4E0A;&#x7528;&#x573A;&#x4E86; &#x3002;</p>
+<p>&#x5728;&#x4EE5;&#x4E0B;&#x573A;&#x666F;&#x4E2D;&#x53EF;&#x4EE5;&#x4F18;&#x5148;&#x8003;&#x8651;&#x4F7F;&#x7528; <code>js-sys</code>&#xFF1A;</p>
+<ul>
+<li>&#x9700;&#x8981;&#x6781;&#x81F4;&#x7684;&#x7075;&#x6D3B;&#x6027;&#xFF1A; &#x5F53;&#x5904;&#x7406;&#x975E;&#x5E38;&#x52A8;&#x6001;&#x6216;&#x8005;&#x7ED3;&#x6784;&#x4E0D;&#x5B9A;&#x7684; JavaScript &#x5BF9;&#x8C61;&#x65F6;&#xFF0C;<code>js-sys</code> &#x548C; <code>Reflect</code> &#x662F;&#x4F60;&#x7684;&#x6700;&#x4F73;&#x62CD;&#x6863;&#x3002;</li>
+<li><p><code>web-sys</code> &#x4E2D;&#x6CA1;&#x6709;&#x7ED1;&#x5B9A;&#xFF1A; <code>web-sys</code> &#x867D;&#x7136;&#x5E9E;&#x5927;&#xFF0C;&#x4F46;&#x5E76;&#x975E;&#x6DB5;&#x76D6;&#x4E86;&#x6240;&#x6709; Web API &#x6216;&#x6240;&#x6709; JavaScript &#x7279;&#x6027;&#x3002;&#x5F53;&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x67D0;&#x4E2A; API &#x5728; <code>web-sys</code> &#x4E2D;&#x627E;&#x4E0D;&#x5230;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5C1D;&#x8BD5;&#x7528; <code>js-sys</code> &#x6765;&#x201C;&#x624B;&#x52A8;&#x201D;&#x6784;&#x5EFA;&#x8C03;&#x7528;&#x3002;</p>
+</li>
+<li><p>&#x6027;&#x80FD;&#x654F;&#x611F;&#x7684;&#x5E95;&#x5C42;&#x5E93;&#x5F00;&#x53D1;&#xFF1A; &#x5982;&#x679C;&#x5728;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x4F9B;&#x5176;&#x4ED6; Wasm &#x6A21;&#x5757;&#x4F7F;&#x7528;&#x7684;&#x5E95;&#x5C42;&#x5E93;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528; <code>js-sys</code> &#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x62BD;&#x8C61;&#x5C42;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5E26;&#x6765;&#x5FAE;&#x5C0F;&#x7684;&#x6027;&#x80FD;&#x4F18;&#x52BF;&#x3002;</p>
+</li>
+<li>&#x4E0E;&#x73B0;&#x6709;&#x7684; JavaScript &#x5E93;&#x6DF1;&#x5EA6;&#x96C6;&#x6210;&#xFF1A; &#x5F53;&#x9700;&#x8981;&#x4E0E;&#x4E00;&#x4E2A;&#x671F;&#x671B;&#x63A5;&#x6536;&#x539F;&#x751F; JS &#x5BF9;&#x8C61;&#xFF08;&#x5982; <code>Date</code>, <code>Error</code>&#xFF09;&#x7684; JavaScript &#x5E93;&#x4EA4;&#x4E92;&#x65F6;&#xFF0C;<code>js-sys</code> &#x53EF;&#x4EE5;&#x8BA9;&#x4F60;&#x8F7B;&#x677E;&#x521B;&#x5EFA;&#x51FA;&#x7B26;&#x5408;&#x8981;&#x6C42;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+<h2 id="&#x4E94;-&#x603B;&#x7ED3;">&#x4E94; &#x603B;&#x7ED3;</h2>
+<p><code>js-sys</code> &#x662F; <code>wasm-bindgen</code> &#x751F;&#x6001;&#x4E2D;&#x7684;&#x5E95;&#x5C42;&#x5E93;&#xFF0C;&#x63D0;&#x4F9B;&#x5BF9; JavaScript &#x539F;&#x751F;&#x5BF9;&#x8C61;&#x7684;&#x88F8;&#x7ED1;&#x5B9A;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x5728; Rust &#x4E2D;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x548C;&#x64CD;&#x4F5C; <code>Date</code>, <code>Array</code>, <code>Object</code>, <code>Promise</code> &#x7B49; JavaScript &#x5BF9;&#x8C61;&#x3002;<code>Reflect</code> API &#x662F;&#x52A8;&#x6001;&#x64CD;&#x4F5C; <code>Object</code> &#x5C5E;&#x6027;&#x7684;&#x5229;&#x5668;&#x3002;</p>
+<p>js-sys &#x8D4B;&#x4E88;&#x4E86;&#x6211;&#x4EEC;&#x6781;&#x5927;&#x7684;&#x7075;&#x6D3B;&#x6027;&#xFF0C;&#x662F;&#x5904;&#x7406;&#x52A8;&#x6001;&#x6570;&#x636E;&#x548C;&#x5E95;&#x5C42;&#x4EA4;&#x4E92;&#x7684;&#x5F3A;&#x5927;&#x5DE5;&#x5177;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;<code>js-sys</code> &#x9002;&#x7528;&#x4E8E;&#x9700;&#x8981;&#x66F4;&#x5E95;&#x5C42;&#x3001;&#x66F4;&#x7075;&#x6D3B;&#x5730;&#x4E0E; JavaScript &#x8FD0;&#x884C;&#x65F6;&#x4EA4;&#x4E92;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x4F8B;&#x5982;&#x76F4;&#x63A5;&#x64CD;&#x4F5C; JavaScript &#x539F;&#x751F;&#x5BF9;&#x8C61;&#x3001;&#x5904;&#x7406;&#x590D;&#x6742;&#x7684;&#x5F02;&#x6B65;&#x903B;&#x8F91;&#x6216;&#x5B9E;&#x73B0;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x4EA4;&#x4E92;&#x3002;</p>
+<p>&#x800C; <code>wasm-bindgen</code> &#x5219;&#x66F4;&#x9002;&#x5408;&#x5728;&#x9700;&#x8981;&#x7C7B;&#x578B;&#x5B89;&#x5168;&#x548C;&#x9AD8;&#x7EA7;&#x62BD;&#x8C61;&#x7684;&#x573A;&#x666F;&#x4E2D;&#x4F7F;&#x7528;&#x3002;&#x4E24;&#x8005;&#x7ED3;&#x5408;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x5145;&#x5206;&#x53D1;&#x6325;&#x5404;&#x81EA;&#x7684;&#x4F18;&#x52BF;&#xFF0C;&#x5B9E;&#x73B0;&#x66F4;&#x9AD8;&#x6548;&#x3001;&#x66F4;&#x5B89;&#x5168;&#x7684; Rust &#x4E0E; JavaScript &#x4EA4;&#x4E92;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4-wasm-bindgen-advanced.html" class="navigation navigation-prev " aria-label="Previous page: Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../rust/" class="navigation navigation-next " aria-label="Next page: Rust">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust & WebAssembly：探索js-sys的奇妙世界","level":"1.2.5","depth":2,"next":{"title":"Rust","level":"1.3","depth":1,"path":"rust/README.md","ref":"rust/README.md","articles":[{"title":"探索 Rust 语言：性能与安全的编程新宠🎯","level":"1.3.1","depth":2,"path":"rust/1-intro.md","ref":"rust/1-intro.md","articles":[]},{"title":"Rust 基本类型：探索 Rust 编程的基础构建块","level":"1.3.2","depth":2,"path":"rust/2-baseType.md","ref":"rust/2-baseType.md","articles":[]},{"title":"Rust 所有权与 Move：内存管理的艺术","level":"1.3.3","depth":2,"path":"rust/3-ownership.md","ref":"rust/3-ownership.md","articles":[]},{"title":"Rust 引用：强大而安全的数据使用特性","level":"1.3.4","depth":2,"path":"rust/4-ref.md","ref":"rust/4-ref.md","articles":[]},{"title":"Rust 表达式：强大而独特的编程利器","level":"1.3.5","depth":2,"path":"rust/5-expression.md","ref":"rust/5-expression.md","articles":[]},{"title":"Rust 错误处理：独特而灵活多样","level":"1.3.6","depth":2,"path":"rust/6-err.md","ref":"rust/6-err.md","articles":[]},{"title":"Rust 的 crate 和模块：强大的代码组织工具","level":"1.3.7","depth":2,"path":"rust/7-crate.md","ref":"rust/7-crate.md","articles":[]},{"title":"Rust 结构体：强大而灵活的数据类型","level":"1.3.8","depth":2,"path":"rust/8-struct.md","ref":"rust/8-struct.md","articles":[]},{"title":"Rust 的枚举与模式：灵活又安全的工具","level":"1.3.9","depth":2,"path":"rust/9-enum.md","ref":"rust/9-enum.md","articles":[]},{"title":"Rust 之 trait 与泛型的奥秘","level":"1.3.10","depth":2,"path":"rust/10-trait.md","ref":"rust/10-trait.md","articles":[]},{"title":"Rust 运算符重载：开启高效编程之旅","level":"1.3.11","depth":2,"path":"rust/11-ops.md","ref":"rust/11-ops.md","articles":[]},{"title":"Rust 闭包：高效编程的秘密武器","level":"1.3.12","depth":2,"path":"rust/12-closures.md","ref":"rust/12-closures.md","articles":[]},{"title":"Rust 迭代器：从基础到实践","level":"1.3.13","depth":2,"path":"rust/13-iterator.md","ref":"rust/13-iterator.md","articles":[]},{"title":"Rust 集合：编程中的得力助手","level":"1.3.14","depth":2,"path":"rust/14-collection.md","ref":"rust/14-collection.md","articles":[]},{"title":"Rust IO魔法：输入输出大揭秘","level":"1.3.15","depth":2,"path":"rust/15-io.md","ref":"rust/15-io.md","articles":[]},{"title":"Rust并发编程：解锁高效与安全的编程新姿势","level":"1.3.16","depth":2,"path":"rust/16-concurrency.md","ref":"rust/16-concurrency.md","articles":[]},{"title":"Rust异步编程：从入门到精通","level":"1.3.17","depth":2,"path":"rust/17-async.md","ref":"rust/17-async.md","articles":[]},{"title":"Rust 宏全解析：从基础到实战，掌握代码生成魔法","level":"1.3.18","depth":2,"path":"rust/18-macro.md","ref":"rust/18-macro.md","articles":[]},{"title":"Rust 进阶修炼：掌握 Unsafe 编程的核心能力","level":"1.3.19","depth":2,"path":"rust/19-unsafe.md","ref":"rust/19-unsafe.md","articles":[]},{"title":"Rust FFI实战指南：跨越语言边界的优雅之道","level":"1.3.20","depth":2,"path":"rust/20-ffi.md","ref":"rust/20-ffi.md","articles":[]}]},"previous":{"title":"Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍","level":"1.2.4","depth":2,"path":"wasm/4-wasm-bindgen-advanced.md","ref":"wasm/4-wasm-bindgen-advanced.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm/5-wasm-js-sys.md","mtime":"2025-08-02T03:15:15.210Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-02T03:18:48.653Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

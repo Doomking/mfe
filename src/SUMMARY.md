@@ -6,7 +6,7 @@
     * [Rust+Wasm利器：用wasm-pack引爆前端性能！](wasm/2-wasm-pack.md)
     * [Rust & WASM 之 `wasm-bindgen` 基础：让 Rust 与 JavaScript 无缝对话](wasm/3-wasm-bindgen-base.md)
     * [Rust & WASM 之 `wasm-bindgen` 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍](wasm/4-wasm-bindgen-advanced.md)
-    * [Rust & WebAssembly：探索js-sys的奇妙世界](wasm/4-wasm-js-sys.md)
+    * [Rust & WebAssembly：探索js-sys的奇妙世界](wasm/5-wasm-js-sys.md)
 * [Rust](rust/README.md)
     * [探索 Rust 语言：性能与安全的编程新宠🎯](rust/1-intro.md)
     * [Rust 基本类型：探索 Rust 编程的基础构建块](rust/2-baseType.md)
