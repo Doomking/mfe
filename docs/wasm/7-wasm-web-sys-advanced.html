@@ -1,0 +1,1447 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../rust/" />
+    
+    
+    <link rel="prev" href="6-wasm-web-sys-base.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-intro.html">
+            
+                <a href="1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-wasm-pack.html">
+            
+                <a href="2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-wasm-bindgen-base.html">
+            
+                <a href="3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-wasm-bindgen-advanced.html">
+            
+                <a href="4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5-wasm-js-sys.html">
+            
+                <a href="5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6-wasm-web-sys-base.html">
+            
+                <a href="6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.7" data-path="7-wasm-web-sys-advanced.html">
+            
+                <a href="7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/4614685ad832403f9bf487eda300497b~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1747032598&amp;x-orig-sign=jXyVEBwgJ5g1SdSHDFK%2FwVi0zPo%3D" alt="197605d8-d36f-4347-9fba-e1fa2915aebc_1746803106274269925_origin~tplv-a9rns2rl98-image-qvalue.jpeg"></p>
+<ul>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E00;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/1-intro.html" target="_blank">&#x5F53; Rust &#x9047;&#x89C1; WebAssembly&#xFF1A;Wasm &#x4E0E; Rust &#x751F;&#x6001;&#x521D;&#x63A2;&#xFF08;&#x5165;&#x95E8;&#x7BC7;&#xFF09;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E8C;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/2-wasm-pack.html" target="_blank">Rust+Wasm&#x5229;&#x5668;&#xFF1A;&#x7528;wasm-pack&#x5F15;&#x7206;&#x524D;&#x7AEF;&#x6027;&#x80FD;&#xFF01;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E09;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/3-wasm-bindgen-base.html" target="_blank">Rust &amp; WASM &#x4E4B; <code>wasm-bindgen</code> &#x57FA;&#x7840;&#xFF1A;&#x8BA9; Rust &#x4E0E; JavaScript &#x65E0;&#x7F1D;&#x5BF9;&#x8BDD;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x56DB;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/4-wasm-bindgen-advanced.html" target="_blank">Rust &amp; WASM &#x4E4B; <code>wasm-bindgen</code> &#x8FDB;&#x9636;&#xFF1A;&#x89E3;&#x9501; Rust &#x4E0E; JS &#x7684;&#x590D;&#x6742;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x79D8;&#x7C4D;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E94;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/5-wasm-js-sys.html" target="_blank">Rust &amp; WebAssembly&#xFF1A;&#x63A2;&#x7D22;js-sys&#x7684;&#x5947;&#x5999;&#x4E16;&#x754C;</a></p>
+</li>
+<li><p>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x516D;&#xFF1A;<a href="https://doomking.github.io/mfe/wasm/6-wasm-web-sys-base.html" target="_blank">Rust &amp; WebAssembly&#xFF1A;web-sys &#x5F00;&#x542F; DOM &#x64CD;&#x4F5C;&#x65B0;&#x7BC7;</a></p>
+</li>
+<li>&#x300A;Rust Wasm &#x63A2;&#x7D22;&#x4E4B;&#x65C5;&#xFF1A;&#x4ECE;&#x5165;&#x95E8;&#x5230;&#x5B9E;&#x8DF5;&#x300B;&#x7CFB;&#x5217;&#x4E03;&#xFF1A;Rust &amp; WebAssembly&#xFF1A;<code>web-sys</code> &#x8FDB;&#x9636; - &#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x3001;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x4E0E; Web API &#x5B9E;&#x8DF5;</li>
+</ul>
+<h1 id="web-sys-&#x8FDB;&#x9636;&#xFF1A;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x3001;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x4E0E;-web-api-&#x5B9E;&#x8DF5;"><code>web-sys</code> &#x8FDB;&#x9636;&#xFF1A;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x3001;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x4E0E; Web API &#x5B9E;&#x8DF5;</h1>
+<h2 id="&#x5F15;&#x8A00;">&#x5F15;&#x8A00;</h2>
+<p>&#x4E0A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x6B65;&#x4E86;&#x89E3;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528; <code>web-sys</code> &#x5728; Rust &#x4E2D;&#x64CD;&#x4F5C;&#x6D4F;&#x89C8;&#x5668;&#x7684; DOM&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x66F4;&#x8FDB;&#x4E00;&#x6B65;&#xFF0C;&#x63A2;&#x7D22; <code>web-sys</code> &#x7684;&#x9AD8;&#x7EA7;&#x529F;&#x80FD;&#xFF0C;&#x5305;&#x62EC;&#x590D;&#x6742;&#x7684;<strong>&#x4E8B;&#x4EF6;&#x5904;&#x7406;</strong>&#x3001;<strong>&#x5F02;&#x6B65;&#x64CD;&#x4F5C;</strong>&#x3001;<strong>&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</strong>&#x3001;<strong>&#x7ED8;&#x56FE;&#x64CD;&#x4F5C;</strong>&#x3001;<strong>&#x672C;&#x5730;&#x5B58;&#x50A8;</strong>&#x4EE5;&#x53CA;<strong>&#x5B9A;&#x65F6;&#x5668;</strong>&#x7684;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x529F;&#x80FD;&#x5C06;&#x5E2E;&#x52A9;&#x5F00;&#x53D1;&#x8005;&#x66F4;&#x5168;&#x9762;&#x5730;&#x5229;&#x7528; Rust &#x548C; WebAssembly &#x7684;&#x5F3A;&#x5927;&#x80FD;&#x529B;&#xFF0C;&#x6784;&#x5EFA;&#x590D;&#x6742;&#x7684; Web &#x5E94;&#x7528;&#x3002;</p>
+<h2 id="&#x4E00;&#x3001;&#x590D;&#x6742;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;">&#x4E00;&#x3001;&#x590D;&#x6742;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;</h2>
+<p>&#x5728; Web &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x662F;&#x5B9E;&#x73B0;&#x4EA4;&#x4E92;&#x6027;&#x7684;&#x5173;&#x952E;&#x3002;&#x901A;&#x8FC7;&#x5904;&#x7406;&#x5404;&#x79CD;&#x4E8B;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x7F51;&#x9875;&#x54CD;&#x5E94;&#x7528;&#x6237;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x3001;&#x8F93;&#x5165;&#x6587;&#x672C;&#x7B49;&#x3002;</p>
+<p>&#x5728; Rust &#x4E0E; WebAssembly &#x7684;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x501F;&#x52A9;<code>web-sys</code>&#x5E93;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x80FD;&#x591F;&#x65B9;&#x4FBF;&#x5730;&#x5904;&#x7406;&#x5404;&#x79CD;&#x6D4F;&#x89C8;&#x5668;&#x4E8B;&#x4EF6;&#x3002;</p>
+<h3 id="&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x4E0E;&#x5BF9;&#x8C61;">&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x4E0E;&#x5BF9;&#x8C61;</h3>
+<p><code>web-sys</code> &#x652F;&#x6301;&#x591A;&#x79CD;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x4F8B;&#x5982; <code>click</code>&#x3001;<code>mousemove</code>&#x3001;<code>keydown</code> &#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#x90FD;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#xFF0C;&#x4F8B;&#x5982; <code>MouseEvent</code> &#x548C; <code>KeyboardEvent</code>&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> web_sys::{window, EventTarget,MouseEvent, console};
+<span class="hljs-keyword">use</span> js_sys::Closure;
+
+<span class="hljs-comment">// &#x6DFB;&#x52A0;&#x9F20;&#x6807;&#x79FB;&#x52A8;&#x4E8B;&#x4EF6;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_mouse_move</span></span>() {
+    <span class="hljs-keyword">let</span> document = window().unwrap().document().unwrap();
+    <span class="hljs-keyword">let</span> container = document.get_element_by_id(<span class="hljs-string">&quot;my_container&quot;</span>).unwrap();
+
+    <span class="hljs-keyword">let</span> callback = Closure::&lt;dyn <span class="hljs-built_in">FnMut</span>(_)&gt;::new(move |event: MouseEvent| {
+        <span class="hljs-keyword">let</span> message = <span class="hljs-built_in">format!</span>(
+            <span class="hljs-string">&quot;Mouse moved to ({}, {})&quot;</span>,
+            event.client_x(), <span class="hljs-comment">// &#x83B7;&#x53D6;&#x9F20;&#x6807; X &#x5750;&#x6807;</span>
+            event.client_y()  <span class="hljs-comment">// &#x83B7;&#x53D6;&#x9F20;&#x6807; Y &#x5750;&#x6807;</span>
+        );
+        console::log_1(&amp;message.into());
+    });
+
+    container
+        .add_event_listener_with_callback(<span class="hljs-string">&quot;mousemove&quot;</span>, callback.as_ref().unchecked_ref())
+        .unwrap();
+    callback.forget();
+}
+
+
+<span class="hljs-comment">// &#x6DFB;&#x52A0;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_click</span></span>() {
+    <span class="hljs-keyword">let</span> document = window().unwrap().document().unwrap();
+    <span class="hljs-keyword">let</span> button = document.get_element_by_id(<span class="hljs-string">&quot;my_button&quot;</span>).unwrap();
+    <span class="hljs-keyword">let</span> event_target: EventTarget = button.dyn_into().unwrap();
+
+    <span class="hljs-keyword">let</span> closure = Closure::wrap(<span class="hljs-built_in">Box</span>::new(move |event: web_sys::MouseEvent| {
+        console::log_1(
+            &amp;<span class="hljs-built_in">format!</span>(
+                <span class="hljs-string">&quot;Button clicked at x: {}, y: {}&quot;</span>,
+                event.client_x(),
+                event.client_y()
+            )
+            .into(),
+        );
+    }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">Box</span>&lt;dyn <span class="hljs-built_in">FnMut</span>(_)&gt;);
+
+    event_target
+        .add_event_listener_with_callback(<span class="hljs-string">&quot;click&quot;</span>, closure.as_ref().unchecked_ref())
+        .unwrap();
+
+    closure.forget();
+}
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x5206;&#x522B;&#x4E3A;DOM&#x5143;&#x7D20;&#x6DFB;&#x52A0;&#x4E86;<code>mousemove</code>&#x548C;<code>click</code>&#x4E8B;&#x4EF6;&#x3002;</p>
+<h3 id="&#x6DFB;&#x52A0;&#x53CA;&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;">&#x6DFB;&#x52A0;&#x53CA;&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;</h3>
+<p>&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x9700;&#x8981;&#x79FB;&#x9664;&#x5DF2;&#x7ECF;&#x6DFB;&#x52A0;&#x7684;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x548C;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x3002;&#x5728; Rust &#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>remove_event_listener</code>&#x65B9;&#x6CD5;&#x6765;&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x6DFB;&#x52A0;&#x548C;&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::{cell::RefCell, rc::Rc};
+
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> js_sys::Function;
+<span class="hljs-keyword">use</span> web_sys::{window, EventTarget, console};
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_click_with_return_remove</span></span>() -&gt; Function {
+    <span class="hljs-keyword">let</span> document = window().unwrap().document().unwrap();
+    <span class="hljs-keyword">let</span> button = document.get_element_by_id(<span class="hljs-string">&quot;my_button&quot;</span>).unwrap();
+    <span class="hljs-keyword">let</span> event_target: EventTarget = button.dyn_into().unwrap();
+
+    <span class="hljs-comment">// &#x4F7F;&#x7528; Rc &#x548C; RefCell &#x5B9E;&#x73B0;&#x5171;&#x4EAB;&#x6240;&#x6709;&#x6743;</span>
+    <span class="hljs-keyword">let</span> closure = Rc::new(RefCell::new(<span class="hljs-literal">None</span>));
+    <span class="hljs-keyword">let</span> closure_clone = Rc::clone(&amp;closure);
+
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x95ED;&#x5305;</span>
+    <span class="hljs-keyword">let</span> handler = Closure::wrap(<span class="hljs-built_in">Box</span>::new(move |_event: web_sys::MouseEvent| {
+        console::log_1(&amp;<span class="hljs-string">&quot;Button clicked!&quot;</span>.into());
+    }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">Box</span>&lt;dyn <span class="hljs-built_in">FnMut</span>(_)&gt;);
+
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x5668;</span>
+    event_target
+        .add_event_listener_with_callback(<span class="hljs-string">&quot;click&quot;</span>, handler.as_ref().unchecked_ref())
+        .unwrap();
+
+    <span class="hljs-comment">// &#x5C06;&#x95ED;&#x5305;&#x5B58;&#x50A8;&#x5728; Rc &#x4E2D;</span>
+    *closure_clone.borrow_mut() = <span class="hljs-literal">Some</span>(handler);
+
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x6E05;&#x7406;&#x51FD;&#x6570;</span>
+    Closure::&lt;dyn <span class="hljs-built_in">FnMut</span>()&gt;::new(move || {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(handler) = closure.borrow_mut().take() {
+            <span class="hljs-comment">// &#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x5668;</span>
+            <span class="hljs-keyword">let</span> _ = event_target.remove_event_listener_with_callback(
+                <span class="hljs-string">&quot;click&quot;</span>, 
+                handler.as_ref().unchecked_ref()
+            );
+
+            <span class="hljs-comment">// &#x663E;&#x5F0F;&#x91CA;&#x653E;&#x95ED;&#x5305;&#x5185;&#x5B58;</span>
+            <span class="hljs-comment">// handler.forget();</span>
+            console::log_1(&amp;<span class="hljs-string">&quot;Event listener removed!&quot;</span>.into());
+        }
+    }).into_js_value().unchecked_into()
+}
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x540E;&#xFF0C;&#x4E3A;<code>my_button</code>&#x5143;&#x7D20;&#x6DFB;&#x52A0;&#x4E86;<code>click</code>&#x4E8B;&#x4EF6;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x79FB;&#x9664;&#x6DFB;&#x52A0;&#x7684;&#x4E8B;&#x4EF6;&#xFF1B;</p>
+<p>&#x5728; JavaScript &#x4E2D;&#x8C03;&#x7528;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { add_click_with_return_remove } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    <span class="hljs-comment">// &#x6DFB;&#x52A0;my_button&#x7684;click&#x4E8B;&#x4EF6;</span>
+    <span class="hljs-keyword">const</span> remove = add_click_with_return_remove(); <span class="hljs-comment">// &#x5047;&#x8BBE;&#x6709;&#x4E2A;id&#x4E3A;&apos;my_button&apos;&#x7684;button</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;remove function: &quot;</span>, remove); 
+    <span class="hljs-keyword">const</span> $removeBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;remove_button&apos;</span>); <span class="hljs-comment">// &#x5047;&#x8BBE;&#x6709;&#x4E2A;id&#x4E3A;&apos;remove_button&apos;&#x7684;button</span>
+    $removeBtn.addEventListener(<span class="hljs-string">&apos;click&apos;</span>, () =&gt; {
+        <span class="hljs-comment">// &#x79FB;&#x9664;my_button&#x7684;click&#x4E8B;&#x4EF6;</span>
+        remove();
+    });
+};
+
+run();
+</code></pre>
+<h3 id="&#x4E8B;&#x4EF6;&#x59D4;&#x6258;&#x6A21;&#x5F0F;">&#x4E8B;&#x4EF6;&#x59D4;&#x6258;&#x6A21;&#x5F0F;</h3>
+<p>&#x901A;&#x8FC7;&#x5728; <code>document</code> &#x4E0A;&#x6DFB;&#x52A0; <code>click</code> &#x4E8B;&#x4EF6;&#xFF0C;&#x5E76;&#x6839;&#x636E; <code>EventTarget</code> &#x6765;&#x5224;&#x65AD;&#x70B9;&#x51FB;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x4ECE;&#x800C;&#x89E6;&#x53D1;&#x4E0D;&#x540C;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x903B;&#x8F91;&#x6765;&#x5B9E;&#x73B0;&#x4E8B;&#x4EF6;&#x59D4;&#x6258;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_delegate</span></span>() {
+    <span class="hljs-keyword">let</span> document = window().unwrap().document().unwrap();
+    <span class="hljs-keyword">let</span> closure = Closure::wrap(<span class="hljs-built_in">Box</span>::new(move |event: web_sys::MouseEvent| {
+        <span class="hljs-keyword">let</span> target = event.target().unwrap();
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(element) = target.dyn_ref::&lt;HtmlElement&gt;() {
+            <span class="hljs-keyword">match</span> element.id().as_str() {
+                <span class="hljs-string">&quot;btn-save&quot;</span> =&gt; {
+                    console::log_1(
+                        &amp;<span class="hljs-built_in">format!</span>(
+                            <span class="hljs-string">&quot;btn-save Button clicked at x: {}, y: {}&quot;</span>,
+                            event.client_x(),
+                            event.client_y()
+                        )
+                        .into(),
+                    );
+                }
+                <span class="hljs-string">&quot;btn-delete&quot;</span> =&gt; {
+                    console::log_1(
+                        &amp;<span class="hljs-built_in">format!</span>(
+                            <span class="hljs-string">&quot;btn-delete Button clicked at x: {}, y: {}&quot;</span>,
+                            event.client_x(),
+                            event.client_y()
+                        )
+                        .into(),
+                    );
+                }
+                _ =&gt; {}
+            }
+        }
+    }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">Box</span>&lt;dyn <span class="hljs-built_in">FnMut</span>(_)&gt;);
+
+    document
+        .add_event_listener_with_callback(<span class="hljs-string">&quot;click&quot;</span>, closure.as_ref().unchecked_ref())
+        .unwrap();
+
+    closure.forget();
+}
+</code></pre>
+<h2 id="&#x4E8C;&#x3001;&#x76D1;&#x542C;dom&#x53D8;&#x5316;">&#x4E8C;&#x3001;&#x76D1;&#x542C;DOM&#x53D8;&#x5316;</h2>
+<p>&#x5982;&#x679C;&#x60F3;&#x8981;&#x76D1;&#x542C;DOM&#x53D8;&#x5316;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>MutationObserver</code> &#x6765;&#x5B9E;&#x73B0;&#x3002; <code>MutationObserver</code> &#x662F;&#x4E00;&#x4E2A;&#x6D4F;&#x89C8;&#x5668;&#x63D0;&#x4F9B;&#x7684; API&#xFF0C;&#x7528;&#x4E8E;&#x76D1;&#x542C; DOM &#x6811;&#x7684;&#x53D8;&#x5316;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x5728; DOM &#x5143;&#x7D20;&#x88AB;&#x6DFB;&#x52A0;&#x3001;&#x5220;&#x9664;&#x3001;&#x4FEE;&#x6539;&#x6216;&#x5C5E;&#x6027;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#x89E6;&#x53D1;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x4F7F;&#x7528; <code>MutationObserver</code> &#x76D1;&#x542C; DOM &#x53D8;&#x5316;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::Function;
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> wasm_bindgen::JsCast;
+<span class="hljs-keyword">use</span> wasm_bindgen_futures::JsFuture;
+<span class="hljs-keyword">use</span> js_sys::Array;
+<span class="hljs-keyword">use</span> web_sys::{console, window, Element, MutationObserver, MutationObserverInit};
+
+<span class="hljs-comment">/// &#x4E00;&#x4E2A;&#x8F85;&#x52A9;&#x51FD;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x4E2D;&#x6682;&#x505C;&#x6307;&#x5B9A;&#x7684;&#x6BEB;&#x79D2;&#x6570;&#x3002;</span>
+async <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sleep</span></span>(ms: <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> promise = js_sys::Promise::new(&amp;<span class="hljs-keyword">mut</span> |resolve: Function, _| {
+        window()
+            .unwrap()
+            .set_timeout_with_callback_and_timeout_and_arguments_0(
+                &amp;resolve,
+                ms,
+            )
+            .unwrap();
+    });
+    JsFuture::from(promise).await.unwrap();
+}
+
+<span class="hljs-comment">// &#x6838;&#x5FC3;&#x529F;&#x80FD;&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x6765;&#x5C06; Observer &#x548C; Callback &#x7ED1;&#x5B9A;&#x5728;&#x4E00;&#x8D77;&#x3002;</span>
+<span class="hljs-comment">// &#x8FD9;&#x6837;&#x5F00;&#x53D1;&#x8005;&#x5C31;&#x53EF;&#x4EE5;&#x5229;&#x7528; Rust &#x7684; Drop trait &#x6765;&#x81EA;&#x52A8;&#x6E05;&#x7406;&#x8D44;&#x6E90;&#x3002;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DomObserver</span></span> {
+    observer: MutationObserver,
+    <span class="hljs-comment">// _callback &#x867D;&#x7136;&#x6CA1;&#x6709;&#x88AB;&#x76F4;&#x63A5;&#x8BFB;&#x53D6;&#xFF0C;&#x4F46;&#x5FC5;&#x987B;&#x88AB;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x62E5;&#x6709;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x4EE5;&#x786E;&#x4FDD;&#x5B83;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E0E; observer &#x4E00;&#x81F4;&#x3002;</span>
+    _callback: Closure&lt;dyn <span class="hljs-built_in">FnMut</span>(Array, MutationObserver)&gt;,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-built_in">Drop</span> <span class="hljs-keyword">for</span> DomObserver {
+    <span class="hljs-comment">// &#x5F53; DomObserver &#x5B9E;&#x4F8B;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;drop &#x65B9;&#x6CD5;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x3002;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">drop</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) {
+        <span class="hljs-comment">// &#x5728;&#x8FD9;&#x91CC;&#x65AD;&#x5F00;&#x89C2;&#x5BDF;&#xFF0C;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x4E0D;&#x4F1A;&#x6709;&#x9057;&#x6F0F;&#x3002;</span>
+        <span class="hljs-keyword">self</span>.observer.disconnect();
+        console::log_1(&amp;<span class="hljs-string">&quot;Observer disconnected and memory cleaned up automatically.&quot;</span>.into());
+    }
+}
+
+<span class="hljs-comment">/// &#x89C2;&#x5BDF;&#x6307;&#x5B9A;ID&#x7684;DOM&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#x81EA;&#x52A8;&#x505C;&#x6B62;&#x3002;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// # Arguments</span>
+<span class="hljs-comment">/// * `element_id` - &#x8981;&#x89C2;&#x5BDF;&#x7684;&#x5143;&#x7D20;&#x7684;ID&#x3002;</span>
+<span class="hljs-comment">/// * `duration_ms` - &#x89C2;&#x5BDF;&#x6301;&#x7EED;&#x7684;&#x65F6;&#x95F4;&#xFF08;&#x6BEB;&#x79D2;&#xFF09;&#x3002;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> async <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">observe_dom_changes</span></span>(element_id: <span class="hljs-built_in">String</span>, duration_ms: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-keyword">let</span> window = window().expect(<span class="hljs-string">&quot;should have a window&quot;</span>);
+    <span class="hljs-keyword">let</span> document = window.document().expect(<span class="hljs-string">&quot;should have a document&quot;</span>);
+    <span class="hljs-keyword">let</span> target: Element = document
+        .get_element_by_id(&amp;element_id)
+        .ok_or_else(|| JsValue::from_str(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Element with id &apos;{}&apos; not found&quot;</span>, element_id)))?
+        .dyn_into()?;
+
+    <span class="hljs-comment">// 1. &#x521B;&#x5EFA;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</span>
+    <span class="hljs-comment">// MutationObserver &#x7684;&#x56DE;&#x8C03;&#x63A5;&#x6536;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;&#x4E00;&#x4E2A; MutationRecord &#x6570;&#x7EC4;&#x548C;&#x4E00;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#x5B9E;&#x4F8B;&#x3002;</span>
+    <span class="hljs-keyword">let</span> callback = Closure::new(move |mutations: Array, _observer: MutationObserver| {
+        console::log_1(&amp;<span class="hljs-string">&quot;DOM changes detected!&quot;</span>.into());
+        <span class="hljs-comment">// &#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x904D;&#x5386;&#x53D8;&#x5316;&#x7684;&#x5177;&#x4F53;&#x5185;&#x5BB9;</span>
+        <span class="hljs-keyword">for</span> mutation <span class="hljs-keyword">in</span> mutations.iter() {
+            console::log_2(&amp;<span class="hljs-string">&quot;  - Mutation:&quot;</span>.into(), &amp;mutation);
+        }
+    });
+
+    <span class="hljs-comment">// 2. &#x4F7F;&#x7528; web-sys &#x5185;&#x7F6E;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521B;&#x5EFA; MutationObserver&#x3002;</span>
+    <span class="hljs-keyword">let</span> observer = MutationObserver::new(callback.as_ref().unchecked_ref())?;
+
+    <span class="hljs-comment">// 3. &#x5C06; observer &#x548C; callback &#x5B58;&#x5165;&#x5F00;&#x53D1;&#x8005;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x3002;</span>
+    <span class="hljs-comment">//    &#x73B0;&#x5728;&#x5B83;&#x4EEC;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x88AB;&#x7ED1;&#x5B9A;&#x5728;&#x4E86;&#x4E00;&#x8D77;&#x3002;</span>
+    <span class="hljs-keyword">let</span> observer_handle = DomObserver {
+        observer,
+        _callback: callback,
+    };
+
+    <span class="hljs-comment">// 4. &#x914D;&#x7F6E;&#x8981;&#x89C2;&#x5BDF;&#x7684;&#x53D8;&#x5316;&#x7C7B;&#x578B;&#x3002;</span>
+    <span class="hljs-keyword">let</span> config = MutationObserverInit::new();
+    config.set_child_list(<span class="hljs-literal">true</span>);
+    config.set_subtree(<span class="hljs-literal">true</span>);
+    config.set_attributes(<span class="hljs-literal">true</span>);
+
+    <span class="hljs-comment">// 5. &#x5F00;&#x59CB;&#x89C2;&#x5BDF;&#x3002;</span>
+    observer_handle.observer.observe_with_options(&amp;target, &amp;config)?;
+    console::log_1(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Now observing element with id &apos;{}&apos;...&quot;</span>, element_id).into());
+
+    <span class="hljs-comment">// 6. &#x4F7F;&#x7528;&#x5F00;&#x53D1;&#x8005;&#x5C01;&#x88C5;&#x7684; sleep &#x51FD;&#x6570;&#x7B49;&#x5F85;&#x3002;</span>
+    sleep(duration_ms).await;
+    console::log_1(&amp;<span class="hljs-string">&quot;Observation time finished.&quot;</span>.into());
+
+    <span class="hljs-comment">// 7. &#x51FD;&#x6570;&#x7ED3;&#x675F;&#x3002;</span>
+    <span class="hljs-comment">//    &#x6B64;&#x65F6; `observer_handle` &#x5C06;&#x79BB;&#x5F00;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x5B83;&#x7684; `drop` &#x65B9;&#x6CD5;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#xFF0C;</span>
+    <span class="hljs-comment">//    &#x4ECE;&#x800C;&#x6267;&#x884C; `disconnect()` &#x5E76;&#x91CA;&#x653E;&#x6240;&#x6709;&#x8D44;&#x6E90;&#x3002;&#x65E0;&#x9700;&#x624B;&#x52A8;&#x6E05;&#x7406;&#xFF01;</span>
+
+    <span class="hljs-literal">Ok</span>(())
+}
+</code></pre>
+<p>&#x5728; JavaScript &#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { observe_dom_changes } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    observe_dom_changes(<span class="hljs-string">&apos;my_element&apos;</span>, <span class="hljs-number">5000</span>);
+    <span class="hljs-comment">// &#x63A7;&#x5236;&#x53F0;&#x4F1A;&#x8F93;&#x51FA;&#xFF1A;</span>
+    <span class="hljs-comment">// Now observing element with id &apos;my-element&apos;...</span>
+    <span class="hljs-keyword">const</span> $myBtn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;my_button&apos;</span>);
+    $myBtn.addEventListener(<span class="hljs-string">&apos;click&apos;</span>, () =&gt; {
+        <span class="hljs-keyword">const</span> $myElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;my_element&apos;</span>);
+        $myBtn.innerHTML = <span class="hljs-string">&apos;my_element content changed&apos;</span>;
+        <span class="hljs-comment">// DOM changes detected!</span>
+        <span class="hljs-comment">//  - Mutation: { type: &quot;childList&quot;, target: [object Element], addedNodes: [object Text], removedNodes: [object Text] }</span>
+    })
+};
+
+run();
+</code></pre>
+<h2 id="&#x4E09;&#x3001;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#xFF1A;&#x5904;&#x7406;-javascript-promise">&#x4E09;&#x3001;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#xFF1A;&#x5904;&#x7406; JavaScript Promise</h2>
+<p>&#x5728; JavaScript &#x4E2D;&#xFF0C;<code>Promise</code> &#x88AB;&#x5E7F;&#x6CDB;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#xFF0C;&#x800C;&#x5728; Rust &#x7684; WebAssembly &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;<code>wasm-bindgen-futures</code> &#x5E93;&#x63D0;&#x4F9B;&#x4E86;&#x5904;&#x7406; JavaScript &#x7684; <code>Promise</code> &#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4F7F;&#x5F97;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x50CF;&#x5904;&#x7406;&#x672C;&#x5730; <code>Future</code> &#x4E00;&#x6837;&#x5904;&#x7406; <code>Promise</code>&#x3002;</p>
+<h3 id="&#x76F4;&#x63A5;&#x64CD;&#x4F5C;promise">&#x76F4;&#x63A5;&#x64CD;&#x4F5C;<code>Promise</code></h3>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> js_sys::Promise;
+<span class="hljs-keyword">use</span> wasm_bindgen::{prelude::wasm_bindgen};
+<span class="hljs-keyword">use</span> wasm_bindgen_futures::JsFuture;
+<span class="hljs-keyword">use</span> web_sys::{console};
+
+<span class="hljs-meta">#[wasm_bindgen()]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">call_promise</span></span>() {
+    <span class="hljs-keyword">let</span> promise = Promise::new(&amp;<span class="hljs-keyword">mut</span> |resolve: js_sys::Function, _reject: js_sys::Function| {
+        resolve.call0(&amp;<span class="hljs-string">&quot;JavaScript Promise resolved!&quot;</span>.into()).unwrap();
+    });
+
+    <span class="hljs-keyword">let</span> future = JsFuture::from(promise);
+
+    wasm_bindgen_futures::spawn_local(async move {
+        <span class="hljs-keyword">let</span> result = future.await.unwrap();
+        console::log_1(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Promise resolved with: {:?}&quot;</span>, result).into());
+    });
+}
+</code></pre>
+<h3 id="&#x4F7F;&#x7528;-fetch-api-&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;">&#x4F7F;&#x7528; <code>Fetch</code> API &#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</h3>
+<p>&#x5728; Web &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x662F;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x548C;&#x4E0E;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x4EA4;&#x4E92;&#x7684;&#x91CD;&#x8981;&#x624B;&#x6BB5;&#x3002;</p>
+<p><code>web-sys</code> &#x63D0;&#x4F9B;&#x4E86;&#x5BF9; <code>Fetch</code> API &#x7684;&#x652F;&#x6301;&#xFF0C;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x4ECE;&#x4E00;&#x4E2A; API &#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x786E;&#x4FDD; <code>Cargo.toml</code> &#x914D;&#x7F6E;&#x6B63;&#x786E;&#xFF1A;</p>
+<pre><code class="lang-toml">[dependencies]
+wasm-bindgen-futures = &quot;0.4.50&quot;
+
+[dependencies.web-sys]
+version = &quot;0.3.4&quot;
+features = [
+  &apos;Request&apos;, &apos;RequestInit&apos;, &apos;Response&apos;, &apos;Window&apos;, &apos;fetch&apos;, &apos;RequestMode&apos;
+]
+</code></pre>
+<p>&#x7136;&#x540E;&#xFF0C;&#x5728; Rust &#x4EE3;&#x7801;&#x4E2D;&#x4F7F;&#x7528;<code>fetch</code> API &#x53D1;&#x8D77;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::{prelude::wasm_bindgen, JsValue};
+<span class="hljs-keyword">use</span> wasm_bindgen_futures::JsFuture;
+<span class="hljs-keyword">use</span> web_sys::{Request, RequestInit, RequestMode, Response};
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> async <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">fetch_json</span></span>(url: <span class="hljs-built_in">String</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;JsValue, JsValue&gt; {
+    <span class="hljs-comment">// 1. &#x521B;&#x5EFA;&#x8BF7;&#x6C42;</span>
+    <span class="hljs-keyword">let</span> opts = RequestInit::new();
+    opts.set_method(<span class="hljs-string">&quot;GET&quot;</span>);
+    opts.set_mode(RequestMode::Cors);
+    <span class="hljs-keyword">let</span> request = Request::new_with_str_and_init(&amp;url, &amp;opts)?;
+
+    <span class="hljs-comment">// 2. &#x53D1;&#x8D77; fetch&#xFF0C;&#x5B83;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; Promise</span>
+    <span class="hljs-keyword">let</span> window = web_sys::window().unwrap();
+    <span class="hljs-keyword">let</span> resp_promise = window.fetch_with_request(&amp;request);
+
+    <span class="hljs-comment">// 3. &#x5C06; Promise &#x8F6C;&#x6362;&#x4E3A; Future &#x5E76; await</span>
+    <span class="hljs-keyword">let</span> resp_value = JsFuture::from(resp_promise).await?;
+    <span class="hljs-keyword">let</span> resp: Response = resp_value.into();
+
+    <span class="hljs-comment">// 4. response.json() &#x540C;&#x6837;&#x8FD4;&#x56DE; Promise</span>
+    <span class="hljs-keyword">let</span> json_promise = resp.json()?;
+
+    <span class="hljs-comment">// 5.&#x518D;&#x6B21; await &#x83B7;&#x53D6;&#x6700;&#x7EC8;&#x7684; JSON &#x6570;&#x636E; (JsValue)</span>
+    <span class="hljs-keyword">let</span> json_data = JsFuture::from(json_promise).await?;
+
+    <span class="hljs-literal">Ok</span>(json_data)
+}
+</code></pre>
+<h2 id="&#x56DB;&#x3001;&#x64CD;&#x4F5C;-canvas-&#x8FDB;&#x884C;&#x7ED8;&#x56FE;">&#x56DB;&#x3001;&#x64CD;&#x4F5C; <code>Canvas</code> &#x8FDB;&#x884C;&#x7ED8;&#x56FE;</h2>
+<p>&#x5728; Web &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;<code>Canvas</code>&#x662F;&#x4E00;&#x4E2A;&#x5F3A;&#x5927;&#x7684;&#x7ED8;&#x56FE;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5F00;&#x53D1;&#x8005;&#x4F7F;&#x7528; JavaScript &#x5728;&#x7F51;&#x9875;&#x4E0A;&#x7ED8;&#x5236;&#x5404;&#x79CD;&#x56FE;&#x5F62;&#x3001;&#x56FE;&#x50CF;&#x548C;&#x52A8;&#x753B;&#x3002;</p>
+<p><code>web-sys</code> &#x63D0;&#x4F9B;&#x4E86;&#x5BF9; <code>Canvas</code> API &#x7684;&#x652F;&#x6301;&#xFF0C;&#x901A;&#x8FC7;<code>web-sys</code>&#x5E93;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x5730;&#x83B7;&#x53D6;<code>Canvas</code>&#x7684; 2D &#x7ED8;&#x56FE;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5728; Rust &#x4E2D;&#x8FDB;&#x884C;&#x7ED8;&#x56FE;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x4F7F;&#x7528; <code>Canvas</code> &#x7ED8;&#x56FE;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5728;<code>Canvas</code>&#x4E0A;&#x7ED8;&#x5236;&#x4E00;&#x4E2A;&#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x56FE;&#x5F62;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::{prelude::wasm_bindgen, JsCast};
+<span class="hljs-keyword">use</span> web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
+
+<span class="hljs-comment">// &#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x8FED;&#x4EE3;&#x8BA1;&#x7B97;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">mandelbrot</span></span>(c_re: <span class="hljs-keyword">f64</span>, c_im: <span class="hljs-keyword">f64</span>, max_iter: <span class="hljs-keyword">u32</span>) -&gt; <span class="hljs-keyword">u32</span> {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> z_re = <span class="hljs-number">0.0</span>;
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> z_im = <span class="hljs-number">0.0</span>;
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..max_iter {
+        <span class="hljs-comment">// &#x8BA1;&#x7B97;z^2 + c&#xFF0C;&#x5176;&#x4E2D;z = z_re + z_im*i&#xFF0C;c = c_re + c_im*i</span>
+        <span class="hljs-keyword">let</span> z_re_squared = z_re * z_re;
+        <span class="hljs-keyword">let</span> z_im_squared = z_im * z_im;
+
+        <span class="hljs-comment">// &#x5982;&#x679C;z&#x7684;&#x6A21;&#x957F;&#x5E73;&#x65B9;&#x8D85;&#x8FC7;4&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x70B9;&#x4E0D;&#x5728;&#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x4E2D;</span>
+        <span class="hljs-keyword">if</span> z_re_squared + z_im_squared &gt; <span class="hljs-number">4.0</span> {
+            <span class="hljs-keyword">return</span> i;
+        }
+
+        <span class="hljs-comment">// &#x8BA1;&#x7B97;&#x4E0B;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x7684;z&#x503C;</span>
+        <span class="hljs-keyword">let</span> z_im_new = <span class="hljs-number">2.0</span> * z_re * z_im + c_im;
+        z_re = z_re_squared - z_im_squared + c_re;
+        z_im = z_im_new;
+    }
+
+    <span class="hljs-comment">// &#x5982;&#x679C;&#x8FBE;&#x5230;&#x6700;&#x5927;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x4ECD;&#x672A;&#x6EA2;&#x51FA;&#xFF0C;&#x8BA4;&#x4E3A;&#x8BE5;&#x70B9;&#x5728;&#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x4E2D;</span>
+    max_iter
+}
+
+<span class="hljs-comment">// &#x5C06;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x8F6C;&#x6362;&#x4E3A;&#x989C;&#x8272;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_color</span></span>(iterations: <span class="hljs-keyword">u32</span>, max_iter: <span class="hljs-keyword">u32</span>) -&gt; <span class="hljs-built_in">String</span> {
+    <span class="hljs-keyword">if</span> iterations == max_iter {
+        <span class="hljs-comment">// &#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x5185;&#x90E8;&#xFF0C;&#x4F7F;&#x7528;&#x9ED1;&#x8272;</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;#000000&quot;</span>.to_string();
+    }
+
+    <span class="hljs-comment">// &#x7B80;&#x5355;&#x7684;&#x989C;&#x8272;&#x6620;&#x5C04;&#xFF0C;&#x5C06;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x8F6C;&#x6362;&#x4E3A;RGB&#x989C;&#x8272;</span>
+    <span class="hljs-keyword">let</span> t = iterations <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span> / max_iter <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span>;
+    <span class="hljs-keyword">let</span> r = (<span class="hljs-number">9.0</span> * (<span class="hljs-number">1.0</span> - t) * t * t * t * <span class="hljs-number">255.0</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">u8</span>;
+    <span class="hljs-keyword">let</span> g = (<span class="hljs-number">15.0</span> * (<span class="hljs-number">1.0</span> - t) * (<span class="hljs-number">1.0</span> - t) * t * t * <span class="hljs-number">255.0</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">u8</span>;
+    <span class="hljs-keyword">let</span> b = (<span class="hljs-number">8.5</span> * (<span class="hljs-number">1.0</span> - t) * (<span class="hljs-number">1.0</span> - t) * (<span class="hljs-number">1.0</span> - t) * t * <span class="hljs-number">255.0</span>) <span class="hljs-keyword">as</span> <span class="hljs-keyword">u8</span>;
+
+    <span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;#{:02x}{:02x}{:02x}&quot;</span>, r, g, b)
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">draw_fractal</span></span>(canvas_id: <span class="hljs-built_in">String</span>) {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;&#x6587;&#x6863;&#x548C;Canvas&#x5143;&#x7D20;</span>
+    <span class="hljs-keyword">let</span> document = web_sys::window().unwrap().document().unwrap();
+    <span class="hljs-keyword">let</span> canvas_element = document.get_element_by_id(&amp;canvas_id)
+        .expect(<span class="hljs-string">&quot;Canvas element not found&quot;</span>);
+
+    <span class="hljs-keyword">let</span> canvas: HtmlCanvasElement = canvas_element
+        .dyn_into::&lt;HtmlCanvasElement&gt;()
+        .expect(<span class="hljs-string">&quot;Element is not a canvas&quot;</span>);
+
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;Canvas&#x5C3A;&#x5BF8;</span>
+    <span class="hljs-keyword">let</span> width = <span class="hljs-number">800.0</span>;
+    <span class="hljs-keyword">let</span> height = <span class="hljs-number">600.0</span>;
+    canvas.set_width(width <span class="hljs-keyword">as</span> <span class="hljs-keyword">u32</span>);
+    canvas.set_height(height <span class="hljs-keyword">as</span> <span class="hljs-keyword">u32</span>);
+
+    <span class="hljs-comment">// &#x83B7;&#x53D6;2D&#x6E32;&#x67D3;&#x4E0A;&#x4E0B;&#x6587;</span>
+    <span class="hljs-keyword">let</span> ctx: CanvasRenderingContext2d = canvas
+        .get_context(<span class="hljs-string">&quot;2d&quot;</span>)
+        .expect(<span class="hljs-string">&quot;Failed to get 2d context&quot;</span>)
+        .expect(<span class="hljs-string">&quot;2d context is not available&quot;</span>)
+        .dyn_into()
+        .expect(<span class="hljs-string">&quot;Failed to convert to CanvasRenderingContext2d&quot;</span>);
+
+    <span class="hljs-comment">// &#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6;&#x53C2;&#x6570;</span>
+    <span class="hljs-keyword">let</span> max_iter = <span class="hljs-number">1000</span>;
+    <span class="hljs-keyword">let</span> x_min = -<span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">let</span> x_max = <span class="hljs-number">1.0</span>;
+    <span class="hljs-keyword">let</span> y_min = -<span class="hljs-number">1.0</span>;
+    <span class="hljs-keyword">let</span> y_max = <span class="hljs-number">1.0</span>;
+
+    <span class="hljs-comment">// &#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x50CF;&#x7D20;&#x5BF9;&#x5E94;&#x7684;&#x590D;&#x6570;&#x5E73;&#x9762;&#x5750;&#x6807;</span>
+    <span class="hljs-keyword">let</span> x_range = x_max - x_min;
+    <span class="hljs-keyword">let</span> y_range = y_max - y_min;
+
+    <span class="hljs-comment">// &#x7ED8;&#x5236;&#x66FC;&#x5FB7;&#x52C3;&#x7F57;&#x96C6; - &#x4F7F;&#x7528;&#x9010;&#x50CF;&#x7D20;&#x7ED8;&#x5236;</span>
+    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..(width <span class="hljs-keyword">as</span> <span class="hljs-keyword">u32</span>) {
+        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..(height <span class="hljs-keyword">as</span> <span class="hljs-keyword">u32</span>) {
+            <span class="hljs-comment">// &#x5C06;&#x50CF;&#x7D20;&#x5750;&#x6807;&#x6620;&#x5C04;&#x5230;&#x590D;&#x6570;&#x5E73;&#x9762;</span>
+            <span class="hljs-keyword">let</span> c_re = x_min + (x <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span> / width) * x_range;
+            <span class="hljs-keyword">let</span> c_im = y_min + (y <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span> / height) * y_range;
+
+            <span class="hljs-comment">// &#x8BA1;&#x7B97;&#x8BE5;&#x70B9;&#x7684;&#x8FED;&#x4EE3;&#x6B21;&#x6570;</span>
+            <span class="hljs-keyword">let</span> iterations = mandelbrot(c_re, c_im, max_iter);
+
+            <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x989C;&#x8272;&#x5E76;&#x7ED8;&#x5236;&#x50CF;&#x7D20;</span>
+            ctx.set_fill_style(&amp;get_color(iterations, max_iter).into());
+            ctx.fill_rect(x <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span>, y <span class="hljs-keyword">as</span> <span class="hljs-keyword">f64</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>);
+        }
+    }
+}
+</code></pre>
+<p>&#x5728; JavaScript &#x4E2D;&#x8C03;&#x7528;<code>draw_fractal</code>&#x51FD;&#x6570;&#x540E;&#xFF0C;&#x6548;&#x679C;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/9fddc18c606b460784b8d8a4e53a0257~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5Y-X5LmL5Lul6JKZ:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1754812158&amp;x-orig-sign=hnJsQsF%2BSYDBhM964g75ZnlNZOQ%3D" alt="WX20250809-103014@2x.png"></p>
+<h2 id="&#x4E94;&#x3001;&#x4E0E;-localstorage-&#x6216;-sessionstorage-&#x4EA4;&#x4E92;">&#x4E94;&#x3001;&#x4E0E; localStorage &#x6216; sessionStorage &#x4EA4;&#x4E92;</h2>
+<p>&#x5728; Web &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;<code>localStorage</code>&#x548C;<code>sessionStorage</code>&#x662F;&#x7528;&#x4E8E;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;&#x91CD;&#x8981;&#x673A;&#x5236;&#x3002;</p>
+<p><code>localStorage</code>&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x662F;&#x6301;&#x4E45;&#x5316;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x624B;&#x52A8;&#x6E05;&#x9664;&#x6216;&#x6D4F;&#x89C8;&#x5668;&#x5378;&#x8F7D;&#xFF0C;&#x6570;&#x636E;&#x5C31;&#x4F1A;&#x4E00;&#x76F4;&#x5B58;&#x5728;&#xFF1B;&#x800C;<code>sessionStorage</code>&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x4EC5;&#x5728;&#x5F53;&#x524D;&#x4F1A;&#x8BDD;&#xFF08;&#x5373;&#x6D4F;&#x89C8;&#x5668;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x671F;&#x95F4;&#xFF09;&#x6709;&#x6548;&#xFF0C;&#x5F53;&#x7A97;&#x53E3;&#x5173;&#x95ED;&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x4F1A;&#x88AB;&#x6E05;&#x9664;&#x3002;</p>
+<p>&#x501F;&#x52A9;<code>web-sys</code>&#x5E93;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x4E0E;<code>localStorage</code>&#x548C;<code>sessionStorage</code>&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x3002;</p>
+<p>&#x901A;&#x8FC7; <code>web-sys</code> &#x5E93;, &#x4F7F;&#x7528; <code>localStorage</code> &#x548C;<code>sessionStorage</code> &#x8FDB;&#x884C;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3001;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x53CA;&#x5220;&#x9664;&#x6570;&#x636E;&#x7684;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> web_sys::window;
+<span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+
+<span class="hljs-comment">/// &#x5411;localStorage&#x5B58;&#x50A8;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_local_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>, value: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;localStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.local_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;localStorage is not available&quot;</span>))?;
+
+    <span class="hljs-comment">// &#x5B58;&#x50A8;&#x6570;&#x636E;</span>
+    storage.set_item(key, value)?;
+    <span class="hljs-literal">Ok</span>(())
+}
+
+<span class="hljs-comment">/// &#x4ECE;localStorage&#x8BFB;&#x53D6;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_local_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;<span class="hljs-built_in">Option</span>&lt;<span class="hljs-built_in">String</span>&gt;, JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;localStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.local_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;localStorage is not available&quot;</span>))?;
+
+    <span class="hljs-comment">// &#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x8FD4;&#x56DE;Option&lt;String&gt;</span>
+    <span class="hljs-literal">Ok</span>(storage.get_item(key).unwrap())
+}
+
+<span class="hljs-comment">/// &#x4ECE;localStorage&#x5220;&#x9664;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_local_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;localStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.local_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;localStorage is not available&quot;</span>))?;
+    storage.remove_item(key)?; 
+    <span class="hljs-literal">Ok</span>(())
+}
+
+<span class="hljs-comment">/// &#x5411;sessionStorage&#x5B58;&#x50A8;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_session_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>, value: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;sessionStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.session_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;sessionStorage is not available&quot;</span>))?;
+
+    <span class="hljs-comment">// &#x5B58;&#x50A8;&#x6570;&#x636E;</span>
+    storage.set_item(key, value)?;
+    <span class="hljs-literal">Ok</span>(())
+}
+
+<span class="hljs-comment">/// &#x4ECE;sessionStorage&#x8BFB;&#x53D6;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_session_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;<span class="hljs-built_in">Option</span>&lt;<span class="hljs-built_in">String</span>&gt;, JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;sessionStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.session_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;sessionStorage is not available&quot;</span>))?;
+
+    <span class="hljs-comment">// &#x8BFB;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x8FD4;&#x56DE;Option&lt;String&gt;</span>
+    <span class="hljs-literal">Ok</span>(storage.get_item(key).unwrap())
+}
+
+<span class="hljs-comment">/// &#x5220;&#x9664;sessionStorage&#x4E2D;&#x7684;&#x6570;&#x636E;</span>
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_session_storage</span></span>(key: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;(), JsValue&gt; {
+    <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> window = window().ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+    <span class="hljs-comment">// &#x83B7;&#x53D6;sessionStorage&#xFF0C;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</span>
+    <span class="hljs-keyword">let</span> storage = window.session_storage()?.ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;sessionStorage is not available&quot;</span>))?;
+
+    <span class="hljs-comment">// &#x5220;&#x9664;&#x6570;&#x636E;</span>
+    storage.remove_item(key)?;
+    <span class="hljs-literal">Ok</span>(())
+}
+</code></pre>
+<p>&#x5728;JavaScript&#x4E2D;&#x8C03;&#x7528;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { set_local_storage, get_local_storage, set_session_storage, get_session_storage } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+    set_local_storage(<span class="hljs-string">&apos;my_local_key&apos;</span>, <span class="hljs-string">&apos;my_local_key_value&apos;</span>);
+    <span class="hljs-keyword">const</span> value = get_local_storage(<span class="hljs-string">&apos;my_local_key&apos;</span>);
+    <span class="hljs-built_in">console</span>.log(value);
+    set_session_storage(<span class="hljs-string">&apos;my_session_key&apos;</span>, <span class="hljs-string">&apos;my_session_key_value&apos;</span>);
+    <span class="hljs-keyword">const</span> value1 = get_session_storage(<span class="hljs-string">&apos;my_session_key&apos;</span>);
+    <span class="hljs-built_in">console</span>.log(value1);
+};
+
+run();
+</code></pre>
+<h2 id="&#x516D;&#x3001;&#x5B9A;&#x65F6;&#x5668;&#x63A7;&#x5236;">&#x516D;&#x3001;&#x5B9A;&#x65F6;&#x5668;&#x63A7;&#x5236;</h2>
+<p>&#x5728; Web &#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x5141;&#x8BB8;&#x5F00;&#x53D1;&#x8005;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x540E;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x6216;&#x8005;&#x5EF6;&#x8FDF;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x501F;&#x52A9;<code>web-sys</code>&#x5E93;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x5730;&#x4F7F;&#x7528;<code>setTimeout</code>&#x548C;<code>setInterval</code>&#x8FD9;&#x4E24;&#x4E2A;&#x5B9A;&#x65F6;&#x5668;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>clearTimeout</code>&#x548C;<code>clearInterval</code>&#x65B9;&#x6CD5;&#x6765;&#x6E05;&#x9664;&#x5DF2;&#x8BBE;&#x7F6E;&#x7684;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x548C;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x8D44;&#x6E90;&#x6D88;&#x8017;&#x3002;</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> wasm_bindgen::prelude::*;
+<span class="hljs-keyword">use</span> wasm_bindgen::JsCast;
+<span class="hljs-keyword">use</span> web_sys::window;
+<span class="hljs-keyword">use</span> js_sys::{Function, Array};
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Timer</span></span> {
+    closure: <span class="hljs-built_in">Option</span>&lt;Closure&lt;dyn <span class="hljs-built_in">FnMut</span>()&gt;&gt;, <span class="hljs-comment">// &#x4F7F;&#x7528;Option&#x4EE5;&#x4FBF;&#x5B89;&#x5168;&#x53D6;&#x51FA;</span>
+    id: <span class="hljs-built_in">Option</span>&lt;<span class="hljs-keyword">i32</span>&gt;,                       <span class="hljs-comment">// &#x4F7F;&#x7528;Option&#x8DDF;&#x8E2A;&#x72B6;&#x6001;</span>
+}
+
+<span class="hljs-meta">#[wasm_bindgen]</span>
+<span class="hljs-keyword">impl</span> Timer {
+    <span class="hljs-meta">#[wasm_bindgen(constructor)]</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new</span></span>(callback: &amp;Function, interval: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-built_in">Result</span>&lt;Timer, JsValue&gt; {
+        <span class="hljs-comment">// &#x786E;&#x4FDD;interval&#x4E3A;&#x975E;&#x8D1F;&#x503C;</span>
+        <span class="hljs-keyword">if</span> interval &lt; <span class="hljs-number">0</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">Err</span>(JsValue::from_str(<span class="hljs-string">&quot;Interval cannot be negative&quot;</span>));
+        }
+
+        <span class="hljs-comment">// &#x83B7;&#x53D6;window&#x5BF9;&#x8C61;&#xFF0C;&#x59A5;&#x5584;&#x5904;&#x7406;&#x53EF;&#x80FD;&#x7684;None</span>
+        <span class="hljs-keyword">let</span> window = window()
+            .ok_or_else(|| JsValue::from_str(<span class="hljs-string">&quot;Window object not available&quot;</span>))?;
+
+        <span class="hljs-comment">// &#x521B;&#x5EFA;&#x95ED;&#x5305;&#xFF0C;&#x6355;&#x83B7;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x514B;&#x9686;&#xFF08;&#x800C;&#x975E;&#x5F15;&#x7528;&#xFF09;&#x4EE5;&#x907F;&#x514D;&#x751F;&#x547D;&#x5468;&#x671F;&#x95EE;&#x9898;</span>
+        <span class="hljs-keyword">let</span> callback = callback.clone();
+        <span class="hljs-keyword">let</span> closure = Closure::wrap(<span class="hljs-built_in">Box</span>::new(move || {
+            <span class="hljs-keyword">let</span> _ = callback.call0(&amp;JsValue::NULL);
+        }) <span class="hljs-keyword">as</span> <span class="hljs-built_in">Box</span>&lt;dyn <span class="hljs-built_in">FnMut</span>()&gt;);
+
+        <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x59A5;&#x5584;&#x5904;&#x7406;&#x53EF;&#x80FD;&#x7684;&#x9519;&#x8BEF;</span>
+        <span class="hljs-keyword">let</span> id = window
+            .set_interval_with_callback_and_timeout_and_arguments(
+                closure.as_ref().unchecked_ref(),
+                interval,
+                &amp;Array::new(),
+            )
+            .map_err(|e| JsValue::from_str(&amp;<span class="hljs-built_in">format!</span>(<span class="hljs-string">&quot;Failed to create interval: {:?}&quot;</span>, e)))?;
+
+        <span class="hljs-literal">Ok</span>(Timer {
+            closure: <span class="hljs-literal">Some</span>(closure),
+            id: <span class="hljs-literal">Some</span>(id),
+        })
+    }
+
+    <span class="hljs-comment">/// &#x53D6;&#x6D88;&#x5B9A;&#x65F6;&#x5668;&#x5E76;&#x91CA;&#x653E;&#x8D44;&#x6E90;</span>
+    <span class="hljs-meta">#[wasm_bindgen]</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">cancel</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) {
+        <span class="hljs-comment">// &#x6E05;&#x9664;&#x5B9A;&#x65F6;&#x5668;&#xFF08;&#x5982;&#x679C;&#x5B58;&#x5728;&#xFF09;</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(id) = <span class="hljs-keyword">self</span>.id.take() {
+            <span class="hljs-comment">// &#x5FFD;&#x7565;&#x6E05;&#x9664;&#x65F6;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x56E0;&#x4E3A;&#x6B64;&#x65F6;&#x7A97;&#x53E3;&#x53EF;&#x80FD;&#x5DF2;&#x5173;&#x95ED;</span>
+            <span class="hljs-keyword">let</span> _ = window().and_then(|w| <span class="hljs-literal">Some</span>(w.clear_interval_with_handle(id)));
+        }
+
+        <span class="hljs-comment">// &#x53D6;&#x51FA;&#x5E76;&#x91CA;&#x653E;&#x95ED;&#x5305;</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(closure) = <span class="hljs-keyword">self</span>.closure.take() {
+            <span class="hljs-comment">// &#x8F6C;&#x6362;&#x4E3A;JsValue&#x540E;&#x91CA;&#x653E;&#xFF0C;&#x786E;&#x4FDD;JavaScript&#x53EF;&#x4EE5;&#x56DE;&#x6536;&#x5185;&#x5B58;</span>
+            closure.into_js_value();
+        }
+    }
+
+    <span class="hljs-comment">/// &#x68C0;&#x67E5;&#x5B9A;&#x65F6;&#x5668;&#x662F;&#x5426;&#x4ECD;&#x5728;&#x8FD0;&#x884C;</span>
+    <span class="hljs-meta">#[wasm_bindgen]</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">is_active</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-keyword">self</span>.id.is_some() &amp;&amp; <span class="hljs-keyword">self</span>.closure.is_some()
+    }
+}
+
+<span class="hljs-comment">// &#x5B9E;&#x73B0;Drop trait&#x786E;&#x4FDD;&#x8D44;&#x6E90;&#x91CA;&#x653E;</span>
+<span class="hljs-keyword">impl</span> <span class="hljs-built_in">Drop</span> <span class="hljs-keyword">for</span> Timer {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">drop</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) {
+        <span class="hljs-comment">// &#x5982;&#x679C;&#x7528;&#x6237;&#x5FD8;&#x8BB0;&#x8C03;&#x7528;cancel()&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x81EA;&#x52A8;&#x6E05;&#x7406;</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.is_active() {
+            <span class="hljs-keyword">self</span>.cancel();
+        }
+    }
+}
+</code></pre>
+<p>&#x5728; JavaScript &#x4E2D; &#x521B;&#x5EFA; <code>Timer</code> &#x5B9E;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> init, { Timer } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./pkg/your_pkg_name.js&apos;</span>;
+
+<span class="hljs-keyword">const</span> run = <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> init();
+   <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> timer = <span class="hljs-keyword">new</span> Timer(
+        () =&gt; {
+            count += <span class="hljs-number">1</span>;
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;wasm call count: &apos;</span>, count);
+        },
+        <span class="hljs-number">1000</span>,
+    );
+    <span class="hljs-comment">// 10&#x79D2;&#x540E;&#x53D6;&#x6D88;&#x5B9A;&#x65F6;&#x5668;</span>
+    setTimeout(() =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;js cancel timer&apos;</span>);
+        timer.cancel();
+    }, <span class="hljs-number">10000</span>); 
+    <span class="hljs-comment">// &#x8F93;&#x51FA;&#x5982;&#x4E0B;&#xFF1A;</span>
+    <span class="hljs-comment">// wasm call count:  1</span>
+    <span class="hljs-comment">// wasm call count:  2</span>
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-comment">// wasm call count:  9 </span>
+    <span class="hljs-comment">// wasm call count:  10</span>
+    <span class="hljs-comment">// js cancel timer</span>
+};
+
+run();
+</code></pre>
+<h2 id="&#x4E03;&#x3001;&#x603B;&#x7ED3;">&#x4E03;&#x3001;&#x603B;&#x7ED3;</h2>
+<p>&#x901A;&#x8FC7; <code>web-sys</code>&#xFF0C;Rust &#x83B7;&#x5F97;&#x4E86;&#x4E0E;&#x6D4F;&#x89C8;&#x5668;&#x6DF1;&#x5EA6;&#x4EA4;&#x4E92;&#x7684;&#x80FD;&#x529B;&#x3002;&#x4ECE;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x5230; Canvas &#x64CD;&#x4F5C;&#xFF0C;&#x4ECE;&#x5F02;&#x6B65; Promise &#x5230;&#x672C;&#x5730;&#x5B58;&#x50A8;&#xFF0C;Rust &#x5728;&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;&#x4E2D;&#x5C55;&#x73B0;&#x51FA;&#x524D;&#x6240;&#x672A;&#x6709;&#x7684;&#x5F3A;&#x5927;&#x80FD;&#x529B;&#x3002;</p>
+<p><strong>&#x5173;&#x952E;&#x6280;&#x80FD;&#xFF1A;</strong></p>
+<ul>
+<li><strong>&#x9AD8;&#x7EA7;&#x4E8B;&#x4EF6;&#x5904;&#x7406;</strong>&#xFF1A;&#x83B7;&#x53D6;&#x4E8B;&#x4EF6;&#x8BE6;&#x60C5;&#xFF0C;&#x52A8;&#x6001;&#x589E;&#x5220;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x3002;</li>
+<li><strong>&#x5F02;&#x6B65;&#x64CD;&#x4F5C;</strong>&#xFF1A;&#x4F7F;&#x7528; <code>wasm-bindgen-futures</code> &#x5F81;&#x670D; <code>Promise</code> &#x548C; <code>fetch</code>&#x3002;</li>
+<li><strong>Canvas &#x7ED8;&#x56FE;</strong>&#xFF1A;&#x91CA;&#x653E; Rust &#x7684;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#x8FDB;&#x884C;&#x56FE;&#x5F62;&#x521B;&#x4F5C;&#x3002;</li>
+<li><strong>Web API &#x5B9E;&#x8DF5;</strong>&#xFF1A;&#x719F;&#x7EC3;&#x8FD0;&#x7528; <code>Storage</code> &#x7684; <code>localStorage</code> &#x548C; <code>sessionStorage</code>&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5B58;&#x53D6;&#x3002;</li>
+<li><strong>&#x5B9A;&#x65F6;&#x5668;&#x63A7;&#x5236;</strong>&#xFF1A;&#x4F7F;&#x7528; <code>setTimeout</code> &#x548C; <code>setInterval</code> &#x8FDB;&#x884C;&#x7CBE;&#x786E;&#x7684;&#x65F6;&#x95F4;&#x63A7;&#x5236;&#x3002;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="6-wasm-web-sys-base.html" class="navigation navigation-prev " aria-label="Previous page: Rust & WebAssembly：web-sys 开启 DOM 操作新篇">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../rust/" class="navigation navigation-next " aria-label="Next page: Rust">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践","level":"1.2.7","depth":2,"next":{"title":"Rust","level":"1.3","depth":1,"path":"rust/README.md","ref":"rust/README.md","articles":[{"title":"探索 Rust 语言：性能与安全的编程新宠🎯","level":"1.3.1","depth":2,"path":"rust/1-intro.md","ref":"rust/1-intro.md","articles":[]},{"title":"Rust 基本类型：探索 Rust 编程的基础构建块","level":"1.3.2","depth":2,"path":"rust/2-baseType.md","ref":"rust/2-baseType.md","articles":[]},{"title":"Rust 所有权与 Move：内存管理的艺术","level":"1.3.3","depth":2,"path":"rust/3-ownership.md","ref":"rust/3-ownership.md","articles":[]},{"title":"Rust 引用：强大而安全的数据使用特性","level":"1.3.4","depth":2,"path":"rust/4-ref.md","ref":"rust/4-ref.md","articles":[]},{"title":"Rust 表达式：强大而独特的编程利器","level":"1.3.5","depth":2,"path":"rust/5-expression.md","ref":"rust/5-expression.md","articles":[]},{"title":"Rust 错误处理：独特而灵活多样","level":"1.3.6","depth":2,"path":"rust/6-err.md","ref":"rust/6-err.md","articles":[]},{"title":"Rust 的 crate 和模块：强大的代码组织工具","level":"1.3.7","depth":2,"path":"rust/7-crate.md","ref":"rust/7-crate.md","articles":[]},{"title":"Rust 结构体：强大而灵活的数据类型","level":"1.3.8","depth":2,"path":"rust/8-struct.md","ref":"rust/8-struct.md","articles":[]},{"title":"Rust 的枚举与模式：灵活又安全的工具","level":"1.3.9","depth":2,"path":"rust/9-enum.md","ref":"rust/9-enum.md","articles":[]},{"title":"Rust 之 trait 与泛型的奥秘","level":"1.3.10","depth":2,"path":"rust/10-trait.md","ref":"rust/10-trait.md","articles":[]},{"title":"Rust 运算符重载：开启高效编程之旅","level":"1.3.11","depth":2,"path":"rust/11-ops.md","ref":"rust/11-ops.md","articles":[]},{"title":"Rust 闭包：高效编程的秘密武器","level":"1.3.12","depth":2,"path":"rust/12-closures.md","ref":"rust/12-closures.md","articles":[]},{"title":"Rust 迭代器：从基础到实践","level":"1.3.13","depth":2,"path":"rust/13-iterator.md","ref":"rust/13-iterator.md","articles":[]},{"title":"Rust 集合：编程中的得力助手","level":"1.3.14","depth":2,"path":"rust/14-collection.md","ref":"rust/14-collection.md","articles":[]},{"title":"Rust IO魔法：输入输出大揭秘","level":"1.3.15","depth":2,"path":"rust/15-io.md","ref":"rust/15-io.md","articles":[]},{"title":"Rust并发编程：解锁高效与安全的编程新姿势","level":"1.3.16","depth":2,"path":"rust/16-concurrency.md","ref":"rust/16-concurrency.md","articles":[]},{"title":"Rust异步编程：从入门到精通","level":"1.3.17","depth":2,"path":"rust/17-async.md","ref":"rust/17-async.md","articles":[]},{"title":"Rust 宏全解析：从基础到实战，掌握代码生成魔法","level":"1.3.18","depth":2,"path":"rust/18-macro.md","ref":"rust/18-macro.md","articles":[]},{"title":"Rust 进阶修炼：掌握 Unsafe 编程的核心能力","level":"1.3.19","depth":2,"path":"rust/19-unsafe.md","ref":"rust/19-unsafe.md","articles":[]},{"title":"Rust FFI实战指南：跨越语言边界的优雅之道","level":"1.3.20","depth":2,"path":"rust/20-ffi.md","ref":"rust/20-ffi.md","articles":[]}]},"previous":{"title":"Rust & WebAssembly：web-sys 开启 DOM 操作新篇","level":"1.2.6","depth":2,"path":"wasm/6-wasm-web-sys-base.md","ref":"wasm/6-wasm-web-sys-base.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm/7-wasm-web-sys-advanced.md","mtime":"2025-08-09T07:52:15.878Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-09T07:54:33.326Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
