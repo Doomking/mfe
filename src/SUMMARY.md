@@ -10,6 +10,7 @@
     * [Rust & WebAssembly：web-sys 开启 DOM 操作新篇](wasm/6-wasm-web-sys-base.md)
     * [Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践](wasm/7-wasm-web-sys-advanced.md)
     * [Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身](wasm/8-wasm-opt.md)
+    * [Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器](wasm/9-wasm-demo.md)
 * [Rust](rust/README.md)
     * [探索 Rust 语言：性能与安全的编程新宠🎯](rust/1-intro.md)
     * [Rust 基本类型：探索 Rust 编程的基础构建块](rust/2-baseType.md)
