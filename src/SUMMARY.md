@@ -1,6 +1,8 @@
 # Summary
 
 * [受之以蒙](README.md)
+* [Rust&ndarray](ndarray/README.md)
+    * [赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座](ndarray/1-base.md)
 * [Rust&WebAssembly](wasm/README.md)
     * [当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）](wasm/1-intro.md)
     * [Rust+Wasm利器：用wasm-pack引爆前端性能！](wasm/2-wasm-pack.md)

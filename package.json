@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx gitbook serve ./src",
-    "build": "npx gitbook build ./src ./docs",
-    "install": "npx gitbook install"
+    "dev": "npx honkit serve ./src",
+    "build": "npx honkit build ./src ./docs"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,7 @@
   },
   "homepage": "https://github.com/Doomking/mfe#readme",
   "devDependencies": {
-    "graceful-fs": "4.2.4"
+    "graceful-fs": "4.2.4",
+    "honkit": "^6.1.4"
   }
 }
