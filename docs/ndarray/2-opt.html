@@ -1,0 +1,1220 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../wasm/" />
+    
+    
+    <link rel="prev" href="1-base.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&ndarray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-base.html">
+            
+                <a href="1-base.html">
+            
+                    
+                    赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="2-opt.html">
+            
+                <a href="2-opt.html">
+            
+                    
+                    Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../wasm/">
+            
+                <a href="../wasm/">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../wasm/1-intro.html">
+            
+                <a href="../wasm/1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../wasm/2-wasm-pack.html">
+            
+                <a href="../wasm/2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../wasm/3-wasm-bindgen-base.html">
+            
+                <a href="../wasm/3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../wasm/4-wasm-bindgen-advanced.html">
+            
+                <a href="../wasm/4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../wasm/5-wasm-js-sys.html">
+            
+                <a href="../wasm/5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../wasm/6-wasm-web-sys-base.html">
+            
+                <a href="../wasm/6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../wasm/7-wasm-web-sys-advanced.html">
+            
+                <a href="../wasm/7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../wasm/8-wasm-opt.html">
+            
+                <a href="../wasm/8-wasm-opt.html">
+            
+                    
+                    Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../wasm/9-wasm-demo.html">
+            
+                <a href="../wasm/9-wasm-demo.html">
+            
+                    
+                    Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../wasm/10-wasm-future.html">
+            
+                <a href="../wasm/10-wasm-future.html">
+            
+                    
+                    Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rust-ndarray-高性能计算：从元素操作到矩阵运算的优化实践">Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践</h1>
+<h2 id="一、迭代与映射：用-mapv-释放元素级处理潜力">一、迭代与映射：用 mapv 释放元素级处理潜力</h2>
+<p>在 Rust 的 <code>ndarray</code> 库中，迭代与映射是对数组元素进行操作的基础。</p>
+<p>通过灵活运用这些操作，可以高效地处理数组中的每个元素，实现各种复杂的数据处理任务。</p>
+<h3 id="11-mapv-基础：逐元素映射与类型转换">1.1 mapv 基础：逐元素映射与类型转换</h3>
+<p><code>mapv</code>是 <code>ndarray</code> 中高效的元素级映射工具，接收闭包作为参数，返回与原数组维度相同的新数组。与惰性的<code>map</code>不同，<code>mapv</code>立即分配内存并计算结果，适合需要新数组的场景。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">sensor_readings</span> = array![<span class="hljs-number">102.3</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">511.5</span>, <span class="hljs-number">1023.0f64</span>];
+
+    <span class="hljs-comment">// 使用 mapv 进行归一化</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">normalized</span> = sensor_readings.<span class="hljs-title function_ invoke__">mapv</span>(|x| x / <span class="hljs-number">1023.0</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"原始读数: \n{}"</span>, sensor_readings);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"归一化后: \n{}"</span>, normalized);
+
+    <span class="hljs-comment">// 也可以执行更复杂的操作，比如 Sigmoid</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">activations</span> = normalized.<span class="hljs-title function_ invoke__">mapv</span>(|x| <span class="hljs-number">1.0</span> / (<span class="hljs-number">1.0</span> + (-x).<span class="hljs-title function_ invoke__">exp</span>()));
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"激活值: \n{}"</span>, activations);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">原始读数:
+[102.3, 0, 511.5, 1023]
+归一化后:
+[0.09999999999999999, 0, 0.5, 1]
+激活值:
+[0.5249791874789399, 0.5, 0.6224593312018546, 0.7310585786300049]
+</code></pre>
+<p>在具身智能场景中，当处理传感器数据时，<code>mapv</code>可用于对传感器读数进行预处理。</p>
+<p>比如，将温度传感器的原始读数从摄氏度转换为华氏度，或者对压力传感器数据进行校准。</p>
+<h3 id="12-并行加速：parmapvinplace-应对大规模数据">1.2 并行加速：par_mapv_inplace 应对大规模数据</h3>
+<p>借助 rayon 库，<code>par_mapv_inplace</code>支持多核并行处理，显著提升计算密集型任务效率（需启用<code>rayon</code>特性）。</p>
+<p><code>par_mapv_inplace</code> 被称之为<strong>就地并行修改</strong>， 是 <code>ndarray</code> 提供的最直接的并行 <code>map</code> 方法。它会启动一个线程池，并行地修改数组中的每一个元素，不返回任何东西 (())。</p>
+<p>Cargo.toml配置：</p>
+<pre><code class="lang-toml"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">ndarray</span> = { version = <span class="hljs-string">"0.17.1"</span>, features = [<span class="hljs-string">"rayon"</span>] }
+</code></pre>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::Array3;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">matrix</span> =
+        Array3::<span class="hljs-title function_ invoke__">from_shape_vec</span>((<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>), <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1.0f64</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>]).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-comment">// 并行计算每个元素的平方</span>
+    matrix.<span class="hljs-title function_ invoke__">par_mapv_inplace</span>(|x| x.<span class="hljs-title function_ invoke__">powi</span>(<span class="hljs-number">2</span>));
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"并行计算值: \n{}"</span>, matrix);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">并行计算值:
+[[[1, 4],
+  [9, 16]],
+
+ [[25, 36],
+  [49, 64]]]
+</code></pre>
+<h2 id="二、元素级运算：简洁高效的逐元素操作">二、元素级运算：简洁高效的逐元素操作</h2>
+<p>元素级运算是 <code>ndarray</code> 的核心功能之一，它允许我们对数组中的每个元素进行操作，而无需显式的循环。</p>
+<p>这种向量化的操作方式不仅提高了代码的简洁性，还显著提升了执行效率。</p>
+<h3 id="21-基础算术运算：运算符与函数双支持">2.1 基础算术运算：运算符与函数双支持</h3>
+<p><code>ndarray</code> 支持直接使用<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>进行元素级运算，操作简单直观，代码可读性强。这些运算符会自动应用到数组的每个元素上，生成一个新的数组。</p>
+<p>同时，<code>ndarray</code> 也提供了<code>add</code>、<code>sub</code>、<code>mul</code>、<code>div</code>等函数来实现相同的运算。使用函数形式可以在一些需要更灵活操作的场景中，确保类型安全和更好的错误处理。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+<span class="hljs-keyword">use</span> std::ops::Mul;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]];
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = array![[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>], [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>]];
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a_clone</span> = a.<span class="hljs-title function_ invoke__">clone</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b_clone</span> = b.<span class="hljs-title function_ invoke__">clone</span>();
+    <span class="hljs-comment">// 使用运算符进行元素级加法</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">c</span> = a + b;
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"相加: \n{}"</span>, c);
+
+    <span class="hljs-comment">// 使用函数进行元素级乘法</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = a_clone.<span class="hljs-title function_ invoke__">mul</span>(&amp;b_clone);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"相乘: \n{}"</span>, d);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">相加:
+[[8, 10, 12],
+ [14, 16, 18]]
+相乘:
+[[7, 16, 27],
+ [40, 55, 72]]
+</code></pre>
+<h3 id="22-数学函数应用：从基础到复杂运算">2.2 数学函数应用：从基础到复杂运算</h3>
+<p><code>ndarray</code> 支持<code>sqrt</code>、<code>sin</code>、<code>cos</code>等丰富的数学函数，这些函数可以直接作用于数组的每个元素，避免了手动迭代数组来应用这些函数的繁琐过程。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::prelude::*;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![<span class="hljs-number">1.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">9.0</span>];
+    <span class="hljs-comment">// 计算每个元素的平方根</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = a.<span class="hljs-title function_ invoke__">sqrt</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"平方根: \n{}"</span>, b);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">angles</span> = array![<span class="hljs-number">0.0</span>, std::<span class="hljs-type">f64</span>::consts::PI / <span class="hljs-number">2.0</span>, std::<span class="hljs-type">f64</span>::consts::PI];
+    <span class="hljs-comment">// 计算每个角度的正弦值</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">sines</span> = angles.<span class="hljs-title function_ invoke__">sin</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"正弦值: \n{}"</span>, sines);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">平方根:
+[1, 2, 3]
+正弦值:
+[0, 1, 0.00000000000000012246467991473532]
+</code></pre>
+<h2 id="三、广播机制：维度适配的隐形助手">三、广播机制：维度适配的隐形助手</h2>
+<p>在 <code>ndarray</code> 的世界里，广播机制是一种强大而又神奇的特性，它允许不同形状的数组在进行运算时自动适配维度，大大简化了代码的编写。</p>
+<h3 id="31-广播规则：从后缘维度对齐到自动扩展">3.1 广播规则：从后缘维度对齐到自动扩展</h3>
+<p><code>ndarray</code> 广播遵循「后缘对齐」原则，当两个数组进行运算时，如果它们的维度数不同，<code>ndarray</code> 会在较小数组的前面补 1，使其维度数与较大数组相同。</p>
+<p>例如，一个形状为 (5, 3) 的数组与一个形状为 (3,) 的数组进行广播时，形状为 (3,) 的数组会被视为 (1, 3)，然后再与 (5, 3) 进行对齐，最终广播为 (5, 3)。</p>
+<p>在维度对齐后，单维度（长度为 1）的维度会自动复制扩展，以匹配另一个数组的维度。这种扩展是逻辑上的，无需显式的数据复制，因此效率非常高。</p>
+<h3 id="32-实战场景：环境常数广播与状态计算">3.2 实战场景：环境常数广播与状态计算</h3>
+<p>在具身智能的应用中，将环境常数广播到所有状态向量是一个常见的需求。</p>
+<p>假设我们有一个机器人，它在不同的状态下需要考虑重力加速度的影响。重力加速度是一个常数，我们可以将其广播到机器人的所有状态向量上，从而在计算中考虑重力的作用。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-comment">// 定义重力加速度 (1,)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">gravity</span> = array![<span class="hljs-number">9.81</span>]; 
+
+    <span class="hljs-comment">// 假设机器人有三个状态，每个状态包含位置和速度信息 (3, 2, 2)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">states</span> = array![
+        [[<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>]],
+        [[<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>], [<span class="hljs-number">3.0</span>, <span class="hljs-number">3.0</span>]],
+        [[<span class="hljs-number">4.0</span>, <span class="hljs-number">4.0</span>], [<span class="hljs-number">5.0</span>, <span class="hljs-number">5.0</span>]]
+    ]; 
+
+    <span class="hljs-comment">// 将重力加速度广播到所有状态向量上</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">new_states</span> = states + gravity; 
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"New states:\n {:?}"</span>, new_states); 
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">New states:
+ [[[9.81, 9.81],
+  [10.81, 10.81]],
+
+ [[11.81, 11.81],
+  [12.81, 12.81]],
+
+ [[13.81, 13.81],
+  [14.81, 14.81]]], shape=[3, 2, 2], strides=[4, 2, 1], layout=Cc (0x5), const ndim=3
+</code></pre>
+<p>在这个例子中，<code>gravity</code>是一个形状为 (1,) 的数组，<code>states</code>是一个形状为 (3, 2, 2) 的数组。通过广播机制，<code>gravity</code>会自动扩展为 (3, 2, 2) 的形状，与<code>states</code>进行匹配，然后进行元素级加法运算。</p>
+<h2 id="四、连接与堆叠：灵活组合多维数据">四、连接与堆叠：灵活组合多维数据</h2>
+<p>在处理多维数据时，我们常常需要将多个数组合并成一个更大的数组，或者将一个数组分割成多个小数组。ndarray 提供了<code>stack</code>和<code>concatenate</code>函数来满足这些需求，它们在具身智能中也有着广泛的应用，比如在批量生成控制信号时，就需要将多个控制信号数组合并成一个大的数组。</p>
+<h3 id="41-concatenate：沿现有轴连接数组">4.1 concatenate：沿现有轴连接数组</h3>
+<p><code>concatenate</code>函数是沿指定轴连接数组，它允许输入数组在其他轴上的形状一致，只有连接轴上的长度可以不同。这使得<code>concatenate</code>在合并具有不同长度但相同结构的数据时非常灵活。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+<span class="hljs-keyword">use</span> ndarray::Axis;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]];
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = array![[<span class="hljs-number">5</span>, <span class="hljs-number">6</span>]];
+
+    <span class="hljs-comment">// 沿轴0连接数组</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">c</span> = ndarray::<span class="hljs-title function_ invoke__">concatenate</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">0</span>), &amp;[a.<span class="hljs-title function_ invoke__">view</span>(), b.<span class="hljs-title function_ invoke__">view</span>()]).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"concatenate axis0:\n {:?}"</span>, c);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = array![[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>], [<span class="hljs-number">9</span>, <span class="hljs-number">10</span>]];
+    <span class="hljs-comment">// 沿轴1连接数组</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">e</span> = ndarray::<span class="hljs-title function_ invoke__">concatenate</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">1</span>), &amp;[a.<span class="hljs-title function_ invoke__">view</span>(), d.<span class="hljs-title function_ invoke__">view</span>()]).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"concatenate axis1:\n {:?}"</span>, e);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">concatenate axis0:
+ [[1, 2],
+ [3, 4],
+ [5, 6]], shape=[3, 2], strides=[2, 1], layout=Cc (0x5), const ndim=2
+concatenate axis1:
+ [[1, 2, 7, 8],
+ [3, 4, 9, 10]], shape=[2, 4], strides=[1, 2], layout=Ff (0xa), const ndim=2
+</code></pre>
+<p>在实际应用中，当我们需要将不同时间段的传感器数据连接起来时，<code>concatenate</code>就派上用场了。</p>
+<p>比如，一个机器人在不同时间段采集到的位置数据，我们可以使用<code>concatenate</code>将这些数据按时间顺序连接起来，以便分析机器人的运动轨迹。</p>
+<h3 id="42-stack：新增维度堆叠数组">4.2 stack：新增维度堆叠数组</h3>
+<p><code>stack</code>函数用于在指定轴上堆叠数组，生成一个更高维度的新数组。它要求所有输入数组的形状必须一致，否则会导致错误。通过<code>stack</code>，我们可以轻松地将多个相同形状的数组合并成一个更高维度的数组，这在处理多个样本的相同特征数据时非常有用。</p>
+<p>堆叠 (stack) 在概念上，完全等同于以下两步操作：</p>
+<ul>
+<li><p>“Reshape” (增加维度): 先把你要堆叠的每一个数组，在你指定的 Axis 位置上，增加一个大小为 1 的新维度。</p>
+</li>
+<li><p>“Concatenate” (拼接): 然后，沿着那个刚刚新增的 Axis，把这些“升维”后的数组拼接起来。</p>
+</li>
+</ul>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = array![<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];
+
+    <span class="hljs-comment">// 在新轴（轴0）上堆叠数组</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">c</span> = ndarray::<span class="hljs-title function_ invoke__">stack</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">0</span>), &amp;[a.<span class="hljs-title function_ invoke__">view</span>(), b.<span class="hljs-title function_ invoke__">view</span>()]).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"stack axis0:\n {:?}"</span>, c);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a_2d</span> = a.<span class="hljs-title function_ invoke__">insert_axis</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// (3,1)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b_2d</span> = b.<span class="hljs-title function_ invoke__">insert_axis</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// (3,1)</span>
+    <span class="hljs-comment">// 在轴1上堆叠数组, 先升维 （3，1）-&gt; (3, 1, 1), 然后在轴1上拼接</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">d</span> = ndarray::<span class="hljs-title function_ invoke__">stack</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">1</span>), &amp;[a_2d.<span class="hljs-title function_ invoke__">view</span>(), b_2d.<span class="hljs-title function_ invoke__">view</span>()]).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"stack axis1:\n {:?}"</span>, d);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">stack axis0:
+ [[1, 2, 3],
+ [4, 5, 6]], shape=[2, 3], strides=[3, 1], layout=Cc (0x5), const ndim=2
+stack axis1:
+ [[[1],
+  [4]],
+
+ [[2],
+  [5]],
+
+ [[3],
+  [6]]], shape=[3, 2, 1], strides=[1, 3, 1], layout=Ff (0xa), const ndim=3
+</code></pre>
+<h2 id="五、聚合与沿轴操作：数据降维与统计">五、聚合与沿轴操作：数据降维与统计</h2>
+<p>在数据分析和科学计算中，聚合操作是对数据进行总结和概括的重要手段。<code>ndarray</code> 提供了丰富的聚合函数，如<code>sum</code>、<code>mean</code>等，这些函数可以快速计算数组的总和、平均值等统计量。</p>
+<p>同时，通过指定轴参数，我们还可以沿特定的维度进行聚合操作，实现数据的降维与分析。</p>
+<h3 id="51-基础聚合：sum、mean-快速统计">5.1 基础聚合：sum、mean 快速统计</h3>
+<p><code>sum</code>和<code>mean</code>是最常用的聚合函数之一，它们可以直接对数组进行操作，返回一个标量结果，表示整个数组的总和或平均值。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+    <span class="hljs-comment">// 计算数组的总和</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">sum</span> = a.<span class="hljs-title function_ invoke__">sum</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"sum:\n {:?}"</span>, sum);
+
+    <span class="hljs-comment">// 计算数组的平均值</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">mean</span> = a.<span class="hljs-title function_ invoke__">mean</span>().<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"mean:\n {:?}"</span>, mean); 
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">sum:
+ 15
+mean:
+ 3.0
+</code></pre>
+<h3 id="52-沿轴计算：按维度聚合数据">5.2 沿轴计算：按维度聚合数据</h3>
+<p>通过<code>axis</code>参数，我们可以指定聚合操作沿哪个轴进行，从而实现按维度聚合数据。在处理多维数据时非常有用，可以快速获取不同维度上的统计信息。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+<span class="hljs-keyword">use</span> ndarray::Axis;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">matrix</span> = array![[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]];
+
+    <span class="hljs-comment">// 计算每列的总和（轴0）</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">column_sums</span> = matrix.<span class="hljs-title function_ invoke__">sum_axis</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">0</span>));
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"column_sums:\n {:?}"</span>, column_sums);
+
+    <span class="hljs-comment">// 计算每行的平均值（轴1）</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">row_means</span> = matrix.<span class="hljs-title function_ invoke__">mean_axis</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">1</span>)).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"row_means:\n {:?}"</span>, row_means);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">column_sums:
+ [5, 7, 9], shape=[3], strides=[1], layout=CFcf (0xf), const ndim=1
+row_means:
+ [2, 5], shape=[2], strides=[1], layout=CFcf (0xf), const ndim=1
+</code></pre>
+<h2 id="六、矩阵代数：ndarray-linalg-与线性代数基础">六、矩阵代数：ndarray-linalg 与线性代数基础</h2>
+<p>在人工智能的算法实现中，矩阵代数是不可或缺的一部分。<code>ndarray</code> 库本身提供了基本的矩阵乘法操作，而 <code>ndarray-linalg</code> 库则进一步扩展了其线性代数功能，为解决复杂的数学问题提供了强大的工具。</p>
+<h3 id="61-矩阵乘法：dot--与维度匹配">6.1 矩阵乘法：.dot () 与维度匹配</h3>
+<p>在 <code>ndarray</code> 中，使用<code>.dot()</code>方法执行矩阵乘法，它严格遵循线性代数中的维度规则。对于两个矩阵<code>A</code>和<code>B</code>，只有当<code>A</code>的列数等于<code>B</code>的行数时，矩阵乘法<code>A.dot(B)</code>才是有效的。</p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">a</span> = array![[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]];
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">b</span> = array![[<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]];
+
+    <span class="hljs-comment">// 执行矩阵乘法</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">c</span> = a.<span class="hljs-title function_ invoke__">dot</span>(&amp;b);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"dot:\n {:?}"</span>, c);
+}
+</code></pre>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-shell">dot:
+ [[19, 22],
+ [43, 50]], shape=[2, 2], strides=[2, 1], layout=Cc (0x5), const ndim=2
+</code></pre>
+<h3 id="62-ndarray-linalg-扩展：特征值、矩阵分解">6.2 ndarray-linalg 扩展：特征值、矩阵分解</h3>
+<p><code>ndarray-linalg</code>库为 <code>ndarray</code> 提供了丰富的线性代数扩展，包括矩阵求逆、奇异值分解（SVD）、特征值计算等高级操作。</p>
+<p>这些功能在人工智能中对于解决复杂的优化和估计问题非常关键。</p>
+<p>Cargo.toml 配置：</p>
+<pre><code class="lang-toml"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">ndarray</span> = { version = <span class="hljs-string">"0.17.1"</span> }
+<span class="hljs-attr">ndarray-linalg</span> = <span class="hljs-string">"0.18.0"</span>
+</code></pre>
+<p>需要额外安装 <code>openblas</code>，地址：<a href="https://github.com/OpenMathLib/OpenBLAS" target="_blank">https://github.com/OpenMathLib/OpenBLAS</a> </p>
+<pre><code class="lang-rust">
+<span class="hljs-keyword">use</span> ndarray::array;
+<span class="hljs-keyword">use</span> ndarray_linalg::Inverse;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">matrix</span> = array![
+        [<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>],
+        [<span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>]
+    ];
+
+    <span class="hljs-comment">// 求矩阵的逆</span>
+    <span class="hljs-keyword">match</span> matrix.<span class="hljs-title function_ invoke__">inv</span>() {
+        <span class="hljs-title function_ invoke__">Ok</span>(inverse) =&gt; {
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Inverse matrix: {:?}"</span>, inverse); 
+        }
+        <span class="hljs-title function_ invoke__">Err</span>(e) =&gt; {
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Error: {}"</span>, e); 
+        }
+    }
+}
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="lang-shell">Inverse matrix:
+ [[-2.0, 1.0],
+ [1.5, -0.5]], shape=[2, 2], strides=[2, 1], layout=Cc (0x5), const ndim=2
+</code></pre>
+<h2 id="总结：ndarray-助力智能系统高效计算">总结：ndarray 助力智能系统高效计算</h2>
+<p>Rust ndarray 凭借元素级操作的简洁性、广播机制的智能维度适配、线性代数的高效支持，成为AI与具身智能开发的得力工具。</p>
+<p>无论是传感器数据的实时处理，还是复杂算法的矩阵运算，<code>ndarray</code> 都能在保证内存安全的同时，提供接近原生的性能。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1-base.html" class="navigation navigation-prev " aria-label="Previous page: 赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../wasm/" class="navigation navigation-next " aria-label="Next page: Rust&WebAssembly">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践","level":"1.2.2","depth":2,"next":{"title":"Rust&WebAssembly","level":"1.3","depth":1,"path":"wasm/README.md","ref":"wasm/README.md","articles":[{"title":"当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）","level":"1.3.1","depth":2,"path":"wasm/1-intro.md","ref":"wasm/1-intro.md","articles":[]},{"title":"Rust+Wasm利器：用wasm-pack引爆前端性能！","level":"1.3.2","depth":2,"path":"wasm/2-wasm-pack.md","ref":"wasm/2-wasm-pack.md","articles":[]},{"title":"Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话","level":"1.3.3","depth":2,"path":"wasm/3-wasm-bindgen-base.md","ref":"wasm/3-wasm-bindgen-base.md","articles":[]},{"title":"Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍","level":"1.3.4","depth":2,"path":"wasm/4-wasm-bindgen-advanced.md","ref":"wasm/4-wasm-bindgen-advanced.md","articles":[]},{"title":"Rust & WebAssembly：探索js-sys的奇妙世界","level":"1.3.5","depth":2,"path":"wasm/5-wasm-js-sys.md","ref":"wasm/5-wasm-js-sys.md","articles":[]},{"title":"Rust & WebAssembly：web-sys 开启 DOM 操作新篇","level":"1.3.6","depth":2,"path":"wasm/6-wasm-web-sys-base.md","ref":"wasm/6-wasm-web-sys-base.md","articles":[]},{"title":"Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践","level":"1.3.7","depth":2,"path":"wasm/7-wasm-web-sys-advanced.md","ref":"wasm/7-wasm-web-sys-advanced.md","articles":[]},{"title":"Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身","level":"1.3.8","depth":2,"path":"wasm/8-wasm-opt.md","ref":"wasm/8-wasm-opt.md","articles":[]},{"title":"Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器","level":"1.3.9","depth":2,"path":"wasm/9-wasm-demo.md","ref":"wasm/9-wasm-demo.md","articles":[]},{"title":"Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅","level":"1.3.10","depth":2,"path":"wasm/10-wasm-future.md","ref":"wasm/10-wasm-future.md","articles":[]}]},"previous":{"title":"赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座","level":"1.2.1","depth":2,"path":"ndarray/1-base.md","ref":"ndarray/1-base.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ndarray/2-opt.md","mtime":"2025-11-15T08:07:55.674Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-11-15T08:08:35.728Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
