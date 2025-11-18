@@ -1,0 +1,1241 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../wasm/" />
+    
+    
+    <link rel="prev" href="2-opt.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    受之以蒙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&ndarray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-base.html">
+            
+                <a href="1-base.html">
+            
+                    
+                    赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-opt.html">
+            
+                <a href="2-opt.html">
+            
+                    
+                    Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="3-ring.html">
+            
+                <a href="3-ring.html">
+            
+                    
+                    具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../wasm/">
+            
+                <a href="../wasm/">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../wasm/1-intro.html">
+            
+                <a href="../wasm/1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../wasm/2-wasm-pack.html">
+            
+                <a href="../wasm/2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../wasm/3-wasm-bindgen-base.html">
+            
+                <a href="../wasm/3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../wasm/4-wasm-bindgen-advanced.html">
+            
+                <a href="../wasm/4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../wasm/5-wasm-js-sys.html">
+            
+                <a href="../wasm/5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../wasm/6-wasm-web-sys-base.html">
+            
+                <a href="../wasm/6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../wasm/7-wasm-web-sys-advanced.html">
+            
+                <a href="../wasm/7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../wasm/8-wasm-opt.html">
+            
+                <a href="../wasm/8-wasm-opt.html">
+            
+                    
+                    Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../wasm/9-wasm-demo.html">
+            
+                <a href="../wasm/9-wasm-demo.html">
+            
+                    
+                    Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../wasm/10-wasm-future.html">
+            
+                <a href="../wasm/10-wasm-future.html">
+            
+                    
+                    Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="具身智能的任督二脉：用-rust-ndarray-打通数据闭环的最后一公里">具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里</h1>
+<p>在具身智能系统中，机器人需要以极高的频率完成 <strong>感知 → 决策 → 执行</strong> 的闭环。</p>
+<p>高性能的 <strong>Rust 核心</strong> 负责物理模拟、传感器融合和硬实时控制；而灵活的 <strong>Python 生态</strong> 则负责深度学习模型的训练与推理。</p>
+<p><strong>真正的工程挑战，在于如何连接这两者。</strong> 任何低效的数据传输（如 JSON、HTTP 序列化）都会引入延迟，导致系统失去实时性，甚至引发物理系统故障。</p>
+<p>今天，我们将聚焦于 <strong>数据流的闭环</strong> 和 <strong>生态集成</strong>，系统讲解如何利用 <code>ndarray</code> 实现：</p>
+<ol>
+<li><strong>高性能数据清洗</strong>：布尔掩码（SIMD 向量化）。</li>
+<li><strong>数据持久化</strong>：与 Python 生态兼容的 <code>.npy</code> 格式。</li>
+<li><strong>零拷贝桥接</strong>：利用 PyO3 实现 Rust <code>ndarray</code> 与 Python <code>NumPy</code> 之间的内存共享。</li>
+</ol>
+<hr></hr>
+<h2 id="一、具身智能数据闭环与-rust-生态的天然契合">一、具身智能数据闭环与 Rust 生态的天然契合</h2>
+<p>具身智能系统对 <strong>实时性</strong> 和 <strong>可靠性</strong> 的极致要求，是软件工程领域的 “难度天花板”。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">具身智能要求</th>
+<th style="text-align:left">Rust/ndarray 解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>实时性</strong></td>
+<td style="text-align:left">毫秒级反馈，避免 GC 暂停</td>
+<td style="text-align:left">Rust 无 GC，<code>ndarray</code> 向量化操作（SIMD）加速</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>可靠性</strong></td>
+<td style="text-align:left">物理系统安全，内存错误零容忍</td>
+<td style="text-align:left">Rust 所有权模型，杜绝内存泄漏和缓冲区溢出</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>生态兼容</strong></td>
+<td style="text-align:left">需要与 Python AI 库无缝对接</td>
+<td style="text-align:left">PyO3/NumPy 零拷贝技术，实现数据高效交换</td>
+</tr>
+</tbody>
+</table>
+<p><code>ndarray</code> 作为 Rust 科学计算的核心库，为状态建模提供了统一、高效的多维数组接口，是连接底层硬件数据和上层 AI 模型的理想载体。</p>
+<hr></hr>
+<h2 id="二、高性能状态过滤：布尔掩码（boolean-masking）">二、高性能状态过滤：布尔掩码（Boolean Masking）</h2>
+<p>机器人传感器读数总是伴随着噪声、异常值（Outliers）或无效数据（如 NaN）。在状态矩阵中快速、批量地筛选或修改数据，是控制循环的首要任务。</p>
+<p>使用 <code>ndarray</code> 的布尔掩码，可以将条件判断转化为 <strong>向量化操作</strong>，由底层 SIMD 指令加速，实现毫秒级的状态清洗。</p>
+<h3 id="限速与异常距离去噪">限速与异常距离去噪</h3>
+<p>假设状态矩阵为 <code>[x, y, velocity, distance]</code>，需要进行：<strong>限速（将 <code>velocity &gt; 5.0</code> 重置为 <code>5.0</code>）</strong> 和 <strong>去噪（将 <code>distance &lt; 0.1</code> 标记为 <code>NaN</code>）</strong>。</p>
+<p><strong>Cargo.toml 配置</strong>:</p>
+<pre><code class="lang-toml"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">ndarray</span> = { version = <span class="hljs-string">"0.16.0"</span>, features = [<span class="hljs-string">"rayon"</span>] }
+<span class="hljs-attr">ndarray-linalg</span> = <span class="hljs-string">"0.18.0"</span>
+<span class="hljs-attr">rand</span> = <span class="hljs-string">"0.8.5"</span>
+<span class="hljs-attr">ndarray-rand</span> = <span class="hljs-string">"0.15.0"</span>
+</code></pre>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> ndarray::{Array2, Axis};
+<span class="hljs-keyword">use</span> ndarray_rand::RandomExt;
+<span class="hljs-keyword">use</span> rand::distributions::Uniform;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-comment">// 模拟 5 个机器人的状态 [x, y, velocity, distance]</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">states</span>: Array2&lt;<span class="hljs-type">f64</span>&gt; = Array2::<span class="hljs-title function_ invoke__">random</span>((<span class="hljs-number">5</span>, <span class="hljs-number">4</span>), Uniform::<span class="hljs-title function_ invoke__">new</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">8.0</span>));
+    <span class="hljs-comment">// 引入异常值</span>
+    states[[<span class="hljs-number">1</span>, <span class="hljs-number">3</span>]] = <span class="hljs-number">0.005</span>; <span class="hljs-comment">// 异常距离</span>
+    states[[<span class="hljs-number">3</span>, <span class="hljs-number">2</span>]] = <span class="hljs-number">12.0</span>; <span class="hljs-comment">// 超高速度</span>
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"--- 初始状态 (部分异常值) ---\n{:.2}\n"</span>, states);
+
+    <span class="hljs-comment">// 1. **向量化限速 (使用 map_inplace)**</span>
+    <span class="hljs-comment">// `map_inplace` 直接在速度列（索引 2）上高效修改，避免了慢速循环。</span>
+    states.<span class="hljs-title function_ invoke__">column_mut</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_ invoke__">map_inplace</span>(|velocity| {
+        <span class="hljs-keyword">if</span> *velocity &gt; <span class="hljs-number">5.0</span> {
+            *velocity = <span class="hljs-number">5.0</span>;
+        }
+    });
+
+    <span class="hljs-comment">// 2. **布尔掩码去噪 (使用 zip 迭代)**</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">distance_col</span> = states.<span class="hljs-title function_ invoke__">column</span>(<span class="hljs-number">3</span>);
+
+    <span class="hljs-comment">// 创建 1D 布尔 Mask：检查距离 &lt; 0.1</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">low_distance_mask</span> = distance_col.<span class="hljs-title function_ invoke__">mapv</span>(|d| d &lt; <span class="hljs-number">0.1</span>);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"--- 布尔Mask ---\n{:}\n"</span>, low_distance_mask);
+
+    <span class="hljs-comment">// 使用 zip 结合掩码修改整行数据</span>
+    states
+        .<span class="hljs-title function_ invoke__">axis_iter_mut</span>(<span class="hljs-title function_ invoke__">Axis</span>(<span class="hljs-number">0</span>))
+        .<span class="hljs-title function_ invoke__">zip</span>(&amp;low_distance_mask)
+        .for_each(|(<span class="hljs-keyword">mut</span> row, is_low)| {
+            <span class="hljs-keyword">if</span> *is_low {
+                row[<span class="hljs-number">3</span>] = <span class="hljs-type">f64</span>::NAN; <span class="hljs-comment">// 将无效距离标记为 NaN (Not a Number)</span>
+            }
+        });
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"--- 清理后的状态 (速度限幅，距离去噪) ---\n{:.2}\n"</span>, states);
+}
+</code></pre>
+<p><strong>输出</strong>:</p>
+<pre><code class="lang-base">--- 初始状态 (部分异常值) ---
+[[2.24, 4.90, 0.06, 5.36],
+ [3.44, 3.89, 2.44, 0.01],
+ [6.24, 6.76, 1.55, 0.14],
+ [3.30, 3.28, 12.00, 7.10],
+ [4.94, 3.39, 1.95, 7.10]]
+
+--- 布尔Mask ---
+[false, true, false, false, false]
+
+--- 清理后的状态 (速度限幅，距离去噪) ---
+[[2.24, 4.90, 0.06, 5.36],
+ [3.44, 3.89, 2.44, NaN],
+ [6.24, 6.76, 1.55, 0.14],
+ [3.30, 3.28, 5.00, 7.10],
+ [4.94, 3.39, 1.95, 7.10]]
+</code></pre>
+<p><strong>工程价值：</strong> 这种机制确保了送入控制算法或 AI 模型的原始状态数据是干净、有效的，避免了因传感器噪声导致的系统误判。</p>
+<hr></hr>
+<h2 id="三、数据持久化：与-python-互通的-npy-格式">三、数据持久化：与 Python 互通的 <code>.npy</code> 格式</h2>
+<p>在具身智能的开发流程中，我们总需要将 Rust 模拟器或机器人实时采集的数据保存下来，用于离线调试、复盘和强化学习的训练。</p>
+<p><strong>NumPy 的 <code>.npy</code> 格式</strong> 是跨语言数据持久化的最佳选择。它以紧凑的二进制格式存储数据，保留了数据的 <code>dtype</code> 和 <code>shape</code>，是 Python AI 生态的“母语”。</p>
+<h3 id="读写环境状态快照">读写环境状态快照</h3>
+<p>使用 <code>ndarray-npy</code> 库来实现 Rust <code>ndarray</code> 与 <code>.npy</code> 文件格式的无缝转换。</p>
+<p><strong>Cargo.toml 配置</strong>:</p>
+<pre><code class="lang-toml"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">ndarray</span> = { version = <span class="hljs-string">"0.16.0"</span> }
+<span class="hljs-attr">ndarray-rand</span> = <span class="hljs-string">"0.15.0"</span>
+<span class="hljs-attr">ndarray-npy</span>= <span class="hljs-string">"0.9.1"</span>
+</code></pre>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> ndarray::{Array3, s};
+<span class="hljs-keyword">use</span> ndarray_npy::{read_npy, write_npy};
+<span class="hljs-keyword">use</span> std::error::Error;
+
+<span class="hljs-comment">// 模拟环境地图：10x10 网格，3 个通道 (障碍物, 机器人位置, 目标点)</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">save_environment_state</span>(filepath: &amp;<span class="hljs-type">str</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;(), <span class="hljs-type">Box</span>&lt;<span class="hljs-keyword">dyn</span> Error&gt;&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">environment</span> = Array3::&lt;<span class="hljs-type">f32</span>&gt;::<span class="hljs-title function_ invoke__">zeros</span>((<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">3</span>));
+
+    <span class="hljs-comment">// 标记障碍物 (通道 0)</span>
+    environment.<span class="hljs-title function_ invoke__">slice_mut</span>(s![<span class="hljs-number">2</span>..<span class="hljs-number">4</span>, <span class="hljs-number">3</span>..<span class="hljs-number">7</span>, <span class="hljs-number">0</span>]).<span class="hljs-title function_ invoke__">fill</span>(<span class="hljs-number">1.0</span>);
+
+    <span class="hljs-comment">// println!("待写入数据：\n{:?}", environment);</span>
+
+    <span class="hljs-title function_ invoke__">write_npy</span>(filepath, &amp;environment)?;
+
+    <span class="hljs-built_in">println!</span>(
+        <span class="hljs-string">"成功将环境状态 (Shape: {:?}) 写入到: {}"</span>,
+        environment.<span class="hljs-title function_ invoke__">shape</span>(),
+        filepath
+    );
+    <span class="hljs-title function_ invoke__">Ok</span>(())
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;(), <span class="hljs-type">Box</span>&lt;<span class="hljs-keyword">dyn</span> Error&gt;&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">filepath</span> = <span class="hljs-string">"robot_environment.npy"</span>;
+    <span class="hljs-title function_ invoke__">save_environment_state</span>(filepath)?;
+
+    <span class="hljs-comment">// Python 侧只需一行代码即可加载，保证了数据的可复现性：</span>
+    <span class="hljs-comment">/*
+    import numpy as np
+    world = np.load('robot_environment.npy')
+    print(world.shape) # 输出 (10, 10, 3)
+    */</span>
+
+    <span class="hljs-comment">// 也可以在 Rust 中读回验证</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">loaded_env</span>: Array3&lt;<span class="hljs-type">f32</span>&gt; = <span class="hljs-title function_ invoke__">read_npy</span>(filepath)?;
+    <span class="hljs-comment">// println!("读取数据：\n{:?}", loaded_env);</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"成功从文件加载数组"</span>);
+
+    <span class="hljs-comment">// std::fs::remove_file(filepath)?; // 清理文件</span>
+    <span class="hljs-title function_ invoke__">Ok</span>(())
+}
+</code></pre>
+<p><strong>输出</strong>:</p>
+<pre><code class="lang-base">成功将环境状态 (Shape: [10, 10, 3]) 写入到: robot_environment.npy
+成功从文件加载数组
+</code></pre>
+<hr></hr>
+<h2 id="四、生态桥接：pyo3-与-numpy-的零拷贝传输">四、生态桥接：PyO3 与 NumPy 的零拷贝传输</h2>
+<p>在实时控制中，文件 I/O 仍然太慢。我们需要 Rust 和 Python 直接共享内存，实现 <strong>零拷贝 (Zero-Copy)</strong> 数据交换。</p>
+<p><strong>PyO3</strong> 和 <strong><code>rust-numpy</code></strong> 库通过提供 <strong><code>PyReadwriteArray</code></strong> 等结构体，完美地解决了这个问题。</p>
+<h3 id="rust-模块加速状态预处理">Rust 模块加速状态预处理</h3>
+<p>将 Rust 编译成 Python 模块，Python 传递一个 NumPy 数组给 Rust，Rust 在<strong>原地</strong>对这个数组进行修改，性能提升立竿见影。</p>
+<p><strong>Maturin</strong> 是 <strong>PyO3</strong> 生态的 <strong>「官方推荐构建 / 打包工具」</strong>，专门用来把 Rust 代码（通过 PyO3 绑定 Python）编译成 Python 可直接调用的扩展模块（如 <code>.so/.pyd</code> 文件），并打包成标准的 Python 分发格式（<code>wheel/sdist</code>），支持跨平台、一键发布到 PyPI，彻底简化了「Rust + PyO3」开发 Python 扩展的流程。</p>
+<p>安装 <code>maturin</code> 工具, 使用 python 2.x 或者 3.x 都可以：</p>
+<pre><code class="lang-bash">python -m venv .<span class="hljs-built_in">env</span>
+<span class="hljs-built_in">source</span> .<span class="hljs-built_in">env</span>/bin/activate
+pip install maturin
+</code></pre>
+<p><strong>Cargo.toml 配置</strong>:</p>
+<pre><code class="lang-toml"><span class="hljs-section">[lib]</span>
+<span class="hljs-attr">name</span> = <span class="hljs-string">"robot_accelerator"</span>
+<span class="hljs-attr">crate-type</span> = [<span class="hljs-string">"cdylib"</span>]
+
+<span class="hljs-section">[dependencies]</span>
+<span class="hljs-attr">pyo3</span> = { version = <span class="hljs-string">"0.21"</span>, features = [<span class="hljs-string">"extension-module"</span>] }
+<span class="hljs-attr">numpy</span> = <span class="hljs-string">"0.21"</span>
+<span class="hljs-attr">ndarray</span> = <span class="hljs-string">"0.15"</span>
+</code></pre>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> ndarray::ArrayViewMut2;
+<span class="hljs-keyword">use</span> numpy::PyReadwriteArray2;
+<span class="hljs-keyword">use</span> pyo3::prelude::*;
+
+<span class="hljs-comment">/// 接收一个 NumPy 数组（可读写），在 Rust 中对它进行就地（in-place）修改。</span>
+<span class="hljs-meta">#[pyfunction]</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">fast_state_update</span>(<span class="hljs-keyword">mut</span> states: PyReadwriteArray2&lt;<span class="hljs-type">f64</span>&gt;) <span class="hljs-punctuation">-&gt;</span> PyResult&lt;()&gt; {
+    <span class="hljs-comment">// 1. 零拷贝：将 NumPy 数组转换为 `ndarray` 的可变视图 (ArrayViewMut)</span>
+    <span class="hljs-comment">// `unsafe` 块是 PyO3/NumPy 转换的惯例，确保了性能和零拷贝。</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">states_view</span>: ArrayViewMut2&lt;<span class="hljs-type">f64</span>&gt; = states.<span class="hljs-title function_ invoke__">as_array_mut</span>();
+
+    <span class="hljs-comment">// 2. 执行高性能的 Rust 预处理逻辑</span>
+
+    <span class="hljs-comment">// 假设第 0 列是 X 坐标，第 3 列是 Vx (速度)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">dt</span> = <span class="hljs-number">0.01</span>;
+
+    <span class="hljs-comment">// x_next = x_current + vx * dt (一步状态积分)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">vx_col</span> = states_view.<span class="hljs-title function_ invoke__">column</span>(<span class="hljs-number">3</span>).<span class="hljs-title function_ invoke__">to_owned</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">x_col</span> = states_view.<span class="hljs-title function_ invoke__">column_mut</span>(<span class="hljs-number">0</span>);
+    x_col.<span class="hljs-title function_ invoke__">assign</span>(&amp;(&amp;x_col + &amp;(vx_col * dt)));
+
+    <span class="hljs-comment">// 3. 施加重力修正：假设第 1 列是 Y 坐标，减去 9.8 * dt</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">y_col</span> = states_view.<span class="hljs-title function_ invoke__">column_mut</span>(<span class="hljs-number">1</span>);
+    y_col -= <span class="hljs-number">9.8</span> * dt;
+
+    <span class="hljs-comment">// 函数返回后，Python 侧的原始 NumPy 数组已被零开销更新。</span>
+    <span class="hljs-title function_ invoke__">Ok</span>(())
+}
+
+<span class="hljs-meta">#[pymodule]</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">robot_accelerator</span>(m: &amp;Bound&lt;<span class="hljs-symbol">'_</span>, PyModule&gt;) <span class="hljs-punctuation">-&gt;</span> PyResult&lt;()&gt; {
+    m.<span class="hljs-title function_ invoke__">add_function</span>(wrap_pyfunction!(fast_state_update, m)?)?;
+    <span class="hljs-title function_ invoke__">Ok</span>(())
+}
+</code></pre>
+<p>运行 <code>maturin develop</code> 编译 Rust 模块;</p>
+<p><strong>输出：</strong></p>
+<pre><code class="lang-bash">📦 Built wheel <span class="hljs-keyword">for</span> CPython 3.9 to /var/folders/39/cz9smddj2fb49mdhy26k98fw0000gn/T/.tmpMlor8R/robot_accelerator-0.1.0-cp39-cp39-macosx_11_0_arm64.whl
+✏️ Setting installed package as editable
+🛠 Installed robot_accelerator-0.1.0
+</code></pre>
+<p><strong>Python 调用端体验：</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-comment"># 假设 robot_accelerator 是 Rust 编译的模块</span>
+<span class="hljs-keyword">import</span> robot_accelerator
+
+<span class="hljs-comment"># 创建一个包含 100 万个机器人状态的 NumPy 数组</span>
+states = np.random.rand(<span class="hljs-number">1_000_000</span>, <span class="hljs-number">4</span>).astype(np.float64)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"原数据：\n<span class="hljs-subst">{states}</span>"</span>)
+<span class="hljs-comment"># 调用 Rust 函数，耗时不到 1 毫秒</span>
+robot_accelerator.fast_state_update(states)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"修改后数据：\n<span class="hljs-subst">{states}</span>"</span>)
+
+<span class="hljs-comment"># states 数组内容已在 Rust 中被修改，无需接收返回值，无需等待数据传输。</span>
+</code></pre>
+<p><strong>输出</strong>:</p>
+<pre><code class="lang-bash">原数据：
+[[0.28895923 0.51244513 0.99422673 0.74872695]
+ [0.32166321 0.26555531 0.41119098 0.86933347]
+ [0.62882919 0.97949576 0.19916944 0.11139231]
+ ...
+ [0.44908343 0.29734676 0.37070863 0.76981326]
+ [0.95057373 0.88808431 0.37871106 0.73001098]
+ [0.26074183 0.74553023 0.12630105 0.93005224]]
+修改后数据：
+[[0.2964465  0.41444513 0.99422673 0.74872695]
+ [0.33035655 0.16755531 0.41119098 0.86933347]
+ [0.62994311 0.88149576 0.19916944 0.11139231]
+ ...
+ [0.45678156 0.19934676 0.37070863 0.76981326]
+ [0.95787384 0.79008431 0.37871106 0.73001098]
+ [0.27004235 0.64753023 0.12630105 0.93005224]]
+</code></pre>
+<p><strong>关键关联点：</strong> 这套机制是实现 <strong>“Rust 实时控制/感知模块”</strong> 和 <strong>“Python 深度学习推理模型”</strong> 高效对接的基石。它消除了数据传输这一最大的性能瓶颈。</p>
+<hr></hr>
+<h2 id="五、综合应用：机器人状态转移模拟">五、综合应用：机器人状态转移模拟</h2>
+<p>接下来用一个简洁的机器人状态转移模拟，将 <strong>布尔掩码</strong>、<strong>状态转移</strong> 和 <strong>数据闭环</strong> 串联起来。</p>
+<p>具身智能的核心在于 <strong>$S_{t+1} = f(S_t, A_t)$</strong>，即下一状态取决于当前状态和动作。</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> ndarray::{Array2, arr2};
+<span class="hljs-keyword">use</span> ndarray_npy::write_npy;
+
+<span class="hljs-comment">// 状态转移函数：S_next = S_current @ T + Action</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">simulate_state_transition</span>(current_state: &amp;<span class="hljs-keyword">mut</span> Array2&lt;<span class="hljs-type">f64</span>&gt;, action: &amp;Array2&lt;<span class="hljs-type">f64</span>&gt;) {
+    <span class="hljs-comment">// 简单的状态转移矩阵 T (2x2)</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">transition_matrix</span>: Array2&lt;<span class="hljs-type">f64</span>&gt; = <span class="hljs-title function_ invoke__">arr2</span>(&amp;[[<span class="hljs-number">0.95</span>, <span class="hljs-number">0.05</span>], [<span class="hljs-number">0.0</span>, <span class="hljs-number">0.90</span>]]);
+
+    <span class="hljs-comment">// 1. 转移：S_current @ T</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">new_state_dot</span> = current_state.<span class="hljs-title function_ invoke__">dot</span>(&amp;transition_matrix);
+
+    <span class="hljs-comment">// 2. 执行动作：S_next = S_current @ T + Action (ndarray 自动广播 Action)</span>
+    current_state.<span class="hljs-title function_ invoke__">assign</span>(&amp;(new_state_dot + action));
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-comment">// 初始状态 S (1x2): [位置X, 速度V]</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">robot_state</span>: Array2&lt;<span class="hljs-type">f64</span>&gt; = <span class="hljs-title function_ invoke__">arr2</span>(&amp;[[<span class="hljs-number">5.0</span>, <span class="hljs-number">10.0</span>]]);
+    <span class="hljs-comment">// 动作 A (1x2): [位置增量, 速度增量] - 假设由 Python AI 模型输出</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">action</span>: Array2&lt;<span class="hljs-type">f64</span>&gt; = <span class="hljs-title function_ invoke__">arr2</span>(&amp;[[<span class="hljs-number">0.2</span>, -<span class="hljs-number">0.1</span>]]);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"--- 具身智能控制循环模拟 ---"</span>);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"初始状态 S0: {:.4}"</span>, robot_state);
+
+    <span class="hljs-keyword">for</span> <span class="hljs-variable">t</span> <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>..=<span class="hljs-number">50</span> {
+        <span class="hljs-comment">// --- 实时控制循环 ---</span>
+
+        <span class="hljs-comment">// 1. 感知与去噪 (布尔掩码已完成)</span>
+
+        <span class="hljs-comment">// 2. 执行 AI 决策 (调用 PyO3 桥接的 Action)</span>
+        <span class="hljs-title function_ invoke__">simulate_state_transition</span>(&amp;<span class="hljs-keyword">mut</span> robot_state, &amp;action);
+
+        <span class="hljs-comment">// 3. 状态监控 (布尔掩码/条件判断)</span>
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">current_speed</span> = robot_state[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]];
+        <span class="hljs-keyword">if</span> current_speed &gt; <span class="hljs-number">15.0</span> {
+            <span class="hljs-comment">// 触发安全协议：将速度强制降为 15.0 (实时限幅)</span>
+            robot_state[[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]] = <span class="hljs-number">15.0</span>;
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"⚠️ S{}: 速度超限 ({:.2})，已限速。"</span>, t, current_speed);
+        }
+
+        <span class="hljs-keyword">if</span> t % <span class="hljs-number">10</span> == <span class="hljs-number">0</span> {
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">"S{}: {:.4}"</span>, t, robot_state);
+        }
+
+        <span class="hljs-comment">// --- 数据闭环环节 ---</span>
+        <span class="hljs-keyword">if</span> t % <span class="hljs-number">50</span> == <span class="hljs-number">0</span> {
+            <span class="hljs-comment">// 将状态保存为 .npy 文件，用于离线训练</span>
+            <span class="hljs-title function_ invoke__">write_npy</span>(<span class="hljs-built_in">format!</span>(<span class="hljs-string">"state_snapshot_{}.npy"</span>, t), &amp;robot_state).<span class="hljs-title function_ invoke__">unwrap</span>();
+        }
+    }
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"最终状态 S{}: {:.4}"</span>, <span class="hljs-number">50</span>, robot_state);
+}
+</code></pre>
+<p><strong>输出</strong>:</p>
+<pre><code class="lang-bash">--- 具身智能控制循环模拟 ---
+初始状态 S0: [[5.0000, 10.0000]]
+S10: [[4.5987, 4.3882]]
+S20: [[4.3585, 2.3311]]
+S30: [[4.2146, 1.5538]]
+S40: [[4.1285, 1.2468]]
+S50: [[4.0769, 1.1182]]
+最终状态 S50: [[4.0769, 1.1182]]
+</code></pre>
+<hr></hr>
+<h2 id="总结">总结</h2>
+<p>本篇深入剖析了如何通过 Rust 和 <code>ndarray</code> 生态，为具身智能系统构建一个 <strong>高性能</strong>、<strong>高可靠性</strong> 的数据闭环：</p>
+<ul>
+<li><p>性能加速：利用 <code>ndarray</code> <strong>向量化操作</strong> 实现 <strong>精准感知</strong>。</p>
+</li>
+<li><p>生态桥接：借助 <code>.npy</code> 和 PyO3 零拷贝 实现 <strong>实时决策</strong>。</p>
+</li>
+</ul>
+<p><code>ndarray</code> 不仅仅是数组库，更是 Rust 在具身智能领域的 “任督二脉”，彻底打通了从底层硬件到上层复杂 AI 模型的数据流。它提供的 <strong>毫秒级确定性</strong> 运行环境，是机器人从实验室走向工业界和现实世界的关键。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2-opt.html" class="navigation navigation-prev " aria-label="Previous page: Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../wasm/" class="navigation navigation-next " aria-label="Next page: Rust&WebAssembly">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里","level":"1.2.3","depth":2,"next":{"title":"Rust&WebAssembly","level":"1.3","depth":1,"path":"wasm/README.md","ref":"wasm/README.md","articles":[{"title":"当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）","level":"1.3.1","depth":2,"path":"wasm/1-intro.md","ref":"wasm/1-intro.md","articles":[]},{"title":"Rust+Wasm利器：用wasm-pack引爆前端性能！","level":"1.3.2","depth":2,"path":"wasm/2-wasm-pack.md","ref":"wasm/2-wasm-pack.md","articles":[]},{"title":"Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话","level":"1.3.3","depth":2,"path":"wasm/3-wasm-bindgen-base.md","ref":"wasm/3-wasm-bindgen-base.md","articles":[]},{"title":"Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍","level":"1.3.4","depth":2,"path":"wasm/4-wasm-bindgen-advanced.md","ref":"wasm/4-wasm-bindgen-advanced.md","articles":[]},{"title":"Rust & WebAssembly：探索js-sys的奇妙世界","level":"1.3.5","depth":2,"path":"wasm/5-wasm-js-sys.md","ref":"wasm/5-wasm-js-sys.md","articles":[]},{"title":"Rust & WebAssembly：web-sys 开启 DOM 操作新篇","level":"1.3.6","depth":2,"path":"wasm/6-wasm-web-sys-base.md","ref":"wasm/6-wasm-web-sys-base.md","articles":[]},{"title":"Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践","level":"1.3.7","depth":2,"path":"wasm/7-wasm-web-sys-advanced.md","ref":"wasm/7-wasm-web-sys-advanced.md","articles":[]},{"title":"Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身","level":"1.3.8","depth":2,"path":"wasm/8-wasm-opt.md","ref":"wasm/8-wasm-opt.md","articles":[]},{"title":"Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器","level":"1.3.9","depth":2,"path":"wasm/9-wasm-demo.md","ref":"wasm/9-wasm-demo.md","articles":[]},{"title":"Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅","level":"1.3.10","depth":2,"path":"wasm/10-wasm-future.md","ref":"wasm/10-wasm-future.md","articles":[]}]},"previous":{"title":"Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践","level":"1.2.2","depth":2,"path":"ndarray/2-opt.md","ref":"ndarray/2-opt.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ndarray/3-ring.md","mtime":"2025-11-18T14:33:28.580Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-11-18T14:34:03.304Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
