@@ -1,6 +1,6 @@
 # Summary
 
-* [受之以蒙](README.md)
+* [Rust 知行社](README.md)
 * [Rust&ndarray](ndarray/README.md)
     * [赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座](ndarray/1-base.md)
     * [Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践](ndarray/2-opt.md)
