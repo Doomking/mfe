@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Node.js · HonKit</title>
+        <title>🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！ · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.4">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1-npmlink.html" />
+    <link rel="next" href="../ndarray/" />
     
     
-    <link rel="prev" href="../vscode/1-codegpt.html" />
+    <link rel="prev" href="../dara/README.md" />
     
 
     </head>
@@ -115,9 +115,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../dora/1-base-intro.html">
+        <li class="chapter active" data-level="1.2.1" data-path="1-base-intro.html">
             
-                <a href="../dora/1-base-intro.html">
+                <a href="1-base-intro.html">
             
                     
                     🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！
@@ -728,9 +728,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9" data-path="./">
+        <li class="chapter " data-level="1.9" data-path="../nodejs/">
             
-                <a href="./">
+                <a href="../nodejs/">
             
                     
                     Node.js
@@ -742,9 +742,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.9.1" data-path="1-npmlink.html">
+        <li class="chapter " data-level="1.9.1" data-path="../nodejs/1-npmlink.html">
             
-                <a href="1-npmlink.html">
+                <a href="../nodejs/1-npmlink.html">
             
                     
                     peerDependency遇到npm link的问题
@@ -790,7 +790,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Node.js</a>
+        <a href=".." >🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！</a>
     </h1>
 </div>
 
@@ -805,7 +805,69 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="欢迎来到nodejs的世界">欢迎来到node.js的世界</h2>
+                                <h1 id="🤖-终于来了！这个开源机器人开发框架dora，用pythonrust让机器人编程像搭积木一样简单！">🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！</h1>
+<h2 id=""><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/461edc86a2274dc4947c8621f09eaaf4~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1764937922&amp;x-orig-sign=hVv7oGapxXLAXkIekAtOsCgvw04%3D" alt="cover.png"></img></h2>
+<h3 id="引言：告别cc，迎接平民化机器人时代"><strong>引言：告别C/C++，迎接“平民化”机器人时代</strong></h3>
+<p>如果你曾经接触过机器人编程，一定对那些复杂的 <code>C/C++</code> 代码和漫长的调试过程感到头疼。</p>
+<p>对于众多机器人爱好者、甚至硕士博士学生来说，投入数周时间深陷底层代码的泥潭，无疑是一种巨大的挑战。</p>
+<p>传统的机器人开发，就像是建造一座大厦，你需要掌握每一块砖的烧制方法和钢筋的熔炼技术，才能开始搭建。</p>
+<p>然而，一个革命性的 <code>Rust</code> 开源项目正在打破这一壁垒——它就是 <strong>Dora (Dataflow Oriented Robotics Architecture)</strong>。<code>Dora</code> 的出现，好比为你提供了预制好的模块和简洁的施工图纸，让建造变得高效且人人可为。</p>
+<p>由 <code>Xavier Tao</code> 和 <code>Philipp Oppermann</code> 共同创立的<code>Dora</code>，旨在将机器人编程的门槛降至最低，让开发者能够使用更友好、更高效的语言（如 <strong>Python</strong> 或 <strong>Rust</strong>）来控制机器人，推动机器人技术真正走向大众。这不仅能加速研究与开发，更能激发无数创意，让机器人在更多领域发挥价值。</p>
+<h3 id="一、认识dora：数据流驱动的机器人中枢神经"><strong>一、认识Dora：数据流驱动的机器人“中枢神经”</strong></h3>
+<p>Dora本质上是一个全新的<strong>开源中间件框架</strong>和<strong>数据流计算平台</strong>，专为自动驾驶和机器人领域设计。它的核心理念是：<strong>将复杂的机器人任务拆解成高效、并行的数据流。</strong></p>
+<p>与传统的应用程序不同，机器人编程涉及多个需要高效通信的并行循环（例如：摄像头捕捉、AI模型计算、运动控制）。想象一下，机器人就像一个复杂的交响乐团，每个乐手（模块）都在演奏自己的部分，但需要完美地协同才能奏出和谐的乐章。<code>Dora</code> 正是那个高效的指挥家和精密的乐谱。</p>
+<p>它通过引入以下机制，完美解决了这一痛点：</p>
+<h4 id="1-数据流架构：节点-node-与边-edge"><strong>1. 数据流架构：节点 (Node) 与边 (Edge)</strong></h4>
+<p>Dora 采用直观的数据流图来组织机器人应用。</p>
+<ul>
+<li><strong>节点 (Node):</strong> 代表一个独立运行的并行主循环。它可以是一个传感器驱动程序，负责从激光雷达获取数据；也可以是一个复杂的SLAM算法，实时构建环境地图；抑或是一个AI推理模型，识别图像中的物体。每个节点都像一个独立的微服务，专注于完成自己的任务。</li>
+<li><strong>边 (Edge):</strong> 相当于通信主题（Topic）。节点之间通过发布/订阅模式进行数据交换。例如，一个摄像头节点发布图像数据，而一个视觉处理节点订阅这些图像数据进行分析。</li>
+<li><strong>配置简化：</strong> 整个数据流图的构建只需通过一个 <strong>YAML 文件</strong>进行声明，就像使用Docker Compose或Kubernetes管理容器服务一样，极大地简化了系统集成。这意味着开发者可以专注于业务逻辑，而不是繁琐的配置和底层通信。</li>
+</ul>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/360d9eeca0a84f9c95aea2c6a5521cd9~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1764937843&amp;x-orig-sign=L83c%2BEIuuX911F6e3mpnNT9mkt8%3D" alt="Gemini_Generated_Image_xy9lgsxy9lgsxy9l.png"></img></p>
+<h4 id="2-通信革命：基于-apache-arrow-的零拷贝"><strong>2. 通信革命：基于 Apache Arrow 的“零拷贝”</strong></h4>
+<p>这是Dora实现高性能的关键所在，也是它在众多机器人框架中脱颖而出的重要原因。</p>
+<p>在传统机器人系统中，不同语言和应用之间传递大数据（如图像、点云、传感器阵列数据）时，往往需要进行昂贵的序列化和反序列化操作，以及内存拷贝。这不仅消耗大量的CPU资源，还可能带来 <strong>20毫秒甚至更高的延迟</strong>，这在实时性要求极高的机器人应用中是致命的。</p>
+<p>Dora 采用了 <strong>Apache Arrow</strong> 统一存储布局来解决这一难题：</p>
+<ul>
+<li><strong>统一格式：</strong> Arrow 为不同语言（C/C++、Rust、Python）定义了一个<strong>统一的内存存储格式</strong>。无论数据源自何种语言编写的模块，它都能以相同的高效格式存在于内存中。</li>
+<li><strong>零拷贝 (Zero-Copy)：</strong> 这使得所有消息可以在不经过额外拷贝的情况下，高效地在不同节点之间传递。想象一下，数据不再是像快递包裹一样需要层层包装和拆卸，而是直接在内存中共享“地址”，从而<strong>大幅降低了通信延迟</strong>，实现近乎实时的信息交互。这对于需要处理高清视频流、高密度点云等大数据的机器人应用至关重要。</li>
+</ul>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/990c9cf2631d43d4a96d5efa63789573~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1764937871&amp;x-orig-sign=5jAIWalKTFPgmsvwbLPJHnlZOiE%3D" alt="Gemini_Generated_Image_j4yjtrj4yjtrj4yj.png"></img></p>
+<h3 id="三、多模型集成与效率飞跃：从代码到指令"><strong>三、多模型集成与效率飞跃：从代码到指令</strong></h3>
+<p><code>Dora</code> 不仅解决了底层通信效率问题，更致力于整合最新的AI能力，让机器人变得更智能、更具交互性。</p>
+<h4 id="1-轻松集成sota模型，接收非结构化数据"><strong>1. 轻松集成SOTA模型，接收非结构化数据</strong></h4>
+<p>得益于其卓越的性能和模块化设计，<code>Dora</code> 可以轻松集成各种SOTA（State-of-the-Art）模型，为机器人赋予强大的感知和理解能力：</p>
+<ul>
+<li><strong>OpenAI Whisper：</strong> 集成后，机器人可以准确地将人类的语音指令转化为文本，理解你的意图。</li>
+<li><strong>VLM (Vision-Language Model) 模型：</strong> 例如CLIP、BLIP等，使机器人能够从图像中生成文本描述，理解视觉场景，甚至根据视觉内容回答问题。</li>
+<li><strong>Hugging Face Parler：</strong> 实现文本转语音（Text-to-Speech），让机器人能够用自然流畅的语言与人交流。</li>
+</ul>
+<p>这意味着机器人应用程序现在可以接受<strong>非结构化数据</strong>（如语音、图像、手势）作为输入。你可以通过简单的<strong>语音指令</strong>（如“去办公室拿那本书”、“把这个递给我”）或<strong>手势</strong>来控制机器人的行为，极大地丰富了人机交互的可能性，使机器人不再是冷冰冰的机器，而是更像一个智能助手。</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e788d569a89243c0b8ea3e3e25ff3b35~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1764937906&amp;x-orig-sign=8ZAS6gXx0GGHjuw0aabJNv4e2UI%3D" alt="Gemini_Generated_Image_d9hs7vd9hs7vd9hs.png"></img></p>
+<h4 id="2-热加载-hot-reloading：实时调试的极致体验"><strong>2. 热加载 (Hot Reloading)：实时调试的极致体验</strong></h4>
+<p>在传统的嵌入式或机器人开发中，每次修改一行代码，可能都需要漫长的编译、烧录、重启系统、初始化传感器等步骤，耗时费力，严重影响开发效率。</p>
+<p><code>Dora</code> 借鉴于Web开发领域成熟的<strong>热加载</strong>功能，为机器人开发带来了革命性的效率提升：</p>
+<ul>
+<li><strong>实时更改，无需重启：</strong> 开发者可以对代码进行实时修改，无需关闭机器人、重启各种传感器和应用。这意味着你可以像调试网页一样调试机器人程序，即时看到修改后的效果。</li>
+<li><strong>故障安全机制：</strong> <code>Dora</code> 内置的故障安全机制确保了在热加载过程中系统的稳定性和安全性。</li>
+<li><strong>与LLMs结合的策略编码：</strong> 热加载的特性使其能更好地与<strong>大语言模型 (LLMs)</strong> 结合，实现<strong>策略编码（Policy Coding）</strong>。LLMs 可以根据用户的自然语言指令，生成或修改机器人行为策略。<code>Dora</code> 能够将这些策略更新实时应用到运行中的机器人上，将视觉或语音指令实时映射到机器人的执行动作，极大地加速了机器人的学习和适应能力。</li>
+</ul>
+<h3 id="四、实战案例：50行代码，机械臂听你指挥"><strong>四、实战案例：50行代码，机械臂听你指挥</strong></h3>
+<p><code>Dora</code> 团队在机械臂控制领域取得了令人瞩目的进展，充分展示了其框架的强大能力和开发效率。</p>
+<ul>
+<li><strong>极简代码实现复杂控制：</strong> 过去，控制机械臂完成“拿起”动作可能需要数百行甚至上千行复杂的 <code>C++</code> 代码，涉及运动学、动力学、路径规划等多个模块。然而，<code>Dora</code> 团队仅用 <strong>50行Rust代码</strong>，便在一周内实现了通过语音指令控制机械臂执行“从桌边拿起一块巧克力”的复杂任务。这不仅是代码量的巨大缩减，更是开发周期的大幅缩短。</li>
+<li><strong>性能突破：</strong> 与SOTA机械臂（如Aloha）的遥操作系统相比，<code>Dora</code> 不仅能够实现同样的功能，还将其频率提高了 <strong>10倍</strong>（从50Hz到500Hz），这意味着更流畅、更精准的实时控制。同时，将两个机械臂之间的通信延迟降至令人惊叹的 <strong>2毫秒</strong>，这在需要高精度协同操作的任务中至关重要。</li>
+<li><strong>普适性：</strong> Dora-Robotic-Arm 支持<strong>跨平台</strong>（Linux、MacOS、Windows）和<strong>多语言</strong>（Rust、C、C++、Python），彻底摆脱了复杂的安装依赖，使用 <code>cargo</code> 或 <code>pip</code> 即可轻松部署。这种灵活性使得更多的开发者能够轻松上手，无论他们熟悉哪种语言。</li>
+</ul>
+<h3 id="五、社区与愿景：开源精神驱动未来"><strong>五、社区与愿景：开源精神驱动未来</strong></h3>
+<p><code>Dora</code> 的出现，证明了机器人技术不再是少数大型实验室和企业的“专属领地”。创始人陶海轩（Xavier Tao）和团队致力于将最好的机器人技术理念，从闭源社区带向开源，确保每个人都能更容易地开始机器人开发。</p>
+<p>他们坚信，通过开放协作，能够加速机器人技术的创新，让机器人更好地服务于人类生活。<code>Dora</code> 不仅仅是一个技术框架，更是一种开放、普惠的理念，它邀请所有对机器人充满热情的人，共同构建更智能、更易用的机器人未来。</p>
+<p>如果你渴望用简单、高效的方式拥抱机器人和AI的结合，<code>Dora</code>无疑是你最值得关注和尝试的开源框架。它提供了一个强大而灵活的平台，让你的创意能够迅速转化为现实。</p>
+<p><strong>项目地址（GitHub）：</strong>
+<a href="https://github.com/dora-rs/dora" target="_blank">https://github.com/dora-rs/dora</a></p>
+<hr></hr>
+<p><em>欢迎分享你的看法，你认为Dora能否成为下一代机器人开发的标准？你对未来的“平民化”机器人有何期待？</em></p>
 
                                 
                                 </section>
@@ -833,12 +895,12 @@
 
             
                 
-                <a href="../vscode/1-codegpt.html" class="navigation navigation-prev " aria-label="Previous page: [译]CodeGPT：类ChatGPT功能的VSCode扩展">
+                <a href="../dara/README.md" class="navigation navigation-prev " aria-label="Previous page: Rust&dora">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="1-npmlink.html" class="navigation navigation-next " aria-label="Next page: peerDependency遇到npm link的问题">
+                <a href="../ndarray/" class="navigation navigation-next " aria-label="Next page: Rust&ndarray">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -849,7 +911,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Node.js","level":"1.9","depth":1,"next":{"title":"peerDependency遇到npm link的问题","level":"1.9.1","depth":2,"path":"nodejs/1-npmlink.md","ref":"nodejs/1-npmlink.md","articles":[]},"previous":{"title":"[译]CodeGPT：类ChatGPT功能的VSCode扩展","level":"1.8.1","depth":2,"path":"vscode/1-codegpt.md","ref":"vscode/1-codegpt.md","articles":[]},"articles":[{"title":"peerDependency遇到npm link的问题","level":"1.9.1","depth":2,"path":"nodejs/1-npmlink.md","ref":"nodejs/1-npmlink.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"nodejs/README.md","mtime":"2025-11-24T07:57:26.882Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-12-04T12:55:18.200Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！","level":"1.2.1","depth":2,"next":{"title":"Rust&ndarray","level":"1.3","depth":1,"path":"ndarray/README.md","ref":"ndarray/README.md","articles":[{"title":"赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座","level":"1.3.1","depth":2,"path":"ndarray/1-base.md","ref":"ndarray/1-base.md","articles":[]},{"title":"Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践","level":"1.3.2","depth":2,"path":"ndarray/2-opt.md","ref":"ndarray/2-opt.md","articles":[]},{"title":"具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里","level":"1.3.3","depth":2,"path":"ndarray/3-ring.md","ref":"ndarray/3-ring.md","articles":[]}]},"previous":{"title":"Rust&dora","level":"1.2","depth":1,"path":"dara/README.md","ref":"dara/README.md","articles":[{"title":"🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！","level":"1.2.1","depth":2,"path":"dora/1-base-intro.md","ref":"dora/1-base-intro.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dora/1-base-intro.md","mtime":"2025-12-04T12:50:47.602Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-12-04T12:55:18.200Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
