@@ -1,0 +1,1503 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼” · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../ndarray/" />
+    
+    
+    <link rel="prev" href="3-base-adv.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Rust 知行社
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../dara/README.md">
+            
+                <span>
+            
+                    
+                    Rust&dora
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-base-intro.html">
+            
+                <a href="1-base-intro.html">
+            
+                    
+                    🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-intro.html">
+            
+                <a href="2-intro.html">
+            
+                    
+                    用 Rust 构建下一代机器人应用：dora-rs 入门与实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-base-adv.html">
+            
+                <a href="3-base-adv.html">
+            
+                    
+                    Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4" data-path="4-yolo.html">
+            
+                <a href="4-yolo.html">
+            
+                    
+                    智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../ndarray/">
+            
+                <a href="../ndarray/">
+            
+                    
+                    Rust&ndarray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../ndarray/1-base.html">
+            
+                <a href="../ndarray/1-base.html">
+            
+                    
+                    赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../ndarray/2-opt.html">
+            
+                <a href="../ndarray/2-opt.html">
+            
+                    
+                    Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../ndarray/3-ring.html">
+            
+                <a href="../ndarray/3-ring.html">
+            
+                    
+                    具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../wasm/">
+            
+                <a href="../wasm/">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../wasm/1-intro.html">
+            
+                <a href="../wasm/1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../wasm/2-wasm-pack.html">
+            
+                <a href="../wasm/2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../wasm/3-wasm-bindgen-base.html">
+            
+                <a href="../wasm/3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../wasm/4-wasm-bindgen-advanced.html">
+            
+                <a href="../wasm/4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../wasm/5-wasm-js-sys.html">
+            
+                <a href="../wasm/5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../wasm/6-wasm-web-sys-base.html">
+            
+                <a href="../wasm/6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../wasm/7-wasm-web-sys-advanced.html">
+            
+                <a href="../wasm/7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../wasm/8-wasm-opt.html">
+            
+                <a href="../wasm/8-wasm-opt.html">
+            
+                    
+                    Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../wasm/9-wasm-demo.html">
+            
+                <a href="../wasm/9-wasm-demo.html">
+            
+                    
+                    Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../wasm/10-wasm-future.html">
+            
+                <a href="../wasm/10-wasm-future.html">
+            
+                    
+                    Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="智能目标检测：用-rust--dora-rs--yolo-构建机器之眼">智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”</h1>
+<p>今天，我们将挑战高性能开发的极限，告别 Python 的束缚，直接拥抱底层性能，通过 <strong>Rust</strong> 语言，结合新兴的机器人数据流框架 <strong>dora-rs</strong> 和极致轻量化的机器学习库 <strong>Candle</strong>，从零打造一个具备原生性能、极低延迟的“机器之眼”。</p>
+<h2 id="01-为什么是-rust--dora-rs--candle？">01 为什么是 Rust + dora-rs + Candle？</h2>
+<p>在构建高性能的机器人或智能体系统时，我们常面临三个核心痛点：<strong>模块间的通信延迟</strong>、<strong>多语言协同</strong>和<strong>推理速度</strong>。</p>
+<p>三者结合的核心优势在于：</p>
+<p><strong>1. 极速通信与数据流管理 (dora-rs)</strong></p>
+<ul>
+<li><strong>零拷贝 (Zero-Copy)</strong> ：<code>dora-rs</code> 利用 <strong>Apache Arrow</strong> 内存格式作为其核心数据结构。这意味着当节点间传递大块数据（如 4K 图像或传感器数据）时，无需进行昂贵的内存复制。它仅传递<strong>指针和元数据</strong>，将通信延迟降至最低。</li>
+<li><strong>模块解耦</strong>：<code>dora-rs</code> 将整个系统解耦为数据流节点，极大地简化了系统设计和调试，告别了传统机器人系统中复杂的线程、锁和消息队列。</li>
+</ul>
+<p><strong>2. 极致性能与 AI 加速 (Rust + Candle)</strong></p>
+<ul>
+<li><strong>Rust 的性能优势</strong>：作为系统语言，Rust 提供了 C/C++ 级的性能，同时通过其严格的所有权系统确保了内存安全和线程安全。</li>
+<li><strong>轻量级 AI 引擎 (Candle)</strong> ：<code>Candle</code> 是 Hugging Face 出品的一款基于 Rust 的极简机器学习框架。相比 PyTorch 或 TensorFlow，它具有<strong>无 Python 依赖、体积小、运行快</strong>的特点，非常适合嵌入式和边缘计算。</li>
+</ul>
+<p><strong>3. 多语言混合与业务协同</strong></p>
+<ul>
+<li><strong>无缝协作</strong>：<code>dora-rs</code> 天生支持多语言混合编程。开发者可以使用 <strong>Rust</strong> 处理对延迟要求极高的高性能视觉和底层控制逻辑，同时使用 <strong>Python</strong> 处理复杂的业务逻辑、数据分析或快速迭代。二者通过 <code>dora-rs</code> 的数据流通道进行高效、安全地通信。</li>
+</ul>
+<h2 id="02-系统设计">02 系统设计</h2>
+<p>我们要实现的目标很明确：<strong>摄像头采集 -&gt; AI 大脑分析 -&gt; 屏幕可视化</strong>。在 <code>dora-rs</code> 中，我们将系统拆解为三个独立的 <strong>节点 (Node)</strong> ：</p>
+<ol>
+<li><strong>Camera Node (摄取)</strong> ：负责“看见”世界，读取摄像头帧。</li>
+<li><strong>Inference Node (大脑)</strong> ：负责“思考”，运行 <code>YOLO</code> 模型进行目标检测。</li>
+<li><strong>Plotter Node (可视化)</strong> ：负责“表达”，将检测框和标签画在屏幕上。</li>
+</ol>
+<h2 id="03-环境准备">03 环境准备</h2>
+<p>在开始写代码前，我们需要配置 Mac M1 的开发环境。</p>
+<p><strong>1. 安装 OpenCV</strong> M1 芯片建议使用 Homebrew 安装 ARM64 版本的 OpenCV，这是处理视频流的基础。</p>
+<pre><code>brew install opencv
+</code></pre><p><strong>2. 安装 Rust 与 dora-rs 工具链</strong></p>
+<pre><code># 安装 Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# 安装 Dora 命令行工具
+cargo install dora-cli
+</code></pre><p><strong>3. 创建项目</strong></p>
+<p>使用 <code>dora new</code> 命令创建项目和节点。</p>
+<pre><code># 创建项目
+dora new --lang rust dora-yolo-rust
+
+# 创建节点
+# 摄像头节点
+dora new --kind node --lang rust webcam
+# yolo目标检测节点
+dora new --kind node --lang rust object_detection
+# 可视化节点
+dora new --kind node --lang rust viewer
+</code></pre><p>项目结构：</p>
+<pre><code>dora-yolo-rust/
+├── Cargo.toml        # Workspace配置
+├── dataflow.yml      # 数据流定义
+├── webcam/           # 摄像头节点
+│   ├── Cargo.toml
+│   └── src/main.rs
+└── viewer/           # 可视化节点
+    ├── Cargo.toml
+    └── src/main.rs
+└── object_detection/ # yolo目标检测节点
+    ├── Cargo.toml
+    └── src/main.rs
+</code></pre><h2 id="04-核心代码实战：分步构建">04 核心代码实战：分步构建</h2>
+<p>我们将代码逻辑拆解为三个步骤，每个步骤对应一个节点。</p>
+<h3 id="第一步：构建眼睛-camera-node">第一步：构建“眼睛” (Camera Node)</h3>
+<p>这个节点只做一件事：从摄像头读取数据并发送出去。</p>
+<p><strong>核心逻辑实现：</strong></p>
+<ol>
+<li>初始化 <code>dora-rs</code> 节点。</li>
+<li>使用 OpenCV 打开 0 号设备（FaceTime 摄像头）。</li>
+<li>循环读取帧，压缩或调整尺寸后通过 <code>send_output</code> 发送。</li>
+</ol>
+<p><strong>步骤1：初始化 dora-rs 节点</strong></p>
+<pre><code>use dora_node_api::{DoraNode, Event};
+use std::error::Error;
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    // 从环境变量初始化节点，自动连接 dora 协调器
+    let (mut node, mut events) = DoraNode::init_from_env()?;
+}
+</code></pre><p><strong>步骤2：打开 Mac 摄像头</strong></p>
+<pre><code>use opencv::{
+    core::{Vector}, imgcodecs, prelude::*, videoio::{self, VideoCapture}
+};
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    let (mut node, mut events) = DoraNode::init_from_env()?;
+    let mut camera = VideoCapture::new(CAMERA_INDEX, videoio::CAP_ANY)
+        .context("Failed to create video capture")?;
+    let output = DataId::from("frame".to_owned());
+    // 尝试打开摄像头
+    if !VideoCapture::is_opened(&amp;camera).context("Failed to check if camera is open")? {
+        // 在 Mac M1 上，有时需要延迟以确保摄像头初始化完成
+        thread::sleep(Duration::from_millis(500));
+        if !VideoCapture::is_opened(&amp;camera).context("Camera still not open after delay")? {
+            return Err("Could not open camera 0 or check its status.".into());
+        }
+    }
+    // 尝试设置分辨率 (可选，可以提高性能或稳定性)
+    // camera.set(videoio::CAP_PROP_FRAME_WIDTH, 640.0)?;
+    // camera.set(videoio::CAP_PROP_FRAME_HEIGHT, 480.0)?;
+}
+</code></pre><p><strong>步骤3：循环读取帧</strong></p>
+<pre><code>while let Some(event) = events.recv() {
+    // println!("Received event: {:?}", event);
+    match event {
+        Event::Input {
+            id,
+            metadata,
+            data: _,
+        } =&gt; match id.as_str() {
+            "tick" =&gt; {
+                // todo 读取帧
+            }
+            other =&gt; eprintln!("Received input {:?}", other),
+        },
+        _ =&gt; {}
+    }
+}
+</code></pre><p><strong>步骤4：编码并发送数据</strong></p>
+<pre><code>let mut frame = Mat::default();
+
+// 读取帧
+if camera
+    .read(&amp;mut frame)
+    .context("Failed to read frame from camera")?
+{
+    if frame.size().context("Failed to get frame size")?.width &gt; 0 {
+        // 将帧编码为 JPEG 格式的字节向量
+        let mut buffer = Vector::new();
+        imgcodecs::imencode(".jpg", &amp;frame, &amp;mut buffer, &amp;Vector::new())
+            .context("Failed to encode frame to JPEG")?;
+
+        // 发送原始帧数据
+        let std_buffer: Vec&lt;u8&gt; = buffer.into_iter().collect();
+
+        // 3. 再转为 Arrow 数组
+        let arrow_array = UInt8Array::from(std_buffer);
+        node.send_output(
+            output.clone(),
+            metadata.parameters,
+            arrow_array,
+        )?;
+    }
+}
+</code></pre><p><strong>完整代码</strong>：<a href="https://github.com/Doomking/rust-zhixingshe-examples/blob/main/dora/dora-yolo-rust/webcam/src/main.rs" target="_blank">webcam/src/main.rs</a></p>
+<h3 id="第二步：构建大脑-inference-node">第二步：构建“大脑” (Inference Node)</h3>
+<p>这是系统的核心。我们将加载 <code>YOLOv8</code> 模型，对输入图像进行目标检测。</p>
+<p><strong>核心逻辑实现：</strong></p>
+<ol>
+<li><strong>初始化节点</strong>：从环境变量初始化 dora-rs 节点。</li>
+<li><strong>加载模型</strong>：从本地文件加载 <code>YOLOv8</code> 模型。</li>
+<li><strong>图像预处理</strong>：将接收到的图像字节流转换为 Tensor，并归一化 (0-1)。</li>
+<li><strong>运行模型推理</strong>：执行 <code>model.forward()</code>。</li>
+<li><strong>解析推理结果</strong>： 解析模型输出，生成 <code>bboxes</code> 检测结果。</li>
+</ol>
+<p><strong>步骤1：初始化节点</strong></p>
+<pre><code>use dora_node_api::{DoraNode, Event};
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    let (mut node, mut events) = DoraNode::init_from_env()?;
+}
+</code></pre><p><strong>步骤2：加载 YOLO 模型</strong></p>
+<pre><code>// 提前下载模型:  https://hf-mirror.com/lmz/candle-yolo-v8/tree/main
+// 模型名称：yolov8n.safetensors
+// 大小：6.4MB
+println!("Loading YOLOv8 model...");
+let device = select_device().unwrap();
+// 定义本地模型文件的路径
+let current_dir = env::current_dir().context("Failed to get current working directory")?;
+
+// 定义相对路径
+let relative_path = Path::new("object_detection/models/yolov8n.safetensors");
+
+//  尝试合并路径并检查
+let local_model_path = current_dir.join(relative_path);
+// 验证文件是否存在（可选，但推荐）
+if !local_model_path.exists() {
+    return Err(format!("Model file not found at: {}", local_model_path.display()).into());
+}
+let model_file = local_model_path;
+// 加载权重
+let vb = unsafe { VarBuilder::from_mmaped_safetensors(&amp;[model_file], DType::F32, &amp;device)? };
+let model = YoloV8::load(vb, Multiples::n(), 80)?;
+</code></pre><p><strong>步骤3：图像预处理</strong></p>
+<pre><code>// 图像预处理：调整大小、填充、归一化、转 Tensor
+fn preprocess_image(
+    frame: &amp;Mat,
+    device: &amp;Device,
+) -&gt; Result&lt;(Tensor, f32, f32, f32), Box&lt;dyn Error&gt;&gt; {
+    let width = frame.cols();
+    let height = frame.rows();
+
+    // 计算缩放比例，保持长宽比
+    let ratio = (MODEL_SIZE as f32 / width.max(height) as f32).min(1.0);
+    let new_w = (width as f32 * ratio) as i32;
+    let new_h = (height as f32 * ratio) as i32;
+
+    // Resize
+    let mut resized = Mat::default();
+    imgproc::resize(
+        frame,
+        &amp;mut resized,
+        opencv::core::Size::new(new_w, new_h),
+        0.0,
+        0.0,
+        imgproc::INTER_LINEAR,
+    )?;
+
+    // Letterbox padding (填充灰色背景到 640x640)
+    let dw = (MODEL_SIZE as i32 - new_w) / 2;
+    let dh = (MODEL_SIZE as i32 - new_h) / 2;
+
+    let mut padded = Mat::default();
+    copy_make_border(
+        &amp;resized,
+        &amp;mut padded,
+        dh,
+        MODEL_SIZE as i32 - new_h - dh, // top, bottom
+        dw,
+        MODEL_SIZE as i32 - new_w - dw, // left, right
+        opencv::core::BORDER_CONSTANT,
+        Scalar::new(114.0, 114.0, 114.0, 0.0), // YOLO 灰色背景
+    )?;
+
+    // BGR -&gt; RGB
+    let mut rgb = Mat::default();
+    imgproc::cvt_color(
+        &amp;padded,
+        &amp;mut rgb,
+        imgproc::COLOR_BGR2RGB,
+        0,
+        AlgorithmHint::ALGO_HINT_DEFAULT,
+    )?;
+
+    // 转为 Vec&lt;u8&gt;
+    let data_vec: Vec&lt;u8&gt; = rgb.data_bytes()?.to_vec();
+
+    // 转为 Candle Tensor: (Batch, Channel, Height, Width)
+    // 原始数据是 HWC (640, 640, 3)，需要转为 CHW 并归一化 0-1
+    let tensor = Tensor::from_vec(data_vec, (MODEL_SIZE, MODEL_SIZE, 3), device)?
+        .permute((2, 0, 1))? // HWC -&gt; CHW
+        .to_dtype(DType::F32)?
+        .affine(1. / 255., 0.)? // 归一化
+        .unsqueeze(0)?; // 添加 Batch 维度 -&gt; (1, 3, 640, 640)
+
+    Ok((tensor, ratio, dw as f32, dh as f32))
+}
+</code></pre><p><strong>步骤4：运行模型推理</strong></p>
+<pre><code>// 解码 JPEG 数据成 Mat
+let frame = imgcodecs::imdecode(&amp;buffer, imgcodecs::IMREAD_COLOR)
+    .context("Failed to decode image from buffer")?;
+
+// --- 步骤 A: 图像预处理 (OpenCV -&gt; Candle Tensor) ---
+let (processed_tensor, ratio, pad_w, pad_h) =
+    preprocess_image(&amp;frame, &amp;device)?;
+
+// --- 步骤 B: 模型推理 ---
+let predictions = model.forward(&amp;processed_tensor)?;
+
+// --- 步骤 C: 后处理 (NMS) ---
+// predictions 维度通常是 (1, 84, 8400) -&gt; (Batch, Classes+Coords, Anchors)
+let preds = predictions.squeeze(0)?;
+let (bboxes, keypoints) = report_detect(&amp;preds, &amp;frame, ratio, pad_w, pad_h)?;
+
+let arrow_array = bboxes_to_arrow(bboxes)?;
+
+node.send_output(output.clone(), metadata.parameters, arrow_array)?;
+</code></pre><p><strong>步骤5：解析推理结果</strong></p>
+<pre><code> /// 解析推理结果
+/// YOLOv8 Output: [batch, 84, 8400] (xc, yc, w, h, class0...class79)
+fn report_detect(
+    pred: &amp;Tensor,
+    original_frame: &amp;Mat,
+    ratio: f32,
+    pad_w: f32,
+    pad_h: f32,
+) -&gt; Result&lt;(Vec&lt;(&amp;'static str, Rect, f32)&gt;, Option&lt;Vec&lt;()&gt;&gt;), Box&lt;dyn Error&gt;&gt; {
+    // 1. 转置为 [8400, 84] 便于处理
+    let pred = pred.t()?;
+    let (n_preds, _n_coords) = pred.dims2()?;
+    let pred_vec: Vec&lt;Vec&lt;f32&gt;&gt; = pred.to_vec2()?; // 获取数据到 CPU
+
+    let mut results = Vec::new();
+
+    for i in 0..n_preds {
+        let row = &amp;pred_vec[i];
+
+        // 找出最高分的类别 (前4个是坐标，后面是类别)
+        let scores = &amp;row[4..];
+        let (max_score_idx, max_score) =
+            scores
+                .iter()
+                .enumerate()
+                .fold(
+                    (0, 0.0_f32),
+                    |(idx, max), (i, &amp;val)| {
+                        if val &gt; max {
+                            (i, val)
+                        } else {
+                            (idx, max)
+                        }
+                    },
+                );
+
+        if max_score &gt; CONFIDENCE_THRESHOLD {
+            // 解析坐标 (cx, cy, w, h) -&gt; 模型输入坐标系
+            let cx = row[0];
+            let cy = row[1];
+            let w = row[2];
+            let h = row[3];
+
+            // 转换回原图坐标 (去除 padding 并除以缩放比例)
+            let x = ((cx - w / 2.0 - pad_w) / ratio).max(0.0);
+            let y = ((cy - h / 2.0 - pad_h) / ratio).max(0.0);
+            let width = (w / ratio).min(original_frame.cols() as f32 - x);
+            let height = (h / ratio).min(original_frame.rows() as f32 - y);
+
+            results.push((
+                LABELS[max_score_idx],
+                Rect::new(x as i32, y as i32, width as i32, height as i32),
+                max_score,
+            ));
+        }
+    }
+
+    // 简单 NMS (非极大值抑制)
+    // 注意：生产环境建议使用 torchvision 或 opencv 自带的 NMSBoxes
+    let mut kept_results = Vec::new();
+    results.sort_by(|a, b| b.2.partial_cmp(&amp;a.2).unwrap()); // 按置信度降序
+
+    while let Some(current) = results.pop() {
+        kept_results.push(current.clone());
+        // 移除 IOU 大于阈值的框
+        results.retain(|item| iou(&amp;current.1, &amp;item.1) &lt; IOU_THRESHOLD);
+    }
+
+    Ok((kept_results, None))
+}
+</code></pre><p><strong>完整代码</strong>：<a href="https://github.com/Doomking/rust-zhixingshe-examples/blob/main/dora/dora-yolo-rust/object_detection/src/main.rs" target="_blank">object_detection/src/main.rs</a></p>
+<h3 id="第三步：构建画布-plotter-node">第三步：构建“画布” (Plotter Node)</h3>
+<p>最后，我们需要将接收的图像和检测结果，绘制并实时显示在窗口中。</p>
+<p><strong>核心逻辑实现：</strong></p>
+<ol>
+<li>初始化节点与窗口</li>
+<li>订阅双路数据流</li>
+<li>接收检测结果</li>
+<li>显示图像</li>
+</ol>
+<p><strong>步骤1：初始化节点与窗口</strong></p>
+<pre><code>use dora_node_api::{DoraNode, Event};
+use opencv::{prelude::*, imgcodecs, imgproc, highgui};
+use std::error::Error;
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    let (mut _node, mut events) = DoraNode::init_from_env()?;
+    // 初始化一个空的检测框缓存
+    let mut bboxes = Vec::new();
+    // 创建一个用于显示的窗口
+    highgui::named_window("Dora Webcam Viewer (Rust)", highgui::WINDOW_NORMAL)
+        .context("Failed to create highgui window")?;
+    println!("Viewer operator initialized.");
+}
+</code></pre><p><strong>步骤2：订阅双路数据流</strong></p>
+<pre><code>while let Some(event) = events.recv() {
+        match event {
+            Event::Input {
+                id,
+                metadata: _,
+                data,
+            } =&gt; match id.as_str() {
+                "detections" =&gt; {
+                    let struct_array = data
+                        .as_any()
+                        .downcast_ref::&lt;StructArray&gt;()
+                        .context("Input is not a StructArray (expected bboxes)")?;
+
+                    let received_bboxes = arrow_to_bboxes(struct_array)?;
+                    bboxes = received_bboxes;
+                }
+                "frame" =&gt; {
+                    // 将接收到的字节数据转换为 OpenCV Vector
+                    // 1. 将 Arrow trait 对象强转为具体的 UInt8Array
+                    let uint8_array = data
+                        .as_any()
+                        .downcast_ref::&lt;UInt8Array&gt;()
+                        .context("Arrow data is not UInt8Array (expected byte array)")?;
+
+                    // 2. 提取 UInt8Array 的字节切片
+                    let byte_slice = uint8_array.values(); // 返回 &amp;[u8]
+
+                    // 3. 转换为 OpenCV Vector&lt;u8&gt;（from_slice 接收 &amp;[u8]）
+                    let buffer = Vector::from_slice(byte_slice);
+
+                    // 解码 JPEG 数据成 Mat
+                    let frame = imgcodecs::imdecode(&amp;buffer, imgcodecs::IMREAD_COLOR)
+                        .context("Failed to decode image from buffer")?;
+
+                    if frame
+                        .size()
+                        .context("Failed to get decoded frame size")?
+                        .width
+                        &gt; 0
+                    {
+                        ......
+                        // 显示图像
+                        highgui::imshow("Dora Webcam Viewer (Rust)", &amp;display_frame)
+                            .context("Failed to imshow frame")?;
+                        // 必须调用 wait_key 来处理 GUI 事件
+                        highgui::wait_key(1).context("Failed to wait_key")?;
+                    }
+                }
+                other =&gt; eprintln!("Received input `{other}`"),
+            },
+            _ =&gt; {}
+        }
+    }
+</code></pre><p><strong>步骤3：绘制检测结果</strong></p>
+<pre><code> // --- 在原图上绘制结果 ---
+let mut display_frame = frame.clone();
+let bboxes_clone = bboxes.clone();
+for (classname, bbox, conf) in bboxes_clone {
+    // 画框
+    imgproc::rectangle(
+        &amp;mut display_frame,
+        bbox,
+        Scalar::new(0.0, 255.0, 0.0, 0.0), // 绿色
+        2,
+        imgproc::LINE_8,
+        0,
+    )?;
+    // 写标签
+    let label = format!("{}: {:.2}", classname, conf);
+    imgproc::put_text(
+        &amp;mut display_frame,
+        &amp;label,
+        Point::new(bbox.x, bbox.y - 5),
+        imgproc::FONT_HERSHEY_SIMPLEX,
+        1.0,
+        Scalar::new(0.0, 255.0, 0.0, 0.0),
+        1,
+        imgproc::LINE_8,
+        false,
+    )?;
+}
+</code></pre><p><strong>步骤4：显示图像</strong></p>
+<pre><code>// 显示图像
+highgui::imshow("Dora Webcam Viewer (Rust)", &amp;display_frame)
+    .context("Failed to imshow frame")?;
+// 必须调用 wait_key 来处理 GUI 事件
+highgui::wait_key(1).context("Failed to wait_key")?;
+</code></pre><p><strong>完整代码</strong>：<a href="https://github.com/Doomking/rust-zhixingshe-examples/blob/main/dora/dora-yolo-rust/viewer/src/main.rs" target="_blank">viewer/src/main.rs</a></p>
+<h2 id="05-注入灵魂：数据流图-dataflow-graph">05 注入灵魂：数据流图 (Dataflow Graph)</h2>
+<p>通过 <code>YAML</code> 文件定义数据流文件 <code>dataflow.yaml</code>。</p>
+<p>这就像电路板的设计图，定义了数据如何从一个节点流向另一个节点：</p>
+<pre><code>nodes:
+  - id: webcam
+    build: cargo build -p webcam
+    path: target/debug/webcam
+    inputs:
+      tick: dora/timer/millis/100
+    outputs:
+      - frame
+
+  - id: object_detection
+    build: cargo build -p object_detection
+    path: target/debug/object_detection
+    inputs:
+      frame: webcam/frame
+    outputs:
+      - detections
+
+  - id: viewer
+    build: cargo build -p viewer
+    path: target/debug/viewer
+    inputs:
+      detections: object_detection/detections
+      frame: webcam/frame
+</code></pre><p><strong>数据流向图如下：</strong></p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cf51a78911504a32a14f60db94b0b276~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1766674475&amp;x-orig-sign=S%2FVuYnpP2HQ%2BAKw%2B48%2FVCvqD7uY%3D" alt="graph.003.png"></img></p>
+<h2 id="06-启动与效果验证">06 启动与效果验证</h2>
+<p>一切准备就绪，编译并启动你的“机器之眼”：</p>
+<pre><code># 编译 构建数据流图
+dora build dataflow.yml
+# 运行数据流
+dora run dataflow.yml
+</code></pre><p><strong>输出</strong></p>
+<pre><code>object_detection: DEBUG  daemon::spawner    spawning node
+viewer: DEBUG  daemon::spawner    spawning node
+webcam: DEBUG  daemon::spawner    spawning node
+INFO   dora daemon    finished building nodes, spawning...
+......
+webcam: DEBUG  spawner    spawned node with pid ProcessId(Some(51833))
+webcam: INFO   daemon    node is ready
+viewer: INFO   daemon    node is ready
+object_detection: INFO   daemon    node is ready
+INFO   daemon    all nodes are ready, starting dataflow
+object_detection: stdout    Loading YOLOv8 model...
+object_detection: stdout    🐢 Using CPU device.
+viewer: stdout    Viewer operator initialized.
+object_detection: stdout    Model loaded successfully.
+</code></pre><p><strong>效果时刻</strong>：</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7ccec5c0979c472b9e7a6fb3a6c6b210~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1766674475&amp;x-orig-sign=wqb2Tpa8k1rvHEIN1paIpCQEDBw%3D" alt="ScreenShot\_2025-12-18\_225117\_201.png"></img></p>
+<h2 id="写在最后">写在最后</h2>
+<p>通过本项目，我们不仅体验了 <strong>Rust</strong> 带来的极致性能和内存安全，更见证了 <strong>dora-rs</strong> 如何将复杂的智能体系统拆解为优雅、高效的模块化数据流。这为构建高性能、高可靠性的实时系统提供了坚实的基础。</p>
+<p>并且，此实时目标检测系统具备强大的可扩展性，可轻松应用于以下场景：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>核心优势</th>
+<th>技术路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>边缘设备部署</strong></td>
+<td>构建轻量化、低功耗的智能摄像头。</td>
+<td>利用 dora-rs 的跨平台特性，将系统移植到 <strong>树莓派 4B</strong> 等边缘设备。</td>
+</tr>
+<tr>
+<td><strong>多目标跟踪 (MOT)</strong></td>
+<td>实现视频流中对多个物体运动轨迹的持续追踪和分析。</td>
+<td>在目标检测结果基础上，集成 <strong>DeepSORT</strong> 等关联算法。可应用于交通监控、行为分析，提供连续识别与追踪能力。</td>
+</tr>
+<tr>
+<td><strong>具身智能与控制</strong></td>
+<td>实现视觉引导的精准操作，如工业机械臂抓取。</td>
+<td>将检测到的目标<strong>坐标信息</strong>实时转换为机械臂的 <strong>抓取指令</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="附录：参考资料">附录：参考资料</h2>
+<ul>
+<li><strong>dora-rs 官方文档</strong>：<a href="https://dora-rs.ai/" target="_blank">https://dora-rs.ai/</a></li>
+<li><strong>candle 框架</strong>：<a href="https://github.com/huggingface/candle" target="_blank">https://github.com/huggingface/candle</a></li>
+<li><strong>yolov8 模型</strong>：<a href="https://hf-mirror.com/lmz/candle-yolo-v8" target="_blank">https://hf-mirror.com/lmz/candle-yolo-v8</a></li>
+<li><strong>完整代码</strong>：<a href="https://github.com/Doomking/rust-zhixingshe-examples/tree/main/dora/dora-yolo-rust" target="_blank">https://github.com/Doomking/rust-zhixingshe-examples/tree/main/dora/dora-yolo-rust</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3-base-adv.html" class="navigation navigation-prev " aria-label="Previous page: Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../ndarray/" class="navigation navigation-next " aria-label="Next page: Rust&ndarray">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”","level":"1.2.4","depth":2,"next":{"title":"Rust&ndarray","level":"1.3","depth":1,"path":"ndarray/README.md","ref":"ndarray/README.md","articles":[{"title":"赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座","level":"1.3.1","depth":2,"path":"ndarray/1-base.md","ref":"ndarray/1-base.md","articles":[]},{"title":"Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践","level":"1.3.2","depth":2,"path":"ndarray/2-opt.md","ref":"ndarray/2-opt.md","articles":[]},{"title":"具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里","level":"1.3.3","depth":2,"path":"ndarray/3-ring.md","ref":"ndarray/3-ring.md","articles":[]}]},"previous":{"title":"Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用","level":"1.2.3","depth":2,"path":"dora/3-base-adv.md","ref":"dora/3-base-adv.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dora/4-yolo.md","mtime":"2025-12-18T14:57:41.036Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2025-12-18T14:58:15.350Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

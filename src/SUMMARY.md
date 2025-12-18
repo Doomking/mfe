@@ -5,6 +5,7 @@
     * [🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！](dora/1-base-intro.md)
     * [用 Rust 构建下一代机器人应用：dora-rs 入门与实战](dora/2-intro.md)
     * [Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用](dora/3-base-adv.md)
+    * [智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”](dora/4-yolo.md)
 * [Rust&ndarray](ndarray/README.md)
     * [赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座](ndarray/1-base.md)
     * [Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践](ndarray/2-opt.md)
