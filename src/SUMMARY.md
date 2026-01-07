@@ -1,6 +1,8 @@
 # Summary
 
 * [Rust 知行社](README.md)
+* [Rust&Wasm&AI](wasm_ai/README.md)
+    * [Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代](wasm_ai/1-wasm-ai-intro.md)
 * [Rust&dora](dara/README.md)
     * [🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！](dora/1-base-intro.md)
     * [用 Rust 构建下一代机器人应用：dora-rs 入门与实战](dora/2-intro.md)
