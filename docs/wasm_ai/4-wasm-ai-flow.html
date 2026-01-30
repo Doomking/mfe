@@ -1,0 +1,1460 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../dara/README.md" />
+    
+    
+    <link rel="prev" href="3-wasm-ai-3.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Rust 知行社
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&Wasm&AI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-wasm-ai-intro.html">
+            
+                <a href="1-wasm-ai-intro.html">
+            
+                    
+                    Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-wasm-ai-senti-pulse.html">
+            
+                <a href="2-wasm-ai-senti-pulse.html">
+            
+                    
+                    Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3-wasm-ai-3.md">
+            
+                <span>
+            
+                    
+                    Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4" data-path="4-wasm-ai-flow.html">
+            
+                <a href="4-wasm-ai-flow.html">
+            
+                    
+                    Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../dara/README.md">
+            
+                <span>
+            
+                    
+                    Rust&dora
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../dora/1-base-intro.html">
+            
+                <a href="../dora/1-base-intro.html">
+            
+                    
+                    🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../dora/2-intro.html">
+            
+                <a href="../dora/2-intro.html">
+            
+                    
+                    用 Rust 构建下一代机器人应用：dora-rs 入门与实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../dora/3-base-adv.html">
+            
+                <a href="../dora/3-base-adv.html">
+            
+                    
+                    Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../dora/4-yolo.html">
+            
+                <a href="../dora/4-yolo.html">
+            
+                    
+                    智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../dora/5-auto.html">
+            
+                <a href="../dora/5-auto.html">
+            
+                    
+                    用Rust + dora-rs + Webots打造自动驾驶仿真系统：Mac M1完整实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../ndarray/">
+            
+                <a href="../ndarray/">
+            
+                    
+                    Rust&ndarray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../ndarray/1-base.html">
+            
+                <a href="../ndarray/1-base.html">
+            
+                    
+                    赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../ndarray/2-opt.html">
+            
+                <a href="../ndarray/2-opt.html">
+            
+                    
+                    Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../ndarray/3-ring.html">
+            
+                <a href="../ndarray/3-ring.html">
+            
+                    
+                    具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../wasm/">
+            
+                <a href="../wasm/">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../wasm/1-intro.html">
+            
+                <a href="../wasm/1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../wasm/2-wasm-pack.html">
+            
+                <a href="../wasm/2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../wasm/3-wasm-bindgen-base.html">
+            
+                <a href="../wasm/3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../wasm/4-wasm-bindgen-advanced.html">
+            
+                <a href="../wasm/4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../wasm/5-wasm-js-sys.html">
+            
+                <a href="../wasm/5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../wasm/6-wasm-web-sys-base.html">
+            
+                <a href="../wasm/6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../wasm/7-wasm-web-sys-advanced.html">
+            
+                <a href="../wasm/7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../wasm/8-wasm-opt.html">
+            
+                <a href="../wasm/8-wasm-opt.html">
+            
+                    
+                    Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../wasm/9-wasm-demo.html">
+            
+                <a href="../wasm/9-wasm-demo.html">
+            
+                    
+                    Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../wasm/10-wasm-future.html">
+            
+                <a href="../wasm/10-wasm-future.html">
+            
+                    
+                    Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rust--wasm--ai-四：赛博粒子视听盛宴——mobilesam模型与高性能流体视觉实战">Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战</h1>
+<p>在浏览器沙盒这种资源受限的微型世界里，如何让 40MB 的深度学习模型与 60FPS 的流体物理引擎和谐共存？今天，我们将通过 Rust 与 WebAssembly，将一张静止的图片实时解构为具备物理灵魂的赛博粒子，开启一场视听一体的交互盛宴。</p>
+<h2 id="一、-核心悬念：物质解构的感官冲击">一、 核心悬念：物质解构的感官冲击</h2>
+<p>想象一下：你点击屏幕中一只晶莹的玻璃杯，它不再只是一堆像素，而是瞬间被 AI 识别，随后伴随着清脆的碎裂声，化作上千颗闪烁的粒子随重力倾泻而下。</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/ab288a6d412341689da5797e4da6c6a5~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1769840961&amp;x-orig-sign=A0x%2FDkuU2cgnl96kBczfVvDDeJ4%3D" alt="output14.jpg"></img></p>
+<p>这背后的核心理念是<strong>物质解构</strong>——利用 <strong>MobileSAM</strong> 赋予机器视觉之眼，利用 <strong>Rust WASM</strong> 构建物理之魂。自此，图像不再是扁平的平面，而是可触摸、可粉碎、可聆听的实体物质。</p>
+<p>觉得这波“物质解构”的视觉冲击力如何？
+别急，这套打通了 AI 视觉感知与高性能流体动力学的实战方案，其完整的 Rust 核心代码、MobileSAM 模型权重及环境配置文档均已为你打包就绪。跟随文末的 GitHub 链接，你也能在浏览器中亲手开启这场视听一体的交互盛宴。</p>
+<h2 id="二、-全栈技术架构：ai-推理与物理引擎的共生图景">二、 全栈技术架构：AI 推理与物理引擎的共生图景</h2>
+<p>为了实现这种极致的实时反馈，我们构建了一套分层协作的架构：</p>
+<ul>
+<li><strong>AI 推理层</strong>：由 MobileSAM (Segment Anything) 协同 Candle (Rust 深度学习框架) 实现。</li>
+<li><strong>物理动力层</strong>：由 WASM 承载、基于 Rust 编写的 <strong>PBD (Position-Based Dynamics)</strong> 引擎。</li>
+<li><strong>视觉渲染层</strong>：基于 WebGL 的高性能粒子着色器（Shader）。</li>
+<li><strong>感官合成层</strong>：利用 Web Audio API 实时合成受物理状态驱动的物质音效。</li>
+</ul>
+<p><strong>系统流转逻辑：</strong></p>
+<pre><code class="lang-text">用户点击 (UI 坐标)
+    ↓
+【视觉之眼】MobileSAM 毫秒级推理 → 提取像素级掩码 (Mask)
+    ↓
+【物质之魂】RGB→HSL 属性映射 → 赋予密度 / 音色 / 弹性
+    ↓
+【动力之源】WASM 粒子引擎 → PBD 动力学算法解算
+    ↓
+【感官中枢】WebGL 渲染 + Web Audio 合成 → 声画共振
+</code></pre>
+<h2 id="三、-核心原理深度解析">三、 核心原理深度解析</h2>
+<h3 id="1-视觉之眼：mobilesam-的实时解构">1. 视觉之眼：MobileSAM 的实时解构</h3>
+<p>MobileSAM 的精妙之处在于将昂贵的图像编码器（Image Encoder）与轻量级的掩码解码器（Mask Decoder）进行剥离。我们在图像加载时预先计算 Embedding，用户点击时仅触发毫秒级的 Decoder 推理，从而瞬间捕获物体的精确轮廓。</p>
+<h3 id="2-物质之魂：从像素到物理属性">2. 物质之魂：从像素到物理属性</h3>
+<p>如何让 AI 区分“金属”与“玻璃”？我们通过 RGB 到 HSL 的色彩空间转换，利用亮度（Lightness）和色相（Hue）建立启发式推断模型，动态赋予粒子不同的物理特征。</p>
+<h3 id="3-动感之源：wasm-驱动的流体引擎">3. 动感之源：WASM 驱动的流体引擎</h3>
+<p>在浏览器中模拟数千个粒子的物理碰撞时，JavaScript 的垃圾回收（GC）机制往往是掉帧的罪魁祸首。Rust 的内存确定性确保了 PBD 算法能以极致性能运行，让物理步进（Step）与屏幕刷新完美同步。</p>
+<h3 id="4-感官中枢：web-audio-的物理声场合成">4. 感官中枢：Web Audio 的物理声场合成</h3>
+<p>利用 Web Audio API 实现了从物理参数到声学信号的实时映射，通过程序化合成（Procedural Synthesis）让每一颗粒子都拥有独特的声纹。系统摒弃预录采样，转而根据材质属性动态调制振荡器，并由粒子碰撞动量驱动增益。通过物理线程的高精度时间戳调度，实现与 WebGL 的零延迟同步，确保声画严丝合缝。</p>
+<h2 id="四、-工程实践：实战代码揭秘">四、 工程实践：实战代码揭秘</h2>
+<h3 id="1-资产流水线：模型转换-python">1. 资产流水线：模型转换 (Python)</h3>
+<p>在模型进入浏览器前，需将其转换为 Candle 友好的 <code>safetensors</code> 格式。相比传统的 <code>.pth</code>，它支持零拷贝（Zero-copy）加载，具备更高的安全性和加载速度。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># convert/model.py: 将 PyTorch 权重转换为 Safetensors</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">download_and_convert</span>():
+    model_url = (
+        <span class="hljs-string">"https://github.com/ChaoningZhang/MobileSAM/raw/master/weights/mobile_sam.pt"</span>
+    )
+    pt_path = <span class="hljs-string">"./model/mobile_sam.pt"</span>
+    output_path = <span class="hljs-string">"./model/mobile_sam.safetensors"</span>
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">"./model"</span>):
+        os.makedirs(<span class="hljs-string">"./model"</span>)
+
+    <span class="hljs-comment"># 1. 下载官方权重</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(pt_path):
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"📥 正在从官方 GitHub 下载 MobileSAM 权重 (约 40MB)..."</span>)
+        response = requests.get(model_url, stream=<span class="hljs-literal">True</span>)
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(pt_path, <span class="hljs-string">"wb"</span>) <span class="hljs-keyword">as</span> f:
+            <span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> response.iter_content(chunk_size=<span class="hljs-number">8192</span>):
+                f.write(chunk)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"✅ 下载完成"</span>)
+
+    <span class="hljs-comment"># 2. 转换为 Safetensors</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"🔄 正在转换为 Safetensors 格式..."</span>)
+    <span class="hljs-comment"># map_location='cpu' 确保在没有 GPU 的机器上也能转换</span>
+    checkpoint = torch.load(pt_path, map_location=<span class="hljs-string">"cpu"</span>)
+
+    <span class="hljs-comment"># 清理并保存</span>
+    <span class="hljs-comment"># MobileSAM 的权重字典通常在 'state_dict' 键下，或者直接是字典</span>
+    state_dict = checkpoint.get(<span class="hljs-string">"state_dict"</span>, checkpoint)
+
+    save_file(state_dict, output_path)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"✨ 转换成功！文件已保存至: <span class="hljs-subst">{output_path}</span>"</span>)
+</code></pre>
+<blockquote>
+<p><strong>解析</strong>：<code>safetensors</code> 已成为 Rust AI 生态的事实标准。它规避了 <code>pickle</code> 的反序列化风险，并能通过内存映射显著降低加载时延。</p>
+</blockquote>
+<h3 id="2-推理内核：实时解构逻辑-rust">2. 推理内核：实时解构逻辑 (Rust)</h3>
+<p>利用 <code>Candle</code> 框架，在 Rust 中驱动 MobileSAM。这里的挑战在于处理不同版本模型权重的 Key 名映射。</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// inference_engine.rs: 执行 Mask 推理</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_mask_at</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, x_norm: <span class="hljs-type">f32</span>, y_norm: <span class="hljs-type">f32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">u8</span>&gt;&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">embedding</span> = <span class="hljs-keyword">self</span>.current_image_embedding.<span class="hljs-title function_ invoke__">as_ref</span>().<span class="hljs-title function_ invoke__">ok_or_else</span>(|| {
+        candle::Error::<span class="hljs-title function_ invoke__">Msg</span>(<span class="hljs-string">"No image embedding found. Did you call set_image?"</span>.<span class="hljs-title function_ invoke__">to_string</span>())
+    })?;
+
+    <span class="hljs-comment">// 输出分辨率设为 256, 256，这要求输入点也按比例缩放到 256 空间内</span>
+    <span class="hljs-keyword">let</span> (w, h) = <span class="hljs-keyword">self</span>.img_dims;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">x_sam</span> = (x_norm * (w <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span> / <span class="hljs-number">4.0</span>)) <span class="hljs-keyword">as</span> <span class="hljs-type">f64</span>;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">y_sam</span> = (y_norm * (h <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span> / <span class="hljs-number">4.0</span>)) <span class="hljs-keyword">as</span> <span class="hljs-type">f64</span>;
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">points</span> = &amp;[(x_sam, y_sam, <span class="hljs-literal">true</span>)];
+
+    <span class="hljs-comment">// 运行轻量解码器，输出尺寸设为 256，与 FluidEngine 的 1/4 (256) 假设对齐</span>
+    <span class="hljs-keyword">let</span> (low_res_mask, _iou) = <span class="hljs-keyword">self</span>.model.forward_for_embeddings(
+        embedding, <span class="hljs-number">256</span>, <span class="hljs-comment">// original_h</span>
+        <span class="hljs-number">256</span>, <span class="hljs-comment">// original_w</span>
+        points, <span class="hljs-literal">false</span>, <span class="hljs-comment">// multimask_output</span>
+    )?;
+
+    <span class="hljs-comment">// 后处理：将 Tensor 转换为一维的字节数组 (0/1 或 0/255)</span>
+    <span class="hljs-keyword">self</span>.<span class="hljs-title function_ invoke__">post_process_mask</span>(low_res_mask)
+}
+</code></pre>
+<blockquote>
+<p><strong>解析</strong>：通过对 <code>Embedding</code> 的持久化缓存，交互延迟被压低至个位数毫秒，实现了真正的指哪打哪。</p>
+</blockquote>
+<h3 id="3-动力源泉：粒子生成策略-rust">3. 动力源泉：粒子生成策略 (Rust))</h3>
+<p>当 <code>MobileSAM</code> 定位出物体像素后，<code>FluidEngine</code> 负责在掩码区域内动态注入粒子流。</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// fluid_engine.rs: 基于 Mask 的粒子注入</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">inject_material</span>(
+        &amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>,
+        mask: &amp;[<span class="hljs-type">u8</span>],
+        img_w: <span class="hljs-type">u32</span>,
+        img_h: <span class="hljs-type">u32</span>,
+        scaled_w: <span class="hljs-type">u32</span>,
+        scaled_h: <span class="hljs-type">u32</span>,
+        offset_x: <span class="hljs-type">f32</span>,
+        offset_y: <span class="hljs-type">f32</span>,
+        unit_scale_x: <span class="hljs-type">f32</span>,
+        unit_scale_y: <span class="hljs-type">f32</span>,
+        material: MaterialProperties,
+    ) {
+        <span class="hljs-keyword">self</span>.img_dims = (img_w, img_h);
+        <span class="hljs-keyword">self</span>.scaled_dims = (scaled_w, scaled_h);
+        <span class="hljs-keyword">self</span>.current_material = material.<span class="hljs-title function_ invoke__">clone</span>();
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">rng</span> = rand::<span class="hljs-title function_ invoke__">thread_rng</span>();
+        <span class="hljs-keyword">use</span> rand::Rng;
+
+        <span class="hljs-comment">// 1. 预算与其管理</span>
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">max_particles</span> = <span class="hljs-number">12000</span>;
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">target_per_click</span> = <span class="hljs-number">4000</span>; <span class="hljs-comment">// 这里的目标是提升每个大物体的填充感</span>
+
+        <span class="hljs-comment">// 2. 统计 Mask 内容</span>
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">active_pixels</span> = mask.<span class="hljs-title function_ invoke__">iter</span>().<span class="hljs-title function_ invoke__">filter</span>(|&amp;&amp;v| v &gt; <span class="hljs-number">0</span>).<span class="hljs-title function_ invoke__">count</span>();
+        <span class="hljs-keyword">if</span> active_pixels == <span class="hljs-number">0</span> {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// 3. 计算注入概率（确保全域均匀分布）</span>
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">spawn_prob</span> = (target_per_click <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span> / active_pixels <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span>).<span class="hljs-title function_ invoke__">min</span>(<span class="hljs-number">1.0</span>);
+
+        <span class="hljs-keyword">for</span> (idx, &amp;is_selected) <span class="hljs-keyword">in</span> mask.<span class="hljs-title function_ invoke__">iter</span>().<span class="hljs-title function_ invoke__">enumerate</span>() {
+            <span class="hljs-keyword">if</span> is_selected &gt; <span class="hljs-number">0</span> {
+                <span class="hljs-comment">// 随机抽样决定是否在此像点生成</span>
+                <span class="hljs-keyword">if</span> !rng.<span class="hljs-title function_ invoke__">gen_bool</span>(spawn_prob <span class="hljs-keyword">as</span> <span class="hljs-type">f64</span>) {
+                    <span class="hljs-keyword">continue</span>;
+                }
+
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">mask_x</span> = (idx <span class="hljs-keyword">as</span> <span class="hljs-type">u32</span> % <span class="hljs-number">256</span>) <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span>;
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">mask_y</span> = (idx <span class="hljs-keyword">as</span> <span class="hljs-type">u32</span> / <span class="hljs-number">256</span>) <span class="hljs-keyword">as</span> <span class="hljs-type">f32</span>;
+
+                <span class="hljs-comment">// 核心修复：基于 4x4 网格的子像素随机抖动，增加边缘平滑和填充感</span>
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">jitter_x</span> = rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.0</span>..<span class="hljs-number">4.0</span>);
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">jitter_y</span> = rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.0</span>..<span class="hljs-number">4.0</span>);
+
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = offset_x + (mask_x * <span class="hljs-number">4.0</span> + jitter_x) * unit_scale_x;
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">y</span> = offset_y + (mask_y * <span class="hljs-number">4.0</span> + jitter_y) * unit_scale_y;
+
+                <span class="hljs-comment">// 基于色相的颜色扰动</span>
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">h_jitter</span> = rng.<span class="hljs-title function_ invoke__">gen_range</span>(-<span class="hljs-number">20.0</span>..<span class="hljs-number">20.0</span>);
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">final_h</span> = (material.hue + h_jitter + <span class="hljs-number">360.0</span>) % <span class="hljs-number">360.0</span>;
+                <span class="hljs-keyword">let</span> (r, g, b) =
+                    <span class="hljs-title function_ invoke__">hsl_to_rgb</span>(final_h, rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.7</span>..<span class="hljs-number">1.0</span>), rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.4</span>..<span class="hljs-number">0.8</span>));
+
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">p</span> = Particle {
+                    x,
+                    y,
+                    vx: rng.<span class="hljs-title function_ invoke__">gen_range</span>(-<span class="hljs-number">4.0</span>..<span class="hljs-number">4.0</span>),
+                    vy: rng.<span class="hljs-title function_ invoke__">gen_range</span>(-<span class="hljs-number">4.0</span>..<span class="hljs-number">4.0</span>),
+                    life: <span class="hljs-number">1.0</span>,
+                    decay: rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.001</span>..<span class="hljs-number">0.005</span>), <span class="hljs-comment">// 更持久的物质</span>
+                    mass: rng.<span class="hljs-title function_ invoke__">gen_range</span>(<span class="hljs-number">0.8</span>..<span class="hljs-number">1.2</span>),
+                    color: (r, g, b),
+                };
+
+                <span class="hljs-comment">// 4. 循环缓冲区逻辑：如果满了，覆盖最老的粒子</span>
+                <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.particles.<span class="hljs-title function_ invoke__">len</span>() &lt; max_particles {
+                    <span class="hljs-keyword">self</span>.particles.<span class="hljs-title function_ invoke__">push</span>(p);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">self</span>.particles[<span class="hljs-keyword">self</span>.injection_ptr] = p;
+                    <span class="hljs-keyword">self</span>.injection_ptr = (<span class="hljs-keyword">self</span>.injection_ptr + <span class="hljs-number">1</span>) % max_particles;
+                }
+            }
+        }
+    }
+</code></pre>
+<blockquote>
+<p><strong>解析</strong>：<code>MaterialProperties</code> 充当了视觉与物理的桥梁，它决定了粒子是像水一样轻盈，还是像熔岩一样粘稠。</p>
+</blockquote>
+<h3 id="4-感官中枢：web-worker-编排-javascript">4. 感官中枢：Web Worker 编排 (JavaScript)</h3>
+<p>为确保重度计算不阻塞 UI 渲染，我设计了 <strong>AI 推理</strong>与<strong>物理模拟</strong>的双线程架构。</p>
+<p><strong>AI 推理线程：</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// ai-worker.js: AI 推理专用线程</span>
+self.<span class="hljs-property">onmessage</span> = <span class="hljs-title function_">async</span> (e) =&gt; {
+  <span class="hljs-keyword">const</span> { type, data } = e.<span class="hljs-property">data</span>;
+
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">switch</span> (type) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"INIT"</span>:
+        <span class="hljs-keyword">await</span> <span class="hljs-title function_">init</span>();
+        app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">InferenceApp</span>(data.<span class="hljs-property">modelData</span>);
+        self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"READY"</span> });
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"SET_IMAGE"</span>:
+        <span class="hljs-keyword">if</span> (app) {
+          <span class="hljs-keyword">await</span> app.<span class="hljs-title function_">set_image</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(data.<span class="hljs-property">imageBytes</span>));
+          self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"IMAGE_READY"</span> });
+        }
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"INTERACT"</span>:
+        <span class="hljs-keyword">if</span> (app) {
+          <span class="hljs-keyword">const</span> { x, y, bounds } = data;
+          <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> app.<span class="hljs-title function_">get_mask_at</span>(x, y);
+          <span class="hljs-comment">// 确保是 Uint8Array 以便进行 Transferable 传输</span>
+          <span class="hljs-keyword">const</span> mask = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(result.<span class="hljs-property">mask</span>);
+          self.<span class="hljs-title function_">postMessage</span>(
+            {
+              <span class="hljs-attr">type</span>: <span class="hljs-string">"MASK_READY"</span>,
+              mask,
+              <span class="hljs-attr">material</span>: result.<span class="hljs-property">material</span>,
+              <span class="hljs-attr">scaled_w</span>: result.<span class="hljs-property">scaled_w</span>,
+              <span class="hljs-attr">scaled_h</span>: result.<span class="hljs-property">scaled_h</span>,
+              bounds,
+            },
+            [mask.<span class="hljs-property">buffer</span>],
+          );
+        }
+        <span class="hljs-keyword">break</span>;
+    }
+  } <span class="hljs-keyword">catch</span> (err) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"AIWorker Error:"</span>, err);
+    self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"ERROR"</span>, <span class="hljs-attr">error</span>: err.<span class="hljs-property">message</span> });
+  }
+};
+</code></pre>
+<p><strong>物理模拟线程：</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// phys-worker.js: 物理模拟专用线程</span>
+self.<span class="hljs-property">onmessage</span> = <span class="hljs-title function_">async</span> (e) =&gt; {
+  <span class="hljs-keyword">const</span> { type, data } = e.<span class="hljs-property">data</span>;
+
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">switch</span> (type) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"INIT"</span>:
+        <span class="hljs-keyword">await</span> <span class="hljs-title function_">init</span>();
+        <span class="hljs-keyword">const</span> { width, height } = data;
+        app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PhysicsApp</span>(width, height);
+        self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"READY"</span> });
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"RESIZE"</span>:
+        <span class="hljs-keyword">if</span> (app) app.<span class="hljs-title function_">resize</span>(data.<span class="hljs-property">width</span>, data.<span class="hljs-property">height</span>);
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"UPDATE_PARAMS"</span>:
+        <span class="hljs-keyword">if</span> (app) app.<span class="hljs-title function_">update_physics_params</span>(data.<span class="hljs-property">viscosity</span>, data.<span class="hljs-property">density</span>);
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"INJECT"</span>:
+        <span class="hljs-keyword">if</span> (app) {
+          <span class="hljs-keyword">const</span> {
+            mask,
+            imgW,
+            imgH,
+            offset_x,
+            offset_y,
+            display_w,
+            display_h,
+            scaled_w,
+            scaled_h,
+            material,
+          } = data;
+
+          <span class="hljs-comment">// 极致精度：独立计算 X 和 Y 的缩放倍率</span>
+          <span class="hljs-keyword">const</span> unitScaleX = display_w / scaled_w;
+          <span class="hljs-keyword">const</span> unitScaleY = display_h / scaled_h;
+
+          app.<span class="hljs-title function_">inject</span>(
+            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(mask),
+            imgW,
+            imgH,
+            scaled_w,
+            scaled_h,
+            offset_x,
+            offset_y,
+            unitScaleX,
+            unitScaleY,
+            material,
+          );
+        }
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"TRIGGER_COLLAPSE"</span>:
+        <span class="hljs-keyword">if</span> (app) app.<span class="hljs-title function_">trigger_collapse</span>(data.<span class="hljs-property">avgAudio</span>);
+        <span class="hljs-keyword">break</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"RENDER"</span>:
+        <span class="hljs-keyword">if</span> (app) {
+          <span class="hljs-keyword">const</span> { avgAudio, mouse_x, mouse_y } = data;
+          <span class="hljs-keyword">const</span> particles = app.<span class="hljs-title function_">render_frame</span>(avgAudio, mouse_x, mouse_y);
+          self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"TICK"</span>, particles }, [particles.<span class="hljs-property">buffer</span>]);
+        }
+        <span class="hljs-keyword">break</span>;
+    }
+  } <span class="hljs-keyword">catch</span> (err) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"PhysWorker Error:"</span>, err);
+    self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">"ERROR"</span>, <span class="hljs-attr">error</span>: err.<span class="hljs-property">message</span> });
+  }
+};
+</code></pre>
+<p><strong>主线程的Worker编排：</strong></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// 代码片段来自 main.js 的Worker编排</span>
+
+<span class="hljs-comment">// 1. 初始化两个 Worker</span>
+aiWorker = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Worker</span>(<span class="hljs-string">"ai-worker.js"</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">"module"</span> });
+physWorker = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Worker</span>(<span class="hljs-string">"phys-worker.js"</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">"module"</span> });
+
+aiWorker.<span class="hljs-property">onmessage</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> { type, mask, bounds, error } = e.<span class="hljs-property">data</span>;
+  <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"READY"</span>) {
+    aiReady = <span class="hljs-literal">true</span>;
+    <span class="hljs-title function_">checkReady</span>();
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"IMAGE_READY"</span>) {
+    loading.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">"none"</span>;
+    <span class="hljs-keyword">const</span> statusText = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"loader-text"</span>);
+    <span class="hljs-keyword">if</span> (statusText) statusText.<span class="hljs-property">innerText</span> = <span class="hljs-string">"SYSTEM READY"</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"MASK_READY"</span>) {
+    <span class="hljs-keyword">const</span> { mask, material, bounds, active_pixels } = e.<span class="hljs-property">data</span>;
+
+    <span class="hljs-keyword">if</span> (!material) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">"Main: Received MASK_READY but material is undefined."</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// 1. 更新材质 UI 和音效</span>
+    <span class="hljs-keyword">const</span> label = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"material-label"</span>);
+    <span class="hljs-keyword">if</span> (label)
+      label.<span class="hljs-property">innerText</span> = <span class="hljs-string">`MATERIAL: <span class="hljs-subst">${material.label?.toUpperCase() || <span class="hljs-string">"UNKNOWN"</span>}</span>`</span>;
+    <span class="hljs-keyword">if</span> (material.<span class="hljs-property">label</span>) <span class="hljs-title function_">playMaterialSound</span>(material, active_pixels);
+
+    <span class="hljs-comment">// 2. 更新 Phys Worker 物理参数</span>
+    physWorker.<span class="hljs-title function_">postMessage</span>({
+      <span class="hljs-attr">type</span>: <span class="hljs-string">"UPDATE_PARAMS"</span>,
+      <span class="hljs-attr">data</span>: {
+        <span class="hljs-attr">viscosity</span>: material.<span class="hljs-property">viscosity</span> || <span class="hljs-number">0.1</span>,
+        <span class="hljs-attr">density</span>: material.<span class="hljs-property">density</span> || <span class="hljs-number">1.0</span>,
+      },
+    });
+
+    <span class="hljs-comment">// 3. 注入粒子</span>
+    physWorker.<span class="hljs-title function_">postMessage</span>(
+      {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">"INJECT"</span>,
+        <span class="hljs-attr">data</span>: {
+          mask,
+          <span class="hljs-attr">imgW</span>: currentImageDims.<span class="hljs-property">w</span>,
+          <span class="hljs-attr">imgH</span>: currentImageDims.<span class="hljs-property">h</span>,
+          <span class="hljs-attr">offset_x</span>: bounds.<span class="hljs-property">left</span>,
+          <span class="hljs-attr">offset_y</span>: bounds.<span class="hljs-property">top</span>,
+          <span class="hljs-attr">display_w</span>: bounds.<span class="hljs-property">width</span>,
+          <span class="hljs-attr">display_h</span>: bounds.<span class="hljs-property">height</span>,
+          <span class="hljs-attr">scaled_w</span>: e.<span class="hljs-property">data</span>.<span class="hljs-property">scaled_w</span>,
+          <span class="hljs-attr">scaled_h</span>: e.<span class="hljs-property">data</span>.<span class="hljs-property">scaled_h</span>,
+          material,
+        },
+      },
+      [mask.<span class="hljs-property">buffer</span>],
+    );
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"ERROR"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"AIWorker Error:"</span>, error);
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">"AI Error: "</span> + error);
+  }
+};
+
+physWorker.<span class="hljs-property">onmessage</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> { type, particles, error } = e.<span class="hljs-property">data</span>;
+  <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"READY"</span>) {
+    physReady = <span class="hljs-literal">true</span>;
+    <span class="hljs-title function_">checkReady</span>();
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"TICK"</span>) {
+    currentParticles = particles;
+    isPhysBusy = <span class="hljs-literal">false</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"ERROR"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"PhysWorker Error:"</span>, error);
+  }
+};
+</code></pre>
+<blockquote>
+<p><strong>解析</strong>：通过 <code>mask.buffer</code> 的所有权转移，消除了数兆数据在线程间频繁拷贝的性能损耗。</p>
+</blockquote>
+<h2 id="五、-权衡与避坑指南">五、 权衡与避坑指南</h2>
+<ol>
+<li><p><strong>权重命名的陷阱</strong>：</p>
+<p>在加载模型时，可能会遇到类似 <code>mask_decoder.output_upscaling.2.weight</code> 缺失等报错。</p>
+<p>这是由于 MobileSAM 官方实现与 <code>Candle</code> 库层命名规范不一致导致的。需要手动执行权重映射，而非依赖黑盒自动加载。</p>
+</li>
+<li><p><strong>Web Audio 的时序争战</strong>：</p>
+<p><code>linearRampToValueAtTime</code> 极易因 <code>time</code> 略小于 <code>currentTime</code> 抛出异常。</p>
+<p>在自动化调度前，务必先调用 <code>cancelScheduledValues</code> 并预留 10-20ms 的 Buffer。</p>
+</li>
+<li><p><strong>渲染性能上限</strong>：</p>
+<p>移动端 WebGL 处理 5000+ 粒子会面临压力。</p>
+<p>通过在 Fragment Shader 中利用 <code>gl_PointCoord</code> 直接绘制径向发光球体，规避了复杂的几何体构建，大幅提升了渲染效率。</p>
+</li>
+</ol>
+<h2 id="六、-结论与展望">六、 结论与展望</h2>
+<p>Rust + WASM 正在重塑 Web 应用的边界。它让浏览器从单纯的文档容器，进化为能够承载深度学习与复杂物理模拟的<strong>“高性能边缘计算终端”</strong>。</p>
+<p>未来，还可以引入<strong>多模态感知</strong>：让环境噪音实时驱动粒子的震荡频率，或通过 WebXR 将解构的物质流体投影到真实世界中。</p>
+<p>如果你也对 Rust + AI 感兴趣，欢迎关注、点赞、评论、分享！我们下期再见，继续探索 Rust 与智能系统的技术深水区。</p>
+<p>项目地址：<a href="https://github.com/Doomking/rust-zhixingshe-examples/tree/main/wasm/flow-matter-ai" target="_blank">rust-zhixingshe-examples/wasm/flow-matter-ai</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3-wasm-ai-3.md" class="navigation navigation-prev " aria-label="Previous page: Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../dara/README.md" class="navigation navigation-next " aria-label="Next page: Rust&dora">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战","level":"1.2.4","depth":2,"next":{"title":"Rust&dora","level":"1.3","depth":1,"path":"dara/README.md","ref":"dara/README.md","articles":[{"title":"🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！","level":"1.3.1","depth":2,"path":"dora/1-base-intro.md","ref":"dora/1-base-intro.md","articles":[]},{"title":"用 Rust 构建下一代机器人应用：dora-rs 入门与实战","level":"1.3.2","depth":2,"path":"dora/2-intro.md","ref":"dora/2-intro.md","articles":[]},{"title":"Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用","level":"1.3.3","depth":2,"path":"dora/3-base-adv.md","ref":"dora/3-base-adv.md","articles":[]},{"title":"智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”","level":"1.3.4","depth":2,"path":"dora/4-yolo.md","ref":"dora/4-yolo.md","articles":[]},{"title":"用Rust + dora-rs + Webots打造自动驾驶仿真系统：Mac M1完整实战","level":"1.3.5","depth":2,"path":"dora/5-auto.md","ref":"dora/5-auto.md","articles":[]}]},"previous":{"title":"Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战","level":"1.2.3","depth":2,"path":"wasm_ai/3-wasm-ai-3.md","ref":"wasm_ai/3-wasm-ai-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm_ai/4-wasm-ai-flow.md","mtime":"2026-01-30T06:29:52.602Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-01-30T06:33:14.937Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
