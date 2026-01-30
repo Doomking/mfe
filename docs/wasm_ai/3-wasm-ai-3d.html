@@ -1,0 +1,1411 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4-wasm-ai-flow.html" />
+    
+    
+    <link rel="prev" href="2-wasm-ai-senti-pulse.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Rust 知行社
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Rust&Wasm&AI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1-wasm-ai-intro.html">
+            
+                <a href="1-wasm-ai-intro.html">
+            
+                    
+                    Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2-wasm-ai-senti-pulse.html">
+            
+                <a href="2-wasm-ai-senti-pulse.html">
+            
+                    
+                    Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.3" data-path="3-wasm-ai-3d.html">
+            
+                <a href="3-wasm-ai-3d.html">
+            
+                    
+                    Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4-wasm-ai-flow.html">
+            
+                <a href="4-wasm-ai-flow.html">
+            
+                    
+                    Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../dara/README.md">
+            
+                <span>
+            
+                    
+                    Rust&dora
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../dora/1-base-intro.html">
+            
+                <a href="../dora/1-base-intro.html">
+            
+                    
+                    🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../dora/2-intro.html">
+            
+                <a href="../dora/2-intro.html">
+            
+                    
+                    用 Rust 构建下一代机器人应用：dora-rs 入门与实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../dora/3-base-adv.html">
+            
+                <a href="../dora/3-base-adv.html">
+            
+                    
+                    Rust 与 dora-rs：吃透核心概念，手把手打造跨语言的机器人实时数据流应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../dora/4-yolo.html">
+            
+                <a href="../dora/4-yolo.html">
+            
+                    
+                    智能目标检测：用 Rust + dora-rs + yolo 构建“机器之眼”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../dora/5-auto.html">
+            
+                <a href="../dora/5-auto.html">
+            
+                    
+                    用Rust + dora-rs + Webots打造自动驾驶仿真系统：Mac M1完整实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../ndarray/">
+            
+                <a href="../ndarray/">
+            
+                    
+                    Rust&ndarray
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../ndarray/1-base.html">
+            
+                <a href="../ndarray/1-base.html">
+            
+                    
+                    赋能 AI 与具身智能：Rust ndarray 构建安全高效的数据底座
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../ndarray/2-opt.html">
+            
+                <a href="../ndarray/2-opt.html">
+            
+                    
+                    Rust ndarray 高性能计算：从元素操作到矩阵运算的优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../ndarray/3-ring.html">
+            
+                <a href="../ndarray/3-ring.html">
+            
+                    
+                    具身智能的“任督二脉”：用 Rust ndarray 打通数据闭环的最后一公里
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../wasm/">
+            
+                <a href="../wasm/">
+            
+                    
+                    Rust&WebAssembly
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../wasm/1-intro.html">
+            
+                <a href="../wasm/1-intro.html">
+            
+                    
+                    当 Rust 遇见 WebAssembly：Wasm 与 Rust 生态初探（入门篇）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../wasm/2-wasm-pack.html">
+            
+                <a href="../wasm/2-wasm-pack.html">
+            
+                    
+                    Rust+Wasm利器：用wasm-pack引爆前端性能！
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../wasm/3-wasm-bindgen-base.html">
+            
+                <a href="../wasm/3-wasm-bindgen-base.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 基础：让 Rust 与 JavaScript 无缝对话
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../wasm/4-wasm-bindgen-advanced.html">
+            
+                <a href="../wasm/4-wasm-bindgen-advanced.html">
+            
+                    
+                    Rust & WASM 之 wasm-bindgen 进阶：解锁 Rust 与 JS 的复杂数据交互秘籍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../wasm/5-wasm-js-sys.html">
+            
+                <a href="../wasm/5-wasm-js-sys.html">
+            
+                    
+                    Rust & WebAssembly：探索js-sys的奇妙世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../wasm/6-wasm-web-sys-base.html">
+            
+                <a href="../wasm/6-wasm-web-sys-base.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 开启 DOM 操作新篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../wasm/7-wasm-web-sys-advanced.html">
+            
+                <a href="../wasm/7-wasm-web-sys-advanced.html">
+            
+                    
+                    Rust & WebAssembly：web-sys 进阶 - 事件处理、异步操作与 Web API 实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../wasm/8-wasm-opt.html">
+            
+                <a href="../wasm/8-wasm-opt.html">
+            
+                    
+                    Rust & WebAssembly 性能调优指南：从毫秒级加速到KB级瘦身
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../wasm/9-wasm-demo.html">
+            
+                <a href="../wasm/9-wasm-demo.html">
+            
+                    
+                    Rust & WebAssembly 实践：构建一个简单实时的 Markdown 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../wasm/10-wasm-future.html">
+            
+                <a href="../wasm/10-wasm-future.html">
+            
+                    
+                    Rust & WebAssembly 生态展望与更多可能性：从浏览器到全平台的跨界之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../rust/">
+            
+                <a href="../rust/">
+            
+                    
+                    Rust
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../rust/1-intro.html">
+            
+                <a href="../rust/1-intro.html">
+            
+                    
+                    探索 Rust 语言：性能与安全的编程新宠🎯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../rust/2-baseType.html">
+            
+                <a href="../rust/2-baseType.html">
+            
+                    
+                    Rust 基本类型：探索 Rust 编程的基础构建块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../rust/3-ownership.html">
+            
+                <a href="../rust/3-ownership.html">
+            
+                    
+                    Rust 所有权与 Move：内存管理的艺术
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../rust/4-ref.html">
+            
+                <a href="../rust/4-ref.html">
+            
+                    
+                    Rust 引用：强大而安全的数据使用特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../rust/5-expression.html">
+            
+                <a href="../rust/5-expression.html">
+            
+                    
+                    Rust 表达式：强大而独特的编程利器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../rust/6-err.html">
+            
+                <a href="../rust/6-err.html">
+            
+                    
+                    Rust 错误处理：独特而灵活多样
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../rust/7-crate.html">
+            
+                <a href="../rust/7-crate.html">
+            
+                    
+                    Rust 的 crate 和模块：强大的代码组织工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../rust/8-struct.html">
+            
+                <a href="../rust/8-struct.html">
+            
+                    
+                    Rust 结构体：强大而灵活的数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../rust/9-enum.html">
+            
+                <a href="../rust/9-enum.html">
+            
+                    
+                    Rust 的枚举与模式：灵活又安全的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="../rust/10-trait.html">
+            
+                <a href="../rust/10-trait.html">
+            
+                    
+                    Rust 之 trait 与泛型的奥秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="../rust/11-ops.html">
+            
+                <a href="../rust/11-ops.html">
+            
+                    
+                    Rust 运算符重载：开启高效编程之旅
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="../rust/12-closures.html">
+            
+                <a href="../rust/12-closures.html">
+            
+                    
+                    Rust 闭包：高效编程的秘密武器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="../rust/13-iterator.html">
+            
+                <a href="../rust/13-iterator.html">
+            
+                    
+                    Rust 迭代器：从基础到实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="../rust/14-collection.html">
+            
+                <a href="../rust/14-collection.html">
+            
+                    
+                    Rust 集合：编程中的得力助手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="../rust/15-io.html">
+            
+                <a href="../rust/15-io.html">
+            
+                    
+                    Rust IO魔法：输入输出大揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="../rust/16-concurrency.html">
+            
+                <a href="../rust/16-concurrency.html">
+            
+                    
+                    Rust并发编程：解锁高效与安全的编程新姿势
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="../rust/17-async.html">
+            
+                <a href="../rust/17-async.html">
+            
+                    
+                    Rust异步编程：从入门到精通
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="../rust/18-macro.html">
+            
+                <a href="../rust/18-macro.html">
+            
+                    
+                    Rust 宏全解析：从基础到实战，掌握代码生成魔法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="../rust/19-unsafe.html">
+            
+                <a href="../rust/19-unsafe.html">
+            
+                    
+                    Rust 进阶修炼：掌握 Unsafe 编程的核心能力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="../rust/20-ffi.html">
+            
+                <a href="../rust/20-ffi.html">
+            
+                    
+                    Rust FFI实战指南：跨越语言边界的优雅之道
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../web3/">
+            
+                <a href="../web3/">
+            
+                    
+                    Web3
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../web3/1-web3.html">
+            
+                <a href="../web3/1-web3.html">
+            
+                    
+                    前端工程师，你了解Web3了么？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../web3/2-wallet.html">
+            
+                <a href="../web3/2-wallet.html">
+            
+                    
+                    web3世界的通行证-加密钱包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../chrome/">
+            
+                <a href="../chrome/">
+            
+                    
+                    chrome
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../chrome/1-netRequest.html">
+            
+                <a href="../chrome/1-netRequest.html">
+            
+                    
+                    终于实现了Chrome MV3 的网络请求更改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../vscode/">
+            
+                <a href="../vscode/">
+            
+                    
+                    VSCode
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../vscode/1-codegpt.html">
+            
+                <a href="../vscode/1-codegpt.html">
+            
+                    
+                    [译]CodeGPT：类ChatGPT功能的VSCode扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../nodejs/">
+            
+                <a href="../nodejs/">
+            
+                    
+                    Node.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../nodejs/1-npmlink.html">
+            
+                <a href="../nodejs/1-npmlink.html">
+            
+                    
+                    peerDependency遇到npm link的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rust--wasm--ai（三）：浏览器里的二次元伴侣——llm3d数字人集成实战">Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战</h1>
+<p><strong>你的AI伴侣，不该只活在文本框里</strong></p>
+<p>在本系列中，我们已经完成了从情感分析到多轮对话的跨越。但无论 AI 多聪明，交互界面始终是一个冷冰冰的文本框。</p>
+<p>今天，我们来弄个不一样的：<strong>把你的AI变成3D二次元妹子，让她在浏览器里对你笑、跟你聊、给你讲笑话还会捂嘴偷笑那种。</strong></p>
+<p>最重要的是，全程不依赖任何服务器，本地运行 Qwen 大语言模型，让你的小姐姐只活在你一个人的电脑里。</p>
+<h2 id="一、先看效果：你的3d智能伴侣长啥样？">一、先看效果：你的3D智能伴侣长啥样？</h2>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/cfcfd6c684f4421997bf329607f5e8e0~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1769840209&amp;x-orig-sign=0jBB9bTndiIQhs5Nn%2BW04u1sSxU%3D" alt="output13.jpg"></img></p>
+<p>你打开网页，一个蓝发双马尾的少女站在草地上，眼睛一眨一眨。你在聊天框输入："讲个程序员笑话"。她<strong>右手抬起，调皮地捂住嘴，眼睛眯成月牙，眉毛上扬</strong>，然后开始说话（真的有声音！），嘴巴开合跟语音完美同步。说完后放下手，恢复自然站立，还轻轻晃了晃身子，像在说"嘿嘿，好笑吧"。</p>
+<p><strong>交互流程：</strong></p>
+<ul>
+<li><strong>感知层</strong>：用户输入 Prompt。</li>
+<li><strong>大脑层</strong>：Worker 线程中的 Rust 引擎（Wasm）进行流式推理，实时吐出 Token。</li>
+<li><strong>表达层</strong>：Web Speech API 将文字转为声音。</li>
+<li><strong>形态层</strong>：根据语音，驱动 3D 模型的 BlendShape（口型）与骨骼动画。</li>
+</ul>
+<p>上面的效果是不是挺酷？别急，完整的代码实现和模型资源我都放在文末了，跟着教程一步步来，你也能拥有一个专属的3D AI伴侣。</p>
+<h2 id="二、llm大脑：qwen-05b轻量级部署">二、LLM大脑：Qwen 0.5B轻量级部署</h2>
+<h3 id="21-为什么选qwen-05b？">2.1 为什么选Qwen 0.5B？</h3>
+<p>在浏览器跑大模型，最怕的就是<strong>内存爆炸</strong>。我们来看看 LLM 初始化代码：</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// lib.rs - 模型初始化</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">init</span>(
+    weights_data: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">u8</span>&gt;,
+    tokenizer_data: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">u8</span>&gt;,
+    config_data: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">u8</span>&gt;,
+) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;LLMEngine, JsValue&gt; {
+    <span class="hljs-comment">// 关键决策：先用CPU推理，稳</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">device</span> = Device::Cpu;
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">tokenizer</span> = Tokenizer::<span class="hljs-title function_ invoke__">from_bytes</span>(&amp;tokenizer_data)?;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">config</span>: QwenConfig = serde_json::<span class="hljs-title function_ invoke__">from_slice</span>(&amp;config_data)?;
+
+    <span class="hljs-comment">// 从SafeTensors加载权重，DType::F32保证兼容性</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">vb</span> = VarBuilder::<span class="hljs-title function_ invoke__">from_buffered_safetensors</span>(
+        weights_data,
+        DType::F32,
+        &amp;device
+    )?;
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">model</span> = QwenModel::<span class="hljs-title function_ invoke__">new</span>(&amp;config, vb)?;
+    <span class="hljs-comment">// ...返回引擎</span>
+}
+</code></pre>
+<p><strong>选型逻辑：</strong></p>
+<ul>
+<li><strong>内存友好</strong>：0.5B参数+FP32精度≈3GB内存占用，在16GB内存的Windows和Mac上都能流畅运行</li>
+<li><strong>中文特化</strong>：阿里Qwen对中文环境、日常对话的响应质量比较好</li>
+<li><strong>Instruct微调</strong>：直接支持对话格式，不用我们折腾Prompt工程</li>
+</ul>
+<h3 id="22-kv-cache：让ai说话不卡顿">2.2 KV Cache：让AI说话不卡顿</h3>
+<p>为了保证“首字秒回”，我们利用了 Rust 框架 <code>candle</code> 中的 <strong>KV Cache（键值缓存）</strong>。</p>
+<p>简单说，模型不需要每次都从头读 Prompt，而是记住之前的状态。</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// lib.rs - 核心增量推理逻辑</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">step</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;<span class="hljs-type">String</span>, JsError&gt; {
+    <span class="hljs-comment">// 1. 确定步长：首轮推理全量，后续每步只推 1 个 token</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">context_size</span> = <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.pos == <span class="hljs-number">0</span> { <span class="hljs-keyword">self</span>.token_ids.<span class="hljs-title function_ invoke__">len</span>() } <span class="hljs-keyword">else</span> { <span class="hljs-number">1</span> };
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">start_idx</span> = <span class="hljs-keyword">self</span>.token_ids.<span class="hljs-title function_ invoke__">len</span>() - context_size;
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">input_tensor</span> = Tensor::<span class="hljs-title function_ invoke__">new</span>(&amp;<span class="hljs-keyword">self</span>.token_ids[start_idx..], &amp;<span class="hljs-keyword">self</span>.device)?
+        .<span class="hljs-title function_ invoke__">unsqueeze</span>(<span class="hljs-number">0</span>)?;
+
+    <span class="hljs-comment">// 2. 前向传播：传入当前位置 pos，激活 KV Cache 机制</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">logits</span> = <span class="hljs-keyword">self</span>.model.forward(&amp;input_tensor, <span class="hljs-keyword">self</span>.pos)?;
+    <span class="hljs-keyword">self</span>.pos += context_size;
+
+    <span class="hljs-comment">// 3. 重复惩罚：防止 AI 陷入“复读机”死循环</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">logits_vec</span> = (logits / <span class="hljs-number">0.7</span>).<span class="hljs-title function_ invoke__">flatten_all</span>()?.to_vec1::&lt;<span class="hljs-type">f32</span>&gt;()?;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">penalty</span> = <span class="hljs-number">1.1f32</span>;
+    <span class="hljs-keyword">for</span> &amp;id <span class="hljs-keyword">in</span> &amp;<span class="hljs-keyword">self</span>.token_ids {
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">idx</span> = id <span class="hljs-keyword">as</span> <span class="hljs-type">usize</span>;
+        <span class="hljs-keyword">if</span> idx &lt; logits_vec.<span class="hljs-title function_ invoke__">len</span>() {
+            logits_vec[idx] = <span class="hljs-keyword">if</span> logits_vec[idx] &gt; <span class="hljs-number">0.0</span> { logits_vec[idx] / penalty }
+                              <span class="hljs-keyword">else</span> { logits_vec[idx] * penalty };
+        }
+    }
+    <span class="hljs-comment">// ... 后续 Argmax 采样与解码 ...</span>
+}
+</code></pre>
+<p><strong>注：</strong> 第一次推理，模型要处理你完整的输入，比如"讲个程序员笑话"这7个字，它会把中间计算结果（Key/Value矩阵）全部存起来了。当生成第一个Token后，后面每次只需要把新Token送进去，复用缓存，速度明显提升。</p>
+<p>这种"先慢后快"的节奏，正好跟人类说话一样——开头思考一下，后面就连珠炮了。</p>
+<h3 id="23-温度与重复惩罚：让ai更像人">2.3 温度与重复惩罚：让AI更像人</h3>
+<pre><code class="lang-rust"><span class="hljs-comment">// lib.rs - 采样逻辑</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">logits</span> = (logits / <span class="hljs-number">0.7</span>)?;  <span class="hljs-comment">// temperature=0.7，值越小越确定</span>
+
+<span class="hljs-comment">// 重复惩罚：防止AI变成复读机</span>
+<span class="hljs-keyword">let</span> <span class="hljs-variable">penalty</span> = <span class="hljs-number">1.1f32</span>;
+<span class="hljs-keyword">for</span> &amp;id <span class="hljs-keyword">in</span> &amp;<span class="hljs-keyword">self</span>.token_ids {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">idx</span> = id <span class="hljs-keyword">as</span> <span class="hljs-type">usize</span>;
+    <span class="hljs-keyword">if</span> idx &lt; logits_vec.<span class="hljs-title function_ invoke__">len</span>() {
+        <span class="hljs-keyword">if</span> logits_vec[idx] &gt; <span class="hljs-number">0.0</span> {
+            logits_vec[idx] /= penalty;  <span class="hljs-comment">// 正logits除以惩罚系数</span>
+        } <span class="hljs-keyword">else</span> {
+            logits_vec[idx] *= penalty;  <span class="hljs-comment">// 负logits乘以惩罚系数</span>
+        }
+    }
+}
+</code></pre>
+<p><strong>temperature=0.7</strong>：平衡创意与稳定性，不至于太随机</p>
+<p><strong>repetition_penalty=1.1</strong>：轻微惩罚重复token，避免"啊啊啊啊"的死循环</p>
+<h3 id="24-webgpu的遗憾与wasm-simd的救赎">2.4 WebGPU的遗憾与WASM SIMD的救赎</h3>
+<p>这个Demo用的是<strong>CPU推理</strong>。</p>
+<p>目前 <code>candle</code> 框架对 WebGPU 后端（尤其是 BF16 精度）的支持尚未完全成熟，无法正常使用。</p>
+<p>为了保证 100% 的兼容性，本 Demo 采用了 <strong>CPU 推理 + WASM SIMD 加速</strong>。在笔记本上，0.5B 模型已能达到非常丝滑的吐字速度。</p>
+<p>WASM SIMD（128位向量化指令）给CPU推理显著加速。目前在高版本的浏览器中，WASM SIMD已是标准配置，默认开启。</p>
+<p>可在浏览器的控制台中输入如下代码来验证：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// 验证一个简单的 SIMD 模块：定义一个返回 v128 向量的函数</span>
+<span class="hljs-comment">// 返回 true 就说明已经开启</span>
+<span class="hljs-title class_">WebAssembly</span>.<span class="hljs-title function_">validate</span>(
+  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>([
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">97</span>,
+    <span class="hljs-number">115</span>,
+    <span class="hljs-number">109</span>,
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">0</span>, <span class="hljs-comment">// Wasm Header</span>
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">5</span>,
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">96</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">123</span>, <span class="hljs-comment">// Type: () -&gt; v128 (0x7b)</span>
+    <span class="hljs-number">3</span>,
+    <span class="hljs-number">2</span>,
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">0</span>, <span class="hljs-comment">// Function: idx 0</span>
+    <span class="hljs-number">10</span>,
+    <span class="hljs-number">8</span>,
+    <span class="hljs-number">1</span>,
+    <span class="hljs-number">6</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">65</span>,
+    <span class="hljs-number">0</span>,
+    <span class="hljs-number">253</span>,
+    <span class="hljs-number">15</span>,
+    <span class="hljs-number">11</span>, <span class="hljs-comment">// Code: i32.const 0, i16x8.splat, end</span>
+  ]),
+);
+</code></pre>
+<p>如没有，也可以在Chrome/Edge里， 通过<code>--enable-features=WebAssemblySimd</code>来开启。</p>
+<p><strong>未来可期</strong>：等 <code>candle</code> 框架完善 WebGPU 后端后，只需改一行代码<code>Device::Cpu</code>→<code>Device::WebGpu</code>，速度预计就能翻5-10倍。</p>
+<h2 id="三、3d形态：vrm格式与threejs渲染">三、3D形态：VRM格式与Three.js渲染</h2>
+<h3 id="31-vrm给了glb灵魂">3.1 VRM给了GLB灵魂</h3>
+<p>如果说GLB是3D模型的身体，那<strong>VRM就是二次元的灵魂协议</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>GLB（通用）</th>
+<th>VRM（二次元专用）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>骨骼命名</td>
+<td>随意</td>
+<td>强制Humanoid标准（Hips/Spine/Head）</td>
+</tr>
+<tr>
+<td>表情控制</td>
+<td>无标准</td>
+<td>统一BlendShape命名（Joy/Blink/Sorrow）</td>
+</tr>
+<tr>
+<td>材质</td>
+<td>PBR写实</td>
+<td>支持MToon卡通渲染</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td>所有软件</td>
+<td>VRoid/Blender二次元工具链</td>
+</tr>
+</tbody>
+</table>
+<p>代码加载3D模型后，第一件事就是<strong>按标准名字自动捕获骨骼</strong>：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// digital_human.js - 骨骼自动绑定</span>
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span>.<span class="hljs-title function_">traverse</span>(<span class="hljs-function">(<span class="hljs-params">child</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (child.<span class="hljs-property">isBone</span>) {
+    <span class="hljs-keyword">const</span> lowName = child.<span class="hljs-property">name</span>.<span class="hljs-title function_">toLowerCase</span>();
+    <span class="hljs-keyword">if</span> (lowName.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"neck"</span>)) <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">neck</span> = child;
+    <span class="hljs-keyword">if</span> (lowName.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"head"</span>)) <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">head</span> = child;
+    <span class="hljs-keyword">if</span> (lowName.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"pelvis"</span>)) <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">hips</span> = child;
+    <span class="hljs-comment">// 右手捂笑专用骨骼</span>
+    <span class="hljs-keyword">if</span> (lowName.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"upperarm_r"</span>)) <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">upperArmR</span> = child;
+    <span class="hljs-keyword">if</span> (lowName.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"hand_r"</span>)) <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">handR</span> = child;
+  }
+});
+</code></pre>
+<p>正因为VRM的强制规范，无论模型来自VRoid还是Blender，只要符合标准，我们都能一键驱动。</p>
+<h3 id="32-threejs实战：让角色活起来">3.2 Three.js实战：让角色活起来</h3>
+<p><strong>3D场景三件套</strong>：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// index.js - 初始化3D场景</span>
+<span class="hljs-keyword">const</span> scene = <span class="hljs-keyword">new</span> <span class="hljs-variable constant_">THREE</span>.<span class="hljs-title class_">Scene</span>();
+<span class="hljs-comment">// 程序化生成蓝天白云草地背景</span>
+scene.<span class="hljs-property">background</span> = <span class="hljs-title function_">createProceduralBackground</span>();
+
+<span class="hljs-keyword">const</span> camera = <span class="hljs-keyword">new</span> <span class="hljs-variable constant_">THREE</span>.<span class="hljs-title class_">PerspectiveCamera</span>(<span class="hljs-number">45</span>, w / h, <span class="hljs-number">0.1</span>, <span class="hljs-number">1000</span>);
+camera.<span class="hljs-property">position</span>.<span class="hljs-title function_">set</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.65</span>); <span class="hljs-comment">// 正面对视，营造陪伴感</span>
+
+<span class="hljs-keyword">const</span> light = <span class="hljs-keyword">new</span> <span class="hljs-variable constant_">THREE</span>.<span class="hljs-title class_">DirectionalLight</span>(<span class="hljs-number">0xffffff</span>, <span class="hljs-number">2.0</span>);
+light.<span class="hljs-property">position</span>.<span class="hljs-title function_">set</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">// 斜上方主光源</span>
+</code></pre>
+<p><strong>动画循环</strong>：在<code>update()</code>里用正弦波模拟呼吸、眨眼、轻微晃动：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// digital_human.js - 动画混合逻辑</span>
+<span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> time = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() * <span class="hljs-number">0.001</span>;
+
+    <span class="hljs-comment">// 1. 全身呼吸起伏</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">model</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(time * <span class="hljs-number">1.0</span>) * <span class="hljs-number">0.01</span>;
+
+    <span class="hljs-comment">// 2. 颈部自然扭动</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">neck</span>.<span class="hljs-property">rotation</span>.<span class="hljs-property">x</span> = <span class="hljs-number">0.1</span> + <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(time * <span class="hljs-number">0.5</span>) * <span class="hljs-number">0.12</span>;
+
+    <span class="hljs-comment">// 3. 随机眨眼（用正弦波模拟概率）</span>
+    <span class="hljs-keyword">const</span> blink = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(time * <span class="hljs-number">4</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setExpression</span>(<span class="hljs-string">"blink"</span>, blink &gt; <span class="hljs-number">0.98</span> ? <span class="hljs-number">1.0</span> : <span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// 4. 捂嘴笑循环（核心卖点）</span>
+    <span class="hljs-keyword">const</span> liftProgress = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">calculateLiftCycle</span>(time); <span class="hljs-comment">// 周期约14秒</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">bones</span>.<span class="hljs-property">upperArmR</span>.<span class="hljs-property">rotation</span>.<span class="hljs-property">z</span> =
+        <span class="hljs-number">1.3</span> * (<span class="hljs-number">1</span> - liftProgress) + <span class="hljs-number">0.7</span> * liftProgress;
+}
+</code></pre>
+<p><strong>捂嘴笑动作拆解</strong>：</p>
+<ul>
+<li><strong>周期约14秒</strong>：抬起→保持→放下→空闲，节奏自然不机械</li>
+<li><strong>手臂用球面插值</strong>：大臂、前臂、手腕三段联动，轨迹自然</li>
+<li><strong>手指微握</strong>：避免僵尸手，保持优雅</li>
+<li><strong>表情同步</strong>：微笑(<code>Fcl_MTH_Joy</code>) + 眯眼(<code>Fcl_EYE_Close</code>)同时触发</li>
+</ul>
+<p><strong>BlendShape控制</strong>：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// digital_human.js - 表情映射逻辑</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">VROID_MAP</span> = {
+  <span class="hljs-attr">mouthOpen</span>: <span class="hljs-string">"Fcl_MTH_A"</span>, <span class="hljs-comment">// 对应“啊”口型</span>
+  <span class="hljs-attr">happy</span>: <span class="hljs-string">"Fcl_ALL_Joy"</span>,
+  <span class="hljs-attr">blink</span>: <span class="hljs-string">"Fcl_EYE_Close"</span>,
+};
+
+<span class="hljs-title function_">setExpression</span>(<span class="hljs-params">key, value</span>) {
+  <span class="hljs-keyword">const</span> targetName = <span class="hljs-variable constant_">VROID_MAP</span>[key];
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">morphMeshes</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">mesh</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> index = mesh.<span class="hljs-property">morphTargetDictionary</span>[targetName];
+    <span class="hljs-keyword">if</span> (index !== <span class="hljs-literal">undefined</span>) {
+      mesh.<span class="hljs-property">morphTargetInfluences</span>[index] = value;
+    }
+  });
+}
+</code></pre>
+<h2 id="四、跨界协同：让-ai-真正开口说话">四、跨界协同：让 AI 真正开口说话</h2>
+<h3 id="41-wasm与js的丝滑通信">4.1 Wasm与JS的丝滑通信</h3>
+<p>Rust每生成一个Token，通过Worker消息零拷贝传输：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// worker.js - Token流式输出</span>
+<span class="hljs-keyword">while</span> (!engine.<span class="hljs-title function_">is_finished</span>()) {
+  <span class="hljs-keyword">const</span> token = engine.<span class="hljs-title function_">step</span>(); <span class="hljs-comment">// Rust函数，返回String</span>
+  self.<span class="hljs-title function_">postMessage</span>({ <span class="hljs-attr">action</span>: <span class="hljs-string">"token"</span>, token });
+  <span class="hljs-comment">// 让出线程，防止卡死主线程</span>
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(r, <span class="hljs-number">0</span>));
+}
+</code></pre>
+<p>JS层收到后立即拼接并触发语音：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// index.js - Token接收与TTS同步</span>
+<span class="hljs-keyword">case</span> <span class="hljs-string">"token"</span>:
+    currentFullResponse += token;
+    tts.<span class="hljs-title function_">append</span>(token); <span class="hljs-comment">// 流式输入，不等说完就发音</span>
+    avatar.<span class="hljs-title function_">setSpeaking</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">// 立即开启嘴型动画</span>
+</code></pre>
+<p>LLM 吐字很快，但语音合成需要整句才自然。我们在 <code>tts.js</code> 中设计了一个缓冲区，<strong>按标点符号断句</strong>，实现<strong>边吐字边发声</strong>:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// tts.js - 按标点切分句子</span>
+
+<span class="hljs-comment">// 包含逗号、顿号在内的所有停顿符号都直接触发播放</span>
+<span class="hljs-keyword">const</span> punctuation = <span class="hljs-regexp">/[。！？，；.!?,;]/</span>;
+<span class="hljs-keyword">let</span> match = punctuation.<span class="hljs-title function_">exec</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span>);
+
+<span class="hljs-keyword">if</span> (match) {
+  <span class="hljs-keyword">const</span> sentence = <span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span>.<span class="hljs-title function_">substring</span>(<span class="hljs-number">0</span>, match.<span class="hljs-property">index</span> + <span class="hljs-number">1</span>).<span class="hljs-title function_">trim</span>();
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span>.<span class="hljs-title function_">substring</span>(match.<span class="hljs-property">index</span> + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">if</span> (sentence) <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">enqueue</span>(sentence);
+  <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<h3 id="42-web-speech-api：浏览器的原生声优">4.2 Web Speech API：浏览器的原生声优</h3>
+<p>不需要服务器，浏览器自带TTS引擎：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// tts.js - 自动选择中文女声</span>
+<span class="hljs-title function_">initVoice</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> voices = <span class="hljs-variable language_">this</span>.<span class="hljs-property">synth</span>.<span class="hljs-title function_">getVoices</span>();
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">voice</span> = voices.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span>
+        v.<span class="hljs-property">lang</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"zh"</span>) &amp;&amp; v.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"美嘉"</span>)
+    ) || voices.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v.<span class="hljs-property">lang</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"zh"</span>)) || voices[<span class="hljs-number">0</span>];
+
+    utterance.<span class="hljs-property">rate</span> = <span class="hljs-number">1.0</span>; <span class="hljs-comment">// 语速</span>
+    utterance.<span class="hljs-property">pitch</span> = <span class="hljs-number">1.1</span>; <span class="hljs-comment">// 音调拉高一点，更像少女</span>
+}
+</code></pre>
+<p><strong>语音状态驱动3D动画</strong>：</p>
+<p>在 <code>index.js</code> 的渲染循环中，我们根据语音播放状态（<code>isSpeaking</code>）实时扰动口型。虽然简单，但在 0.5B 模型的低延迟配合下，视觉效果惊人地自然：</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">requestAnimationFrame</span>(render);
+  <span class="hljs-keyword">const</span> time = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() * <span class="hljs-number">0.001</span>;
+
+  <span class="hljs-keyword">if</span> (avatar.<span class="hljs-property">isSpeaking</span>) {
+    <span class="hljs-comment">// 利用正弦函数模拟嘴部的自然开合</span>
+    <span class="hljs-keyword">const</span> mouthA = (<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(time * <span class="hljs-number">15</span>) + <span class="hljs-number">1</span>) * <span class="hljs-number">0.4</span>;
+    avatar.<span class="hljs-title function_">setExpression</span>(<span class="hljs-string">"mouthOpen"</span>, mouthA);
+  } <span class="hljs-keyword">else</span> {
+    avatar.<span class="hljs-title function_">setExpression</span>(<span class="hljs-string">"mouthOpen"</span>, <span class="hljs-number">0</span>);
+  }
+  avatar.<span class="hljs-title function_">update</span>(); <span class="hljs-comment">// 内部处理随机眨眼与身体微晃</span>
+}
+</code></pre>
+<h2 id="五、工程总结与展望">五、工程总结与展望</h2>
+<p>虽然目前 0.5B 模型的智商还不能带你写复杂的架构设计，但这套架构已经彻底打通了<strong>大模型推理+高性能 3D+实时语音</strong>的 Web 全栈路径。</p>
+<p><strong>当前挑战：</strong></p>
+<ul>
+<li><strong>内存压力</strong>：0.5B 模型仍需占用约 3GB 内存，移动端仍有压力。</li>
+<li><strong>口型精度</strong>：目前的嘴动基于随机波动，尚未实现真正基于语音频率（FFT）的元音匹配。</li>
+</ul>
+<p><strong>未来进化：</strong></p>
+<ul>
+<li><strong>WebGPU 推理</strong>：跟进 <code>candle</code> 更新，实现基于WebGPU的推理，目标是 5-10 倍的推理提速。</li>
+<li><strong>情感驱动</strong>：让 LLM 输出表情指令（如“开心”），直接驱动 3D 模型做出转圈、捂嘴等全身动作。</li>
+</ul>
+<h2 id="六、开源与复现：把她带回家">六、开源与复现：把“她”带回家</h2>
+<ul>
+<li>完整代码已开源: <a href="https://github.com/Doomking/rust-zhixingshe-examples/tree/main/wasm/candle-llm-3d" target="_blank">https://github.com/Doomking/rust-zhixingshe-examples/tree/main/wasm/candle-llm-3d</a></li>
+<li><p>LLM模型：
+下载model.safetensors、config.json、tokenizer.json等文件到 <code>www/assets/models</code>目录</p>
+<ul>
+<li>Qwen2.5-0.5B-Instruct： <a href="https://hf-mirror.com/Qwen/Qwen2.5-0.5B-Instruct" target="_blank">https://hf-mirror.com/Qwen/Qwen2.5-0.5B-Instruct</a></li>
+<li>Qwen1.5-0.5B-Chat：<a href="https://hf-mirror.com/Qwen/Qwen1.5-0.5B-Chat" target="_blank">https://hf-mirror.com/Qwen/Qwen1.5-0.5B-Chat</a></li>
+</ul>
+</li>
+<li><p>3D模型：
+访问 <a href="https://hub.vroid.com/en" target="_blank">https://hub.vroid.com/en</a> ，搜索关键词，然后通过 <code>Filter by conditions of use</code>, 筛选 <code>Download: Allow</code> 的模型，即可以进行下载, 下载后保存到 <code>www/assets/human</code> 目录。</p>
+</li>
+</ul>
+<p><strong>上手步骤</strong>：</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># 1. 克隆项目</span>
+git <span class="hljs-built_in">clone</span> https://github.com/Doomking/rust-zhixingshe-examples.git
+<span class="hljs-built_in">cd</span> wasm/candle-llm-3d
+
+<span class="hljs-comment"># 2. 下载LLM模型</span>
+
+<span class="hljs-comment"># 3. 下载3D模型</span>
+
+<span class="hljs-comment"># 4. 编译Rust到WASM</span>
+wasm-pack build --release --target web
+
+<span class="hljs-comment"># 5. 本地运行（需Python 3）</span>
+python -m http.server 8080
+<span class="hljs-comment"># 或者用 Rust 的 miniserve</span>
+miniserve . --index www/index.html
+
+<span class="hljs-comment"># 6. 打开浏览器访问</span>
+<span class="hljs-comment"># http://localhost:8080/wwww/index.html</span>
+</code></pre>
+<h2 id="七、写在最后：技术浪漫主义">七、写在最后：技术浪漫主义</h2>
+<p>这个项目最大的价值，不只是证明了浏览器能跑LLM，而是<strong>让AI有了温度</strong>。</p>
+<p>当你看到3D角色在向你说话、捂嘴轻笑时，你会突然意识到：Rust的严谨、Wasm的跨界、Three.js的灵动，这些冰冷的工具合在一起，竟然能创造出有情感共鸣的"生命体"。</p>
+<p>这就是技术浪漫主义——用代码编织梦想，让二次元走进现实。</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2-wasm-ai-senti-pulse.html" class="navigation navigation-prev " aria-label="Previous page: Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4-wasm-ai-flow.html" class="navigation navigation-next " aria-label="Next page: Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战","level":"1.2.3","depth":2,"next":{"title":"Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战","level":"1.2.4","depth":2,"path":"wasm_ai/4-wasm-ai-flow.md","ref":"wasm_ai/4-wasm-ai-flow.md","articles":[]},"previous":{"title":"Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎","level":"1.2.2","depth":2,"path":"wasm_ai/2-wasm-ai-senti-pulse.md","ref":"wasm_ai/2-wasm-ai-senti-pulse.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm_ai/3-wasm-ai-3d.md","mtime":"2026-01-30T06:17:45.545Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-01-30T06:35:44.025Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -4,7 +4,7 @@
 - [Rust&Wasm&AI](wasm_ai/README.md)
   - [Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代](wasm_ai/1-wasm-ai-intro.md)
   - [Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎](wasm_ai/2-wasm-ai-senti-pulse.md)
-  - [Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战](wasm_ai/3-wasm-ai-3.md)
+  - [Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战](wasm_ai/3-wasm-ai-3d.md)
   - [Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战](wasm_ai/4-wasm-ai-flow.md)
 - [Rust&dora](dara/README.md)
   - [🤖 终于来了！这个开源机器人开发框架Dora，用Python/Rust让机器人编程像搭积木一样简单！](dora/1-base-intro.md)
