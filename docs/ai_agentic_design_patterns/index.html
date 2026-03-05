@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代 · HonKit</title>
+        <title>Rust&AI Agentic Design Patterns · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.4">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="2-wasm-ai-senti-pulse.html" />
+    <link rel="next" href="1-prompt-chaining.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="../" />
     
 
     </head>
@@ -101,9 +101,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../ai_agentic_design_patterns/">
+        <li class="chapter active" data-level="1.2" data-path="./">
             
-                <a href="../ai_agentic_design_patterns/">
+                <a href="./">
             
                     
                     Rust&AI Agentic Design Patterns
@@ -115,9 +115,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../ai_agentic_design_patterns/1-prompt-chaining.html">
+        <li class="chapter " data-level="1.2.1" data-path="1-prompt-chaining.html">
             
-                <a href="../ai_agentic_design_patterns/1-prompt-chaining.html">
+                <a href="1-prompt-chaining.html">
             
                     
                     智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战
@@ -133,9 +133,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="../wasm_ai/">
             
-                <a href="./">
+                <a href="../wasm_ai/">
             
                     
                     Rust&Wasm&AI
@@ -147,9 +147,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.3.1" data-path="1-wasm-ai-intro.html">
+        <li class="chapter " data-level="1.3.1" data-path="../wasm_ai/1-wasm-ai-intro.html">
             
-                <a href="1-wasm-ai-intro.html">
+                <a href="../wasm_ai/1-wasm-ai-intro.html">
             
                     
                     Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代
@@ -160,9 +160,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="2-wasm-ai-senti-pulse.html">
+        <li class="chapter " data-level="1.3.2" data-path="../wasm_ai/2-wasm-ai-senti-pulse.html">
             
-                <a href="2-wasm-ai-senti-pulse.html">
+                <a href="../wasm_ai/2-wasm-ai-senti-pulse.html">
             
                     
                     Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎
@@ -173,9 +173,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="3-wasm-ai-3d.html">
+        <li class="chapter " data-level="1.3.3" data-path="../wasm_ai/3-wasm-ai-3d.html">
             
-                <a href="3-wasm-ai-3d.html">
+                <a href="../wasm_ai/3-wasm-ai-3d.html">
             
                     
                     Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战
@@ -186,9 +186,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="4-wasm-ai-flow.html">
+        <li class="chapter " data-level="1.3.4" data-path="../wasm_ai/4-wasm-ai-flow.html">
             
-                <a href="4-wasm-ai-flow.html">
+                <a href="../wasm_ai/4-wasm-ai-flow.html">
             
                     
                     Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战
@@ -945,7 +945,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代</a>
+        <a href=".." >Rust&AI Agentic Design Patterns</a>
     </h1>
 </div>
 
@@ -960,258 +960,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="rust--wasm--ai-一：开启浏览器与边缘端的高性能推理时代">Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代</h1>
-<p>AI 只能跑在云端显卡阵列上？Python 是部署的唯一选择？ 本系列连载将带你用 Rust + Wasm 彻底打破这些认知。第一篇，我们将从工程视角深度剖析 AI 部署的"范式转换"，并亲手验证 Rust 在浏览器端的惊人算力。</p>
-<h2 id="1-引言：从中心化-ai到-泛在智能">1. 引言：从“中心化 AI”到 “泛在智能”</h2>
-<p>无需联网推理，无需云端显卡。那个爆火的 Web Stable Diffusion Demo 证明：借助 Wasm + WebGPU，浏览器完全可以脱离云端服务器，100% 在用户本地完成大模型的推理任务。这种算力民主化的尝试，开启了一个全新的泛在智能时代。</p>
-<p>AI 不再是云端机房中昂贵显卡阵列的专利。当模型需要嵌入浏览器插件中、跑在智能门锁的 ARM 芯片上、驱动无人机进行实时避障，甚至是部署在工厂车间那台灰尘仆仆的工业网关中时，传统的 <strong>“Python + Docker + CUDA”</strong> 部署模式，正面临前所未有的挑战。</p>
-<ul>
-<li><strong>安全困境：</strong> 如何在不可信的第三方环境（如用户的浏览器或客户的私有服务器）中安全运行 AI ？一个恶意的 <code>.pth</code> 模型文件或 Python 脚本，可能就是入侵系统的特洛伊木马。</li>
-<li><strong>碎片化地狱：</strong> 面对 x86、ARM 甚至 RISC-V 等高度碎片化的硬件架构，如果为每个平台都维护一套推理引擎，研发成本将是灾难性的。</li>
-<li><strong>效率悖论：</strong> 在传统模式下，Docker 镜像动辄数 GB，秒级的冷启动已是性能天花板。但在自动驾驶避障、工业机器人协作等 <strong>毫秒必争</strong> 的场景里，哪怕微小延迟都关乎成败。</li>
-</ul>
-<p><strong>结论呼之欲出：</strong> AI 部署需要一种全新的“载体”——它既要像 Docker 一样隔离安全，又要像原生代码一样毫秒级响应，更要能无视芯片架构 <strong>“一次构建，到处运行”</strong> 。</p>
-<p><strong>这个载体，就是 WebAssembly (Wasm)。</strong></p>
-<p>如今的 Wasm 早已不再局限于浏览器，它正在演进为 AI 能力的 <strong>通用标准容器</strong>，甚至催生出一种被称为 <strong>通用微服务架构 (UMA)</strong> 的全新形态，让 AI 能力像水和电一样，在云、边、端之间自由流动。</p>
-<h2 id="2-横向评测：ai-部署的三大方案">2. 横向评测：AI 部署的三大方案</h2>
-<p>在边缘计算的十字路口，为什么 Wasm 能脱颖而出？直接看数据：</p>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>Docker 容器</th>
-<th>原生二进制</th>
-<th><strong>WebAssembly (Wasm)</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>冷启动</strong></td>
-<td>秒级 🐢</td>
-<td>毫秒级 🐇</td>
-<td><strong>微秒级 ⚡️ (快100倍+)</strong></td>
-</tr>
-<tr>
-<td><strong>体积</strong></td>
-<td>数GB 😰</td>
-<td>MB级 😐</td>
-<td><strong>KB/MB级 😎 (缩小10-100倍)</strong></td>
-</tr>
-<tr>
-<td><strong>安全性</strong></td>
-<td>OS级隔离</td>
-<td>依赖系统权限</td>
-<td><strong>指令级沙箱 (规避 70% 内存漏洞)</strong></td>
-</tr>
-<tr>
-<td><strong>跨平台</strong></td>
-<td>多架构镜像地狱</td>
-<td>重复编译噩梦</td>
-<td><strong>一次编译，到处运行 (维护成本明显降低)</strong></td>
-</tr>
-<tr>
-<td><strong>分发难度</strong></td>
-<td>依赖Docker运行时</td>
-<td>动态库依赖复杂</td>
-<td><strong>URL即分发 (秒级部署)</strong></td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-核心支柱一：安全沙箱-security-by-default">3. 核心支柱一：安全沙箱 (Security by Default)</h2>
-<p>传统 AI 部署的安全防线，就像用篱笆围住一头大象——看似有边界，实则漏洞百出。</p>
-<p><strong>“信任”</strong> 是最大的漏洞： 运行一个 Python 脚本或加载一个 <code>.pth</code> 模型，本质上是在拿系统权限做赌注。正如我们担心的，恶意模型可以通过 Pickle 反序列化漏洞，在被加载的一瞬间就接管你的系统。</p>
-<p>而 Wasm 采用了 <strong>基于能力的安全性（Capability-based security）</strong> 模型，彻底终结了盲目信任：</p>
-<ul>
-<li><strong>线性内存模型</strong>：Wasm 模块被限制在特定的内存区域，无法窥探宿主机的任何隐私，任何越界访问都会被虚拟机直接“熔断”。</li>
-<li><strong>显式能力授予</strong>：文件读写、网络请求、摄像头调用……，所有权限必须由宿主显式授予，默认情况下啥也干不了。</li>
-<li><strong>指令级验证</strong>：在模块加载时，虚拟机会扫描所有代码指令，确保没有非法跳转或针对底层硬件的恶意注入。</li>
-</ul>
-<h2 id="4-核心支柱二：极致跨平台-write-once-infer-anywhere">4. 核心支柱二：极致跨平台 (Write Once, Infer Anywhere)</h2>
-<p>“这段代码在我电脑上能跑啊！” —— 这可能是 AI 工程师最头疼的魔咒。</p>
-<p>传统的 AI 部署方案通常需要你针对不同的 CPU 架构（x86、ARM、RISC-V）构建并维护多套臃肿的 Docker 镜像。而 Wasm 的方案优雅得像一首诗：</p>
-<pre><code># 1. 一次构建：编译为架构无关的二进制格式
-cargo build --target wasm32-wasip1
-
-# 2. 到处运行：在浏览器、边缘网关或云端即刻部署
-wasmtime run model.wasm
-</code></pre><p><strong>从代码移植到能力组件化</strong></p>
-<p>Wasm 充当了高级语言与机器硬件之间的通用中间层（IR）。它并不关心你是 Intel 的 AVX-512 指令集，还是 Apple Silicon 的 NEON 加速器，这些复杂的底层优化都由宿主环境的 JIT（即时编译器）按需处理。</p>
-<p>更具颠覆性的是 <strong>Wasm Component Model (组件模型)</strong> 。它让我们可以将 AI 流程拆解为独立的乐高积木：</p>
-<ul>
-<li>组件 A： Rust 编写的视频流预处理</li>
-<li>组件 B： C++ 编译的模型推理核心</li>
-<li>组件 C： Go 编写的结果后处理</li>
-</ul>
-<p>借助这套标准，不同语言编写的 AI 逻辑可以无缝“粘合”在一个标准的 <code>.wasm</code> 文件中，彻底终结了 <code>.so</code> 或 <code>.dll</code> 动态库丢失带来的版本灾难。</p>
-<p><strong>分发优势</strong></p>
-<p>AI 模型不再是一堆碎片化的二进制文件，而是一个标准化的便携能力模块。无论是在 5G 基站还是浏览器插件中，它都能提供语义完全一致的执行结果。</p>
-<h2 id="5-核心支柱三：边缘侧推理的必然性-edge-ai">5. 核心支柱三：边缘侧推理的必然性 (Edge AI)</h2>
-<p>当 ChatGPT 的回答延迟增加 2 秒时，用户可能只是皱眉；但当自动驾驶汽车的识别延迟增加 100 毫秒，可能就是生死之别。</p>
-<p>在边缘计算的版图里，Wasm 正在重新定义“微服务”——它将笨重的容器精简为轻量级的 <strong>AI 能力 (AI Capabilities)：</strong></p>
-<ul>
-<li><strong>低延迟是硬指标</strong>：在机器人避障、工业质检、实时翻译等“毫秒必争”的场景，网络抖动是不可接受的灾难。Wasm 凭借微秒级启动和接近原生的执行性能，让端侧实时推理从理想照进现实。</li>
-<li><strong>隐私保护是信任底线</strong>：医疗影像、金融文档、人脸数据……这些敏感数据理应在端侧产生、端侧消费。Wasm 的沙箱确保数据被封锁在本地，连模型提供者都无法窥探。</li>
-<li><strong>计算离线化是生存需求</strong>：在地下车库、远洋船舶或野外矿区，Wasm 承载的 AI 模型能够像单机软件一样稳定。它不需要持续的云端连接，彻底终结了“没网就变砖”的尴尬。</li>
-</ul>
-<p><strong>统一硬件访问</strong>：借助 <code>WASI-NN</code> 标准，Wasm 抹平了硬件加速的差异。无论底层是 <code>NVIDIA GPU</code>、<code>Intel NPU</code> 还是 <code>Apple M</code> 系列芯片，开发者只需一套代码，即可调用各异的算力源。</p>
-<h2 id="6-rust：驱动-wasm-ai-的黄金引擎">6. Rust：驱动 Wasm AI 的黄金引擎</h2>
-<p>在 AI 部署领域，为什么 Rust 能够击败 Python 或 Go，成为 Wasm 的首选？</p>
-<ol>
-<li><strong>零成本抽象，极致性能</strong>：Rust 生成的 Wasm 体积极小，没有 Python/Go 的垃圾回收（GC）包袱。一个向量计算模块编译后仅 15KB，执行效率达原生 C++ 的 95% 以上，完美契合边缘设备苛刻要求。</li>
-<li><strong>内存安全，稳定可靠</strong>：在智能门锁、工业网关等资源受限场景，内存泄漏 = 事故。Rust 编译期消除 70% 以上底层安全隐患，避免段错误导致的灾难。</li>
-<li><strong>多语言协作 + 生态对齐</strong>：用 Rust 编写高性能 AI 核心编译为 Wasm，可被 JavaScript 前端、Python 后端无缝调用，实现最佳技术栈组合。顶尖运行时（WasmEdge、Wasmer）和 AI 框架（Candle、Burn）均首选 Rust。</li>
-</ol>
-<p>最新趋势： 据统计，超过 60% 的新兴 AI 工具正在转向 Wasm-native 架构，而其中 78% 的开发者选择了 Rust。</p>
-<pre><code>// 只需几行，就能开启你的高性能 Wasm AI 之路
-#[wasm_bindgen]
-pub fn fast_cosine_similarity(a: &amp;[f32], b: &amp;[f32]) -&gt; f32 {
-    // Rust 的迭代器会被 LLVM 自动优化为高效的向量化指令
-    a.iter().zip(b).map(|(x, y)| x * y).sum()
-}
-</code></pre><p>Rust 让开发者无需成为底层系统专家，也能写出高效、安全、可移植的 Wasm 模块。 它不仅是生产力工具，更是 AI 部署时代的质量保证。</p>
-<h2 id="7-快速上手：感受触手可及的算力">7. 快速上手：感受“触手可及”的算力</h2>
-<p>Talk is cheap. 我们来点实际的。</p>
-<p>我们将对比 <strong>JavaScript</strong> 和 <strong>Rust (Wasm)</strong> 在执行 AI 核心算法——<strong>向量余弦相似度 (Cosine Similarity)</strong> 时的性能。这是 RAG（检索增强生成）和推荐系统中调用最频繁的计算。</p>
-<h3 id="rust-侧：极致精简">Rust 侧：极致精简</h3>
-<pre><code>// lib.rs
-use wasm_bindgen::prelude::*;
-
-/// 计算两个 512 维向量的余弦相似度
-/// 模拟 CLIP 等模型在 AI 检索时的核心计算任务
-#[wasm_bindgen]
-pub fn cosine_similarity_rust(vec_a: &amp;[f32], vec_b: &amp;[f32]) -&gt; f32 {
-    if vec_a.len() != vec_b.len() || vec_a.is_empty() {
-        return 0.0;
-    }
-
-    let mut dot_product = 0.0;
-    let mut norm_a = 0.0;
-    let mut norm_b = 0.0;
-
-    for i in 0..vec_a.len() {
-        dot_product += vec_a[i] * vec_b[i];
-        norm_a += vec_a[i] * vec_a[i];
-        norm_b += vec_b[i] * vec_b[i];
-    }
-
-    let denominator = norm_a.sqrt() * norm_b.sqrt();
-    if denominator == 0.0 {
-        0.0
-    } else {
-        dot_product / denominator
-    }
-}
-
-#[wasm_bindgen]
-pub fn cosine_similarity_rust_benchmark(vec_a: &amp;[f32], vec_b: &amp;[f32], iterations: i32) -&gt; f32 {
-    let mut last_result = 0.0;
-    for _ in 0..iterations {
-        last_result = cosine_similarity_rust(vec_a, vec_b);
-    }
-    last_result
-}
-</code></pre><h3 id="浏览器侧：瞬间加载">浏览器侧：瞬间加载</h3>
-<pre><code>import init, { cosine_similarity_rust, cosine_similarity_rust_benchmark } from "./pkg/vector_sim.js";
-
-// 纯 JS 实现的相同逻辑
-function cosineSimilarityJS(vecA, vecB) {
-    let dotProduct = 0.0;
-    let normA = 0.0;
-    let normB = 0.0;
-    for (let i = 0; i &lt; vecA.length; i++) {
-        dotProduct += vecA[i] * vecB[i];
-        normA += vecA[i] * vecA[i];
-        normB += vecB[i] * vecB[i];
-    }
-    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-}
-
-function cosineSimilarityJSBenchmark(vecA, vecB, iterations) {
-    let lastResult = 0.0;
-    for (let i = 0; i &lt; iterations; i++) {
-        lastResult = cosineSimilarityJS(vecA, vecB);
-    }
-    return lastResult;
-}
-async function setup() {
-    await init();
-
-    const ITERATIONS = 1000000;
-    const vecA = new Float32Array(512).fill(0.123);
-    const vecB = new Float32Array(512).fill(0.456);
-
-    let timeJS = 0;
-    let timeWasm = 0;
-
-    // --- JS 按钮逻辑 ---
-    document.getElementById('runJS').onclick = () =&gt; {
-        const start = performance.now();
-        // for (let i = 0; i &lt; ITERATIONS; i++) {
-        //     cosineSimilarityJS(vecA, vecB);
-        // }
-        const jsResult = cosineSimilarityJSBenchmark(vecA, vecB, ITERATIONS);
-        timeJS = performance.now() - start;
-        document.getElementById('jsTime').innerText = timeJS.toFixed(2);
-        updateConclusion();
-        console.log(`JS 结果: ${jsResult}`);
-    };
-
-    // --- Wasm 按钮逻辑 ---
-    document.getElementById('runWasm').onclick = () =&gt; {
-        const start = performance.now();
-        // for (let i = 0; i &lt; ITERATIONS; i++) {
-        //     cosine_similarity_rust(vecA, vecB);
-        // }
-        const rustResult = cosine_similarity_rust_benchmark(vecA, vecB, ITERATIONS);
-        timeWasm = performance.now() - start;
-        document.getElementById('wasmTime').innerText = timeWasm.toFixed(2);
-        updateConclusion();
-        console.log(`Rust 结果: ${rustResult}`);
-    };
-
-    function updateConclusion() {
-        if (timeJS &gt; 0 &amp;&amp; timeWasm &gt; 0) {
-            const ratio = (timeJS / timeWasm).toFixed(1);
-            document.getElementById('conclusion').innerText = `🚀 Rust Wasm 比 JS 快了约 ${ratio} 倍！`;
-        }
-    }
-}
-
-setup();
-</code></pre><h3 id="编译为-wasm">编译为 Wasm</h3>
-<pre><code># 将上述代码放入 src/lib.rs，配置 Cargo.toml
-wasm-pack build --target web --release
-
-# 生成的 Wasm 文件路径为： ./pkg/vector_sim_bg.wasm
-</code></pre><h3 id="运行并对比性能">运行并对比性能</h3>
-<pre><code># 启动本地服务器
-# rust
-cargo install miniserve
-miniserve .
-
-#python
-python3 -m http.server 8080
-</code></pre><p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/f2005f2413b04cfd8ee76a0e13ce24e9~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1767873010&amp;x-orig-sign=LCmk6B8F%2B7ADvSTbimdp6%2BaGzrA%3D" alt="output1.gif"></img></p>
-<p><strong>结论：</strong> 即使是基础的数学运算，Wasm 也带来了极大的性能提升。而当涉及复杂的矩阵乘法时，配合 SIMD 指令集，差距将进一步拉大。</p>
-<p><strong>你的浏览器，其实比你想象中更聪明，也更强大。</strong></p>
-<h2 id="8-总结与下期预告">8. 总结与下期预告</h2>
-<h1 id="rust--wasm--ai-一：开启浏览器与边缘端的高性能推理时代">Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代</h1>
-<p>通过今天的探索，我们见证了 Wasm + Rust 正在如何重构 AI 的分发地图：</p>
-<ul>
-<li><strong>安全上：</strong> 指令级沙箱让"零信任 AI"成为现实</li>
-<li><strong>效率上：</strong> 微秒级启动和百倍性能让边缘推理触手可及</li>
-<li><strong>体验上：</strong> 一次编译，让 AI 模型如 JavaScript 般随用随取</li>
-</ul>
-<p><strong>但故事才刚刚开始。</strong></p>
-<p>拥有了强大的通用算力容器（Wasm）和高效的建造工具（Rust），下一步，我们该为它装载什么样的“大脑”？</p>
-<p>👉 <strong>下期预告：</strong> 我们将深入 <strong>Rust 原生 AI 框架 Candle</strong>（HuggingFace 出品），挑战<strong>在浏览器中直接加载和运行真正的 LLM（大语言模型）</strong> ，实现一个离线版的“ChatGPT”。</p>
-<p><strong>敬请期待连载二：《Candle —— 在浏览器中点燃 Rust 原生 AI 之火》。</strong></p>
-<p><strong>📌 互动留言</strong> 觉得 Wasm 边缘 AI 有前景吗？欢迎在评论区留言</p>
-<p><strong>关注本公众号，和我一起探索 Rust 与 AI 的无限可能！</strong></p>
-<p>源码：<a href="https://github.com/Doomking/rust-zhixingshe-examples/tree/main/wasm/vector-sim" target="_blank">https://github.com/Doomking/rust-zhixingshe-examples/tree/main/wasm/vector-sim</a></p>
-<p><em>参考资料：</em> <em>[1] Dev.to: Revolutionizing AI/ML Deployment: The Power of WebAssembly</em></p>
-<p><em>[2] Medium: The Rise of WASM-Native Runtimes for AI Tools</em></p>
-<p><em>[3] Grid Dynamics: What is WebAssembly and Why is it Best for AI?</em></p>
+                                <h2 id="rustai-agentic-design-patterns-学习笔记">Rust&amp;AI Agentic Design Patterns 学习笔记</h2>
 
                                 
                                 </section>
@@ -1239,12 +988,12 @@ python3 -m http.server 8080
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Rust&Wasm&AI">
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Rust 知行社">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="2-wasm-ai-senti-pulse.html" class="navigation navigation-next " aria-label="Next page: Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎">
+                <a href="1-prompt-chaining.html" class="navigation navigation-next " aria-label="Next page: 智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1255,7 +1004,7 @@ python3 -m http.server 8080
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代","level":"1.3.1","depth":2,"next":{"title":"Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎","level":"1.3.2","depth":2,"path":"wasm_ai/2-wasm-ai-senti-pulse.md","ref":"wasm_ai/2-wasm-ai-senti-pulse.md","articles":[]},"previous":{"title":"Rust&Wasm&AI","level":"1.3","depth":1,"path":"wasm_ai/README.md","ref":"wasm_ai/README.md","articles":[{"title":"Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代","level":"1.3.1","depth":2,"path":"wasm_ai/1-wasm-ai-intro.md","ref":"wasm_ai/1-wasm-ai-intro.md","articles":[]},{"title":"Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎","level":"1.3.2","depth":2,"path":"wasm_ai/2-wasm-ai-senti-pulse.md","ref":"wasm_ai/2-wasm-ai-senti-pulse.md","articles":[]},{"title":"Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战","level":"1.3.3","depth":2,"path":"wasm_ai/3-wasm-ai-3d.md","ref":"wasm_ai/3-wasm-ai-3d.md","articles":[]},{"title":"Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战","level":"1.3.4","depth":2,"path":"wasm_ai/4-wasm-ai-flow.md","ref":"wasm_ai/4-wasm-ai-flow.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"wasm_ai/1-wasm-ai-intro.md","mtime":"2026-01-07T11:53:39.998Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-03-05T00:56:45.568Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Rust&AI Agentic Design Patterns","level":"1.2","depth":1,"next":{"title":"智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战","level":"1.2.1","depth":2,"path":"ai_agentic_design_patterns/1-prompt-chaining.md","ref":"ai_agentic_design_patterns/1-prompt-chaining.md","articles":[]},"previous":{"title":"Rust 知行社","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"articles":[{"title":"智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战","level":"1.2.1","depth":2,"path":"ai_agentic_design_patterns/1-prompt-chaining.md","ref":"ai_agentic_design_patterns/1-prompt-chaining.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ai_agentic_design_patterns/README.md","mtime":"2026-03-05T00:53:29.602Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-03-05T00:56:45.568Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

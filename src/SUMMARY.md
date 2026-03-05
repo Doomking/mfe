@@ -1,6 +1,8 @@
 # Summary
 
 - [Rust 知行社](README.md)
+- [Rust&AI Agentic Design Patterns](ai_agentic_design_patterns/README.md)
+  - [智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战](ai_agentic_design_patterns/1-prompt-chaining.md)
 - [Rust&Wasm&AI](wasm_ai/README.md)
   - [Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代](wasm_ai/1-wasm-ai-intro.md)
   - [Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎](wasm_ai/2-wasm-ai-senti-pulse.md)
