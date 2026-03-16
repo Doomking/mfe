@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>web3世界的通行证-加密钱包 · HonKit</title>
+        <title>AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍 · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.4">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../chrome/" />
+    <link rel="next" href="../wasm_ai/" />
     
     
-    <link rel="prev" href="1-web3.html" />
+    <link rel="prev" href="2-routing.html" />
     
 
     </head>
@@ -101,9 +101,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../ai_agentic_design_patterns/">
+        <li class="chapter " data-level="1.2" data-path="./">
             
-                <a href="../ai_agentic_design_patterns/">
+                <a href="./">
             
                     
                     Rust&AI Agentic Design Patterns
@@ -115,9 +115,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../ai_agentic_design_patterns/1-prompt-chaining.html">
+        <li class="chapter " data-level="1.2.1" data-path="1-prompt-chaining.html">
             
-                <a href="../ai_agentic_design_patterns/1-prompt-chaining.html">
+                <a href="1-prompt-chaining.html">
             
                     
                     智能体设计模式 01 - 提示链：别再盲目调优 Prompt！用 Rust + Rig 玩转提示链全实战
@@ -128,9 +128,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="../ai_agentic_design_patterns/2-routing.html">
+        <li class="chapter " data-level="1.2.2" data-path="2-routing.html">
             
-                <a href="../ai_agentic_design_patterns/2-routing.html">
+                <a href="2-routing.html">
             
                     
                     AI智能体设计模式 02 - 别再手动调度了！用Routing设计模式，打造真正聪明的AI智能体
@@ -141,9 +141,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="../ai_agentic_design_patterns/3-parallelization.html">
+        <li class="chapter active" data-level="1.2.3" data-path="3-parallelization.html">
             
-                <a href="../ai_agentic_design_patterns/3-parallelization.html">
+                <a href="3-parallelization.html">
             
                     
                     AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍
@@ -800,9 +800,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="./">
+        <li class="chapter " data-level="1.8" data-path="../web3/">
             
-                <a href="./">
+                <a href="../web3/">
             
                     
                     Web3
@@ -814,9 +814,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.1" data-path="1-web3.html">
+        <li class="chapter " data-level="1.8.1" data-path="../web3/1-web3.html">
             
-                <a href="1-web3.html">
+                <a href="../web3/1-web3.html">
             
                     
                     前端工程师，你了解Web3了么？
@@ -827,9 +827,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.8.2" data-path="2-wallet.html">
+        <li class="chapter " data-level="1.8.2" data-path="../web3/2-wallet.html">
             
-                <a href="2-wallet.html">
+                <a href="../web3/2-wallet.html">
             
                     
                     web3世界的通行证-加密钱包
@@ -971,7 +971,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >web3世界的通行证-加密钱包</a>
+        <a href=".." >AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍</a>
     </h1>
 </div>
 
@@ -986,39 +986,223 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7535f8de2fb94aa58577404c385ea7ec~tplv-k3u1fbpfcp-watermark.image?" alt="WechatIMG12.jpeg"></img></p>
-<p>虽然Web3的世界还没有完全来临，但是Web3的大门已经打开了，如果你想进去一窥究竟，那么你需要一把钥匙，一个进入web3世界的通行证。那么这把钥匙是什么？什么是web3的通行证？我们为什么需要新的通行证？</p>
-<p>就像移动支付还没有普及的时代一样，我们需要一个实体钱包，有了钱包我们才能在世界中生存、生活；在web3的世界里我们也需要钱包，一个加密钱包；  </p>
-<p>加密钱包就是打开web3世界的钥匙，就是web3世界的通行证。</p>
-<h2 id="什么是加密钱包？">什么是加密钱包？</h2>
-<p>加密钱包是与区块链交互的硬件或软件，用于存储或交易比特币和以太坊等加密货币。 </p>
-<p>加密钱包通过储存以比特币为首的密码货币的公钥与私钥、私钥所对应的地址、该地址（群）的货币结算，以及货币交易等信息，实现了与区块链平台的交互及通信。 </p>
-<p>简单来说，加密钱包就像银行账户，私钥对应的地址就相当于账户卡号，加密钱包的密钥相当于账户的密码 。与银行账户允许您管理法定货币资金类似，加密钱包也可以协助您管理加密货币资金。</p>
-<p>您可以使用公钥和私钥在区块链上完成加密货币交易，可以与他人分享公钥，在您的账户中接收资金。<br></br>而私钥更像是您的保险箱钥匙。只要不与其他人分享这把钥匙，保险箱中的物品就是安全的。拥有私钥，您就可以访问一直存储在区块链上的加密货币。  </p>
-<h2 id="为什么需要加密钱包？">为什么需要加密钱包？</h2>
-<p>加密钱包又是地址，又是密钥的，搞的又像是银行账户，看起来真麻烦，用现在登录web2.0的账户和密码不就行了么？既简单又熟悉，干嘛这么麻烦，这么复杂呢？</p>
-<p>其实这就体现了web3.0与web2.0的本质差别，一个是去中心化的，一个是中心化的；web2.0的账户存储在各个中心化的系统上，分别在不同的平台和公司的服务器上，互相独立，毫无关联。  </p>
-<p>而web3.0是去中心化的平台，通过区块链的方式实现数据的所有权，如果还像是web2.0的方式，每个应用各自有自己的账户，各自管理，各自平台拥有各自的管理权，那么就很难实现用户拥有数据。</p>
-<p>而通过加密钱包，实现与区块链的交互，通过1个加密钱包就可以登录所有的web3.0的应用，而加密钱包的数据就存储在区块链上，不可篡改，通过私钥就可以证明数据的所有权。  </p>
-<p>所以有了加密钱包，就可以登录所有的web3.0应用，而且只要有1个钱包就行了，无需多个，反倒省事了。所以说加密钱包就是web3世界的通行证，有了这把钥匙就可以畅游web3的世界了。</p>
-<h2 id="钱包的应用场景">钱包的应用场景</h2>
-<p>作为web3世界的通行证，加密钱包到底有什么用？它都能用在哪些场景中呢？ </p>
-<p>首先，最主要的用途就是存储加密货币，加密货币存储在区块链上，通过您的加密钱包的地址及密钥来进行关联，以及进行货币交易结算，只要私钥没有丢失或泄漏 ，您的货币就永远是您的，不会因其他原因而丢失。  </p>
-<p>其次，web3的应用可不只有加密货币，还有各种各样的应用，web2.0的应用其实都可以存在于web3的世界，有了加密钱包，就可以直接登录各个web3应用，不用再额外注册，而且钱包里面的加密货币、代币等都可以在应用中使用，非常方便。 </p>
-<p>再次，作为智能合约的开发者，同样需要加密钱包，因为智能合约也是部署在区块链上，不可篡改，用户拥有所有权；所以在智能合约部署的时候，是需要用户提供私钥才能部署到区块链上。 </p>
-<h2 id="加密钱包的原理">加密钱包的原理</h2>
-<p>加密钱包是与区块链 平台进行交互的工具，本身不会真正存储数字资产，只是通过用户的地址、密钥来与区块链进行交互。</p>
-<p>所有加密货币钱包都通过被称为“钥匙”的工具使用相同的原理工作。每种数字存储方法都有一个公共地址、一个公钥和一个私钥，这是确保加密货币安全和能够进行在线交易的关键。</p>
-<p>公共地址是加密钱包对外的标识符，这是一组由字母和数字组成的标识符；此类地址在本质上代表区块链中用来接收加密货币的特定“位置”，标记您购买的数字货币的存储地点。您在购买加密货币时需要提供公共地址，这就像银行汇款，您需要向汇款方提供收款账户信息。</p>
-<p>公钥是字母和数字的随机组合，用于验证公共地址的真实性。公钥与加密钱包内的私钥一一匹配。</p>
-<p>私钥是加密货币钱包的一种密码，用于访问用户的加密钱包，以及购买、出售和监控数字货币；我们可以把它看作是网银账户密码，这是加密货币安全的核心。</p>
-<p>无论使用哪种钱包，通过私钥均可存取钱包内存储的加密货币。因此，即使所用计算机或智能手机遭到入侵，仍可在其他设备中通过相应私钥（或助记词）存取资金。请注意，代币从未真正离开区块链，只是从一个地址转移至另一个地址。所以，您可以将地址告知他人，以便接收资金，但不得向任何人透露自己的私钥。  </p>
-<h2 id="常用的钱包软件">常用的钱包软件</h2>
-<p><strong>MetaMask</strong>：被誉为是世界上最优秀最好用的以太坊开源钱包，能够帮助投资者轻松简便地管理自己的以太坊资产。MetaMask是用于与以太坊区块链进行交互的软件加密钱包。它可以通过浏览器扩展程序或移动应用程序让用户访问其以太坊钱包，与去中心化应用进行交互。MetaMask 由ConsenSys Software Inc.开发运营，主要专注于以太坊为基础的工具及基础设施。 </p>
-<p><strong>WalletConnect</strong>：是一个开源协议，允许通过二维码和端到端加密来连接移动钱包端和桌面Dapp应用。和Metamask不同的是，用户不必将私钥存到电脑浏览器，通过手机便能与电脑里的Dapp交互，既安全又方便。 </p>
-<p><strong>CoinbaseWallet</strong>：是一个自托管的行动加密钱包及Web3非集中式应用程式（Dapp）浏览器， 能协助您掌控您的加密货币、NFT、DeFi活动以及数字资产。  </p>
-<p><strong>Formatic</strong> ：是一个类似于 Metamask，使用起来非常简便，可替代的 web3 钱包。用户不需要浏览器插件就可以使用手机号或者邮箱来连接以太坊上的基础应用。 </p>
-<p><strong>Portis</strong> ：Portis 和 Fortmatic 的定位类似，它改善了已建立的 Web 3.0 钱包（如Metamask）需要使用特定的 Web 浏览器和/或浏览器扩展的局限，允许用户通过几乎任何 Web 浏览器在任何设备（包括手机）上，用电话号码/电子邮件和密码就能连接到连接到 dApp 中。</p>
+                                <h1 id="ai智能体设计模式-03：从串行到并行，让-agent-执行效率翻倍">AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍</h1>
+<p>你的Agent执行流程是这样的吗？</p>
+<p>用户问一个问题，LLM要依次调用工具A，再调用工具B，最后调用工具C。中间任何一步卡住，整个流程都得等着。几十秒过去，用户早就关掉页面了。</p>
+<p>问题不在于模型，而在于执行方式。</p>
+<p>提速的秘诀不是换更大的模型，而是用 <strong>并行模式（Parallelization）</strong> 重构你的Agent。</p>
+<p>这是Agentic Design Patterns里最实用的性能优化手段，今天咱们一次讲清楚。</p>
+<h2 id="01-并行为什么这么厉害？">01 并行为什么这么厉害？</h2>
+<p>传统的Agent工作流，就是按顺序一个接一个地干活。任务再多，也得按步骤来，前面的做不完，后面的就需要等。</p>
+<p>并行模式的核心在于把那些可以独立完成的任务拆开，让它们同时跑。</p>
+<p><img src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/6226437455904b88b64b07864014551b~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgUnVzdOefpeihjOekvg==:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDE4NjU3MjAxOTczNzYyNCJ9&amp;rk3s=e9ecf3d6&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1773721662&amp;x-orig-sign=QJjsyOZgNiJUhD8I6aHyiNPJVDU%3D" alt="parallel.png"></img></p>
+<p>这么一想就很清楚了：</p>
+<ul>
+<li><strong>串行处理：</strong> 耗时 = T1 + T2 + T3，哪一步卡住都得等</li>
+<li><strong>并行协同：</strong> 耗时 = max(T1, T2, T3)，整体速度取决于最慢的那个任务</li>
+</ul>
+<p>带来的不只是速度，还有稳定性的提升。一个分支出问题，其他分支照样能干活。</p>
+<h2 id="02-并行的两种玩法">02 并行的两种玩法</h2>
+<p>并行不是简单开多线程，而是要讲究策略。</p>
+<table>
+<thead>
+<tr>
+<th>形态</th>
+<th>用在什么场景</th>
+<th>怎么玩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>分片并行</strong></td>
+<td>任务能拆开</td>
+<td>把大任务切成小任务，同时跑，最后合并结果</td>
+</tr>
+<tr>
+<td><strong>投票并行</strong></td>
+<td>需要多方面验证</td>
+<td>调用多个模型/工具，综合不同意见做决策</td>
+</tr>
+</tbody>
+</table>
+<p>简单说：分片并行是<strong>分工合作</strong>，投票并行是<strong>集思广益</strong>。</p>
+<p>举个例子，代码审查的时候：</p>
+<ul>
+<li>用分片并行：同时检查安全性、性能、代码风格三个维度</li>
+<li>用投票并行：三个模型同时评审同一段代码，综合它们的结果</li>
+</ul>
+<h3 id="1-分片并行：把任务拆开一起跑">1. 分片并行：把任务拆开一起跑</h3>
+<p>把复杂任务拆成互不干扰的子问题，让它们同时执行。</p>
+<ul>
+<li><strong>怎么玩：</strong> 拆任务 -&gt; 并行跑 -&gt; 合结果</li>
+<li><strong>什么时候用：</strong> 写一篇长文章，5个Agent各写一个章节；处理长文档，切片后并行提取关键信息</li>
+</ul>
+<h3 id="2-投票机制：多个角度验证">2. 投票机制：多个角度验证</h3>
+<p>让多个模型（或多次调用）并行回答同一个问题，最后汇总。</p>
+<ul>
+<li><strong>怎么玩：</strong> 多次推理 -&gt; 对比结果 -&gt; 综合判断</li>
+<li><strong>什么时候用：</strong> 代码安全审计，3个Agent同时找Bug，取交集；高精度翻译，并行生成3个版本，选最好的</li>
+</ul>
+<p>一句话总结：分片并行解决<strong>快不快</strong>的问题，投票并行解决<strong>准不准</strong>的问题。</p>
+<h2 id="03-这些场景最需要并行">03 这些场景最需要并行</h2>
+<p>实际用起来，这些地方并行效果特别好：</p>
+<p><strong>1. 信息收集与研究</strong></p>
+<p>比如做公司调研的Agent，并行搜索新闻、查股票数据、监控社交媒体、查数据库，比一个一个查询快得多。</p>
+<p><strong>2. 数据处理与分析</strong></p>
+<p>分析客户反馈时，可以同时做情感分析、提取关键词、分类反馈、识别紧急问题，一次性拿到多维度结果。</p>
+<p><strong>3. 多API或工具调用</strong></p>
+<p>旅行规划Agent可以同时查航班价格、酒店情况、当地活动、餐厅推荐，更快给出完整方案。</p>
+<p><strong>4. 多组件内容生成</strong></p>
+<p>写营销邮件时，同时生成主题、正文内容、找图片、写行动号召文本，最后组装成完整邮件。</p>
+<p><strong>5. 验证与校对</strong></p>
+<p>用户输入验证时，可以同时检查邮箱格式、手机号、地址是否匹配、内容是否合规。</p>
+<p><strong>6. 多模态处理</strong></p>
+<p>分析社交媒体帖子时，同时分析文本情感和图片内容，快速整合不同来源的信息。</p>
+<p><strong>7. A/B测试或多选项生成</strong></p>
+<p>生成创意文本时，可以用不同的提示同时生成多个标题，快速比较选出最好的。</p>
+<h2 id="04-用-rust-实战一把">04 用 Rust 实战一把</h2>
+<p><code>为什么选 Rust？因为在高并发场景下，Rust 的异步运行时 Tokio 能让你告别Python 的全局解释器锁(GIL) 限制，多核 CPU 真正派上用场。</code></p>
+<h3 id="第一步：配置-gemini">第一步：配置 Gemini</h3>
+<p>先准备好 API 密钥：</p>
+<pre><code># 在项目根目录创建.env文件
+# 设置 Gemini API 密钥
+GEMINI_API_KEY=你的API密钥
+</code></pre><h3 id="第二步：用rust写并行代码">第二步：用Rust写并行代码</h3>
+<p>用<code>rig</code> Agent 框架配合 <code>rig::parallel!</code>，代码会简洁很多：</p>
+<pre><code>#[tokio::main]
+async fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    // 初始化 Gemini 客户端
+    let gemini_client = gemini::Client::from_env();
+
+    let topic = "The history of space exploration";
+    let model_name = "gemini-3.1-flash-lite-preview";
+
+    // 创建三个并行的Agent
+    let summarize_agent = gemini_client
+        .agent(model_name)
+        .preamble("Summarize the following topic concisely:")
+        .build();
+
+    let questions_agent = gemini_client
+        .agent(model_name)
+        .preamble("Generate three interesting questions about the following topic:")
+        .build();
+
+    let terms_agent = gemini_client
+        .agent(model_name)
+        .preamble("Identify 5-10 key terms from the following topic, separated by commas:")
+        .build();
+
+    let synthesis_agent = gemini_client
+        .agent(model_name)
+        .preamble("Synthesize a comprehensive answer based on the provided information.")
+        .build();
+
+    // 构建并行处理链
+    let chain = pipeline::new()
+        .chain(parallel!(
+            prompt(summarize_agent),
+            prompt(questions_agent),
+            prompt(terms_agent),
+            passthrough()
+        ))
+        .map(|(summary, questions, terms, topic): (Result&lt;String, _&gt;, Result&lt;String, _&gt;, Result&lt;String, _&gt;, String)| {
+            let sum_str = summary.unwrap();
+            let q_str = questions.unwrap();
+            let t_str = terms.unwrap();
+
+            println!("--- [阶段 1] 并行任务完成 ---");
+            println!("&gt;&gt; 摘要:\n{}\n", sum_str);
+            println!("&gt;&gt; 问题:\n{}\n", q_str);
+            println!("&gt;&gt; 关键词:\n{}\n", t_str);
+            println!("--- [阶段 2] 开始综合生成最终回复 ---\n");
+
+            format!(
+                "Based on the following information:\n\
+                 Summary: {}\n\
+                 Related Questions: {}\n\
+                 Key Terms: {}\n\
+                 Synthesize a comprehensive answer for the Original topic: {}",
+                sum_str, q_str, t_str, topic
+            )
+        })
+        .chain(prompt(synthesis_agent));
+
+    println!("\n=======================================================");
+    println!("--- 开始并行执行 Rig 示例任务 ---");
+    println!("主题: '{}'", topic);
+    println!("=======================================================\n");
+
+    let start = std::time::Instant::now();
+    let response = chain.call(topic.to_string()).await?;
+    let duration = start.elapsed();
+
+    println!("\n=======================================================");
+    println!("--- 并行最终回复 ---");
+    println!("{}", response);
+    println!("--- 并行执行耗时: {:.2?} ---", duration);
+    println!("=======================================================\n");
+
+    Ok(())
+}
+</code></pre><p><code>Rust 的异步体系能充分压榨系统资源。如果需要并行10个甚至100个子任务，Rust 的内存安全和并发优势会让系统稳得很。</code></p>
+<p><strong>完整代码可以看这里：</strong> <a href="https://github.com/Doomking/rust-zhixingshe-examples/blob/main/ai-agent/agentic-design-patterns/agentic-design-patterns-rs/examples/chapter_03_parallelization_example.rs" target="_blank">GitHub示例仓库</a></p>
+<h3 id="运行结果对比">运行结果对比</h3>
+<p>在Mac M1上跑了一下，结果很能说明问题：</p>
+<pre><code>=======================================================
+--- 并行执行结果 ---
+--- [阶段 1] 并行任务完成 ---
+&gt;&gt; 摘要:
+Space exploration evolved from the mid-20th-century .....
+
+&gt;&gt; 问题:
+Here are three interesting questions about the history of space exploration:
+1. The Geopolitical Catalyst: To what extent would the ......
+2. The "Unsung" Pioneers: Beyond the famous names of astronauts and cosmonauts, ......
+3. The Ethical Shift: How has the primary motivation for space exploration shifted since the 1960s, ......
+
+&gt;&gt; 关键词:
+Space Race, Apollo missions, artificial satellites, lunar landing, ......
+
+--- [阶段 2] 开始综合生成最终回复 ---
+=======================================================
+--- 并行执行耗时: 7.97s ---
+=======================================================
+</code></pre><pre><code>=======================================================
+--- 串行执行结果 ---
+=======================================================
+--- 串行执行耗时: 14.35s ---
+=======================================================
+</code></pre><p><strong>性能对比：</strong></p>
+<ul>
+<li><strong>串行执行：</strong> 14.35秒</li>
+<li><strong>并行执行：</strong> 7.97秒</li>
+<li><strong>性能提升：</strong> 约44%</li>
+</ul>
+<p>并行处理在Mac M1环境下的优势很明显。</p>
+<h2 id="05-并行也有坑">05 并行也有坑</h2>
+<p>并行模式效果是好，但用的时候得注意：</p>
+<ul>
+<li><strong>API限流风险：</strong> 并行意味着瞬间请求量增加，记得加上速率限制，不然可能触发熔断</li>
+<li><strong>结果合并麻烦：</strong> 拆开容易，合并难。建议用结构化输出（比如JSON）来规范返回格式，方便最后汇总</li>
+<li><strong>资源竞争：</strong> CPU和内存不够时，并行可能反而变慢</li>
+</ul>
+<h2 id="06-写在最后">06 写在最后</h2>
+<p>并行模式不只是技术优化，更是工程思维的转变。从确定性的顺序处理，到自适应的并发响应，这是AI工程化从Demo走向产品的关键一步。</p>
+<p>想试试的话：</p>
+<ol>
+<li><strong>拉下代码跑一下：</strong> 文中的GitHub仓库有完整实现，在本地跑通你的第一个Rust并行Agent</li>
+<li><strong>检查现有架构：</strong> 看看你现在的Agent流程，有哪些地方可以并行？</li>
+<li><strong>交流讨论：</strong> 你觉得Agent开发中，并行最难的地方是什么？是Token消耗太多，还是结果合并麻烦？欢迎在评论区聊聊！</li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li>Agentic Design Patterns - 并行模式详解：<a href="https://adp.xindoo.xyz/chapters/Chapter%203_%20Parallelization/" target="_blank">https://adp.xindoo.xyz/chapters/Chapter%203_%20Parallelization/</a></li>
+<li>Rust示例代码仓库（含完整实现）：<a href="https://github.com/Doomking/rust-zhixingshe-examples" target="_blank">https://github.com/Doomking/rust-zhixingshe-examples</a></li>
+<li>Rig框架文档：<a href="https://github.com/0xPlaygrounds/rig" target="_blank">https://github.com/0xPlaygrounds/rig</a></li>
+<li>Gemini API文档：<a href="https://ai.google.dev/docs" target="_blank">https://ai.google.dev/docs</a></li>
+</ol>
+<p>本文使用 <a href="https://markdown.com.cn" target="_blank">markdown.com.cn</a> 排版</p>
 
                                 
                                 </section>
@@ -1046,12 +1230,12 @@
 
             
                 
-                <a href="1-web3.html" class="navigation navigation-prev " aria-label="Previous page: 前端工程师，你了解Web3了么？">
+                <a href="2-routing.html" class="navigation navigation-prev " aria-label="Previous page: AI智能体设计模式 02 - 别再手动调度了！用Routing设计模式，打造真正聪明的AI智能体">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../chrome/" class="navigation navigation-next " aria-label="Next page: chrome">
+                <a href="../wasm_ai/" class="navigation navigation-next " aria-label="Next page: Rust&Wasm&AI">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1062,7 +1246,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"web3世界的通行证-加密钱包","level":"1.8.2","depth":2,"next":{"title":"chrome","level":"1.9","depth":1,"path":"chrome/README.md","ref":"chrome/README.md","articles":[{"title":"终于实现了Chrome MV3 的网络请求更改","level":"1.9.1","depth":2,"path":"chrome/1-netRequest.md","ref":"chrome/1-netRequest.md","articles":[]}]},"previous":{"title":"前端工程师，你了解Web3了么？","level":"1.8.1","depth":2,"path":"web3/1-web3.md","ref":"web3/1-web3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"web3/2-wallet.md","mtime":"2025-11-24T07:57:26.888Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-03-16T04:29:00.438Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍","level":"1.2.3","depth":2,"next":{"title":"Rust&Wasm&AI","level":"1.3","depth":1,"path":"wasm_ai/README.md","ref":"wasm_ai/README.md","articles":[{"title":"Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代","level":"1.3.1","depth":2,"path":"wasm_ai/1-wasm-ai-intro.md","ref":"wasm_ai/1-wasm-ai-intro.md","articles":[]},{"title":"Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎","level":"1.3.2","depth":2,"path":"wasm_ai/2-wasm-ai-senti-pulse.md","ref":"wasm_ai/2-wasm-ai-senti-pulse.md","articles":[]},{"title":"Rust + Wasm + AI（三）：浏览器里的二次元伴侣——LLM+3D数字人集成实战","level":"1.3.3","depth":2,"path":"wasm_ai/3-wasm-ai-3d.md","ref":"wasm_ai/3-wasm-ai-3d.md","articles":[]},{"title":"Rust + Wasm + AI (四)：赛博粒子视听盛宴——MobileSAM模型与高性能流体视觉实战","level":"1.3.4","depth":2,"path":"wasm_ai/4-wasm-ai-flow.md","ref":"wasm_ai/4-wasm-ai-flow.md","articles":[]}]},"previous":{"title":"AI智能体设计模式 02 - 别再手动调度了！用Routing设计模式，打造真正聪明的AI智能体","level":"1.2.2","depth":2,"path":"ai_agentic_design_patterns/2-routing.md","ref":"ai_agentic_design_patterns/2-routing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ai_agentic_design_patterns/3-parallelization.md","mtime":"2026-03-16T04:28:08.951Z","type":"markdown"},"gitbook":{"version":"6.1.4","time":"2026-03-16T04:29:00.438Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
