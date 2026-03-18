@@ -6,6 +6,7 @@
   - [AI智能体设计模式 02 - 别再手动调度了！用Routing设计模式，打造真正聪明的AI智能体](ai_agentic_design_patterns/2-routing.md)
   - [AI智能体设计模式 03：从串行到并行，让 Agent 执行效率翻倍](ai_agentic_design_patterns/3-parallelization.md)
   - [AI智能体设计模式 04：反思模式（Reflection）给 Agent 装上自检系统，让它学会自我纠错](ai_agentic_design_patterns/4-reflection.md)
+  - [AI智能体设计模式 05：从对话式AI到执行式AI——工具调用让Agent真正动手干活](ai_agentic_design_patterns/5-tooluse.md)
 - [Rust&Wasm&AI](wasm_ai/README.md)
   - [Rust + Wasm + AI (一)：开启浏览器与边缘端的高性能推理时代](wasm_ai/1-wasm-ai-intro.md)
   - [Rust + Wasm + AI（二）：让浏览器开始思考 —— 基于 Candle 的端侧情感引擎](wasm_ai/2-wasm-ai-senti-pulse.md)
